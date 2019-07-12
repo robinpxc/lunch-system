@@ -81,8 +81,29 @@ body {
   border-top-right-radius: 0;
 }
 
+.checkbox {
+  text-align: left;
+}
 
 .food_img {
   width: auto;
   height: auto;
+}
+
+.quotes {
+  text-align: left;
+}
+
+.quotes embed, svg {
+  width: 16px;
+  height: 16px;
+}
+
+.quotes div * {
+  display: inline;
+}
+
+.quotes p {
+  font-size: 13px;
+  text-align: left;
 }
