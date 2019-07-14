@@ -1,6 +1,6 @@
 <!doctype html>
 <?php
-   include("config.php");
+   include("./php/common/config.php");
    session_start();
 
     if($_SERVER["REQUEST_METHOD"] == "POST")
@@ -23,7 +23,7 @@
        {
           //session_register("myloginname");
           $_SESSION['login_user'] = $myloginname;
-          header("location: user_main.php");
+          header("location: ./php/user_main.php");
        }
        else { echo"<script>alert('Your login name or password is invalid!')</script>"; }
    }
