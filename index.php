@@ -1,4 +1,34 @@
 <!doctype html>
+<?php
+   include("config.php");
+   session_start();
+
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+       // username and password sent from form
+       $myloginname = mysqli_real_escape_string($mysqlConnection, $_POST['login_name']);
+       $mypassword = mysqli_real_escape_string($mysqlConnection, $_POST['password']);
+
+       //TODO: Add something to encrypt password
+
+       $sql = "SELECT * FROM user_info WHERE name = '$myloginname' AND password = '$mypassword'";
+       $result = mysqli_query($mysqlConnection, $sql);
+       $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+       $active = $row['active'];
+
+       $count = mysqli_num_rows($result);
+
+       // If result matched $myusername and $mypassword, table row must be 1 row
+       if($count == 1)
+       {
+          //session_register("myloginname");
+          $_SESSION['login_user'] = $myloginname;
+          header("location: user_main.php");
+       }
+       else { echo"<script>alert('Your login name or password is invalid!')</script>"; }
+   }
+?>
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -17,7 +47,7 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="" method="post">
       <div class="title-container mb-4">
         <img class="food_icon" src="assets/images/food.png" alt="Left food icon" description="Food icon left">
         <h1 class="h3 font-weight-normal">中午吃啥?</h1>
@@ -29,15 +59,15 @@
       </div>
 
       <label for="inputUsername" class="sr-only">Username</label>
-      <input type="text" id="inputUsername" class="form-control" placeholder="饭友编号/你的全名" required>
+      <input type="text" class="form-control" name='login_name' placeholder="编号(ID)/姓名" required maxlength="45">
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control mb-3" placeholder="吃饭密码" required>
+      <input type="password" class="form-control mb-3" name='password' placeholder="吃饭密码" required maxlength="16">
       <!-- <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> 记住我
         </label>
       </div> -->
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">
         <img src="assets/icons/donut_32x32.png" alt="Donut icon" description="Login button icon">&nbsp;进入系统
       </button>
 
