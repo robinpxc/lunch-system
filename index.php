@@ -13,7 +13,7 @@
 
        $sql = "SELECT * FROM user_info WHERE name = '$myloginname' AND password = '$mypassword'";
        $result = mysqli_query($mysqlConnection, $sql);
-       $row = mysqli_fetch_array($result, MYSQL_ASSOC);
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
        $active = $row['active'];
 
        $count = mysqli_num_rows($result);
