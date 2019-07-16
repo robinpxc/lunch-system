@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-include("./php/common/config.php");
+include("common/config.php");
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($count == 1) {
         //session_register("myloginname");
         $_SESSION['login_user'] = $myloginname;
-        header("location: ./php/user_main.php");
+        header("location: user_main.php");
     } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
     }
@@ -33,23 +33,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="assets/icons/rice_32x32.ico">
+    <link rel="icon" href="../assets/icons/rice_32x32.ico">
 
     <title>中午饭吃啥咩？</title>
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 
     <!-- Custom styles-->
-    <link href="css/main.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
     <form class="form-signin" action="" method="post">
         <div class="title-container mb-4">
-            <img class="food_icon" src="assets/images/food.png" alt="Left food icon" description="Food icon left">
+            <img class="food_icon" src="../assets/images/food.png" alt="Left food icon" description="Food icon left">
             <h1 class="h3 font-weight-normal">中午吃啥?</h1>
-            <img class="food_icon" src="assets/images/food-inverse.png" alt="Right food icon" description="Food icon right">
+            <img class="food_icon" src="../assets/images/food-inverse.png" alt="Right food icon" description="Food icon right">
         </div>
 
         <div class="title-info-container">
@@ -66,24 +66,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </label>
       </div> -->
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">
-            <img src="assets/icons/donut_32x32.png" alt="Donut icon" description="Login button icon">&nbsp;进入系统
+            <img src="../assets/icons/donut_32x32.png" alt="Donut icon" description="Login button icon">&nbsp;进入系统
         </button>
 
         <div class="quotes">
             <div class="mt-4 mb-1 text-muted">
-                <embed src="assets/svgs/food01.svg" type="image/svg+xml" />
+                <embed src="../assets/svgs/food01.svg" type="image/svg+xml" />
                 <p>李团长说过：打仗归打仗，饭还是要吃的</p>
             </div>
             <div class="mb-1 text-muted">
-                <embed src="assets/svgs/food02.svg" type="image/svg+xml" />
+                <embed src="../assets/svgs/food02.svg" type="image/svg+xml" />
                 <p>王者以民为天，而民以食为天</p>
             </div>
             <div class="mb-1 text-muted">
-                <embed src="assets/svgs/food03.svg" type="image/svg+xml" />
+                <embed src="../assets/svgs/food03.svg" type="image/svg+xml" />
                 <p>让食物成为你的药品，药品应该是你的食物</p>
             </div>
             <div class="mb-1 text-muted">
-                <embed src="assets/svgs/food04.svg" type="image/svg+xml" />
+                <embed src="../assets/svgs/food04.svg" type="image/svg+xml" />
                 <p>食之过饱，心灵无法容忍躯体；食不果腹，躯体同样无法支撑心灵</p>
             </div>
         </div>
