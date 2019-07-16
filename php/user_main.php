@@ -20,25 +20,34 @@
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../js/user_main.js"></script>
 
 </head>
 
-<body>
-  <div class="header d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-normal">欢迎点餐！</h5>
+<header class="header">
+  <div class="navbar shadow-sm">
+    <div class="container d-flex justify-content-between">
+      <span id="current_time" href="#" class="d-flex align-items-center">
+        <script>showTime();</script>
+      </span>
 
-    <div class="dropdown">
-      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Dropdown link
-      </a>
-
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
+      <div class="btn-group">
+        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          操作
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">点菜</a>
+          <a class="dropdown-item" href="#">设置</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">退出登录</a>
+        </div>
       </div>
     </div>
   </div>
+</header>
+
+<body>
+
 </body>
 
 </html>

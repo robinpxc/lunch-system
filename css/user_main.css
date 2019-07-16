@@ -15,3 +15,7 @@ body {
 .header {
   width: 100%;
 }
+
+.header .navbar {
+  background-color: #ca9b6a;
+}
