@@ -28,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 
     <!-- Custom styles-->
-    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -60,11 +61,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" class="form-control" name='login_name' placeholder="编号(ID)/姓名" required maxlength="45">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" class="form-control mb-3" name='password' placeholder="吃饭密码" required maxlength="16">
-        <!-- <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> 记住我
-        </label>
-      </div> -->
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> 记住我
+            </label>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">
             <img src="../assets/icons/donut_32x32.png" alt="Donut icon" description="Login button icon">&nbsp;进入系统
         </button>
