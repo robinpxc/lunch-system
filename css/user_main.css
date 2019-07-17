@@ -1,3 +1,4 @@
+/* Body css */
 body {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -12,10 +13,60 @@ body {
   min-width: 320px;
 }
 
-.header {
-  width: 100%;
+/* Common css */
+.icon-sm {
+  width: 24px;
+  height: 24px;
 }
 
-.header .navbar {
+/* Header css */
+.header,
+.navbar,
+.header-container {
+  width: 100%;
   background-color: #ca9b6a;
 }
+
+.time-module {
+  margin-right: 10px;
+  justify-content: center;
+}
+
+.time-module span {
+  justify-content: left;
+  font-size: 15px;
+}
+
+.time-module span * {
+  display: block;
+  float: left;
+}
+
+.icon-time {
+  height: 20px;
+  width: 20px;
+}
+
+#current_time {
+  margin-left: 10px;
+}
+
+.btn-group * {
+  font-size: 14px;
+}
+
+.dropdown-item span {
+  display: flex;
+  justify-content: left;
+}
+
+.dropdown-item span * {
+  display: inline-flex;
+}
+
+.dropdown-desc {
+  color: black;
+}
+
+
+

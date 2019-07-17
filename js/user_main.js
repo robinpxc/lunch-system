@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    showTime();
 });
 
 function showTime() {
@@ -15,6 +15,7 @@ function showTime() {
     hours = hours < 10 ? "0" + hours : hours;
     minutes = minutes < 10 ? "0" + minutes : minutes;
     seconds = seconds < 10 ? "0" + seconds : seconds;
-    document.getElementById("current_time").innerHTML = year + "年" + " " + month + "月" + day + "日" + " " + hours + ":" + minutes + ":" +seconds;
+    $("#current_date").html(year + "-" + month + "-" + day);
+    $("#current_time").html(hours + ":" + minutes + ":" + seconds);
     setTimeout(showTime, 1000);
 }
