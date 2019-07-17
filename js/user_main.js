@@ -1,7 +1,27 @@
 $(document).ready(function () {
+    // Variables
+    var headerMenuList = $("#nav-bar-list");
+    var bodyWidth = $(document.body).width();
+
+    // Hide nav list when click on blank.
+    $(document).click(function (event) {
+        if (headerMenuList.hasClass("show")) {
+            headerMenuList.removeClass("show");
+        }
+    });
+
+    if (bodyWidth >= 768 && !($("body").hasClass("container"))) {
+        $("body").addClass("container");
+    } else {
+        $("body").removeClass("container");
+    }
+
+    // Display current date and time.
     showTime();
+
 });
 
+// Function to show current date and time.
 function showTime() {
     var serverDate = new Date();
     var year = serverDate.getFullYear();
@@ -18,4 +38,13 @@ function showTime() {
     $("#current_date").html(year + "-" + month + "-" + day);
     $("#current_time").html(hours + ":" + minutes + ":" + seconds);
     setTimeout(showTime, 1000);
+}
+
+// Function to show/hide header menu list
+function showNavMenu(willShowMenu) {
+    if (willShowMenu) {
+        headerMenuList.addClass("show");
+    } else {
+        headerMenuList.removeClass("show");
+    }
 }
