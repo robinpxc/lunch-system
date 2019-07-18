@@ -10,8 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $encrypedPassword = md5($myLoginPwd);
 
     $sql = "SELECT * FROM user_info WHERE password = '$encrypedPassword' and (name = '$myLoginInfo' OR id = '$myLoginInfo')";
-
-
     $result = mysqli_query($mysqlConnection, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $active = $row['active'];
@@ -21,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If result matched $myusername and $myLoginPwd, table row must be 1 row
     if ($count == 1) {
         //session_register("myLoginInfo");
-        $_SESSION['login_user'] = $myLoginInfo;
+        $_SESSION['lunch_user_session'] = $myLoginInfo;
         header("location: user_main.php");
     } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
@@ -63,11 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" class="form-control" name='login_name' placeholder="编号(ID)/姓名" required maxlength="45">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" class="form-control mb-3" name='password' placeholder="吃饭密码" required maxlength="16">
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> 记住我
-            </label>
-        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">进入系统</button>
 
         <div class="quotes">

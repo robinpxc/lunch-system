@@ -2,7 +2,7 @@
    include('config.php');
    session_start();
    
-   $user_check = $_SESSION['login_user'];
+   $user_check = $_SESSION['lunch_user_session'];
    
    $ses_sql = mysqli_query($mysqlConnection,"SELECT name FROM user_info WHERE name = '$user_check' ");
    
@@ -10,7 +10,7 @@
    
    $login_session = $row['name'];
    
-   if(!isset($_SESSION['login_user'])){
+   if(!isset($_SESSION['lunch_user_session'])){
       header("location:login.php");
    }
 ?>
