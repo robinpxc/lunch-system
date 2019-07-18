@@ -1,7 +1,6 @@
 $(document).ready(function () {
     // Variables
-    var headerMenuList = $("#nav-bar-list");
-    var bodyWidth = $(document.body).width();
+    var headerMenuList = $("#nav-bar-list"); 
 
     // Hide nav list when click on blank.
     $(document).click(function (event) {
@@ -10,15 +9,8 @@ $(document).ready(function () {
         }
     });
 
-    if (bodyWidth >= 768 && !($("body").hasClass("container"))) {
-        $("body").addClass("container");
-    } else {
-        $("body").removeClass("container");
-    }
-
     // Display current date and time.
     showTime();
-
 });
 
 // Function to show current date and time.

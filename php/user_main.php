@@ -25,14 +25,14 @@
 </head>
 
 <body class="d-block container">
-  <header class="header d-inline-block">
-    <nav class="navbar navbar-dark">
+  <header class="header d-inline-block border-bottom shadow-sm bg-light">
+    <nav class="navbar">
       <span class="navbar-brand" href="#">
         <div class="time-module d-flex align-items-center justify-content-center">
           <span class="d-block">
             <svg class="icon-sm" viewBox="0 0 1024 1024">
-              <path d="M512 64C264.96 64 64 264.96 64 512s200.96 448 448 448 448-200.96 448-448S759.04 64 512 64z m0 831.712c-211.584 0-383.712-172.16-383.712-383.712 0-211.584 172.128-383.712 383.712-383.712 211.552 0 383.712 172.128 383.712 383.712 0 211.552-172.16 383.712-383.712 383.712z" p-id="1842" fill="#ffffff"></path>
-              <path d="M671.968 512H512V288.064c0-17.76-14.24-32.128-32-32.128s-32 14.4-32 32.128V544c0 17.76 14.272 32 32 32h191.968c17.76 0 32.128-14.24 32.128-32s-14.368-32-32.128-32z" p-id="1843" fill="#ffffff"></path>
+              <path d="M512 64C264.96 64 64 264.96 64 512s200.96 448 448 448 448-200.96 448-448S759.04 64 512 64z m0 831.712c-211.584 0-383.712-172.16-383.712-383.712 0-211.584 172.128-383.712 383.712-383.712 211.552 0 383.712 172.128 383.712 383.712 0 211.552-172.16 383.712-383.712 383.712z" p-id="2222"></path>
+              <path d="M671.968 512H512V288.064c0-17.76-14.24-32.128-32-32.128s-32 14.4-32 32.128V544c0 17.76 14.272 32 32 32h191.968c17.76 0 32.128-14.24 32.128-32s-14.368-32-32.128-32z" p-id="2223"></path>
             </svg>
             &nbsp;&nbsp;
           </span>
@@ -87,11 +87,71 @@
     </nav>
   </header>
 
-  <main role="main">
-    <div class="container d-block">
-      
+  <div class="container pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-5 mb-5">让我们奔向吃饭的康庄大道</h1>
+    <p class="lead">国以民为本，民以食为天。主副搭配、荤素结合、膳食平衡、性味平和。一餐一饭关系民生，一瓢一饮贴近生活。饭要七分饱，对人七分好；若要精气足，每天多吃素。</p>
+  </div>
+
+  <div class="container">
+    <div class="card-deck mb-5 text-center">
+      <div class="card mb-4 shadow-sm text-white bg-success">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">今日午餐</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title eating-card-title">￥3 / 餐</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>营养均衡, 荤素搭配</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-light">立刻点餐</button>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm text-white bg-primary">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">本周午餐</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title eating-card-title">￥15 / 周</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>价格低至&nbsp;<strong>60元/月</strong></li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-light">立刻点餐</button>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm bg-light">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">首选项</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title eating-card-title">个人设置</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>修改您的账户和其他设置</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-danger">进入设置</button>
+        </div>
+      </div>
+      <div class="card mb-4 shadow-sm bg-danger">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">管理</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title eating-card-title">系统管理</h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>管理员才获准使用此组件</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-light">进入管理</button>
+        </div>
+      </div>
     </div>
-  </main>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+      <div class="row">
+        <div class="col-12 col-md">
+          <h6 class="d-block mb-3 text-muted">&copy; 2019 Robin.Pan</h6>
+        </div>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>
