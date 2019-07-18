@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php
+  include('common/session.php');
+?>
+
+<html lang="zh">
 
 <head>
   <meta charset="utf-8">
