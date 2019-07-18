@@ -81,8 +81,8 @@
     </nav>
   </header>
 
-  <div class="container pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-    <h1 class="display-5 mb-5">让我们奔向吃饭的康庄大道</h1>
+  <div class="container pricing-header px-3 py-3 pt-md-5 pb-md-5 mx-auto text-center">
+    <h2 class="display-5 mb-5"><strong>让我们奔向吃饭的康庄大道</strong></h2>
     <p class="lead">国以民为本，民以食为天。主副搭配、荤素结合、膳食平衡、性味平和。一餐一饭关系民生，一瓢一饮贴近生活。饭要七分饱，对人七分好；若要精气足，每天多吃素。</p>
   </div>
 
@@ -90,7 +90,7 @@
     <div class="card-deck mb-5 text-center">
       <div class="card mb-4 shadow-sm text-white bg-success">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">快速点餐(今日)</h4>
+          <h4 class="my-0 font-weight-normal">快速点餐(当天)</h4>
         </div>
         <div class="card-body">
           <h1 class="card-title eating-card-title">￥3 / 餐</h1>
@@ -126,7 +126,7 @@
       </div>
     </div>
 
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <footer class="pt-4 my-md-4 pt-md-4 border-top">
       <div class="row">
         <div class="col-12 col-md">
           <h6 class="d-block mb-3 text-muted">&copy; 2019 Robin.Pan</h6>
