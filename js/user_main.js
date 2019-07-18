@@ -1,6 +1,8 @@
 $(document).ready(function () {
     // Variables
-    var headerMenuList = $("#nav-bar-list"); 
+    var headerMenuList = $("#nav-bar-list");
+    setNavBarWidth();
+    willShowPricingHeader();
 
     // Hide nav list when click on blank.
     $(document).click(function (event) {
@@ -11,7 +13,15 @@ $(document).ready(function () {
 
     // Display current date and time.
     showTime();
+
+    $(window).resize(function () {
+        setNavBarWidth();
+        willShowPricingHeader();
+    });
+
 });
+
+
 
 // Function to show current date and time.
 function showTime() {
@@ -39,4 +49,24 @@ function showNavMenu(willShowMenu) {
     } else {
         headerMenuList.removeClass("show");
     }
+}
+
+// Function to set header bar full screen width or same as body
+function setNavBarWidth() {
+    var windowWidth = $(window).width(); 
+    if (windowWidth >= 768 && !($("body").hasClass("container"))) {
+        $("body").addClass("container");
+    } else if (windowWidth < 768 && ($("body").hasClass("container"))) {
+        $("body").removeClass("container");
+    }
+}
+
+// Function to show/hode pricing-header 
+function willShowPricingHeader() {
+     var windowWidth = $(window).width();
+     if (windowWidth >= 575 && ($(".pricing-header").hasClass("hide"))) {
+         $(".pricing-header").removeClass("hide");
+     } else if (windowWidth < 575 && !($("body").hasClass("hide"))) {
+         $(".pricing-header").addClass("hide");
+     }
 }

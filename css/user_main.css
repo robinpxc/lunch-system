@@ -91,4 +91,15 @@ body {
   font-weight: bold;
 }
 
+.card-admin h1,
+.card-admin h4,
+.card-admin li {
+  color: white;
+}
+
+.hide {
+  visibility: hidden;
+  height: 0;
+}
+
 

@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="d-block container">
+<body class="d-block">
   <header class="header d-inline-block border-bottom shadow-sm bg-light">
     <nav class="navbar">
       <span class="navbar-brand" href="#">
@@ -55,16 +55,6 @@
       <div class="collapse navbar-collapse" id="nav-bar-list">
         <ul class="navbar-nav mr-auto">
           <div class="dropdown-divider"></div>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              <span class="d-flex justify-content-left align-items-center">
-                <svg class="icon-sm" viewBox="0 0 1024 1024">
-                  <path d="M946.596096 829.138964 77.402881 829.138964c-6.487761 0-11.746532-5.257747-11.746532-11.746532l0-23.49204c0-6.483668 5.257747-11.746532 11.746532-11.746532l869.193215 0c6.487761 0 11.746532 5.26184 11.746532 11.746532l0 23.49204C958.342628 823.881217 953.08488 829.138964 946.596096 829.138964zM946.596096 735.171826 77.402881 735.171826c-6.487761 0-11.746532-5.26184-11.746532-11.746532l0-23.49204c0-6.487761 5.257747-11.746532 11.746532-11.746532l35.237549 0c0-188.544167 130.821511-346.164021 306.528302-388.069433-0.450255-3.745301-1.136893-7.423063-1.136893-11.290137 0-51.896974 42.069141-93.967138 93.967138-93.967138 51.897997 0 93.967138 42.069141 93.967138 93.967138 0 3.867074-0.686638 7.544837-1.136893 11.290137C780.539083 342.022701 911.35957 499.642554 911.35957 688.187745l35.237549 0c6.487761 0 11.746532 5.257747 11.746532 11.746532l0 23.49204C958.342628 729.909985 953.08488 735.171826 946.596096 735.171826zM512 241.84614c-25.948999 0-46.983057 21.034059-46.983057 46.983057 0 1.014096 0.234337 1.959631 0.295735 2.955308 15.340383-1.789763 30.868031-2.955308 46.687322-2.955308 15.819291 0 31.346939 1.164522 46.687322 2.955308 0.061398-0.995677 0.295735-1.940189 0.295735-2.955308C558.983057 262.880199 537.948999 241.84614 512 241.84614zM512 335.813279c-194.609303 0-352.375489 157.766187-352.375489 352.375489l704.752002 0C864.375489 493.579465 706.609303 335.813279 512 335.813279zM384.806109 429.102988c12.033058 10.280134 21.424962 23.370267 27.052123 38.479383-50.671053 27.921933-92.542696 69.793576-120.465652 120.465652-15.110139-5.628184-28.195156-15.015995-38.479383-27.052123C284.251949 506.052544 329.863776 460.44174 384.806109 429.102988z" p-id="2780"></path>
-                </svg>
-                <span class="dropdown-desc">&nbsp;开始点菜</span>
-              </span>
-            </a>
-          </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">
               <span class="d-flex justify-content-left align-items-center">
@@ -100,7 +90,7 @@
     <div class="card-deck mb-5 text-center">
       <div class="card mb-4 shadow-sm text-white bg-success">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">今日午餐</h4>
+          <h4 class="my-0 font-weight-normal">快速点餐(今日)</h4>
         </div>
         <div class="card-body">
           <h1 class="card-title eating-card-title">￥3 / 餐</h1>
@@ -112,29 +102,17 @@
       </div>
       <div class="card mb-4 shadow-sm text-white bg-primary">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">本周午餐</h4>
+          <h4 class="my-0 font-weight-normal">本周午餐预定</h4>
         </div>
         <div class="card-body">
           <h1 class="card-title eating-card-title">￥15 / 周</h1>
           <ul class="list-unstyled mt-3 mb-4">
             <li>价格低至&nbsp;<strong>60元/月</strong></li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-light">立刻点餐</button>
+          <button type="button" class="btn btn-lg btn-block btn-light">立刻预定</button>
         </div>
       </div>
-      <div class="card mb-4 shadow-sm bg-light">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">首选项</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title eating-card-title">个人设置</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>修改您的账户和其他设置</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-danger">进入设置</button>
-        </div>
-      </div>
-      <div class="card mb-4 shadow-sm bg-danger">
+      <div class="card card-admin mb-4 shadow-sm bg-danger">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">管理</h4>
         </div>
