@@ -1,1 +1,5 @@
 @import url("common/common.css");
+
+.profile-form-container {
+  padding: 10px;
+}

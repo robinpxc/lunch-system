@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <?php
-  include('common/session.php');
+include('common/session.php');
 
-  // Connect database
-  $sql = "SELECT * FROM user_info WHERE id = '$login_session'";
-  $result = mysqli_query($mysqlConnection, $sql);
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+// Connect database
+$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
+$result = mysqli_query($mysqlConnection, $sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-  $userId = $row['id'];
-  $userFullName = $row['fullname'];
+$userId = $row['id'];
+$userFullName = $row['fullname'];
+$userNickName = $row['nick_name'];
+$userRole = $row['role'];
+$userWorkgroup = $row['workgroup'];
 ?>
 
 <html lang="zh">
@@ -26,7 +29,7 @@
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/user_main.css" rel="stylesheet">
+  <link href="../css/user_profile.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -60,7 +63,7 @@
         </div>
       </span>
       <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="collapse" data-target="#nav-bar-list" aria-controls="nav-bar-list" aria-expanded="false" aria-label="Toggle navigation">
-        <span>操作</span>
+        <span>系统操作</span>
       </button>
 
       <div class="collapse navbar-collapse" id="nav-bar-list">
@@ -91,9 +94,12 @@
     </nav>
   </header>
 
-  <div class="profile-form-container mt-5">
+  <div class="profile-form-container mt-4">
+    <div class="profile-title mb-4">
+      <h2>个人信息</h2>
+    </div>
     <form class="profile-form" action="" method="post">
-
+      <!-- User ID input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">用户ID</span>
@@ -101,6 +107,7 @@
         <input type="text" name="user-id" aria-label="user-id" class="form-control" value="<?php echo $userId; ?>" disabled />
       </div>
 
+      <!-- User fullname input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">姓名(全名)</span>
@@ -108,16 +115,34 @@
         <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control" value="<?php echo $userFullName; ?>" disabled />
       </div>
 
+      <!-- User role -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">用户权限</span>
+        </div>
+        <input type="text" name="user-role" aria-label="user-role" class="form-control" value="<?php if($userRole == "admin") {echo "管理员(Administrator)";} else {echo "标准用户(User)";}  ?>" disabled />
+      </div>
+      
+      <!-- User workgroup -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">所在单位</span>
+        </div>
+        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control" value="<?php echo $userWorkgroup; ?>" disabled />
+      </div>
+
+      <!-- User nickname input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">用户名(昵称)</span>
         </div>
-        <input type="text" name="user-nickname" aria-label="user-nickname" class="form-control" disabled>
+        <input type="text" name="user-nickname" aria-label="user-nickname" class="form-control" value="<?php echo $userNickName; ?>" disabled>
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="nickname-edit-btn">修改</button>
+          <button class="btn btn-outline-danger" type="button" id="nickname-edit-btn">修改</button>
         </div>
       </div>
 
+      <!-- User password input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text">密码</span>
@@ -130,11 +155,11 @@
               <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
             </svg>
           </button>
-          <button class="btn btn-outline-secondary" type="button" id="password-edit-btn">修改</button>
+          <button class="btn btn-outline-danger" type="button" id="password-edit-btn">修改</button>
         </div>
       </div>
 
-      <div class="input-group mb-3">
+      <div class="input-group mb-3 mt-5">
         <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit-btn" value="submit">提交修改</button>
       </div>
     </form>

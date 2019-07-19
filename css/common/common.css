@@ -7,9 +7,6 @@ body {
     align-items: center;
     background-color: #f5f5f5;
     min-width: 320px;
-
-    /* Fixed an issue that user cannot close menu via taping on blank area */
-    cursor:pointer; 
   }
   
   /* Icon css */

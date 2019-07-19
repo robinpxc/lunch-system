@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-  include('common/session.php');
+include('common/session.php');
 ?>
 
 <html lang="zh">
@@ -52,7 +52,7 @@
         </div>
       </span>
       <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="collapse" data-target="#nav-bar-list" aria-controls="nav-bar-list" aria-expanded="false" aria-label="Toggle navigation">
-        <span>操作</span>
+        <span>系统操作</span>
       </button>
 
       <div class="collapse navbar-collapse" id="nav-bar-list">
