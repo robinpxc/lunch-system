@@ -102,65 +102,84 @@ $userWorkgroup = $row['workgroup'];
       <!-- User ID input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">用户ID</span>
+          <span class="input-group-text item-title">用户ID</span>
         </div>
         <input type="text" name="user-id" aria-label="user-id" class="form-control" value="<?php echo $userId; ?>" disabled />
+        <div class="input-group-append">
+          <span class="input-group-text">无修改权限</span>
+        </div>
       </div>
 
       <!-- User fullname input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">姓名(全名)</span>
+          <span class="input-group-text item-title">姓名</span>
         </div>
         <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control" value="<?php echo $userFullName; ?>" disabled />
+        <div class="input-group-append">
+          <span class="input-group-text">无修改权限</span>
+        </div>
       </div>
 
       <!-- User role -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">用户权限</span>
+          <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="text" name="user-role" aria-label="user-role" class="form-control" value="<?php if($userRole == "admin") {echo "管理员(Administrator)";} else {echo "标准用户(User)";}  ?>" disabled />
+        <input type="text" name="user-role" aria-label="user-role" class="form-control" value="<?php if ($userRole == "admin") {
+                                                                                                  echo "管理员(Admin)";
+                                                                                                } else {
+                                                                                                  echo "标准用户(User)";
+                                                                                                }  ?>" disabled />
+        <div class="input-group-append">
+          <span class="input-group-text">无修改权限</span>
+        </div>
       </div>
-      
+
       <!-- User workgroup -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">所在单位</span>
+          <span class="input-group-text item-title">所在单位</span>
         </div>
         <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control" value="<?php echo $userWorkgroup; ?>" disabled />
+        <div class="input-group-append">
+          <span class="input-group-text">无修改权限</span>
+        </div>
       </div>
 
       <!-- User nickname input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">用户名(昵称)</span>
+          <span class="input-group-text item-title">昵称</span>
         </div>
         <input type="text" name="user-nickname" aria-label="user-nickname" class="form-control" value="<?php echo $userNickName; ?>" disabled>
         <div class="input-group-append">
-          <button class="btn btn-outline-danger" type="button" id="nickname-edit-btn">修改</button>
+          <button class="btn btn-outline-danger action-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
       </div>
 
       <!-- User password input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">密码</span>
+          <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password" aria-label="user-password" class="form-control" password>
+        <input type="password" name="user-password" aria-label="user-password" class="form-control" placeholder="点击修改输入新密码" disabled>
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd_-btn">
+          <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
             <svg class="icon-eye" viewBox="0 0 1024 1024">
               <path d="M512 256c-163.8 0-291.4 97.6-448 256 134.8 135.4 248 256 448 256 199.8 0 346.8-152.8 448-253.2C856.4 397.2 709.6 256 512 256zM512 694.6c-98.8 0-179.2-82-179.2-182.6 0-100.8 80.4-182.6 179.2-182.6s179.2 82 179.2 182.6C691.2 612.8 610.8 694.6 512 694.6z" p-id="4687"></path>
               <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
             </svg>
           </button>
-          <button class="btn btn-outline-danger" type="button" id="password-edit-btn">修改</button>
+          <button class="btn btn-outline-danger action-btn" type="button" id="password-edit-btn">修改</button>
         </div>
       </div>
 
       <div class="input-group mb-3 mt-5">
-        <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit-btn" value="submit">提交修改</button>
+        <div class="btn-group" role="group" aria-label="Form submit button group">
+          <button type="button" class="btn btn-danger mr-1" id="discard-btn">放弃修改</button>
+          <button type="button" class="btn btn-primary ml-1" id="submit-btn">提交修改</button>
+        </div>
       </div>
     </form>
   </div>
