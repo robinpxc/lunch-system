@@ -7,12 +7,20 @@ body {
     align-items: center;
     background-color: #f5f5f5;
     min-width: 320px;
+
+    /* Fixed an issue that user cannot close menu via taping on blank area */
+    cursor:pointer; 
   }
   
-  /* Common css */
+  /* Icon css */
   .icon-sm {
     width: 24px;
     height: 24px;
+  }
+
+  .icon-eye {
+    width: 20px;
+    height: 20px;
   }
   
   /* Header css */

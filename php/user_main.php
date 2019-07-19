@@ -25,7 +25,7 @@
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="../js/common.js"></script>
+  <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/user_main.js"></script>
   <script type="text/javascript" src="../js/admin.js"></script>
 
