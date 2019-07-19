@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
 include("common/config.php");
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
@@ -9,17 +8,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $myLoginPwd = mysqli_real_escape_string($mysqlConnection, $_POST['password']);
     $encrypedPassword = md5($myLoginPwd);
 
-    $sql = "SELECT * FROM user_info WHERE password = '$encrypedPassword' and (name = '$myLoginInfo' OR id = '$myLoginInfo')";
+    $sql = "SELECT * FROM user_info WHERE password = '$encrypedPassword' and (id = '$myLoginInfo' OR  nick_name = '$myLoginInfo')";
     $result = mysqli_query($mysqlConnection, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $active = $row['active'];
 
     $count = mysqli_num_rows($result);
+    $userId =  $row['id'];
 
     // If result matched $myusername and $myLoginPwd, table row must be 1 row
     if ($count == 1) {
-        //session_register("myLoginInfo");
-        $_SESSION['lunch_user_session'] = $myLoginInfo;
+        $_SESSION['lunch_user_session'] = $userId;
         header("location: user_main.php");
     } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";

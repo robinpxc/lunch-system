@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <?php
   include('common/session.php');
-  
+
   // Connect database
-  echo $login_session;
   $sql = "SELECT * FROM user_info WHERE id = '$login_session'";
   $result = mysqli_query($mysqlConnection, $sql);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
