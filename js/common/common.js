@@ -118,14 +118,3 @@ function setDisable(currentElement) {
     currentElement.attr("disabled", "disabled");
   }
 }
-
-function setModifyBtnStatus(button, status) {
-  switch (status) {
-    case "clicked":
-      setDisable(button);
-      break;
-    case "unclicked":
-      setEnable(button);
-      break;
-  }
-}
