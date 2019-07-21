@@ -27,7 +27,6 @@ include('common/session.php');
 
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/user_main.js"></script>
-  <script type="text/javascript" src="../js/admin.js"></script>
 
 </head>
 

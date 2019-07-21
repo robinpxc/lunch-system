@@ -37,8 +37,7 @@ $userWorkgroup = $row['workgroup'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/user_main.js"></script>
-  <script type="text/javascript" src="../js/admin.js"></script>
+  <script type="text/javascript" src="../js/user_profile.js"></script>
 
 </head>
 
@@ -104,8 +103,8 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" aria-label="user-id" class="form-control" value="<?php echo $userId; ?>" disabled />
-        <div class="input-group-append">
+        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input" value="<?php echo $userId; ?>" disabled />
+        <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
       </div>
@@ -115,8 +114,8 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control" value="<?php echo $userFullName; ?>" disabled />
-        <div class="input-group-append">
+        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input" value="<?php echo $userFullName; ?>" disabled />
+        <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
       </div>
@@ -126,12 +125,12 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="text" name="user-role" aria-label="user-role" class="form-control" value="<?php if ($userRole == "admin") {
+        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input" value="<?php if ($userRole == "admin") {
                                                                                                   echo "管理员(Admin)";
                                                                                                 } else {
                                                                                                   echo "标准用户(User)";
                                                                                                 }  ?>" disabled />
-        <div class="input-group-append">
+        <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
       </div>
@@ -141,8 +140,8 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">所在单位</span>
         </div>
-        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control" value="<?php echo $userWorkgroup; ?>" disabled />
-        <div class="input-group-append">
+        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input" value="<?php echo $userWorkgroup; ?>" disabled />
+        <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
       </div>
@@ -163,7 +162,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password" aria-label="user-password" class="form-control" placeholder="点击修改输入新密码" disabled>
+        <input type="password" name="user-password" aria-label="user-password" class="form-control" placeholder="点击输入新密码" disabled>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
             <svg class="icon-eye" viewBox="0 0 1024 1024">

@@ -18,10 +18,7 @@ $(document).ready(function () {
     setNavBarWidth();
     willShowPricingHeader();
   });
-
 });
-
-
 
 // Function to show current date and time.
 function showTime() {
@@ -53,7 +50,7 @@ function showNavMenu(willShowMenu) {
 
 // Function to set header bar full screen width or same as body
 function setNavBarWidth() {
-  var windowWidth = $(window).width();
+  var windowWidth = getWindowWidth();
   if (windowWidth >= 768 && !($("body").hasClass("container"))) {
     $("body").addClass("container");
   } else if (windowWidth < 768 && ($("body").hasClass("container"))) {
@@ -63,10 +60,25 @@ function setNavBarWidth() {
 
 // Function to show/hode pricing-header 
 function willShowPricingHeader() {
-  var windowWidth = $(window).width();
+  var windowWidth = getWindowWidth();
   if (windowWidth >= 575 && ($(".pricing-header").hasClass("hide"))) {
     $(".pricing-header").removeClass("hide");
   } else if (windowWidth < 575 && !($("body").hasClass("hide"))) {
     $(".pricing-header").addClass("hide");
   }
+}
+
+// Function to judge if the element has current attrname
+function hasAttribute(currentElement, attrName) {
+  var attribute = currentElement.attr(attrName);
+  if(typeof(attribute.attr(attrName))=="undefined") {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// Function to get window width
+function getWindowWidth() {
+  return $(window).width();
 }
