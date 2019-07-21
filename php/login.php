@@ -42,6 +42,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- Custom styles-->
     <link href="../css/login.css" rel="stylesheet">
+
+    <!-- Custom JS -->
+    <script type="text/javascript" src="../js/login.js"></script>
 </head>
 
 <body class="text-center">

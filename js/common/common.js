@@ -18,6 +18,8 @@ $(document).ready(function () {
     setNavBarWidth();
     willShowPricingHeader();
   });
+
+  disableZoom();
 });
 
 // Function to show current date and time.
@@ -71,7 +73,7 @@ function willShowPricingHeader() {
 // Function to judge if the element has current attrname
 function hasAttribute(currentElement, attrName) {
   var attribute = currentElement.attr(attrName);
-  if(typeof(attribute.attr(attrName))=="undefined") {
+  if (typeof (attribute.attr(attrName)) == "undefined") {
     return false;
   } else {
     return true;
@@ -81,4 +83,49 @@ function hasAttribute(currentElement, attrName) {
 // Function to get window width
 function getWindowWidth() {
   return $(window).width();
+}
+
+// Function to disable safari zoom
+function disableZoom() {
+  var lastTouchEnd = 0;
+  document.addEventListener('touchstart', function (event) {
+    if (event.touches.length > 1) {
+      event.preventDefault();
+    }
+  });
+  document.addEventListener('touchend', function (event) {
+    var now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+      event.preventDefault();
+    }
+    lastTouchEnd = now;
+  }, false);
+
+  document.addEventListener('gesturestart', function (event) {
+    event.preventDefault();
+  });
+}
+
+// Functions to set element enabled or disabled
+function setEnable(currentElement) {
+  if (typeof (currentElement.attr("disabled")) != "undefined") {
+    currentElement.removeAttr("disabled")
+  }
+}
+
+function setDisable(currentElement) {
+  if (typeof (currentElement.attr("disabled")) == "undefined") {
+    currentElement.attr("disabled", "disabled");
+  }
+}
+
+function setModifyBtnStatus(button, status) {
+  switch (status) {
+    case "clicked":
+      setDisable(button);
+      break;
+    case "unclicked":
+      setEnable(button);
+      break;
+  }
 }

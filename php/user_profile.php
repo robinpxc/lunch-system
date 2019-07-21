@@ -37,6 +37,7 @@ $userWorkgroup = $row['workgroup'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/profile_form.js"></script>
   <script type="text/javascript" src="../js/user_profile.js"></script>
 
 </head>
@@ -103,7 +104,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input" value="<?php echo $userId; ?>" disabled />
+        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input profile-input" value="<?php echo $userId; ?>" disabled />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -114,7 +115,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input" value="<?php echo $userFullName; ?>" disabled />
+        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="<?php echo $userFullName; ?>" disabled />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -125,7 +126,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input" value="<?php if ($userRole == "admin") {
+        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input profile-input" value="<?php if ($userRole == "admin") {
                                                                                                   echo "管理员(Admin)";
                                                                                                 } else {
                                                                                                   echo "标准用户(User)";
@@ -140,7 +141,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">所在单位</span>
         </div>
-        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input" value="<?php echo $userWorkgroup; ?>" disabled />
+        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input profile-input" value="<?php echo $userWorkgroup; ?>" disabled />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -151,9 +152,9 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname" aria-label="user-nickname" class="form-control" value="<?php echo $userNickName; ?>" disabled>
+        <input type="text" name="user-nickname" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" disabled>
         <div class="input-group-append">
-          <button class="btn btn-outline-danger action-btn" type="button" id="nickname-edit-btn">修改</button>
+          <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
       </div>
 
@@ -162,7 +163,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password" aria-label="user-password" class="form-control" placeholder="点击输入新密码" disabled>
+        <input type="password" name="user-password" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" disabled>
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
             <svg class="icon-eye" viewBox="0 0 1024 1024">
@@ -170,14 +171,14 @@ $userWorkgroup = $row['workgroup'];
               <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
             </svg>
           </button>
-          <button class="btn btn-outline-danger action-btn" type="button" id="password-edit-btn">修改</button>
+          <button class="btn btn-outline-danger action-btn modify-btn " type="button" id="password-edit-btn">修改</button>
         </div>
       </div>
 
       <div class="input-group mb-3 mt-5">
         <div class="btn-group" role="group" aria-label="Form submit button group">
-          <button type="button" class="btn btn-danger mr-1" id="discard-btn">放弃修改</button>
-          <button type="button" class="btn btn-primary ml-1" id="submit-btn">提交修改</button>
+          <button type="button" class="btn btn-danger mr-1" id="discard-btn" disabled>放弃修改</button>
+          <button type="button" class="btn btn-primary ml-1" id="submit-btn" disabled>提交修改</button>
         </div>
       </div>
     </form>
