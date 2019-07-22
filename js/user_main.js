@@ -1,5 +1,9 @@
 $(document).ready(function () {
   removeAdminCard();
+
+  $("#user-manage-btn").click(function() {
+    window.location.href = "admin_user_management.php";
+  });
 });
 
 function removeAdminCard() {

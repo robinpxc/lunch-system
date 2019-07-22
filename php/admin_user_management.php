@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
-
-$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
-$result = mysqli_query($mysqlConnection, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-$userRole = $row['role'];
 ?>
 
 <html lang="zh">
@@ -24,7 +18,7 @@ $userRole = $row['role'];
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/user_main.css" rel="stylesheet">
+  <link href="../css/admin_user_management.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -32,7 +26,7 @@ $userRole = $row['role'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/user_main.js"></script>
+  <script type="text/javascript" src="../js/admin_user_management.js"></script>
 
 </head>
 
@@ -89,63 +83,28 @@ $userRole = $row['role'];
     </nav>
   </header>
 
-  <div class="container pricing-header px-3 py-3 pt-md-5 pb-md-5 mx-auto text-center">
-    <h2 class="display-5 mb-5"><strong>让我们奔向吃饭的康庄大道</strong></h2>
-    <p class="lead">国以民为本，民以食为天。主副搭配、荤素结合、膳食平衡、性味平和。一餐一饭关系民生，一瓢一饮贴近生活。饭要七分饱，对人七分好；若要精气足，每天多吃素。</p>
-  </div>
-
-  <div class="container">
-    <input type="hidden" id="user-role-input" value="<?php echo $userRole; ?>">
-    <div class="card-deck mb-5 text-center">
-      <div class="card mb-4 shadow-sm text-white bg-success">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">快速点餐(当天)</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title eating-card-title">￥3 / 餐</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>营养均衡, 荤素搭配</li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-light">立刻点餐</button>
-        </div>
-      </div>
-      <div class="card mb-4 shadow-sm text-white bg-primary">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">本周午餐预定</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title eating-card-title">￥15 / 周</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>价格低至&nbsp;<strong>60元/月</strong></li>
-          </ul>
-          <button type="button" class="btn btn-lg btn-block btn-light">立刻预定</button>
-        </div>
-      </div>
-      <div class="card card-admin mb-4 shadow-sm bg-dark" id="admin-card">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">管理</h4>
-        </div>
-        <div class="card-body">
-          <h1 class="card-title eating-card-title">系统管理</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>管理员才获准使用此组件</li>
-          </ul>
-          <div class="btn-group" role="group" aria-label="Form submit button group">
-            <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">用户管理</button>
-            <button type="submit" class="btn btn-lg btn-success ml-2 active" id="menu-manage-btn">菜单管理</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <footer class="pt-4 my-md-4 pt-md-4 border-top">
-      <div class="row">
-        <div class="col-12 col-md">
-          <h6 class="d-block mb-3 text-muted">&copy; 2019 - Robin.Pan</h6>
-        </div>
-      </div>
-    </footer>
-  </div>
-</body>
+  <div class="main-content">
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">姓名</th>
+          <th scope="col">权限</th>
+          <th scope="col">昵称</th>
+          <th scope="col">部门</th>
+          <th scope="col">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="th-id">1</th>
+          <td class="td-fullname">Mark</td>
+          <td class="td-role">Otto</td>
+          <td class="td-nickname">@mdo</td>
+          <td class="td-workgroup">Otto</td>
+          <td class="td-operation">@mdo</td>
+        </tr>
+      </tbody>
+    </table>
 
 </html>
