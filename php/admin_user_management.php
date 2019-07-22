@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
+
+$sql_user_count = "SELECT COUNT(id) as total from user_info";
+$rs = mysqli_query($mysqlConnection, $sql_user_count);
+$rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+$userCount = $rows['total'];
+
+for($i = 1; $i < $userCount; $i++ ) {
+}
+
 ?>
 
 <html lang="zh">

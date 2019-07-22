@@ -128,7 +128,7 @@ $userRole = $row['role'];
         <div class="card-body">
           <h1 class="card-title eating-card-title">系统管理</h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>管理员才获准使用此组件</li>
+            <li>管理员获准使用此组件</li>
           </ul>
           <div class="btn-group" role="group" aria-label="Form submit button group">
             <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">用户管理</button>
