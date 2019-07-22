@@ -13,9 +13,11 @@ $userNickName = $row['nick_name'];
 $userRole = $row['role'];
 $userWorkgroup = $row['workgroup'];
 
+echo "<script>alert('12333)</script>";
 // Update modified user profile data to database.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
+  
   $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
   $encrypedPwd = md5($modifiedPassword);
 
