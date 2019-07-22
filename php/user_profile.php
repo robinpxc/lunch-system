@@ -17,7 +17,7 @@ echo "<script>alert('12333)</script>";
 // Update modified user profile data to database.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
-  
+
   $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
   $encrypedPwd = md5($modifiedPassword);
 
@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password-edit" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" readonly="readonly">
+        <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
