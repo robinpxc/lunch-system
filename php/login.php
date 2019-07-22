@@ -6,18 +6,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // username and password sent from form
     $myLoginInfo = mysqli_real_escape_string($mysqlConnection, $_POST['login_name']);
     $myLoginPwd = mysqli_real_escape_string($mysqlConnection, $_POST['password']);
-    $encrypedPassword = md5($myLoginPwd);
 
-    $sql = "SELECT * FROM user_info WHERE password = '$encrypedPassword' and (id = '$myLoginInfo' OR  nick_name = '$myLoginInfo')";
+    $sql = "SELECT * FROM user_info WHERE (id = '$myLoginInfo' OR nick_name = '$myLoginInfo')";
     $result = mysqli_query($mysqlConnection, $sql);
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    $active = $row['active'];
 
-    $count = mysqli_num_rows($result);
     $userId =  $row['id'];
+    $userPassword = $row['password'];
+
+    $pwdHasher = new PasswordHash(8, FALSE);
 
     // If result matched $myusername and $myLoginPwd, table row must be 1 row
-    if ($count == 1) {
+    if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
         $_SESSION['lunch_user_session'] = $userId;
         header("location: user_main.php");
     } else {
@@ -43,6 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Custom styles-->
     <link href="../css/login.css" rel="stylesheet">
 
+    <!--Java Script-->
+    <script type="text/javascript" src="../third-party/popper.min.js"></script>
+    <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
     <!-- Custom JS -->
     <script type="text/javascript" src="../js/login.js"></script>
 </head>

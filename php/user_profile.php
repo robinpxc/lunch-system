@@ -13,13 +13,14 @@ $userNickName = $row['nick_name'];
 $userRole = $row['role'];
 $userWorkgroup = $row['workgroup'];
 
-echo "<script>alert('12333)</script>";
 // Update modified user profile data to database.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
-
   $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
-  $encrypedPwd = md5($modifiedPassword);
+  
+  // Encryp password
+  $pwdHasher = new PasswordHash(8, FALSE);
+  $encrypedPwd = $pwdHasher->HashPassword($modifiedPassword);
 
   $sql_check_user_name = "SELECT * FROM user_info WHERE (nick_name = '$modifiedNickName' AND id <> '$userId')";
   $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
@@ -28,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($row) {
     echo "<script>alert('该昵称已被他人使用！')</script>";
   } else {
-    if ($modifiedPassword == "" || $encrypedPwd == $row['password']) {
+    if ($modifiedPassword == "" || $pwdHasher->CheckPassword($encrypedPwd, $row['password'])) {
       $encrypedPwd = $row['password'];
     }
     $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
