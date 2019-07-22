@@ -2,7 +2,7 @@
 <?php
 include('common/session.php');
 
-// Connect database
+// Get user profile from database
 $sql = "SELECT * FROM user_info WHERE id = '$login_session'";
 $result = mysqli_query($mysqlConnection, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -12,6 +12,29 @@ $userFullName = $row['fullname'];
 $userNickName = $row['nick_name'];
 $userRole = $row['role'];
 $userWorkgroup = $row['workgroup'];
+
+// Update modified user profile data to database.
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
+  $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
+  $encrypedPwd = md5($modifiedPassword);
+
+  $sql_check_user_name = "SELECT * FROM user_info WHERE (nick_name = '$modifiedNickName' AND id <> '$userId')";
+  $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
+  $row = mysqli_fetch_array($checkResult, MYSQLI_ASSOC);
+
+  if ($row) {
+    echo "<script>alert('该昵称已被他人使用！')</script>";
+  } else {
+    if ($modifiedPassword == "" || $encrypedPwd == $row['password']) {
+      $encrypedPwd = $row['password'];
+    }
+    $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
+    $result = mysqli_query($mysqlConnection, $update_sql);
+    header("location: user_profile.php");
+  }
+}
+
 ?>
 
 <html lang="zh">
@@ -127,10 +150,10 @@ $userWorkgroup = $row['workgroup'];
           <span class="input-group-text item-title">用户权限</span>
         </div>
         <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input profile-input" value="<?php if ($userRole == "admin") {
-                                                                                                  echo "管理员(Admin)";
-                                                                                                } else {
-                                                                                                  echo "标准用户(User)";
-                                                                                                }  ?>" disabled />
+                                                                                                                                      echo "管理员(Admin)";
+                                                                                                                                    } else {
+                                                                                                                                      echo "标准用户(User)";
+                                                                                                                                    }  ?>" disabled />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -152,7 +175,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" disabled>
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly">
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
@@ -163,7 +186,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" disabled>
+        <input type="password" name="user-password-edit" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" readonly="readonly">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
@@ -171,7 +194,8 @@ $userWorkgroup = $row['workgroup'];
               <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
             </svg>
             <svg class="icon-eye hide" id="eye-icon-disabled" viewBox="0 0 1024 1024">
-                <path d="M752.8 316.6 896 173.2 850.8 128l-155.2 155.2C640 255.4 579 238 512 238c-163.8 0-291.4 104.4-448 274 69.6 74.8 133.6 145.4 206.6 196.2L128 850.8 173.2 896l153.8-153.8c54 27.4 114 43.8 185 43.8 199.8 0 346.8-163.6 448-271C904 446.8 835.2 371.4 752.8 316.6zM332.8 512c0-100.8 80.4-182.6 179.2-182.6 38.6 0 74.4 12.4 103.6 33.8l-101.4 101.4c-1.4-5.2-2.2-10.8-2.2-16.6 0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 17.2 4 33.6 11.2 48L364 614.8C344.4 585.4 332.8 550 332.8 512zM512 694.6c-38.6 0-74.4-12.4-103.6-33.8l54.8-54.8c14.6 8 31.2 12.4 48.8 12.4 57.6 0 104.6-47.8 104.6-106.6 0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8-5.8 0-11.2-0.8-16.6-2.2l100.6-100.6c19.6 29.2 31.2 64.6 31.2 102.8C691.2 612.8 610.8 694.6 512 694.6z" p-id="9430"></path></svg>
+              <path d="M752.8 316.6 896 173.2 850.8 128l-155.2 155.2C640 255.4 579 238 512 238c-163.8 0-291.4 104.4-448 274 69.6 74.8 133.6 145.4 206.6 196.2L128 850.8 173.2 896l153.8-153.8c54 27.4 114 43.8 185 43.8 199.8 0 346.8-163.6 448-271C904 446.8 835.2 371.4 752.8 316.6zM332.8 512c0-100.8 80.4-182.6 179.2-182.6 38.6 0 74.4 12.4 103.6 33.8l-101.4 101.4c-1.4-5.2-2.2-10.8-2.2-16.6 0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 17.2 4 33.6 11.2 48L364 614.8C344.4 585.4 332.8 550 332.8 512zM512 694.6c-38.6 0-74.4-12.4-103.6-33.8l54.8-54.8c14.6 8 31.2 12.4 48.8 12.4 57.6 0 104.6-47.8 104.6-106.6 0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8-5.8 0-11.2-0.8-16.6-2.2l100.6-100.6c19.6 29.2 31.2 64.6 31.2 102.8C691.2 612.8 610.8 694.6 512 694.6z" p-id="9430"></path>
+            </svg>
           </button>
           <button class="btn btn-outline-danger action-btn modify-btn " type="button" id="password-edit-btn">修改</button>
         </div>
@@ -180,7 +204,7 @@ $userWorkgroup = $row['workgroup'];
       <div class="input-group mb-3 mt-5">
         <div class="btn-group" role="group" aria-label="Form submit button group">
           <button type="button" class="btn btn-danger mr-1" id="discard-btn" disabled>放弃修改</button>
-          <button type="button" class="btn btn-primary ml-1" id="submit-btn" disabled>提交修改</button>
+          <button type="submit" class="btn btn-primary ml-1" id="submit-btn" disabled>提交修改</button>
         </div>
       </div>
     </form>

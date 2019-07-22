@@ -11,9 +11,9 @@ $(document).ready(function () {
   var eyeIconDisabled = $("#eye-icon-disabled");
 
   // Inputs
-  var nicknameInput = $("input[name='user-nickname']");
+  var nicknameInput = $("input[name='user-nickname-edit']");
   var nickNameInputValue = nicknameInput.val();
-  var passwordInput = $("input[name='user-password']");
+  var passwordInput = $("input[name='user-password-edit']");
 
   // Groups
   var modifyBtnGroup = $(".modify-btn");
@@ -61,12 +61,6 @@ $(document).ready(function () {
     resetForm();
   });
 
-  // Function of submit button
-  submitBtn.click(function () {
-    submitFormData();
-    resetForm();
-  });
-
   // Common function to handle reset operation.
   function resetForm() {
     passwordInput.val("");
@@ -87,11 +81,6 @@ $(document).ready(function () {
     setEnable(discardBtn);
     setEnable(submitBtn);
     setModifyBtnStatus(selfBtn, "clicked");
-  }
-
-  // Function to submit modifications of the form
-  function submitFormData() {
-    alert("Function need to be done.")
   }
 });
 

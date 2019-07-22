@@ -110,11 +110,19 @@ function disableZoom() {
 function setEnable(currentElement) {
   if (typeof (currentElement.attr("disabled")) != "undefined") {
     currentElement.removeAttr("disabled")
+  } else if (typeof (currentElement.attr("readonly")) != "undefined") {
+    currentElement.removeAttr("readonly");
   }
 }
 
 function setDisable(currentElement) {
   if (typeof (currentElement.attr("disabled")) == "undefined") {
     currentElement.attr("disabled", "disabled");
+  }
+}
+
+function setReadOnly(currentElement) {
+  if (typeof (currentElement.attr("readonly")) == "undefined") {
+    currentElement.attr("readonly", "readonly");
   }
 }
