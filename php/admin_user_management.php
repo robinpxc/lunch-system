@@ -7,9 +7,6 @@ $rs = mysqli_query($mysqlConnection, $sql_user_count);
 $rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 $userCount = $rows['total'];
 
-for($i = 1; $i < $userCount; $i++ ) {
-}
-
 ?>
 
 <html lang="zh">
@@ -105,15 +102,30 @@ for($i = 1; $i < $userCount; $i++ ) {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row" class="th-id">1</th>
-          <td class="td-fullname">Mark</td>
-          <td class="td-role">Otto</td>
-          <td class="td-nickname">@mdo</td>
-          <td class="td-workgroup">Otto</td>
-          <td class="td-operation">@mdo</td>
-        </tr>
-      </tbody>
-    </table>
+        <?php
+          for ($i = 1; $i <= $userCount; $i++) {
+            $sql_user_count = "SELECT * from user_info where id = '$i'";
+            $rs = mysqli_query($mysqlConnection, $sql_user_count);
+            $rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 
-</html>
+            $id = $rows['id'];
+            $fullname = $rows['fullname'];
+            $nickname = $rows['nick_name'];
+            $role = $rows['role'];
+            $workgroup = $rows['workgroup'];
+            echo "
+              <tr>
+                <th>$id</th>
+                <td>$fullname</td>
+                <td>$role</td>
+                <td>$nickname</td>
+                <td>$workgroup</td>
+                <td></td>
+              </tr>
+            ";
+          }
+          ?>
+        </tbody>
+      </table>
+
+  </html>
