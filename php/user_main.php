@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
+
+$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
+$result = mysqli_query($mysqlConnection, $sql);
+$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+$userRole = $row['role'];
 ?>
 
 <html lang="zh">
@@ -89,6 +95,7 @@ include('common/session.php');
   </div>
 
   <div class="container">
+    <input type="hidden" id="user-role-input" value="<?php echo $userRole; ?>">
     <div class="card-deck mb-5 text-center">
       <div class="card mb-4 shadow-sm text-white bg-success">
         <div class="card-header">
@@ -114,7 +121,7 @@ include('common/session.php');
           <button type="button" class="btn btn-lg btn-block btn-light">立刻预定</button>
         </div>
       </div>
-      <div class="card card-admin mb-4 shadow-sm bg-danger">
+      <div class="card card-admin mb-4 shadow-sm bg-danger" id="admin-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">管理</h4>
         </div>
