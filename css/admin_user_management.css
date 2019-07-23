@@ -1,1 +1,54 @@
 @import url("common/common.css");
+
+table {
+  border-collapse: collapse;
+  border-spacing: 1.5px;
+}
+
+.table-content {
+  display: inline-flex;
+}
+
+.table-content th, 
+.table-content td {
+ display: flex;
+ vertical-align: middle;
+}
+
+.fullname-input {
+  width: auto;
+  max-width: 80px;
+}
+
+.role-select {
+  width: auto;
+  max-width: 100px;
+}
+
+/* .nickname-input {
+  width: auto;
+  max-width: 100px;
+} */
+
+/* .workgroup-select {
+  width: auto;
+  max-width: 180px;
+} */
+
+.btn-group {
+  min-width: 120px;
+}
+
+.btn-group button {
+  display: inline-block;
+}
+
+#modify-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; 
+}
+
+#del-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

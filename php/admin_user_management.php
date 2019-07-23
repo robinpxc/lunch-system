@@ -18,7 +18,7 @@ $userCount = $rows['total'];
   <meta name="author" content="">
   <link rel="icon" href="../assets/icons/rice_32x32.ico">
 
-  <title>准备好点菜了吗</title>
+  <title>用户管理</title>
 
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->
@@ -30,7 +30,7 @@ $userCount = $rows['total'];
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/admin_user_management.js"></script>
 
@@ -92,7 +92,7 @@ $userCount = $rows['total'];
   <div class="main-content">
     <table class="table table-dark">
       <thead>
-        <tr>
+        <tr table-content>
           <th scope="col">#</th>
           <th scope="col">姓名</th>
           <th scope="col">权限</th>
@@ -103,29 +103,44 @@ $userCount = $rows['total'];
       </thead>
       <tbody>
         <?php
-          for ($i = 1; $i <= $userCount; $i++) {
-            $sql_user_count = "SELECT * from user_info where id = '$i'";
-            $rs = mysqli_query($mysqlConnection, $sql_user_count);
-            $rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
+        for ($i = 1; $i <= $userCount; $i++) {
+          $sql_user_count = "SELECT * from user_info where id = '$i'";
+          $rs = mysqli_query($mysqlConnection, $sql_user_count);
+          $rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
 
-            $id = $rows['id'];
-            $fullname = $rows['fullname'];
-            $nickname = $rows['nick_name'];
-            $role = $rows['role'];
-            $workgroup = $rows['workgroup'];
-            echo "
-              <tr>
-                <th>$id</th>
+          $id = $rows['id'];
+          $fullname = $rows['fullname'];
+          $nickname = $rows['nick_name'];
+          $role = $rows['role'];
+          $workgroup = $rows['workgroup'];
+          echo "
+              <tr table-content>
+                <input type='hidden' value='$id'/>
+                <th class='col-id'>$id</th>
                 <td>$fullname</td>
                 <td>$role</td>
                 <td>$nickname</td>
                 <td>$workgroup</td>
-                <td></td>
-              </tr>
-            ";
-          }
-          ?>
-        </tbody>
-      </table>
+                <td>
+                  <div class='btn-group'>
+                    <a href='modify_user.php ? m_id=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
+                    <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
+                  </div>
+                </td>
+              </tr>";
+        }
+        ?>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"><button class="btn btn-primary btn-sm">添加新用户</button></th>
+        </tr>
+      </tfoot>
+    </table>
 
-  </html>
+</html>

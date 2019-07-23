@@ -38,8 +38,3 @@
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
-
-.right-radius {
-  border-top-right-radius: 3px !important;
-  border-bottom-right-radius: 3px !important;
-}
