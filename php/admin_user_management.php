@@ -2,11 +2,8 @@
 <?php
 include('common/session.php');
 
-$sql_user_count = "SELECT COUNT(id) as total from user_info";
-$rs = mysqli_query($mysqlConnection, $sql_user_count);
-$rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-$userCount = $rows['total'];
-
+$sql_user_count = "SELECT * from user_info ORDER BY id DESC";
+$result = mysqli_query($mysqlConnection, $sql_user_count);
 ?>
 
 <html lang="zh">
@@ -32,6 +29,7 @@ $userCount = $rows['total'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/profile_form.js"></script>
   <script type="text/javascript" src="../js/admin_user_management.js"></script>
 
 </head>
@@ -103,44 +101,82 @@ $userCount = $rows['total'];
       </thead>
       <tbody>
         <?php
-        for ($i = 1; $i <= $userCount; $i++) {
-          $sql_user_count = "SELECT * from user_info where id = '$i'";
-          $rs = mysqli_query($mysqlConnection, $sql_user_count);
-          $rows = mysqli_fetch_array($rs, MYSQLI_ASSOC);
-
-          $id = $rows['id'];
-          $fullname = $rows['fullname'];
-          $nickname = $rows['nick_name'];
-          $role = $rows['role'];
-          $workgroup = $rows['workgroup'];
-          echo "
-              <tr table-content>
-                <input type='hidden' value='$id'/>
-                <th class='col-id'>$id</th>
-                <td>$fullname</td>
-                <td>$role</td>
-                <td>$nickname</td>
-                <td>$workgroup</td>
-                <td>
-                  <div class='btn-group'>
-                    <a href='modify_user.php ? m_id=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
-                    <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
-                  </div>
-                </td>
-              </tr>";
+        if ($result != false) {
+          while ($row = $result->fetch_row()) {
+            $id = $row[0];
+            $fullname = $row[2];
+            $nickname = $row[1];
+            $role = $row[4];
+            $workgroup = $row[5];
+            echo "
+                        <tr table-content>
+                          <input type='hidden' value='$id'/>
+                          <th class='col-id'>$id</th>
+                          <td>$fullname</td>
+                          <td>$role</td>
+                          <td>$nickname</td>
+                          <td>$workgroup</td>
+                          <td>
+                            <div class='btn-group'>
+                              <a href='modify_user.php ? m_id=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
+                              <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
+                            </div>
+                          </td>
+                        </tr>
+                        ";
+          }
         }
         ?>
       </tbody>
-      <tfoot>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"><button class="btn btn-primary btn-sm">添加新用户</button></th>
-        </tr>
-      </tfoot>
     </table>
+
+    <form class="form-inline" action="" method="post">
+      <div class="create-user bg-light mt-3">
+        <div class="d-inline-flex">
+          <input class="form-control" type="text" name="new-fullname" maxlength="10" placeholder="新用户姓名" required />
+        </div>
+
+        <div class="d-inline-flex">
+          <input class="form-control" type="text" name="new-nickname" maxlength="10" placeholder="新昵称" required />
+        </div>
+        <div class="input-group d-inline-flex">
+          <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required>
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
+              <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
+                <path d="M512 256c-163.8 0-291.4 97.6-448 256 134.8 135.4 248 256 448 256 199.8 0 346.8-152.8 448-253.2C856.4 397.2 709.6 256 512 256zM512 694.6c-98.8 0-179.2-82-179.2-182.6 0-100.8 80.4-182.6 179.2-182.6s179.2 82 179.2 182.6C691.2 612.8 610.8 694.6 512 694.6z" p-id="4687"></path>
+                <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
+              </svg>
+              <svg class="icon-eye hide" id="eye-icon-disabled" viewBox="0 0 1024 1024">
+                <path d="M752.8 316.6 896 173.2 850.8 128l-155.2 155.2C640 255.4 579 238 512 238c-163.8 0-291.4 104.4-448 274 69.6 74.8 133.6 145.4 206.6 196.2L128 850.8 173.2 896l153.8-153.8c54 27.4 114 43.8 185 43.8 199.8 0 346.8-163.6 448-271C904 446.8 835.2 371.4 752.8 316.6zM332.8 512c0-100.8 80.4-182.6 179.2-182.6 38.6 0 74.4 12.4 103.6 33.8l-101.4 101.4c-1.4-5.2-2.2-10.8-2.2-16.6 0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 17.2 4 33.6 11.2 48L364 614.8C344.4 585.4 332.8 550 332.8 512zM512 694.6c-38.6 0-74.4-12.4-103.6-33.8l54.8-54.8c14.6 8 31.2 12.4 48.8 12.4 57.6 0 104.6-47.8 104.6-106.6 0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8-5.8 0-11.2-0.8-16.6-2.2l100.6-100.6c19.6 29.2 31.2 64.6 31.2 102.8C691.2 612.8 610.8 694.6 512 694.6z" p-id="9430"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="d-inline-flex">
+          <select class="form-control" name="new-user-role">
+            <option value="volvo">普通用户</option>
+            <option value="saab">管理员</option>
+          </select>
+        </div>
+
+        <div class="d-inline-flex">
+          <select class="form-control" name="new-user-group">
+            <option value="volvo">市委巡察办</option>
+            <option value="saab">市委第一巡察组</option>
+            <option value="saab">市委第二巡察组</option>
+            <option value="saab">市委第三巡察组</option>
+            <option value="saab">市委第四巡察组</option>
+            <option value="saab">市委第五巡察组</option>
+          </select>
+        </div>
+
+        <div class="d-inline-flex">
+          <button type="subnmit" name="submit-btn" class=" form-control btn btn-primary">添加新用户</button>
+        </div>
+
+      </div>
+    </form>
 
 </html>

@@ -25,16 +25,6 @@ table {
   max-width: 100px;
 }
 
-/* .nickname-input {
-  width: auto;
-  max-width: 100px;
-} */
-
-/* .workgroup-select {
-  width: auto;
-  max-width: 180px;
-} */
-
 .btn-group {
   min-width: 120px;
 }
@@ -52,3 +42,8 @@ table {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+ .create-user {
+   width: 100%;
+   padding: 10px;
+   border-radius: 5px;
+ }
