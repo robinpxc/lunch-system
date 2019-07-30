@@ -17,10 +17,9 @@ $userWorkgroup = $row['workgroup'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
   $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
-  
   // Encryp password
   $pwdHasher = new PasswordHash(8, FALSE);
-  $encrypedPwd = $pwdHasher->HashPassword($modifiedPassword);
+  $encrypedPwd = $pwdHasher->HashPassword($modifiedPassword);   
 
   $sql_check_user_name = "SELECT * FROM user_info WHERE (nick_name = '$modifiedNickName' AND id <> '$userId')";
   $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($row) {
     echo "<script>alert('该昵称已被他人使用！')</script>";
   } else {
-    if ($modifiedPassword == "" || $pwdHasher->CheckPassword($encrypedPwd, $row['password'])) {
+    if ($pwdHasher->CheckPassword($encrypedPwd, $row['password'])) {
       $encrypedPwd = $row['password'];
     }
     $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
@@ -178,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly">
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly" required>
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
