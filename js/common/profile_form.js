@@ -71,7 +71,7 @@ $(document).ready(function () {
       setModifyBtnStatus($(this), "unclicked");
     });
     profileInputGroup.each(function () {
-      setDisable($(this));
+      setReadOnly($(this));
     });
     window.getSelection().empty();
   }

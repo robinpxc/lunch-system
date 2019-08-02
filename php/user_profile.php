@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly" required>
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly" required maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
@@ -188,7 +188,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly">
+        <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">

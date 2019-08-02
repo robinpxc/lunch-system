@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  showHideExtraCols();
+  
   $('.del-btn').on('click', function () {
     var userId = $(this).parent().parent().parent().parent().find("input").val();
     $.confirm({
@@ -23,4 +25,24 @@ $(document).ready(function () {
     });
   });
 
+  $(window).resize(function () {
+     showHideExtraCols();
+  });
 });
+
+// Function to show/hide extra table contents
+function showHideExtraCols() {
+  var roleInfo = $(".role-info");
+  var workgroupInfo = $(".workgroup-info");
+  var nickNameInfo = $(".nickname-info");
+
+  if (getWindowWidth() >= 768 && roleInfo.hasClass("hide")) {
+    roleInfo.removeClass("hide");
+    workgroupInfo.removeClass("hide");
+    nickNameInfo.removeClass("hide");
+  } else if (getWindowWidth() < 768 && !roleInfo.hasClass("hide")) {
+    roleInfo.addClass("hide");
+    workgroupInfo.addClass("hide");
+    nickNameInfo.addClass("hide");
+  }
+}

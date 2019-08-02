@@ -91,12 +91,12 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
     <table class="table table-dark">
       <thead>
         <tr table-content>
-          <th scope="col">#</th>
-          <th scope="col">姓名</th>
-          <th scope="col">权限</th>
-          <th scope="col">昵称</th>
-          <th scope="col">部门</th>
-          <th scope="col">操作</th>
+          <th scope="col" class="id-info">#</th>
+          <th scope="col" class="username-info">姓名</th>
+          <th scope="col" class="role-info">权限</th>
+          <th scope="col" class="nickname-info">昵称</th>
+          <th scope="col" class="workgroup-info">部门</th>
+          <th scope="col" class="operation">操作</th>
         </tr>
       </thead>
       <tbody>
@@ -111,12 +111,12 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
             echo "
                         <tr table-content>
                           <input type='hidden' value='$id'/>
-                          <th class='col-id'>$id</th>
-                          <td>$fullname</td>
-                          <td>$role</td>
-                          <td>$nickname</td>
-                          <td>$workgroup</td>
-                          <td>
+                          <th class='col-id id-info' >$id</th>
+                          <td class'username-info'>$fullname</td>
+                          <td class='role-info'>$role</td>
+                          <td class='nickname-info'>$nickname</td>
+                          <td class='workgroup-info'>$workgroup</td>
+                          <td class='operation'>
                             <div class='btn-group'>
                               <a href='modify_user.php ? m_id=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
                               <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
@@ -131,16 +131,16 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
     </table>
 
     <form class="form-inline" action="" method="post">
-      <div class="create-user bg-light mt-3">
+      <div class="create-user bg-light mt-3 form-table">
         <div class="d-inline-flex">
-          <input class="form-control" type="text" name="new-fullname" maxlength="10" placeholder="新用户姓名" required />
+          <input class="form-control" type="text" name="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
         </div>
 
-        <div class="d-inline-flex">
-          <input class="form-control" type="text" name="new-nickname" maxlength="10" placeholder="新昵称" required />
+        <div class="d-inline-flex form-table">
+          <input class="form-control" type="text" name="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
         </div>
-        <div class="input-group d-inline-flex">
-          <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required>
+        <div class="input-group d-inline-flex form-table">
+          <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
               <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
@@ -154,14 +154,14 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
           </div>
         </div>
 
-        <div class="d-inline-flex">
+        <div class="d-inline-flex form-table">
           <select class="form-control" name="new-user-role">
             <option value="volvo">普通用户</option>
             <option value="saab">管理员</option>
           </select>
         </div>
 
-        <div class="d-inline-flex">
+        <div class="d-inline-flex form-table">
           <select class="form-control" name="new-user-group">
             <option value="volvo">市委巡察办</option>
             <option value="saab">市委第一巡察组</option>
@@ -172,7 +172,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
           </select>
         </div>
 
-        <div class="d-inline-flex">
+        <div class="d-inline-flex form-table">
           <button type="subnmit" name="submit-btn" class=" form-control btn btn-primary">添加新用户</button>
         </div>
 
