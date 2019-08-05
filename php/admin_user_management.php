@@ -2,7 +2,7 @@
 <?php
 include('common/session.php');
 
-$sql_user_count = "SELECT * from user_info ORDER BY id DESC";
+$sql_user_count = "SELECT * from user_info ORDER BY id";
 $result = mysqli_query($mysqlConnection, $sql_user_count);
 ?>
 
@@ -133,14 +133,14 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
     <form class="form-inline" action="" method="post">
       <div class="create-user bg-light mt-3 form-table">
         <div class="d-inline-flex">
-          <input class="form-control" type="text" name="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
+          <input class="form-control" type="text" id="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
         </div>
 
         <div class="d-inline-flex form-table">
-          <input class="form-control" type="text" name="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
+          <input class="form-control" type="text" id="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
         </div>
         <div class="input-group d-inline-flex form-table">
-          <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
+          <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
           <div class="input-group-append">
             <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
               <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
@@ -155,25 +155,25 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
         </div>
 
         <div class="d-inline-flex form-table">
-          <select class="form-control" name="new-user-role">
-            <option value="volvo">普通用户</option>
-            <option value="saab">管理员</option>
+          <select class="form-control" id="new-user-role">
+            <option value="user">普通用户</option>
+            <option value="admin">管理员</option>
           </select>
         </div>
 
         <div class="d-inline-flex form-table">
-          <select class="form-control" name="new-user-group">
-            <option value="volvo">市委巡察办</option>
-            <option value="saab">市委第一巡察组</option>
-            <option value="saab">市委第二巡察组</option>
-            <option value="saab">市委第三巡察组</option>
-            <option value="saab">市委第四巡察组</option>
-            <option value="saab">市委第五巡察组</option>
+          <select class="form-control" id="new-user-group">
+            <option value="group0">市委巡察办</option>
+            <option value="group1">市委第一巡察组</option>
+            <option value="group2">市委第二巡察组</option>
+            <option value="group3">市委第三巡察组</option>
+            <option value="group4">市委第四巡察组</option>
+            <option value="group5">市委第五巡察组</option>
           </select>
         </div>
 
         <div class="d-inline-flex form-table">
-          <button type="subnmit" name="submit-btn" class=" form-control btn btn-primary">添加新用户</button>
+          <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary">添加新用户</button>
         </div>
 
       </div>

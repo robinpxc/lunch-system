@@ -1,6 +1,6 @@
 $(document).ready(function () {
   showHideExtraCols();
-  
+
   $('.del-btn').on('click', function () {
     var userId = $(this).parent().parent().parent().parent().find("input").val();
     $.confirm({
@@ -26,7 +26,11 @@ $(document).ready(function () {
   });
 
   $(window).resize(function () {
-     showHideExtraCols();
+    showHideExtraCols();
+  });
+
+  $("#create-new-user-btn").click(function (e) {
+    addUser();
   });
 });
 
@@ -45,4 +49,28 @@ function showHideExtraCols() {
     workgroupInfo.addClass("hide");
     nickNameInfo.addClass("hide");
   }
+}
+
+// Function to add a new user 
+function addUser() {
+  var username = $("#new-fullname").val();
+  var userNickName = $("#new-nickname").val();
+  var password = $("#new-user-password-edit").val();
+  var role = $("#new-user-role option:selected").val();
+  var workgroup = $("#new-user-group option:selected").val();
+  $.ajax({
+    type: "post",
+    url: "../php/add_user.php",
+    data: {
+      "username": username,
+      "nickname": userNickName,
+      "password": password,
+      "role": role,
+      "workgroup": workgroup
+    },
+    dataType: "json",
+    success: function (response) {
+      alert(response);
+    }
+  });
 }
