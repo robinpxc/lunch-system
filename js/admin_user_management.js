@@ -2,7 +2,7 @@ $(document).ready(function () {
   showHideExtraCols();
 
   $('.del-btn').on('click', function () {
-    var userId = $(this).parent().parent().parent().parent().find("input").val();
+    var userId = $(this).parent().find("input").val();
     $.confirm({
       title: "用户删除确认",
       content: '确认从数据库中删除该用户吗？',
@@ -12,7 +12,7 @@ $(document).ready(function () {
           text: "确认删除",
           keys: ["enter"],
           action: function () {
-            var delUrl = "del_user.php?user_id=" + userId;
+            var delUrl = "delete_user.php?user_id=" + userId;
             window.location.href = delUrl;
           }
         },
@@ -70,7 +70,12 @@ function addUser() {
     },
     dataType: "json",
     success: function (response) {
-      alert(response);
+      switch(response) {
+        case 1:
+          break;
+        case 2:
+          break;
+      }
     }
   });
 }

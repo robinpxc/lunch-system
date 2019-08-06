@@ -110,7 +110,6 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
             $workgroup = $row[5];
             echo "
                         <tr table-content>
-                          <input type='hidden' value='$id'/>
                           <th class='col-id id-info' >$id</th>
                           <td class'username-info'>$fullname</td>
                           <td class='role-info'>$role</td>
@@ -118,7 +117,8 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
                           <td class='workgroup-info'>$workgroup</td>
                           <td class='operation'>
                             <div class='btn-group'>
-                              <a href='modify_user.php ? m_id=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
+                              <input type='hidden' value='$id'>
+                              <a href='modify_user.php?uid=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
                               <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
                             </div>
                           </td>
