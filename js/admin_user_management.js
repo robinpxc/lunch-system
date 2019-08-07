@@ -2,41 +2,20 @@ $(document).ready(function () {
   showHideExtraCols();
 
   $('.del-btn').on('click', function () {
-    var userId = $(this).parent().find("input").val();
-    $.confirm({
-      title: "用户删除确认",
-      content: '确认从数据库中删除该用户吗？',
-      buttons: {
-        confirm: {
-          btnClass: "btn-danger",
-          text: "确认删除",
-          keys: ["enter"],
-          action: function () {
-            var delUrl = "delete_user.php?user_id=" + userId;
-            window.location.href = delUrl;
-          }
-        },
-        cancel: {
-          btnClass: "btn-primary",
-          text: "取消",
-          keys: ["esc"],
-        }
-      }
-    });
+    showConfirmDeleteDialog(this);
   });
 
   $(window).resize(function () {
     showHideExtraCols();
   });
 
-  $("#create-new-user-btn").click(function (e) {
+  $("#create-new-user-btn").click(function () {
     addUser();
   });
 
   $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
     enableCreateUserBtn();
   });
-
 });
 
 // Function to show/hide extra table contents
@@ -78,14 +57,54 @@ function addUser() {
       alert(response);
       switch (response) {
         case 1:
+          alert("添加用户" + username + "成功！");
+          showAlert();
           break;
         case 2:
+          // alert("昵称 " + userNickName + " 已经被他人使用了!");
+          showAlert();
           break;
       }
     }
   });
 }
 
+// Function to show confirm dialog when deleting a user.
+function showConfirmDeleteDialog(btn) {
+  var userId = $(btn).parent().find("input").val();
+  $.confirm({
+    title: "用户删除确认",
+    content: '确认从数据库中删除该用户吗？',
+    buttons: {
+      confirm: {
+        btnClass: "btn-danger",
+        text: "确认删除",
+        keys: ["enter"],
+        action: function () {
+          var delUrl = "delete_user.php?user_id=" + userId;
+          window.location.href = delUrl;
+        }
+      },
+      cancel: {
+        btnClass: "btn-primary",
+        text: "取消",
+        keys: ["esc"],
+      }
+    }
+  });
+}
+
+// Function to show general alert
+function showAlert() {
+  $.alert({
+    title: 'Alert!',
+    content: 'Simple alert!',
+    confirm: function(){
+    }
+});
+}
+
+// Function to enable submit button when all require filed has done.
 function enableCreateUserBtn() {
   $fullname = $("#new-fullname").val();
   $nickname = $("#new-nickname").val();
