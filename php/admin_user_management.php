@@ -108,13 +108,44 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
             $nickname = $row[1];
             $role = $row[4];
             $workgroup = $row[5];
+            $roleDisplay = "";
+            $workgroupDisplay = "";
+            switch($role) {
+              case "admin":
+                $roleDisplay = "管理员";
+                break;
+              default:
+                $roleDisplay = "用户";
+                break;
+            }
+
+            switch($workgroup) {
+              case "group0":
+                $workgroupDisplay = "巡察办";
+                break;
+              case "group1":
+                $workgroupDisplay = "第一巡察组";
+                break;
+              case "group2":
+                $workgroupDisplay = "第二巡察组";
+                break;
+              case "group3":
+                $workgroupDisplay = "第三巡察组";
+                break;
+              case "group4":
+                $workgroupDisplay = "第四巡察组";
+                break;
+              case "group5":
+                $workgroupDisplay = "第五巡察组";
+                break;
+            }
             echo "
                         <tr table-content>
                           <th class='col-id id-info' >$id</th>
                           <td class'username-info'>$fullname</td>
-                          <td class='role-info'>$role</td>
+                          <td class='role-info'>$roleDisplay</td>
                           <td class='nickname-info'>$nickname</td>
-                          <td class='workgroup-info'>$workgroup</td>
+                          <td class='workgroup-info'>$workgroupDisplay</td>
                           <td class='operation'>
                             <div class='btn-group'>
                               <input type='hidden' value='$id'>
