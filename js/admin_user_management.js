@@ -32,6 +32,11 @@ $(document).ready(function () {
   $("#create-new-user-btn").click(function (e) {
     addUser();
   });
+
+  $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
+    enableCreateUserBtn();
+  });
+
 });
 
 // Function to show/hide extra table contents
@@ -71,7 +76,7 @@ function addUser() {
     dataType: "json",
     success: function (response) {
       alert(response);
-      switch(response) {
+      switch (response) {
         case 1:
           break;
         case 2:
@@ -79,4 +84,17 @@ function addUser() {
       }
     }
   });
+}
+
+function enableCreateUserBtn() {
+  $fullname = $("#new-fullname").val();
+  $nickname = $("#new-nickname").val();
+  $password = $("#new-user-password-edit").val();
+  $createUserBtn = $("#create-new-user-btn");
+
+  if ($fullname != "" && $nickname != "" && $password != "") {
+    setEnable($createUserBtn);
+  } else {
+    setDisable($createUserBtn);
+  }
 }

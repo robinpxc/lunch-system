@@ -161,7 +161,10 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
       </tbody>
     </table>
 
-    <form class="form-inline" action="" method="post">
+    
+  </div>
+
+  <form class="form-inline create-form" action="" method="post">
       <div class="create-user bg-light mt-3 form-table">
         <div class="d-inline-flex">
           <input class="form-control" type="text" id="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
@@ -170,6 +173,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
         <div class="d-inline-flex form-table">
           <input class="form-control" type="text" id="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
         </div>
+        
         <div class="input-group d-inline-flex form-table">
           <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
           <div class="input-group-append">
@@ -204,7 +208,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
         </div>
 
         <div class="d-inline-flex form-table">
-          <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary">添加新用户</button>
+          <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary" disabled="disabled">添加新用户</button>
         </div>
 
       </div>
