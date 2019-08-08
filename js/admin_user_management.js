@@ -7,6 +7,7 @@ $(document).ready(function () {
 
   $(window).resize(function () {
     showHideExtraCols();
+    adjustCreationFormSize();
   });
 
   $("#create-new-user-btn").click(function () {
@@ -16,6 +17,13 @@ $(document).ready(function () {
   $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
     enableCreateUserBtn();
   });
+
+  $("form-control").on("click", function() {
+    formControlBtnClick();
+  });
+
+  adjustCreationFormSize();
+
 });
 
 // Function to show/hide extra table contents
@@ -115,5 +123,38 @@ function enableCreateUserBtn() {
     setEnable($createUserBtn);
   } else {
     setDisable($createUserBtn);
+  }
+}
+
+// Function to show/hide create user when screen width <= 768
+function adjustCreationFormSize() {
+  var formContent = $(".form-content");
+  var extendContentBtn = $(".extend-content");
+  var hideContentBtn = $(".hide-content");
+  if (getWindowWidth() > 768) {
+    removeOldClass(formContent, "hide");
+    addNewClass(extendContentBtn, "hide");
+    addNewClass(hideContentBtn, "hide");
+  } else if (getWindowWidth() <= 768) {
+    addNewClass(formContent, "hide");
+    removeOldClass(extendContentBtn, "hide");
+  }
+}
+
+// TODO: fix this function
+function formControlBtnClick(button) {
+  var formContent = $(".form-content");
+  var extendBtn = $("#extend-btn");
+  var hideBtn = $("#hide-btn");
+  switch(button.attr("id")) {
+    case "extend-btn":
+      addNewClass(button, "hide");
+      removeOldClass(hideBtn, "hide");
+      break;
+    case "hide-btn":
+      addNewClass(formContent, "hide");
+      addNewClass(button, "hide");
+      removeOldClass(extendBtn, "hide");
+      break;
   }
 }

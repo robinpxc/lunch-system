@@ -16,6 +16,7 @@ table {
 }
 
 .create-form {
+  margin-bottom: 0;
   position: fixed;
   bottom: 0;
 }
@@ -50,15 +51,35 @@ table {
  .create-user {
    width: 100%;
    padding: 10px;
-   border-radius: 5px;
  }
 
+ .main-content, .main-content * {
+   z-index: 10;
+ }
 
+ .create-form, .create-form * {
+   z-index: 15;
+ }
+
+ .blank {
+   width: 100%;
+ }
 
 @media screen and (max-width: 768px) {
+  .create-form {
+    width: 100%;
+  }
+
   .form-table {
     margin-top: 5px;
-    margin-bottom: 5px;
     width: 100%;
+  }
+
+  .form-control {
+    margin: 1px;
+  }
+
+  #show-content {
+    display: block;
   }
 }

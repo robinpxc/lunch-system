@@ -126,3 +126,15 @@ function setReadOnly(currentElement) {
     currentElement.attr("readonly", "readonly");
   }
 }
+
+function addNewClass(element, newClass) {
+  if(!element.hasClass(newClass)) {
+    element.addClass(newClass);
+  }
+}
+
+function removeOldClass(element, oldClass) {
+  if(element.hasClass(oldClass)) {
+    element.removeClass(oldClass);
+  }
+}

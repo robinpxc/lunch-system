@@ -160,58 +160,69 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
         ?>
       </tbody>
     </table>
-
-    
   </div>
 
-  <form class="form-inline create-form" action="" method="post">
+  <div class="create-form">
+    <form class="form-inline" action="" method="post">
       <div class="create-user bg-light mt-3 form-table">
-        <div class="d-inline-flex">
-          <input class="form-control" type="text" id="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
-        </div>
+        <div class="form-content">
+          <div class="d-inline-flex form-table">
+            <input class="form-control" type="text" id="new-fullname" maxlength="10" placeholder="新用户姓名" required maxlength="30" />
+          </div>
 
-        <div class="d-inline-flex form-table">
-          <input class="form-control" type="text" id="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
-        </div>
-        
-        <div class="input-group d-inline-flex form-table">
-          <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
-              <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
-                <path d="M512 256c-163.8 0-291.4 97.6-448 256 134.8 135.4 248 256 448 256 199.8 0 346.8-152.8 448-253.2C856.4 397.2 709.6 256 512 256zM512 694.6c-98.8 0-179.2-82-179.2-182.6 0-100.8 80.4-182.6 179.2-182.6s179.2 82 179.2 182.6C691.2 612.8 610.8 694.6 512 694.6z" p-id="4687"></path>
-                <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
-              </svg>
-              <svg class="icon-eye hide" id="eye-icon-disabled" viewBox="0 0 1024 1024">
-                <path d="M752.8 316.6 896 173.2 850.8 128l-155.2 155.2C640 255.4 579 238 512 238c-163.8 0-291.4 104.4-448 274 69.6 74.8 133.6 145.4 206.6 196.2L128 850.8 173.2 896l153.8-153.8c54 27.4 114 43.8 185 43.8 199.8 0 346.8-163.6 448-271C904 446.8 835.2 371.4 752.8 316.6zM332.8 512c0-100.8 80.4-182.6 179.2-182.6 38.6 0 74.4 12.4 103.6 33.8l-101.4 101.4c-1.4-5.2-2.2-10.8-2.2-16.6 0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 17.2 4 33.6 11.2 48L364 614.8C344.4 585.4 332.8 550 332.8 512zM512 694.6c-38.6 0-74.4-12.4-103.6-33.8l54.8-54.8c14.6 8 31.2 12.4 48.8 12.4 57.6 0 104.6-47.8 104.6-106.6 0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8-5.8 0-11.2-0.8-16.6-2.2l100.6-100.6c19.6 29.2 31.2 64.6 31.2 102.8C691.2 612.8 610.8 694.6 512 694.6z" p-id="9430"></path>
-              </svg>
-            </button>
+          <div class="d-inline-flex form-table">
+            <input class="form-control" type="text" id="new-nickname" maxlength="10" placeholder="新昵称" required maxlength="30" />
+          </div>
+          
+          <div class="input-group d-inline-flex form-table">
+            <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
+                <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
+                  <path d="M512 256c-163.8 0-291.4 97.6-448 256 134.8 135.4 248 256 448 256 199.8 0 346.8-152.8 448-253.2C856.4 397.2 709.6 256 512 256zM512 694.6c-98.8 0-179.2-82-179.2-182.6 0-100.8 80.4-182.6 179.2-182.6s179.2 82 179.2 182.6C691.2 612.8 610.8 694.6 512 694.6z" p-id="4687"></path>
+                  <path d="M512 448c0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 58.8 47 106.6 104.6 106.6s104.6-47.8 104.6-106.6c0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8C540.6 512 512 483.4 512 448z" p-id="4688"></path>
+                </svg>
+                <svg class="icon-eye hide" id="eye-icon-disabled" viewBox="0 0 1024 1024">
+                  <path d="M752.8 316.6 896 173.2 850.8 128l-155.2 155.2C640 255.4 579 238 512 238c-163.8 0-291.4 104.4-448 274 69.6 74.8 133.6 145.4 206.6 196.2L128 850.8 173.2 896l153.8-153.8c54 27.4 114 43.8 185 43.8 199.8 0 346.8-163.6 448-271C904 446.8 835.2 371.4 752.8 316.6zM332.8 512c0-100.8 80.4-182.6 179.2-182.6 38.6 0 74.4 12.4 103.6 33.8l-101.4 101.4c-1.4-5.2-2.2-10.8-2.2-16.6 0-15.8 5.8-30.2 15.2-41.4-5-0.8-10-1.2-15.2-1.2-57.6 0-104.6 47.8-104.6 106.6 0 17.2 4 33.6 11.2 48L364 614.8C344.4 585.4 332.8 550 332.8 512zM512 694.6c-38.6 0-74.4-12.4-103.6-33.8l54.8-54.8c14.6 8 31.2 12.4 48.8 12.4 57.6 0 104.6-47.8 104.6-106.6 0-4.6-0.4-9.2-0.8-13.8-11 8.6-24.6 13.8-39.6 13.8-5.8 0-11.2-0.8-16.6-2.2l100.6-100.6c19.6 29.2 31.2 64.6 31.2 102.8C691.2 612.8 610.8 694.6 512 694.6z" p-id="9430"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="d-inline-flex form-table">
+            <select class="form-control" id="new-user-role">
+              <option value="user">普通用户</option>
+              <option value="admin">管理员</option>
+            </select>
+          </div>
+
+          <div class="d-inline-flex form-table">
+            <select class="form-control" id="new-user-group">
+              <option value="group0">市委巡察办</option>
+              <option value="group1">市委第一巡察组</option>
+              <option value="group2">市委第二巡察组</option>
+              <option value="group3">市委第三巡察组</option>
+              <option value="group4">市委第四巡察组</option>
+              <option value="group5">市委第五巡察组</option>
+            </select>
+          </div>
+
+          <div class="d-inline-flex form-table">
+            <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary" disabled="disabled">添加新用户</button>
           </div>
         </div>
 
-        <div class="d-inline-flex form-table">
-          <select class="form-control" id="new-user-role">
-            <option value="user">普通用户</option>
-            <option value="admin">管理员</option>
-          </select>
+        <div class="d-inline-flex form-table extend-content hide">
+          <button id="extend-btn" type="button" class="form-control btn btn-success">展开操作</button>
         </div>
 
-        <div class="d-inline-flex form-table">
-          <select class="form-control" id="new-user-group">
-            <option value="group0">市委巡察办</option>
-            <option value="group1">市委第一巡察组</option>
-            <option value="group2">市委第二巡察组</option>
-            <option value="group3">市委第三巡察组</option>
-            <option value="group4">市委第四巡察组</option>
-            <option value="group5">市委第五巡察组</option>
-          </select>
+        <div class="d-inline-flex form-table hide-content hide">
+          <button id="hide-btn" type="button" class="form-control btn btn-success">折叠操作</button>
         </div>
-
-        <div class="d-inline-flex form-table">
-          <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary" disabled="disabled">添加新用户</button>
-        </div>
-
       </div>
     </form>
+  </div>
 
+  <div class="blank"></div>
+  
 </html>
