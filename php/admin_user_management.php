@@ -213,16 +213,14 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
         </div>
 
         <div class="d-inline-flex form-table extend-content hide">
-          <button id="extend-btn" type="button" class="form-control btn btn-success">展开操作</button>
+          <button id="extend-btn" type="button" class="form-control btn btn-success content-control">展开操作</button>
         </div>
 
         <div class="d-inline-flex form-table hide-content hide">
-          <button id="hide-btn" type="button" class="form-control btn btn-success">折叠操作</button>
+          <button id="hide-btn" type="button" class="form-control btn btn-success content-control">折叠操作</button>
         </div>
       </div>
     </form>
   </div>
-
-  <div class="blank"></div>
   
 </html>

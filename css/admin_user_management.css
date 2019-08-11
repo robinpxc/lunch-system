@@ -70,6 +70,10 @@ table {
     width: 100%;
   }
 
+  .extend-content button, .hide-content button {
+    width: 100% !important;
+  }
+
   .form-table {
     margin-top: 5px;
     width: 100%;
@@ -77,6 +81,11 @@ table {
 
   .form-control {
     margin: 1px;
+  }
+
+  .form-control select,
+  .form-control input {
+    width: 100% !important;
   }
 
   #show-content {

@@ -5,11 +5,6 @@ $(document).ready(function () {
     showConfirmDeleteDialog(this);
   });
 
-  $(window).resize(function () {
-    showHideExtraCols();
-    adjustCreationFormSize();
-  });
-
   $("#create-new-user-btn").click(function () {
     addUser();
   });
@@ -18,11 +13,22 @@ $(document).ready(function () {
     enableCreateUserBtn();
   });
 
-  $("form-control").on("click", function() {
-    formControlBtnClick();
+  $("#extend-btn").on("click", function() {
+    formControlBtnClick($("#extend-btn"));
+  });
+
+  $("#hide-btn").on("click", function() {
+    formControlBtnClick($("#hide-btn"));
   });
 
   adjustCreationFormSize();
+  setDynamicCreateUserSize();
+
+  $(window).resize(function () {
+    showHideExtraCols();
+    adjustCreationFormSize();
+    setDynamicCreateUserSize();
+  });
 
 });
 
@@ -141,20 +147,29 @@ function adjustCreationFormSize() {
   }
 }
 
-// TODO: fix this function
+// Function to control the add user menu in mobile mode.
 function formControlBtnClick(button) {
   var formContent = $(".form-content");
-  var extendBtn = $("#extend-btn");
-  var hideBtn = $("#hide-btn");
+  var extendBtn = $(".extend-content");
+  var hideBtn = $(".hide-content");
   switch(button.attr("id")) {
     case "extend-btn":
-      addNewClass(button, "hide");
+      addNewClass(extendBtn, "hide");
       removeOldClass(hideBtn, "hide");
+      removeOldClass(formContent, "hide");
       break;
     case "hide-btn":
-      addNewClass(formContent, "hide");
-      addNewClass(button, "hide");
+      addNewClass(hideBtn, "hide");
       removeOldClass(extendBtn, "hide");
+      addNewClass(formContent, "hide");
       break;
   }
+}
+
+// Function to adjust create user block and blank block width
+function setDynamicCreateUserSize() {
+  var createUserWidth = $(".main-content").width();
+  var blankHeight = $(".create-form").height();
+  $(".create-form").width(createUserWidth);
+  $("body").css("padding-bottom", blankHeight);
 }
