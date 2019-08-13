@@ -21,7 +21,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/admin_user_management.css" rel="stylesheet">
+  <link href="../css/admin-user-management.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -30,7 +30,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form.js"></script>
-  <script type="text/javascript" src="../js/admin_user_management.js"></script>
+  <script type="text/javascript" src="../js/admin-user-management.js"></script>
 
 </head>
 
