@@ -1,5 +1,5 @@
 <?php
-include 'common/session.php';
+include '../common/session.php';
 
 $pwdHasher = new PasswordHash(8, false);
 

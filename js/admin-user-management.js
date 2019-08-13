@@ -58,7 +58,7 @@ function addUser() {
   var workgroup = $("#new-user-group option:selected").val();
   $.ajax({
     type: "post",
-    url: "../php/add-user.php",
+    url: "../php/functions/add-user.php",
     data: {
       "username": username,
       "nickname": userNickName,
@@ -95,7 +95,7 @@ function showConfirmDeleteDialog(btn) {
         text: "确认删除",
         keys: ["enter"],
         action: function () {
-          var delUrl = "delete-user.php?user_id=" + userId;
+          var delUrl = "../php/functions/delete-user.php?user_id=" + userId;
           window.location.href = delUrl;
         }
       },
