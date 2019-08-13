@@ -95,7 +95,7 @@ function showConfirmDeleteDialog(btn) {
         text: "确认删除",
         keys: ["enter"],
         action: function () {
-          var delUrl = "delete_user.php?user_id=" + userId;
+          var delUrl = "delete-user.php?user_id=" + userId;
           window.location.href = delUrl;
         }
       },
