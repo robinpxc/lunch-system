@@ -85,7 +85,7 @@ function addUser() {
 
 // Function to show confirm dialog when deleting a user.
 function showConfirmDeleteDialog(btn) {
-  var userId = $(btn).parent().find("input").val();
+  var userId = $(btn).parent().parent().find("input").val();
   $.confirm({
     title: "用户删除确认",
     content: '确认从数据库中删除该用户吗？',
