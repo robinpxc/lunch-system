@@ -106,6 +106,11 @@ function disableZoom() {
   });
 }
 
+// Function to judge if an element is enabled
+function isEnable(currentElement) {
+  return !(typeof (currentElement.attr("disabled")) != "undefined" || typeof (currentElement.attr("readonly")) != "undefined");
+}
+
 // Functions to set element enabled or disabled
 function setEnable(currentElement) {
   if (typeof (currentElement.attr("disabled")) != "undefined") {
