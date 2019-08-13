@@ -21,7 +21,7 @@ $(document).ready(function () {
 
   // Submit button click event
   submitBtn.click(function() {
-
+    submitModifiedUserInfo(defaultUserInfo);
   });
 
 
@@ -101,4 +101,9 @@ function discardChanges(modifyBtnGtoup, defaultUserInfoObj) {
 
   setDisable($("#discard-btn"));
   setDisable($("#submit-btn"));
+}
+
+// Function to submit modified user information
+function submitModifiedUserInfo(userInfoObj) {
+
 }
