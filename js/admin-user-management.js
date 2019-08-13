@@ -58,7 +58,7 @@ function addUser() {
   var workgroup = $("#new-user-group option:selected").val();
   $.ajax({
     type: "post",
-    url: "../php/add_user.php",
+    url: "../php/add-user.php",
     data: {
       "username": username,
       "nickname": userNickName,
