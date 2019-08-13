@@ -24,7 +24,7 @@ $userRole = $row['role'];
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/user_main.css" rel="stylesheet">
+  <link href="../css/user-main.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -32,7 +32,7 @@ $userRole = $row['role'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/user_main.js"></script>
+  <script type="text/javascript" src="../js/user-main.js"></script>
 
 </head>
 

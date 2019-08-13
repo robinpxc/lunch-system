@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // If result matched $myusername and $myLoginPwd, table row must be 1 row
     if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
         $_SESSION['lunch_user_session'] = $userId;
-        header("location: user_main.php");
+        header("location: user-main.php");
     } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
     }
