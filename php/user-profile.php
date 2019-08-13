@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
     $result = mysqli_query($mysqlConnection, $update_sql);
-    header("location: user_profile.php");
+    header("location: user-profile.php");
   }
 }
 
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/user_profile.css" rel="stylesheet">
+  <link href="../css/user-profile.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form.js"></script>
-  <script type="text/javascript" src="../js/user_profile.js"></script>
+  <script type="text/javascript" src="../js/user-profile.js"></script>
 
 </head>
 
