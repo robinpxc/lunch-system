@@ -150,7 +150,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
                             <div class='btn-group'>
                               <input type='hidden' value='$id'>
                               <a href='admin_modify_profile.php?uid=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
-                              <button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button>
+                              <a><button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button></a>
                             </div>
                           </td>
                         </tr>
