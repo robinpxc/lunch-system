@@ -31,7 +31,7 @@ $userWorkgroup = $row['workgroup'];
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
-  <link href="../css/admin_modify_profile.css" rel="stylesheet">
+  <link href="../css/admin-modify-profile.css" rel="stylesheet">
 
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -40,7 +40,7 @@ $userWorkgroup = $row['workgroup'];
 
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form_new.js"></script>
-  <script type="text/javascript" src="../js/admin_modify_profile.js"></script>
+  <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
 
 </head>
 
