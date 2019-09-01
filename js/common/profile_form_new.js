@@ -125,34 +125,36 @@ function submitModifiedUserInfo(userInfoObj) {
     var self = $(this);
     switch(self.attr("id")) {
       case "user-id-input":
+        updatedUserInfo.id = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
         break;
       case "user-fullname-input":
+        updatedUserInfo.fullname = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
         break;
       case "user-role":
+        updatedUserInfo.role = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
         break;
-      case ""
+      case "user-workgroup":
+        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        break;
+      case "nickname-input":
+        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        break;
+      case "password-input":
+        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        break;
     }
   });
 
-
-  if (isEnable(idField) && idField.val() != userInfoObj.id & idField.val() != "") {
-    updatedUserInfo.id = idField.val();
-  }
-
-  if (isEnable(fullnameField) && fullnameField.val() != userInfoObj.val() != "") {
-
-  }
+  updateUserInfo(updateUserInfo);
 }
 
 // Function to judge if the modified data
-function isDataModified(element, userInfoObj) {
+function isDataModified(element, data) {
   if(!isEnable(element)) {
     return false;
   } else {
-    if(element.val() != "") {
-      switch(element.attr("id")) {
-
-      }
+    if(element.val() != "" && element.val() != data) {
+      return true;
     }
   }
 }
@@ -179,4 +181,24 @@ function resetEyeBtn() {
   setDisable($("#show-hide-pwd-btn"));
   addNewClass($("#eye-icon"), "hide");
   removeOldClass($("eye-icon-disabled"), "hide");
+}
+
+// Function to submit modified data as an object via ajax
+function updateUserInfo(userInfoObject) {
+  $.ajax({
+    type: "post",
+    url: "../../php/functions/modify-user-info.php",
+    data: {
+      "id": userInfoObject.id,
+      "username": userInfoObject.fullname,
+      "nickname": userInfoObject.nickname,
+      "workgroup":userInfoObject.workgroup,
+      "password": userInfoObject.password,
+      "role": userInfoObject.role
+    },
+    dataType: "json",
+    success: function (response) {
+      alert(response);
+    }
+  });  
 }

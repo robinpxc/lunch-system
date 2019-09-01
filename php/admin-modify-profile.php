@@ -173,7 +173,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
+        <input type="password" id="password-input" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye hide" id="eye-icon" viewBox="0 0 1024 1024">
