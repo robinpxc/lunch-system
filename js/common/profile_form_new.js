@@ -23,7 +23,7 @@ $(document).ready(function () {
 
   // Submit button click event
   submitBtn.click(function () {
-    submitModifiedUserInfo(defaultUserInfo);
+    submitModifiedUserInfo(defaultUserInfo, defaultUserInfo.id);
   });
 
   // Function of password eye button
@@ -111,36 +111,30 @@ function discardChanges(modifyBtnGtoup, defaultUserInfoObj) {
 }
 
 // Function to submit modified user information
-function submitModifiedUserInfo(userInfoObj) {
-  var idField = $("input[name='user-id']");
-  var fullnameField = $("input[name='user-fullname']");
-  var roleField = $("#user-role");
-  var workgroupField = $("#user-workgroup");
-  var nicknameField = $("input[name='user-nickname-edit']");
-  var passwordField = $("input[name='user-password-edit']");
+function submitModifiedUserInfo(userInfoObj, oldId) {
   var updatedUserInfo = {};
-
+  updateUserInfo.oldId = oldId;
 
   $(".form-control").each(function(){
     var self = $(this);
     switch(self.attr("id")) {
       case "user-id-input":
-        updatedUserInfo.id = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.id = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
       case "user-fullname-input":
-        updatedUserInfo.fullname = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.fullname = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
       case "user-role":
-        updatedUserInfo.role = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.role = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
       case "user-workgroup":
-        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
       case "nickname-input":
-        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
       case "password-input":
-        updatedUserInfo.workgroup = isDataModified(self.val(), userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
         break;
     }
   });
@@ -187,16 +181,17 @@ function resetEyeBtn() {
 function updateUserInfo(userInfoObject) {
   $.ajax({
     type: "post",
-    url: "../../php/functions/modify-user-info.php",
+    url: "../php/functions/modify-user-info.php",
+    dataType: "json",
     data: {
+      "oldid": userInfoObject.oldId,
       "id": userInfoObject.id,
-      "username": userInfoObject.fullname,
+      "fullname": userInfoObject.fullname,
       "nickname": userInfoObject.nickname,
       "workgroup":userInfoObject.workgroup,
       "password": userInfoObject.password,
       "role": userInfoObject.role
     },
-    dataType: "json",
     success: function (response) {
       alert(response);
     }
