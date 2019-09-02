@@ -119,27 +119,27 @@ function submitModifiedUserInfo(userInfoObj, oldId) {
     var self = $(this);
     switch(self.attr("id")) {
       case "user-id-input":
-        updatedUserInfo.id = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.id = isDataModified(self, userInfoObj.id) ? self.val() : userInfoObj.id;
         break;
       case "user-fullname-input":
-        updatedUserInfo.fullname = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.fullname = isDataModified(self, userInfoObj.fullname) ? self.val() : userInfoObj.fullname;
         break;
       case "user-role":
-        updatedUserInfo.role = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updateUserInfo.role = isDataModified(self, userInfoObj.role) ? self.val() : userInfoObj.role;
         break;
       case "user-workgroup":
-        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updateUserInfo.workgroup = isDataModified(self, userInfoObj.workgroup) ? self.val() : userInfoObj.workgroup;
         break;
       case "nickname-input":
-        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.nickname = isDataModified(self, userInfoObj.nickname) ? self.val() : userInfoObj.nickname;
         break;
       case "password-input":
-        updatedUserInfo.workgroup = isDataModified(self, userInfoObj.id) ? self.val() : "";
+        updatedUserInfo.password = self.val();
         break;
     }
   });
 
-  updateUserInfo(updateUserInfo);
+  updateUserInfo(updatedUserInfo);
 }
 
 // Function to judge if the modified data
@@ -179,6 +179,7 @@ function resetEyeBtn() {
 
 // Function to submit modified data as an object via ajax
 function updateUserInfo(userInfoObject) {
+  alert(userInfoObject.id);
   $.ajax({
     type: "post",
     url: "../php/functions/modify-user-info.php",
