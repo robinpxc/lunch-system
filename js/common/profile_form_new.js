@@ -119,10 +119,10 @@ function submitModifiedUserInfo(userInfoObj, oldId) {
     var self = $(this);
     switch(self.attr("id")) {
       case "user-id-input":
-        updatedUserInfo.id = isDataModified(self, userInfoObj.id) ? self.val() : userInfoObj.id;
+        updateUserInfo.id = isDataModified(self, userInfoObj.id) ? self.val() : userInfoObj.id;
         break;
       case "user-fullname-input":
-        updatedUserInfo.fullname = isDataModified(self, userInfoObj.fullname) ? self.val() : userInfoObj.fullname;
+        updateUserInfo.fullname = isDataModified(self, userInfoObj.fullname) ? self.val() : userInfoObj.fullname;
         break;
       case "user-role":
         updateUserInfo.role = isDataModified(self, userInfoObj.role) ? self.val() : userInfoObj.role;
@@ -131,15 +131,15 @@ function submitModifiedUserInfo(userInfoObj, oldId) {
         updateUserInfo.workgroup = isDataModified(self, userInfoObj.workgroup) ? self.val() : userInfoObj.workgroup;
         break;
       case "nickname-input":
-        updatedUserInfo.nickname = isDataModified(self, userInfoObj.nickname) ? self.val() : userInfoObj.nickname;
+        updateUserInfo.nickname = isDataModified(self, userInfoObj.nickname) ? self.val() : userInfoObj.nickname;
         break;
       case "password-input":
-        updatedUserInfo.password = self.val();
+        updateUserInfo.password = self.val();
         break;
     }
   });
 
-  updateUserInfo(updatedUserInfo);
+  updateUserInfo(updateUserInfo);
 }
 
 // Function to judge if the modified data
@@ -179,7 +179,6 @@ function resetEyeBtn() {
 
 // Function to submit modified data as an object via ajax
 function updateUserInfo(userInfoObject) {
-  alert(userInfoObject.id);
   $.ajax({
     type: "post",
     url: "../php/functions/modify-user-info.php",
