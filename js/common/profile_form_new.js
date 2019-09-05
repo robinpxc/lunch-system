@@ -9,7 +9,6 @@ $(document).ready(function () {
   var userWorkgroupValue = $("#user-workgroup-value").val();
   var discardBtn = $("#discard-btn");
   var submitBtn = $("#submit-btn");
-
   var eyeBtn = $("#show-hide-pwd-btn");
 
   userRoleSelect.val(userRoleValue);
@@ -50,10 +49,6 @@ function modifyButtonClickEvent(btnGroup) {
       setEnable($("#discard-btn"));
       setEnable($("#submit-btn"));
       switch (btnId) {
-        case "id-edit-btn":
-          setDisable(self);
-          setEnable($("input[name='user-id']"));
-          break;
         case "fullname-edit-btn":
           setDisable(self);
           setEnable($("input[name='user-fullname']"));
@@ -113,7 +108,6 @@ function discardChanges(modifyBtnGtoup, defaultUserInfoObj) {
 // Function to submit modified user information
 function submitModifiedUserInfo(userInfoObj, oldId) {
   var updatedUserInfo = {};
-  updateUserInfo.oldId = oldId;
 
   $(".form-control").each(function(){
     var self = $(this);
@@ -184,7 +178,6 @@ function updateUserInfo(userInfoObject) {
     url: "../php/functions/modify-user-info.php",
     dataType: "json",
     data: {
-      "oldid": userInfoObject.oldId,
       "id": userInfoObject.id,
       "fullname": userInfoObject.fullname,
       "nickname": userInfoObject.nickname,
@@ -193,7 +186,12 @@ function updateUserInfo(userInfoObject) {
       "role": userInfoObject.role
     },
     success: function (response) {
-      alert(response);
+      var status;
+      if(response === 1 || response === true) {
+        alert("用户信息修改成功！");
+      } else {
+        alert("修改失败，请稍后尝试！");
+      }
     }
   });  
 }

@@ -37,7 +37,7 @@ $userWorkgroup = $row['workgroup'];
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form_new.js"></script>
   <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
@@ -106,10 +106,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="<?php echo $userId; ?>" maxlength="4" readonly="readonly" />
-        <div class="input-group-append permission-text">
-          <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="id-edit-btn">修改</button>
-        </div>
+        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="<?php echo $userId; ?>" readonly="readonly" />
       </div>
 
       <!-- User fullname input field -->
@@ -117,7 +114,7 @@ $userWorkgroup = $row['workgroup'];
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="<?php echo $userFullName; ?>" readonly="readonly" />
+        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="<?php echo $userFullName; ?>" maxlength="30" readonly="readonly" />
         <div class="input-group-append permission-text">
         <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="fullname-edit-btn">修改</button>
         </div>
