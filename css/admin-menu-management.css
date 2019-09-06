@@ -1,0 +1,19 @@
+@import url("common/common.css");
+
+.main-content {
+  padding-top: 10px;
+  display: flex;
+}
+
+.calendar {
+  margin-right: 10px;
+}
+
+.menu-data {
+  width: 100%;
+  padding: 10px;
+}
+
+.form-row input {
+  min-width: 100px;
+}
