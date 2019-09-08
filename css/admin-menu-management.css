@@ -2,7 +2,6 @@
 
 .main-content {
   padding-top: 10px;
-  display: flex;
 }
 
 .calendar {
@@ -16,4 +15,14 @@
 
 .form-row input {
   min-width: 100px;
+}
+
+@media screen and (max-width: 995px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .boxshaw {
+    width: 100%;
+  }
 }

@@ -97,12 +97,9 @@ include('common/session.php');
     </nav>
   </header>
 
-  <div class="main-content">
-    <div class="calendar">
+  <div class="main-content d-flex">
+    <div class="calendar d-flex">
       <div class="boxshaw" id='schedule-box'></div>
-      <div>
-        <h3 id='h3Ele'></h3>
-      </div>
     </div>
 
     <div class="menu-data boxshaw d-block">
