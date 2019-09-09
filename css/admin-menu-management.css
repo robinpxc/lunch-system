@@ -8,6 +8,12 @@
   margin-right: 10px;
 }
 
+.today {
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+}
+
 .menu-data {
   width: 100%;
   padding: 10px;
@@ -17,12 +23,25 @@
   min-width: 100px;
 }
 
+.new-menu-btn {
+  width: 100% !important;
+}
+
+
 @media screen and (max-width: 995px) {
   .main-content {
     flex-direction: column;
   }
 
-  .boxshaw {
+  .menu-data {
+    margin-top: 10px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  #schedule-box {
     width: 100%;
   }
 }

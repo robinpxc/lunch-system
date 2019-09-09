@@ -107,7 +107,7 @@ include('common/session.php');
         <!-- Combo 01 -->
         <div class="form-row combo-container">
           <div class="col-md-2 mb-3">
-            <input type="text" class="form-control" value="套餐【 1 】" disabled="disabled">
+            <input type="text" class="form-control menu-label" value="套餐【 1 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-01">
@@ -130,7 +130,7 @@ include('common/session.php');
         <!-- Combo 02 -->
         <div class="form-row combo-container">
           <div class="col-md-2 mb-3">
-            <input type="text" class="form-control" value="套餐【 2 】" disabled="disabled">
+            <input type="text" class="form-control menu-label" value="套餐【 2 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-02">
@@ -150,8 +150,8 @@ include('common/session.php');
 
         <!-- Combo 03 -->
         <div class="form-row combo-container">
-          <div class="col-md-2">
-            <input type="text" class="form-control" value="套餐【 3 】" disabled="disabled">
+          <div class="col-md-2 mb-3">
+            <input type="text" class="form-control menu-label" value="套餐【 3 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-03">
@@ -171,8 +171,8 @@ include('common/session.php');
 
         <!-- Combo 04 -->
         <div class="form-row combo-container">
-          <div class="col-md-2">
-            <input type="text" class="form-control" value="套餐【 4 】" disabled="disabled">
+          <div class="col-md-2 mb-3">
+            <input type="text" class="form-control menu-label" value="套餐【 4 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-01">
@@ -192,8 +192,8 @@ include('common/session.php');
 
         <!-- Combo 05 -->
         <div class="form-row combo-container">
-          <div class="col-md-2">
-            <input type="text" class="form-control" value="套餐【 5 】" disabled="disabled">
+          <div class="col-md-2 mb-3">
+            <input type="text" class="form-control menu-label" value="套餐【 5 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-01">
@@ -213,8 +213,8 @@ include('common/session.php');
 
         <!-- Combo 06 -->
         <div class="form-row combo-container">
-          <div class="col-md-2">
-            <input type="text" class="form-control" value="套餐【 6 】" disabled="disabled">
+          <div class="col-md-2 mb-3">
+            <input type="text" class="form-control menu-label" value="套餐【 6 】" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-01">
@@ -234,8 +234,8 @@ include('common/session.php');
 
         <!-- Combo 07 -->
         <div class="form-row combo-container">
-          <div class="col-md-2">
-            <input type="text" class="form-control" value="辣【 7 】号" disabled="disabled">
+          <div class="col-md-2 mb-3">
+            <input type="text" class="form-control menu-label" value="辣【 7 】号" disabled="disabled">
           </div>
 
           <div class="form-row col-md-10 combo-01">
@@ -253,7 +253,7 @@ include('common/session.php');
           </div>
         </div>
 
-        <button class="btn btn-primary" type="button">Submit form</button>
+        <button class="btn btn-primary new-menu-btn" type="button">点击创建新菜单</button>
       </form>
 
     </div>
