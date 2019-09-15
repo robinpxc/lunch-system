@@ -1,8 +1,10 @@
 $(document).ready(function () {
   var mySchedule = new Schedule({
     el: '#schedule-box',
-    //date: '2018-9-20',
     clickCb: function (y,m,d) {
+      if(document.getElementById("date-value")) {
+        $("#date-value").val(formatDate(y, m, d));
+      }
     },
     nextMonthCb: function (y,m,d) {
     },
@@ -14,7 +16,3 @@ $(document).ready(function () {
     }
   });
 });
-
-function displayDate(y, m, d) {
-   document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
-}

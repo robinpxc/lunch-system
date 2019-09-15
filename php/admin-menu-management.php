@@ -98,6 +98,7 @@ include('common/session.php');
   </header>
 
   <div class="main-content d-flex">
+    <input type="hidden" id="date-value"">
     <div class="calendar d-flex">
       <div class="boxshaw" id='schedule-box'></div>
     </div>

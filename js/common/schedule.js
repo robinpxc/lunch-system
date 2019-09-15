@@ -10,13 +10,6 @@
         }
         return def;
     }
-    //日期格式化
-    function formartDate(y, m, d, symbol) {
-        symbol = symbol || '-';
-        m = (m.toString())[1] ? m : '0' + m;
-        d = (d.toString())[1] ? d : '0' + d;
-        return y + symbol + m + symbol + d
-    } 
 
     function Schedule(opt) {
         var def = {},
@@ -63,7 +56,7 @@
                 '<span class="arrow icon iconfont icon-116leftarrowheads" id="prevYear" ></span>' +
                 '<span class="arrow icon iconfont icon-112leftarrowhead" id="prevMonth"></span>' +
                 '</div>' +
-                '<div class="today">' + formartDate(year, month + 1, day, '-') + '</div>' +
+                '<div class="today">' + formatDate(year, month + 1, day, '-') + '</div>' +
                 '<div>' +
                 '<span class="arrow icon iconfont icon-111arrowheadright" id="nextMonth"></span>' +
                 '<span class="arrow icon iconfont icon-115rightarrowheads" id="nextYear"></span>' +
@@ -96,17 +89,17 @@
                 if (i < startWeek) {
                     eleTemp.push('<li class="other-month"><span class="dayStyle">' + (lastMonthDay - startWeek + 1 + i) + '</span></li>')
                 } else if (i < (startWeek + fullDay)) {
-                    var nowDate = formartDate(year, month + 1, (i + 1 - startWeek), '-');
+                    var nowDate = formatDate(year, month + 1, (i + 1 - startWeek), '-');
                     var addClass = '';
                     selectedDate == nowDate && (addClass = 'selected-style');
-                    formartDate(currentYear, currentMonth + 1, currentDay, '-') == nowDate && (addClass = 'today-flag');
+                    formatDate(currentYear, currentMonth + 1, currentDay, '-') == nowDate && (addClass = 'today-flag');
                     eleTemp.push('<li class="current-month" ><span title=' + nowDate + ' class="currentDate dayStyle ' + addClass + '">' + (i + 1 - startWeek) + '</span></li>')
                 } else {
                     eleTemp.push('<li class="other-month"><span class="dayStyle">' + (i + 1 - (startWeek + fullDay)) + '</span></li>')
                 }
             }
             el.querySelector('.schedule-bd').innerHTML = eleTemp.join('');
-            el.querySelector('.today').innerHTML = formartDate(year, month + 1, day, '-');
+            el.querySelector('.today').innerHTML = formatDate(year, month + 1, day, '-');
         };
         this.nextMonthFun = function () {
                 if (month + 1 > 11) {

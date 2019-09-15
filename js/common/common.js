@@ -143,3 +143,10 @@ function removeOldClass(element, oldClass) {
     element.removeClass(oldClass);
   }
 }
+
+function formatDate(y, m, d, symbol) {
+  symbol = symbol || '-';
+  m = (m.toString())[1] ? m : '0' + m;
+  d = (d.toString())[1] ? d : '0' + d;
+  return y + symbol + m + symbol + d
+} 
