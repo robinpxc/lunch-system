@@ -133,20 +133,31 @@ function setReadOnly(currentElement) {
 }
 
 function addNewClass(element, newClass) {
-  if(!element.hasClass(newClass)) {
+  if (!element.hasClass(newClass)) {
     element.addClass(newClass);
   }
 }
 
 function removeOldClass(element, oldClass) {
-  if(element.hasClass(oldClass)) {
+  if (element.hasClass(oldClass)) {
     element.removeClass(oldClass);
   }
 }
 
+
+// Date related functions
 function formatDate(y, m, d, symbol) {
   symbol = symbol || '-';
   m = (m.toString())[1] ? m : '0' + m;
   d = (d.toString())[1] ? d : '0' + d;
   return y + symbol + m + symbol + d
-} 
+}
+
+function getDateToday() {
+  currentDate = new Date();
+  currentYear = currentDate.getFullYear();
+  currentMonth = currentDate.getMonth() + 1;
+  currentDay = currentDate.getDate();
+
+  return formatDate(currentYear, currentMonth, currentDay);
+}

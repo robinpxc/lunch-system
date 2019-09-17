@@ -1,5 +1,5 @@
 <?php
-include '../common/session.php';
+include('../common/session.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

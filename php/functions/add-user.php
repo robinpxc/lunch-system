@@ -1,13 +1,13 @@
 <?php
-include '../common/session.php';
+include('../common/session.php');
 
 $pwdHasher = new PasswordHash(8, false);
 
 $nickname = mysqli_real_escape_string($mysqlConnection, $_POST['nickname']);
-$fullname = mysqli_real_escape_string($mysqlConnection, $_POST["username"]);
-$password = mysqli_real_escape_string($mysqlConnection, $pwdHasher->HashPassword($_POST["password"]));
-$role = $_POST["role"];
-$workgroup = $_POST["workgroup"];
+$fullname = mysqli_real_escape_string($mysqlConnection, $_POST['username']);
+$password = mysqli_real_escape_string($mysqlConnection, $pwdHasher->HashPassword($_POST['password']));
+$role = $_POST['role'];
+$workgroup = $_POST['workgroup'];
 
 $sql_check_user_name = "SELECT * FROM `user_info` WHERE (`nick_name` = '$nickname' AND `id` <> '$login_session')";
 $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
