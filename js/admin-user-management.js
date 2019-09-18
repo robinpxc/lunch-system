@@ -75,7 +75,6 @@ function addUser() {
           showAlert();
           break;
         case 2:
-          // alert("昵称 " + userNickName + " 已经被他人使用了!");
           showAlert();
           break;
       }
