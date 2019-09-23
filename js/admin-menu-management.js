@@ -2,6 +2,7 @@ $(document).ready(function () {
   checkTodayMenuStatus(getDateToday());
   setInputTextChangeListener();
   setClearBtnOnClickListener();
+  showMenu($("#menu-status").val());
 });
 
 function checkTodayMenuStatus(dateToday) {
@@ -68,9 +69,25 @@ function setClearBtnOnClickListener() {
   $("#btn-clear-menu").click(function() {
     $(".combo-content").each(function() {
       $(this).val("");
-      if(isFiledEmpty) {
-        setDisable($("#btn-update-menu"));
-      }
     });
+
+    if(isFiledEmpty) {
+      setDisable($("#btn-update-menu"));
+      setDisable($("#btn-clear-menu"));
+    }
   });
+}
+
+// Function to show menu based on menu status
+function showMenu(menuStatus) {
+  var modifyBtn = $("#btn-modify-menu");
+  setMenuTitle(menuStatus);
+  menuStatus === "no-menu" ?  addNewClass(modifyBtn, "hide") : removeOldClass(modifyBtn, "hide");
+}
+
+// Function to set menu title span based on menu status
+function setMenuTitle(menuStatus) {
+  var menuTitle = $(".menu-title");
+  menuTitle.text(menuStatus === "no-menu" ? "尚未创建菜单，添加内容并创建新菜单" : "已创建菜单，点击黄色按钮修改菜单");
+  menuTitle.css("color", menuStatus === "no-menu" ? "red" : "green");
 }
