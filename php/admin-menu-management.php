@@ -256,7 +256,7 @@ include('./functions/admin-show-menu.php');
           </div>
 
           <div class="menu-operation-btn-group form-row col-md-12" role="group">
-            <button type="button" class="btn btn-primary col-md-6 mb-2" id="btn-update-menu" disabled="disabled">点击更新菜单</button>
+            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">点击更新菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">清空菜单</button>
           </div>
 
