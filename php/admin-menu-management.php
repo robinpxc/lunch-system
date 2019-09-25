@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-include('./functions/admin-show-menu.php');
-?>
 
 <html lang="zh">
 
@@ -263,7 +260,7 @@ include('./functions/admin-show-menu.php');
           <div>
             <button type="button" class="btn btn-warning col-md-12 mb-2" id="btn-modify-menu">修改菜单</button>
           </div>
-          <input type="hidden" name="menu-status" id="menu-status" value="<?php echo ($isMenuExist) ?>">
+          <input type="hidden" name="menu-status" id="menu-status" value="">
         </form>
       </div>
 

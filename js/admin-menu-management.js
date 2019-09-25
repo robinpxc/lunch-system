@@ -1,39 +1,40 @@
 $(document).ready(function () {
-  checkTodayMenuStatus(getDateToday());
+  checkMenuStatus(getDateToday());
   setInputTextChangeListener();
   setClearBtnOnClickListener();
-  showMenu($("#menu-status").val());
 });
 
-function checkTodayMenuStatus(dateToday) {
+// Function to check menu status based on user selected date
+function checkMenuStatus(selectedDate) {
   $.ajax({
     type: "post",
     url: "../php/functions/check-menu-status.php",
     data: {
-      "today": dateToday
+      "selected-date": selectedDate
     },
     dataType: "json",
     success: function (response) {
-      if(response === null) {
-        alert("空的");
-      } else {
-        
-      }
+      var menuStatus = $("#menu-status");
+      menuStatus.val(response);
+      showMenu(menuStatus.val());
+    },
+    error: function (errorMsg) {
+      alert("AJax error!");
     }
   });
 }
 
 // Set operation when user typing in inputs
 function setInputTextChangeListener() {
-  $(".combo-content").each(function(){
+  $(".combo-content").each(function () {
     $(this).bind('input propertychange', function () {
-      if(isRequiredFieldFinished()) {
+      if (isRequiredFieldFinished()) {
         setEnable($("#btn-update-menu"));
       } else {
         setDisable($("#btn-update-menu"));
       }
 
-      if(!isFiledEmpty()) {
+      if (!isFiledEmpty()) {
         setEnable($("#btn-clear-menu"));
       } else {
         setDisable($("#btn-clear-menu"));
@@ -45,8 +46,8 @@ function setInputTextChangeListener() {
 // Judge if all requred input has been filled
 function isRequiredFieldFinished() {
   var isInputFinished = true;
-  $(".combo-content").each(function() {
-    if($(this).val() === "") {
+  $(".combo-content").each(function () {
+    if ($(this).val() === "") {
       isInputFinished = false;
     }
   });
@@ -56,8 +57,8 @@ function isRequiredFieldFinished() {
 // TO judge if at least one field is not empty
 function isFiledEmpty() {
   var isFiledEmpty = true;
-  $(".combo-content").each(function() {
-    if($(this).val() != "") {
+  $(".combo-content").each(function () {
+    if ($(this).val() != "") {
       isFiledEmpty = false;
     }
   });
@@ -66,12 +67,12 @@ function isFiledEmpty() {
 
 // Set clear button function 
 function setClearBtnOnClickListener() {
-  $("#btn-clear-menu").click(function() {
-    $(".combo-content").each(function() {
+  $("#btn-clear-menu").click(function () {
+    $(".combo-content").each(function () {
       $(this).val("");
     });
 
-    if(isFiledEmpty) {
+    if (isFiledEmpty) {
       setDisable($("#btn-update-menu"));
       setDisable($("#btn-clear-menu"));
     }
@@ -80,7 +81,7 @@ function setClearBtnOnClickListener() {
 
 // Set modify button click funtion
 function setModifyButtonClickListener() {
-  $("#btn-modify-menu").click(function() {
+  $("#btn-modify-menu").click(function () {
     setMenuEditable(true);
   });
 }
@@ -92,7 +93,7 @@ function showMenu(menuStatus) {
   setMenuTitle(menuStatus);
   menuStatus === "no-menu" ? addNewClass(modifyBtn, "hide") : removeOldClass(modifyBtn, "hide");
   menuStatus === "no-menu" ? removeOldClass(operationBtnGroup, "hide") : addNewClass(operationBtnGroup, "hide");
-  if(menuStatus === "menu-exist") {
+  if (menuStatus === "menu-exist") {
     setModifyButtonClickListener();
   }
   setMenuEditable(menuStatus === "no-menu" ? true : false);
@@ -108,7 +109,7 @@ function setMenuTitle(menuStatus) {
 
 // Function to set menu editable based on menu status.
 function setMenuEditable(willEditable) {
-  $(".combo-content").each(function() {
+  $(".combo-content").each(function () {
     willEditable === false ? setDisable($(this)) : setEnable($(this));
   });
 }
