@@ -252,9 +252,14 @@
             </div>
           </div>
 
-          <div class="menu-operation-btn-group form-row col-md-12" role="group">
-            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">点击更新菜单</button>
+          <div class="menu-create-btn-group form-row col-md-12" role="group">
+            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">创建菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">清空菜单</button>
+          </div>
+
+          <div class="menu-update-btn-group form-row col-md-12 hide" role="group">
+            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">更新菜单</button>
+            <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">取消修改</button>
           </div>
 
           <div>
@@ -263,8 +268,6 @@
           <input type="hidden" name="menu-status" id="menu-status" value="">
         </form>
       </div>
-
-
     </div>
   </div>
 

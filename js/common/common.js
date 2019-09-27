@@ -80,6 +80,20 @@ function hasAttribute(currentElement, attrName) {
   }
 }
 
+// Function to hide element
+function hideElement(element) {
+  if(!(element.hasClass("hide"))) {
+    element.addClass("hide");
+  }
+}
+
+// Function to unhide element 
+function unhideElement(element) {
+  if(element.hasClass("hide")) {
+    element.removeClass("hide");
+  }
+}
+
 // Function to get window width
 function getWindowWidth() {
   return $(window).width();

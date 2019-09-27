@@ -19,7 +19,7 @@ function checkMenuStatus(selectedDate) {
       showMenu(menuStatus.val());
     },
     error: function (errorMsg) {
-      alert("AJax error!");
+      alert("Ajax错误，请刷新页面或者切换网络环。多次重试无效请联系开发者");
     }
   });
 }
@@ -82,14 +82,18 @@ function setClearBtnOnClickListener() {
 // Set modify button click funtion
 function setModifyButtonClickListener() {
   $("#btn-modify-menu").click(function () {
+    hideElement($(this));
+    unhideElement($(".menu-update-btn-group"));
     setMenuEditable(true);
+    $(".menu-title").text("修改中...记得保存");
+    $(".menu-title").css("color", "#FFC107");
   });
 }
 
 // Function to show menu based on menu status
 function showMenu(menuStatus) {
   var modifyBtn = $("#btn-modify-menu");
-  var operationBtnGroup = $(".menu-operation-btn-group");
+  var operationBtnGroup = $(".menu-create-btn-group");
   setMenuTitle(menuStatus);
   menuStatus === "no-menu" ? addNewClass(modifyBtn, "hide") : removeOldClass(modifyBtn, "hide");
   menuStatus === "no-menu" ? removeOldClass(operationBtnGroup, "hide") : addNewClass(operationBtnGroup, "hide");
