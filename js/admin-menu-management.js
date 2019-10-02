@@ -30,6 +30,7 @@ function setInputTextChangeListener() {
     $(this).bind('input propertychange', function () {
       if (isRequiredFieldFinished()) {
         setEnable($("#btn-update-menu"));
+        setUpdateBtnClickListener();
       } else {
         setDisable($("#btn-update-menu"));
       }
@@ -88,6 +89,22 @@ function setModifyButtonClickListener() {
     $(".menu-title").text("修改中...记得保存");
     $(".menu-title").css("color", "#FFC107");
   });
+}
+
+// Set update button click listener
+function setUpdateBtnClickListener() {
+  var menuArray = new Array();
+  $("#btn-update-menu").click(function() {
+    for(var i = 0; i < 7; i++) {
+      menuArray[i] = new Array();
+      for(var j = 0; j < 3; j++) {
+        var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
+        menuArray[i][j] = $(foodId).val(); 
+        alert(menuArray[i][j]);
+      }
+    }
+  });
+ 
 }
 
 // Function to show menu based on menu status

@@ -239,14 +239,14 @@
 
             <div class="form-row col-md-10 combo-01">
               <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-01-01" placeholder="一号菜" required>
+                <input type="text" class="form-control combo-content" id="food-07-01" placeholder="一号菜" required>
               </div>
               <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-01-02" placeholder="二号菜" required>
+                <input type="text" class="form-control combo-content" id="food-07-02" placeholder="二号菜" required>
               </div>
               <div class="col-md-4 mb-3">
                 <div class="input-group">
-                  <input type="text" class="form-control combo-content" id="food-01-03" placeholder="三号菜" required>
+                  <input type="text" class="form-control combo-content" id="food-07-03" placeholder="三号菜" required>
                 </div>
               </div>
             </div>

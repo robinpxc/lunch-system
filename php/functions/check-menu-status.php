@@ -6,6 +6,6 @@
   $result = mysqli_query($mysqlConnection, $sql_check_menu_status);
   $isMenuExist = $result === true ? "menu-exist" : "no-menu";
 
-  //echo(json_encode($isMenuExist));
-  echo json_encode("menu-exist");
+  echo(json_encode($isMenuExist));
+  //echo json_encode("menu-exist");
 
