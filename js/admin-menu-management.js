@@ -19,7 +19,8 @@ function checkMenuStatus(selectedDate) {
       showMenu(menuStatus.val());
     },
     error: function (errorMsg) {
-      alert("Ajax错误，请刷新页面或者切换网络环。多次重试无效请联系开发者");
+      alert("Ajax错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      alert(errorMsg.responseText);
     }
   });
 }
@@ -55,7 +56,7 @@ function isRequiredFieldFinished() {
   return isInputFinished;
 }
 
-// TO judge if at least one field is not empty
+// To judge if at least one field is not empty
 function isFiledEmpty() {
   var isFiledEmpty = true;
   $(".combo-content").each(function () {
@@ -100,9 +101,9 @@ function setUpdateBtnClickListener() {
       for(var j = 0; j < 3; j++) {
         var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
         menuArray[i][j] = $(foodId).val(); 
-        alert(menuArray[i][j]);
       }
     }
+    updateMenu(menuArray);
   });
  
 }
@@ -132,5 +133,24 @@ function setMenuTitle(menuStatus) {
 function setMenuEditable(willEditable) {
   $(".combo-content").each(function () {
     willEditable === false ? setDisable($(this)) : setEnable($(this));
+  });
+}
+
+function updateMenu(menuList) {
+  $.ajax({
+    type: "POST",
+    url: "../php/functions/update-menu.php",
+    data: {
+      'date': getDateToday(),
+      'menu-list': JSON.stringify(menuList)
+    },
+    dataType: "json",
+    success: function (response) {
+      alert(response);
+    },
+    error: function (errorMsg) {
+      alert("Ajax错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      alert(errorMsg.responseText);
+    }
   });
 }
