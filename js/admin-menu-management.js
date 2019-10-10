@@ -147,10 +147,11 @@ function updateMenu(menuList) {
     dataType: "json",
     success: function (response) {
       alert(response);
+      location.reload();
     },
     error: function (errorMsg) {
       alert("Ajax错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
-      alert(errorMsg.responseText);
+      //alert(errorMsg.responseText);
     }
   });
 }
