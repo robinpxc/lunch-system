@@ -24,20 +24,8 @@ $(document).ready(function () {
 
 // Function to show current date and time.
 function showTime() {
-  var serverDate = new Date();
-  var year = serverDate.getFullYear();
-  var month = serverDate.getMonth();
-  var day = serverDate.getDate();
-  var hours = serverDate.getHours();
-  var minutes = serverDate.getMinutes();
-  var seconds = serverDate.getSeconds();
-  month = month < 10 ? "0" + month : month;
-  day = day < 10 ? "0" + day : day;
-  hours = hours < 10 ? "0" + hours : hours;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
-  $("#current_date").html(year + "-" + month + "-" + day);
-  $("#current_time").html(hours + ":" + minutes + ":" + seconds);
+  $("#current_date").html(getDateToday());
+  $("#current_time").html(getTimeNow());
   setTimeout(showTime, 1000);
 }
 
@@ -70,7 +58,7 @@ function willShowPricingHeader() {
   }
 }
 
-// Function to judge if the element has current attrname
+// Function to judge if the element has current attr name
 function hasAttribute(currentElement, attrName) {
   var attribute = currentElement.attr(attrName);
   if (typeof (attribute.attr(attrName)) == "undefined") {
@@ -158,20 +146,43 @@ function removeOldClass(element, oldClass) {
   }
 }
 
-
 // Date related functions
 function formatDate(y, m, d, symbol) {
-  symbol = symbol || '-';
-  m = (m.toString())[1] ? m : '0' + m;
-  d = (d.toString())[1] ? d : '0' + d;
-  return y + symbol + m + symbol + d
+  var symbol = symbol || '-';
+  var m = (m.toString())[1] ? m : '0' + m;
+  var d = (d.toString())[1] ? d : '0' + d;
+  return y + symbol + m + symbol + d;
 }
 
+function formatTime(h, m, s, symbol) {
+  var symbol = symbol || ':';
+  var m = (m.toString())[1] ? m : '0' + m;
+  var s = (s.toString())[1] ? s : '0' + s;
+
+  return h + symbol + m + symbol + s;
+}
+
+
+// Date & time related function
 function getDateToday() {
-  currentDate = new Date();
-  currentYear = currentDate.getFullYear();
-  currentMonth = currentDate.getMonth() + 1;
-  currentDay = currentDate.getDate();
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+  var currentMonth = currentDate.getMonth() + 1;
+  var currentDay = currentDate.getDate();
 
   return formatDate(currentYear, currentMonth, currentDay);
+}
+
+function getTimeNow() {
+  var currentDate = new Date();
+  var currentHour = currentDate.getHours();
+  var currentMinute = currentDate.getMinutes();
+  var currentSecond = currentDate.getSeconds();
+
+  return formatTime(currentHour, currentMinute, currentSecond);
+}
+
+// Function to decode unicode (Chinese chars)
+function decodeUnicode(text) {
+  return unescape(text.toString().replace(/\u/g, "%u"));
 }

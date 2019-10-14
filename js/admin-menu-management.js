@@ -16,11 +16,15 @@ function checkMenuStatus(selectedDate) {
     success: function (response) {
       var menuStatus = $("#menu-status");
       menuStatus.val(response);
-      showMenu(menuStatus.val());
+      alert(menuStatus.val());
+      showMenuUI(menuStatus.val());
+      if(menuStatus.val() === "menu-exist") {
+        fetchMenu();
+      }
     },
     error: function (errorMsg) {
-      alert("Ajax错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
-      alert(errorMsg.responseText);
+      alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
+      $(".menu-title").html(errorMsg.responseText);
     }
   });
 }
@@ -45,7 +49,7 @@ function setInputTextChangeListener() {
   });
 }
 
-// Judge if all requred input has been filled
+// Judge if all required input has been filled
 function isRequiredFieldFinished() {
   var isInputFinished = true;
   $(".combo-content").each(function () {
@@ -81,13 +85,13 @@ function setClearBtnOnClickListener() {
   });
 }
 
-// Set modify button click funtion
+// Set modify button click function
 function setModifyButtonClickListener() {
   $("#btn-modify-menu").click(function () {
     hideElement($(this));
     unhideElement($(".menu-update-btn-group"));
     setMenuEditable(true);
-    $(".menu-title").text("修改中...记得保存");
+    $(".menu-title").text("修改中...请注意保存");
     $(".menu-title").css("color", "#FFC107");
   });
 }
@@ -109,7 +113,7 @@ function setUpdateBtnClickListener() {
 }
 
 // Function to show menu based on menu status
-function showMenu(menuStatus) {
+function showMenuUI(menuStatus) {
   var modifyBtn = $("#btn-modify-menu");
   var operationBtnGroup = $(".menu-create-btn-group");
   setMenuTitle(menuStatus);
@@ -136,6 +140,8 @@ function setMenuEditable(willEditable) {
   });
 }
 
+
+// Function to create / update menu
 function updateMenu(menuList) {
   $.ajax({
     type: "POST",
@@ -150,8 +156,36 @@ function updateMenu(menuList) {
       location.reload();
     },
     error: function (errorMsg) {
-      alert("Ajax错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      $(".menu-title").html(errorMsg.responseText);
+    }
+  });
+}
+
+// Function to fetch menu from server
+function fetchMenu(date) {
+  $.ajax({
+    type: "POST",
+    url: "../php/functions/fetch-menu.php",
+    data: {
+      'date': getDateToday()
+    },
+    dataType: "json",
+    success: function (response) {
+      var menuArray = decodeUnicode(response).split(',');
+
+      for(var i = 0; i < 7; i++) {
+        for(var j = 0; j < 3; j++) {
+          var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
+          $(foodId).val(menuArray[i]);
+        }
+      }
+    },
+    error: function (errorMsg) {
+      alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      $(".menu-title").html(errorMsg.responseText);
       //alert(errorMsg.responseText);
     }
   });
 }
+

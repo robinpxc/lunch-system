@@ -45,7 +45,7 @@
             &nbsp;&nbsp;
           </span>
 
-          <span class="d-bolck">
+          <span class="d-block">
             <span id="current_date"></span>
             <br>
             <span id="current_time"></span>

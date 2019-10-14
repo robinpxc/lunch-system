@@ -11,9 +11,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
       echo json_encode(createMenu($date, json_encode($menuArray)));
     }
-    //echo "success";
   } else {
-    echo json_encode("failre");
+    echo json_encode("failure");
   }
 }
 
