@@ -92,17 +92,14 @@
 
     <div class="menu-data boxshaw d-block">
       <div class="data-area">
-        <input type="hidden" id="date-value-today">
-        <input type="hidden" id="date-value-select">
+        <input type="hidden" id="date-value">
+        <input type="hidden" id="date-value">
       </div>
-
-      
-
       <div>
 
-      <div class="mb-2">
-        <span class="menu-title"></span>
-      </div>
+        <div class="mb-2">
+          <span class="menu-title"></span>
+        </div>
 
         <form>
           <!-- Combo 01 -->
@@ -252,18 +249,18 @@
             </div>
           </div>
 
-          <div class="menu-create-btn-group form-row col-md-12" role="group">
-            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">创建菜单</button>
+          <div class="operation-btn-group menu-update-btn-group form-row col-md-12" role="group">
+            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">更新菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">清空菜单</button>
           </div>
 
-          <div class="menu-update-btn-group form-row col-md-12 hide" role="group">
-            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">更新菜单</button>
-            <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">取消修改</button>
+          <div class="operation-btn-group form-row col-md-12" role="group">
+            <button type="button" class="btn btn-warning col-md-12 mb-2" id="btn-modify-menu">修改菜单</button>
           </div>
 
-          <div>
-            <button type="button" class="btn btn-warning col-md-12 mb-2" id="btn-modify-menu">修改菜单</button>
+          <div class="operation-btn-group menu-modify-btn-group form-row col-md-12 hide" role="group">
+            <button type="button" class="btn btn-warning col-md-6 mb-2" id="btn-discard-menu" disabled = "disabled">放弃修改</button>
+            <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-delete-menu">删除菜单</button>
           </div>
           <input type="hidden" name="menu-status" id="menu-status" value="">
         </form>

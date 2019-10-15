@@ -23,21 +23,17 @@
   min-width: 100px;
 }
 
-.new-menu-btn {
-  width: 100% !important;
-}
-
-.menu-operation-btn-group {
+.operation-btn-group {
   padding-left: 5px;
   padding-right: 5px;
 }
 
-#btn-update-menu {
+#btn-update-menu, #btn-discard-menu {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 
-#btn-clear-menu {
+#btn-clear-menu, #btn-delete-menu {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
@@ -66,12 +62,12 @@
 
 @media screen and (max-width: 768px) {
   #btn-update-menu {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
   }
 
   #btn-clear-menu {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
   }
 }
