@@ -28,7 +28,7 @@
   padding-right: 5px;
 }
 
-#btn-update-menu, #btn-discard-menu {
+#btn-update-menu, #btn-modify-menu {
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -36,10 +36,6 @@
 #btn-clear-menu, #btn-delete-menu {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-}
-
-#btn-modify-menu {
-  margin-right: 50px ;
 }
 
 @media screen and (max-width: 995px) {

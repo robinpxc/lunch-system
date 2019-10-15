@@ -20,35 +20,12 @@ function checkMenuStatus(dateSelected) {
     success: function (response) {
       var menuStatus = $("#menu-status");
       menuStatus.val(response);
-      showMenuUI(menuStatus.val());
-      if(menuStatus.val() === "menu-exist") {
-        fetchMenu(dateSelected);
-      }
+      configMenu(menuStatus.val(), dateSelected);
     },
     error: function (errorMsg) {
       alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
       $(".menu-title").html(errorMsg.responseText);
     }
-  });
-}
-
-// Set operation when user typing in inputs
-function setInputTextChangeListener(dateSelected) {
-  $(".combo-content").each(function () {
-    $(this).bind('input propertychange', function () {
-      if (isRequiredFieldFinished()) {
-        setEnable($("#btn-update-menu"));
-        setUpdateBtnClickListener(dateSelected);
-      } else {
-        setDisable($("#btn-update-menu"));
-      }
-
-      if (!isFiledEmpty()) {
-        setEnable($("#btn-clear-menu"));
-      } else {
-        setDisable($("#btn-clear-menu"));
-      }
-    });
   });
 }
 
@@ -74,56 +51,23 @@ function isFiledEmpty() {
   return isFiledEmpty;
 }
 
-// Set clear button function 
-function setClearBtnOnClickListener() {
-  $("#btn-clear-menu").click(function () {
-    $(".combo-content").each(function () {
-      $(this).val("");
-    });
-
-    if (isFiledEmpty) {
-      setDisable($("#btn-update-menu"));
-      setDisable($("#btn-clear-menu"));
-    }
-  });
-}
-
-// Set modify button click function
-function setModifyButtonClickListener() {
-  $("#btn-modify-menu").click(function () {
-    hideElement($(this));
-    unhideElement($(".operation-btn-group"));
-    unhideElement($(".menu-modify-btn-group"));
-
-    setMenuEditable(true);
-    $(".menu-title").text("修改中...请注意保存");
-    $(".menu-title").css("color", "#FFC107");
-  });
-}
-
-// Set update button click listener
-function setUpdateBtnClickListener(date) {
-  var menuArray = new Array();
-  $("#btn-update-menu").click(function() {
-    for(var i = 0; i < 7; i++) {
-      for(var j = 0; j < 3; j++) {
-        var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
-        menuArray[i] = $(foodId).val(); 
-      }
-    }
-    updateMenu(menuArray, date);
-  });
-}
-
 // Function to show menu based on menu status
-function showMenuUI(menuStatus) {
-  var modifyBtn = $("#btn-modify-menu");
-  var operationBtnGroup = $(".menu-update-btn-group");
+function configMenu(menuStatus, date) {
+  var updateBtnGroup = $(".menu-update-btn-group");
+  var modifyBtnGroup = $(".menu-modify-btn-group");
+  var delBtn = $("#btn-delete-menu");
+
+  // UI part
   setMenuTitle(menuStatus);
-  menuStatus === "no-menu" ? addNewClass(modifyBtn, "hide") : removeOldClass(modifyBtn, "hide");
-  menuStatus === "no-menu" ? removeOldClass(operationBtnGroup, "hide") : addNewClass(operationBtnGroup, "hide");
-  if (menuStatus === "menu-exist") {
+  menuStatus == "no-menu" ? hideElement(modifyBtnGroup) : unhideElement(modifyBtnGroup);
+  menuStatus == "no-menu" ? unhideElement(updateBtnGroup) : hideElement(updateBtnGroup);
+  menuStatus == "no-menu" ? setDisable(delBtn) : setEnable(delBtn);
+
+  // Function part
+  if (menuStatus == "menu-exist") {
+    fetchMenu(date);
     setModifyButtonClickListener();
+    setDeleteBtnClickListener(date);
   }
   setMenuEditable(menuStatus === "no-menu" ? true : false);
 }
@@ -143,6 +87,78 @@ function setMenuEditable(willEditable) {
   });
 }
 
+// -------------------------- Event listeners ------------------------
+// Set clear button function 
+function setClearBtnOnClickListener() {
+  $("#btn-clear-menu").click(function () {
+    $(".combo-content").each(function () {
+      $(this).val("");
+    });
+
+    if (isFiledEmpty) {
+      setDisable($("#btn-update-menu"));
+      setDisable($("#btn-clear-menu"));
+    }
+  });
+}
+
+// Set modify button click function
+function setModifyButtonClickListener() {
+  $("#btn-modify-menu").click(function () {
+    unhideElement($("#btn-discard-menu"));
+    setDisable($(this));
+    setMenuEditable(true);
+    $(".menu-title").text("修改中...请注意保存");
+    $(".menu-title").css("color", "#FFC107");
+  });
+}
+
+// Set update button click listener
+function setUpdateBtnClickListener(date) {
+  var menuArray = new Array(7);
+  var k = 0;
+  $("#btn-update-menu").click(function() {
+    for(var i = 0; i < 7; i++) {
+      menuArray[i] = new Array(3);
+      for(var j = 0; j < 3; j++) {
+        var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
+        alert(foodId);
+        menuArray[i][j] = $(foodId).val(); 
+      }
+    }
+    updateMenu(menuArray, date);
+    menuArray = null;
+  });
+}
+
+// Function to set delete button click listener
+function setDeleteBtnClickListener(date) {
+  $("#btn-delete-menu").click(function() {
+    deleteMenu(date);
+  }); 
+}
+
+// Set operation when user typing in inputs
+function setInputTextChangeListener(dateSelected) {
+  $(".combo-content").each(function () {
+    $(this).bind('input propertychange', function () {
+      if (isRequiredFieldFinished()) {
+        setEnable($("#btn-update-menu"));
+        setUpdateBtnClickListener(dateSelected);
+      } else {
+        setDisable($("#btn-update-menu"));
+      }
+
+      if (!isFiledEmpty()) {
+        setEnable($("#btn-clear-menu"));
+      } else {
+        setDisable($("#btn-clear-menu"));
+      }
+    });
+  });
+}
+
+// -------------------------- Menu operation functions ------------------------
 // Function to fetch menu from server
 function fetchMenu(date) {
   $.ajax({
@@ -153,19 +169,18 @@ function fetchMenu(date) {
     },
     dataType: "json",
     success: function (response) {
+      alert(response);
       var menuArray = decodeUnicode(response).split(',');
-
       for(var i = 0; i < 7; i++) {
         for(var j = 0; j < 3; j++) {
           var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
-          $(foodId).val(menuArray[i]);
+          $(foodId).val(menuArray[i][j]);
         }
       }
     },
     error: function (errorMsg) {
-      alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境，或联系开发者");
       $(".menu-title").html(errorMsg.responseText);
-      //alert(errorMsg.responseText);
     }
   });
 }
@@ -181,11 +196,11 @@ function updateMenu(menuList, date) {
     },
     dataType: "json",
     success: function (response) {
-      alert(response);
+      alert(response == true ? "菜单更新成功！" : "菜单更新失败，请重试");
       location.reload();
     },
     error: function (errorMsg) {
-      alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境。多次重试无效请联系开发者");
+      alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
       $(".menu-title").html(errorMsg.responseText);
     }
   });
@@ -193,6 +208,20 @@ function updateMenu(menuList, date) {
 
 // Function to delete menu
 function deleteMenu(date) {
-
+  $.ajax({
+    type: 'POST',
+    url: '../php/functions/delete-menu.php',
+    data: {
+      'date': date
+    },
+    dataType: "JSON",
+    success: function (response) {
+      alert(response == true ? "菜单删除成功！" : "菜单删除失败，请重试");
+      location.reload();
+    },
+    error: function (errorMsg) {
+      alert("Ajax菜单删除错误，请刷新页面或者切换网络环境，或联系开发者");
+    }
+  });
 }
 
