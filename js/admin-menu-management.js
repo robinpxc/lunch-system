@@ -116,13 +116,11 @@ function setModifyButtonClickListener() {
 // Set update button click listener
 function setUpdateBtnClickListener(date) {
   var menuArray = new Array(7);
-  var k = 0;
   $("#btn-update-menu").click(function() {
     for(var i = 0; i < 7; i++) {
       menuArray[i] = new Array(3);
       for(var j = 0; j < 3; j++) {
         var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
-        alert(foodId);
         menuArray[i][j] = $(foodId).val(); 
       }
     }
@@ -169,12 +167,11 @@ function fetchMenu(date) {
     },
     dataType: "json",
     success: function (response) {
-      alert(response);
-      var menuArray = decodeUnicode(response).split(',');
+      var menuArray = JSON.parse(response);
       for(var i = 0; i < 7; i++) {
         for(var j = 0; j < 3; j++) {
           var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1); 
-          $(foodId).val(menuArray[i][j]);
+          $(foodId).val(decodeUnicode(menuArray[i][j]).split(','));
         }
       }
     },

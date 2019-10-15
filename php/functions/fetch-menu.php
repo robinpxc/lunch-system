@@ -1,7 +1,7 @@
 <?php
 include('../Common/config.php');
 
-echo fetchMenuData();
+echo json_encode(fetchMenuData());
 
 function fetchMenuData() {
   global $mysqlConnection;
