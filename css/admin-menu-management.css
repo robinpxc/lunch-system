@@ -57,13 +57,17 @@
 }
 
 @media screen and (max-width: 768px) {
-  #btn-update-menu {
+  #btn-update-menu, #btn-modify-menu {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
 
-  #btn-clear-menu {
+  #btn-clear-menu, #btn-delete-menu {
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
+  }
+
+  #btn-modify-menu {
+    display: none !important;
   }
 }

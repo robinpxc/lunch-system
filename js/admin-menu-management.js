@@ -106,6 +106,8 @@ function setClearBtnOnClickListener() {
 function setModifyButtonClickListener() {
   $("#btn-modify-menu").click(function () {
     unhideElement($("#btn-discard-menu"));
+    unhideElement($(".menu-update-btn-group"));
+    setEnable($("#btn-clear-menu"));
     setDisable($(this));
     setMenuEditable(true);
     $(".menu-title").text("修改中...请注意保存");
@@ -146,7 +148,6 @@ function setInputTextChangeListener(dateSelected) {
       } else {
         setDisable($("#btn-update-menu"));
       }
-
       if (!isFiledEmpty()) {
         setEnable($("#btn-clear-menu"));
       } else {
