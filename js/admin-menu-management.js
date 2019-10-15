@@ -16,7 +16,6 @@ function checkMenuStatus(selectedDate) {
     success: function (response) {
       var menuStatus = $("#menu-status");
       menuStatus.val(response);
-      alert(menuStatus.val());
       showMenuUI(menuStatus.val());
       if(menuStatus.val() === "menu-exist") {
         fetchMenu();
