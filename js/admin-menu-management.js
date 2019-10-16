@@ -1,6 +1,5 @@
 $(document).ready(function () {
   var backupArray = new Array();
-  var dataBeforeEdit;
   var dateSelected = $("#date-selected").val();
   var menuStatus;
   if (dateSelected == null || dateSelected == undefined || dateSelected == '') {
@@ -30,8 +29,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         menuStatus = response;
-        $("#menu-status").val(menuStatus);
-        configMenu($("#menu-status").val(), dateSelected);
+        configMenu(menuStatus, dateSelected);
       },
       error: function (errorMsg) {
         alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
@@ -63,7 +61,7 @@ $(document).ready(function () {
   }
 
   // Function to show menu based on menu status
-  function configMenu(menuStatus) {
+  function configMenu() {
     // UI part
     initMenuUI(menuStatus);
 
@@ -72,19 +70,19 @@ $(document).ready(function () {
   }
 
   // Function to init menu UI
-  function initMenuUI(menuStatus) {
+  function initMenuUI() {
     var updateBtnGroup = $(".menu-update-btn-group");
     var modifyBtnGroup = $(".menu-modify-btn-group");
     var delBtn = $("#btn-delete-menu");
 
-    setMenuTitle(menuStatus);
+    setMenuTitle();
     menuStatus == "no-menu" ? hideElement(modifyBtnGroup) : unhideElement(modifyBtnGroup);
     menuStatus == "no-menu" ? unhideElement(updateBtnGroup) : hideElement(updateBtnGroup);
     menuStatus == "no-menu" ? setDisable(delBtn) : setEnable(delBtn);
   }
 
   // Function to init menu functions
-  function initMenuFunction(menuStatus) {
+  function initMenuFunction() {
     if (menuStatus == "menu-exist") {
       fetchMenu(dateSelected);
       setModifyButtonClickListener();
@@ -94,7 +92,7 @@ $(document).ready(function () {
   }
 
   // Function to set menu title span based on menu status
-  function setMenuTitle(menuStatus) {
+  function setMenuTitle() {
     var menuTitle = $(".menu-title");
     menuTitle.text(menuStatus === "no-menu" ? "尚未创建菜单，添加内容并创建新菜单" : "已创建菜单，点击黄色按钮修改菜单");
     menuTitle.css("font-weight", "bold");
@@ -120,10 +118,6 @@ $(document).ready(function () {
         setDisable($("#btn-update-menu"));
         setDisable($("#btn-clear-menu"));
       }
-
-      if (menuStatus == "menu-exist") {
-        unhideAndEnableElement($("#btn-discard-menu"));
-      }
     });
   }
 
@@ -131,6 +125,7 @@ $(document).ready(function () {
   function setModifyButtonClickListener() {
     $("#btn-modify-menu").click(function () {
       unhideElement($(".menu-update-btn-group"));
+      unhideAndEnableElement($("#btn-discard-menu"));
       setEnable($("#btn-clear-menu"));
       setDisable($(this));
       setMenuEditable(true);
@@ -181,16 +176,6 @@ $(document).ready(function () {
         } else {
           setDisable($("#btn-clear-menu"));
         }
-
-        // To judge if current input has been edited
-        if (menuStatus == "menu-exist") {
-          var discardBtn = $("#btn-discard-menu");
-          if ($(this).val() == dataBeforeEdit) {
-            hideAndDisableElement(discardBtn)
-          } else {
-            unhideAndEnableElement(discardBtn);
-          }
-        }
       });
     });
   }
@@ -201,7 +186,7 @@ $(document).ready(function () {
       setMenuData(backupArray);
       hideAndDisableElement($(this));
       setEnable($("#btn-modify-menu"));
-      initMenuUI(menuStatus);
+      initMenuUI();
     });
   }
 

@@ -66,8 +66,4 @@
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
   }
-
-  #btn-modify-menu {
-    display: none !important;
-  }
 }
