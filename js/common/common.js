@@ -82,6 +82,18 @@ function unhideElement(element) {
   }
 }
 
+// Function to do both disable and hide operation for an element
+function hideAndDisableElement(element) {
+  setDisable(element);
+  hideElement(element);
+}
+
+// Function to do both enable and unhide for an element
+function unhideAndEnableElement(element) {
+  unhideElement(element);
+  setEnable(element);
+}
+
 // Function to get window width
 function getWindowWidth() {
   return $(window).width();

@@ -76,7 +76,7 @@ function modifyButtonClickEvent(btnGroup) {
 }
 
 // Function to discard all input field
-function discardChanges(modifyBtnGtoup, defaultUserInfoObj) {
+function discardChanges(modifyBtnGroup, defaultUserInfoObj) {
   var idField = $("input[name='user-id']");
   var fullnameField = $("input[name='user-fullname']");
   var roleField = $("#user-role");
@@ -96,7 +96,7 @@ function discardChanges(modifyBtnGtoup, defaultUserInfoObj) {
   setReadOnly(nicknameField);
   passwordField.val("");
   setReadOnly(passwordField);
-  modifyBtnGtoup.each(function () {
+  modifyBtnGroup.each(function () {
     setEnable($(this));
   });
 

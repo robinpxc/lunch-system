@@ -29,7 +29,6 @@ $(document).ready(function () {
     adjustCreationFormSize();
     setDynamicCreateUserSize();
   });
-
 });
 
 // Function to show/hide extra table contents
