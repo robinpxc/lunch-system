@@ -186,7 +186,6 @@ function updateUserInfo(userInfoObject) {
       "role": userInfoObject.role
     },
     success: function (response) {
-      var status;
       if(response === 1 || response === true) {
         alert("用户信息修改成功！");
       } else {
