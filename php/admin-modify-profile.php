@@ -100,7 +100,7 @@ $userWorkgroup = $row['workgroup'];
     <div class="profile-title mb-4">
       <h2>个人信息</h2>
     </div>
-    <form class="profile-form" action="" method="post">
+    <form class="profile-form">
       <!-- User ID input field -->
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -188,7 +188,7 @@ $userWorkgroup = $row['workgroup'];
       <div class="input-group mb-3 mt-5">
         <div class="btn-group" role="group" aria-label="Form submit button group">
           <button type="button" class="btn btn-danger mr-1" id="discard-btn" disabled>放弃修改</button>
-          <button type="submit" class="btn btn-primary ml-1" id="submit-btn" disabled>提交修改</button>
+          <button type="button" class="btn btn-primary ml-1" id="submit-btn" disabled>提交修改</button>
         </div>
       </div>
     </form>

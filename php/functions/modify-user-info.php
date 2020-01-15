@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // $result = mysqli_query($mysqlConnection, $update_sql);
 
     if(mysqli_query($mysqlConnection, $update_sql)) {
-        echo("<script>alert('修改成功！');</script>");
+        echo("success");
     } else {
-        echo("<script>alert('修改失败！');</script>");
+        echo("error");
     }
 } 

@@ -176,7 +176,7 @@ function updateUserInfo(userInfoObject) {
   $.ajax({
     type: "post",
     url: "../php/functions/modify-user-info.php",
-    dataType: "json",
+    dataType: "text",
     data: {
       "id": userInfoObject.id,
       "fullname": userInfoObject.fullname,
@@ -186,11 +186,16 @@ function updateUserInfo(userInfoObject) {
       "role": userInfoObject.role
     },
     success: function (response) {
-      if(response === 1 || response === true) {
-        alert("用户信息修改成功！");
-      } else {
-        alert("修改失败，请稍后尝试！");
+      if(response == 'success') {
+        alert('修改成功！')
+        window.location.reload();
       }
-    }
+    },
+
+    error: function(response) {
+      if(response == 'error') {
+        alert('修改失败');
+      }
+    },
   });  
 }
