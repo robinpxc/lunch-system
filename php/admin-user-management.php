@@ -148,10 +148,16 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
                           <td class='workgroup-info'>$workgroupDisplay</td>
                           <td class='operation'>
                             <div class='btn-group'>
-                              <input type='hidden' value='$id'>
-                              <a href='admin-modify-profile.php?uid=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>
-                              <a><button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button></a>
-                            </div>
+                              <input type='hidden' value='$id'>";
+            
+            if($id != $_SESSION['lunch_user_session']) {
+              echo "<a href='admin-modify-profile.php?uid=$id'><button type='button' class='btn btn-light active' id='modify-btn'>修改</button></a>";
+              echo "<a><button type='button' class='btn btn-danger active del-btn' id='del-btn-$id'>删除</button></a>"; 
+            } else {
+              echo "<a href='admin-modify-profile.php?uid=$id'><button type='button' class='btn btn-light active right-radius' id='modify-btn'>修改</button></a>";
+            }
+            
+            echo           "</div>
                           </td>
                         </tr>
                         ";
