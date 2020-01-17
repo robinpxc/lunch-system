@@ -23,12 +23,12 @@
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/admin-menu-management.js"></script>
   <script type="text/javascript" src="../js/common/schedule.js"></script>
-  <script type="text/javascript" src="../js/common/calendar.js"></script>
+  <script type="text/javascript" src="../js/admin-menu-management.js"></script>
 
 </head>
 
@@ -250,17 +250,17 @@
           </div>
 
           <div class="operation-btn-group menu-update-btn-group form-row col-md-12" role="group">
-            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">更新菜单</button>
+            <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">创建菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">清空菜单</button>
-          </div>
-
-          <div class="operation-btn-group form-row col-md-12">
-            <button type="button" class="btn btn-warning col-md-12 mb-2 hide" id="btn-discard-menu" disabled = "disabled">放弃修改</button>
           </div>
 
           <div class="operation-btn-group menu-modify-btn-group form-row col-md-12" role="group">
             <button type="button" class="btn btn-warning col-md-6 mb-2" id="btn-modify-menu">修改菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-delete-menu" disabled = "disabled">删除菜单</button>
+          </div>
+
+          <div class="operation-btn-group form-row col-md-12">
+            <button type="button" class="btn btn-warning col-md-12 mb-2 hide" id="btn-discard-menu" disabled = "disabled">放弃修改</button>
           </div>
 
           

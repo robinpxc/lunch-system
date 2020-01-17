@@ -1,24 +1,49 @@
 $(document).ready(function () {
   var backupArray = new Array();
-  var dateSelected = $("#date-selected").val();
-  var menuStatus;
-  if (dateSelected == null || dateSelected == undefined || dateSelected == '') {
-    dateSelected = getDateToday();
+  loadCalendar();
+  var currentDateButton = $(".currentDate[title='" + $.cookie('selected-date') + "']");
+  addNewClass(currentDateButton, "selected-style");
+
+  // Function to load calendar
+  function loadCalendar() {
+    var savedDate = $.cookie('selected-date');
+    var initDate = (savedDate == null || savedDate == undefined || savedDate == '') ? getDateToday() : savedDate;
+    
+    initEditArea(initDate);
+
+    new Schedule({
+      el: '#schedule-box',
+      clickCb: function (y,m,d) {
+        if(document.getElementById("date-value")) {
+          var clickedDate = formatDate(y, m, d);
+          $.cookie('selected-date',clickedDate);
+          window.location.reload();
+        }
+      }
+    });
   }
 
-  $(".combo-content").each(function () {
-    $(this).focus(function () {
-      dataBeforeEdit = $(this).val();
+  function initEditArea(initDate) {
+    
+    var dateSelected = initDate;
+    var menuStatus;
+
+    if (dateSelected == null || dateSelected == undefined || dateSelected == '') {
+      dateSelected = getDateToday();
+    }
+  
+    $(".combo-content").each(function () {
+      $(this).focus(function () {
+        dataBeforeEdit = $(this).val();
+      });
     });
-  });
+  
+    checkMenuStatus();
+    setInputTextChangeListener();
+    setClearBtnOnClickListener();
+    setDiscardButtonClickListener();
 
-  checkMenuStatus();
-  setInputTextChangeListener();
-  setClearBtnOnClickListener();
-  setDiscardButtonClickListener();
-
-  // Functions
-  // Function to check menu status based on user selected date
+    // Function to check menu status based on user selected date
   function checkMenuStatus() {
     $.ajax({
       type: "post",
@@ -29,7 +54,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         menuStatus = response;
-        configMenu(menuStatus, dateSelected);
+        configMenu(menuStatus);
       },
       error: function (errorMsg) {
         alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
@@ -61,7 +86,7 @@ $(document).ready(function () {
   }
 
   // Function to show menu based on menu status
-  function configMenu() {
+  function configMenu(menuStatus) {
     // UI part
     initMenuUI(menuStatus);
 
@@ -71,11 +96,13 @@ $(document).ready(function () {
 
   // Function to init menu UI
   function initMenuUI() {
+    clearMenu();
     var updateBtnGroup = $(".menu-update-btn-group");
     var modifyBtnGroup = $(".menu-modify-btn-group");
     var delBtn = $("#btn-delete-menu");
 
     setMenuTitle();
+    $("#btn-update-menu").text(menuStatus == "no-menu" ? "创建菜单" : "更新菜单");
     menuStatus == "no-menu" ? hideElement(modifyBtnGroup) : unhideElement(modifyBtnGroup);
     menuStatus == "no-menu" ? unhideElement(updateBtnGroup) : hideElement(updateBtnGroup);
     menuStatus == "no-menu" ? setDisable(delBtn) : setEnable(delBtn);
@@ -89,6 +116,13 @@ $(document).ready(function () {
       setDeleteBtnClickListener(dateSelected);
     }
     setMenuEditable(menuStatus === "no-menu" ? true : false);
+  }
+
+  // Function to clear menu
+  function clearMenu() {
+    $(".combo-content").each(function () {
+      $(this).val("");
+    });
   }
 
   // Function to set menu title span based on menu status
@@ -110,10 +144,7 @@ $(document).ready(function () {
   // Set clear button function 
   function setClearBtnOnClickListener() {
     $("#btn-clear-menu").click(function () {
-      $(".combo-content").each(function () {
-        $(this).val("");
-      });
-
+      clearMenu();
       if (isFiledEmpty) {
         setDisable($("#btn-update-menu"));
         setDisable($("#btn-clear-menu"));
@@ -121,14 +152,28 @@ $(document).ready(function () {
     });
   }
 
+  
+
   // Set modify button click function
   function setModifyButtonClickListener() {
     $("#btn-modify-menu").click(function () {
       unhideElement($(".menu-update-btn-group"));
       unhideAndEnableElement($("#btn-discard-menu"));
       setEnable($("#btn-clear-menu"));
+
+      // Disable and hide modify button
       setDisable($(this));
+      hideElement($(this));
+
+      // Change delete button style and size
+      removeOldClass($("#btn-delete-menu"), "col-md-6");
+      addNewClass($("#btn-delete-menu"), "col-md-12");
+      addNewClass($("#btn-delete-menu"), "left-radius");
+
+      // Enable edit area
       setMenuEditable(true);
+
+      // Change label text and color
       $(".menu-title").text("修改中...请注意保存");
       $(".menu-title").css("color", "#FFC107");
     });
@@ -147,6 +192,7 @@ $(document).ready(function () {
       }
       updateMenu(menuArray, dateSelected);
       menuArray = null;
+      window.location.reload();
     });
   }
 
@@ -185,7 +231,11 @@ $(document).ready(function () {
     $("#btn-discard-menu").click(function () {
       setMenuData(backupArray);
       hideAndDisableElement($(this));
-      setEnable($("#btn-modify-menu"));
+      unhideAndEnableElement($("#btn-modify-menu"));
+
+      // Change delete button style and size
+      removeOldClass($("#btn-delete-menu"), "col-md-12");
+      addNewClass($("#btn-delete-menu"), "col-md-6");
       initMenuUI();
     });
   }
@@ -218,7 +268,6 @@ $(document).ready(function () {
         } else {
           alert("获取菜单失败，请重试！");
         }
-
       },
       error: function (errorMsg) {
         alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境，或联系开发者");
@@ -237,13 +286,11 @@ $(document).ready(function () {
         'menu-list': JSON.stringify(menuList)
       },
       dataType: "json",
-      success: function (response) {
-        alert(response == true ? "菜单更新成功！" : "菜单更新失败，请重试");
-        location.reload();
-      },
       error: function (errorMsg) {
         alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
-        $(".menu-title").html(errorMsg.responseText);
+      },
+      complete: function() {
+        alert("菜单更新成功！");
       }
     });
   }
@@ -266,4 +313,5 @@ $(document).ready(function () {
       }
     });
   }
+  }  
 });

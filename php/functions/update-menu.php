@@ -21,6 +21,7 @@ function isMenuExist($date) {
   $sql_check_menu = "SELECT * FROM `lunch-menu` WHERE `lunch-menu`.`date` = '$date'";
   $result = mysqli_query($mysqlConnection, $sql_check_menu);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $sql_check_menu = "";
   return $row;
 }
 
@@ -28,6 +29,7 @@ function createMenu($date, $menu_list) {
   global $mysqlConnection;
   $sql_create_menu = "INSERT INTO `lunch-menu` (`date`,`menu-list`) VALUES('$date', '$menu_list')";
   $result = mysqli_query($mysqlConnection, $sql_create_menu);
+  $sql_create_menu = "";
   return $result;
 }
 
@@ -35,5 +37,6 @@ function updateMenu($menu_list) {
   global $mysqlConnection;
   $sql_update_menu = "UPDATE `lunch-menu` SET `menu-list` = '$menu_list'";
   $result = mysqli_query($mysqlConnection, $sql_update_menu);
+  $sql_update_menu = "";
   return $result;
 }
