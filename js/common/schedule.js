@@ -99,7 +99,7 @@
                 }
             }
             el.querySelector('.schedule-bd').innerHTML = eleTemp.join('');
-            el.querySelector('.today').innerHTML = formatDate(year, month + 1, day, '-');
+            el.querySelector('.today').innerHTML = '<div class="today">' + year + ' 年 ' + (month + 1) + ' 月 ' + '</div>';
         };
         this.nextMonthFun = function () {
                 if (month + 1 > 11) {
