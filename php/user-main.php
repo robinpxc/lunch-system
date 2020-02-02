@@ -97,18 +97,22 @@ $userRole = $row['role'];
   <div class="container">
     <input type="hidden" id="user-role-input" value="<?php echo $userRole; ?>">
     <div class="card-deck mb-5 text-center">
-      <div class="card mb-4 shadow-sm text-white bg-success">
+
+      <!-- today menu -->
+      <div class="card mb-4 shadow-sm text-white bg-danger" id="menu-card-today">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">快速点餐(当天)</h4>
+          <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title">￥3 / 餐</h1>
+          <h1 class="card-title eating-card-title">尚未点餐</h1>
           <ul class="list-unstyled mt-3 mb-4">
-            <li>营养均衡, 荤素搭配</li>
+            <li id="menu-tip-today">点击按钮开始点餐</li>
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-light">立刻点餐</button>
+          <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-today">开始点餐</button>
         </div>
       </div>
+
+      <!-- Tomorrow menu -->
       <div class="card mb-4 shadow-sm text-white bg-primary">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">本周午餐预定</h4>

@@ -43,7 +43,7 @@ $(document).ready(function () {
     setClearBtnOnClickListener();
     setDiscardButtonClickListener();
 
-    // Function to check menu status based on user selected date
+  // Function to check menu status based on user selected date
   function checkMenuStatus() {
     $.ajax({
       type: "post",

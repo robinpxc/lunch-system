@@ -185,6 +185,15 @@ function getDateToday() {
   return formatDate(currentYear, currentMonth, currentDay);
 }
 
+function getDateTomorrow() {
+  var currentDate = new Date();
+  var currentYear = currentDate.getFullYear();
+  var currentMonth = currentDate.getMonth() + 1;
+  var currentDay = currentDate.getDate() + 1;
+
+  return formatDate(currentYear, currentMonth, currentDay);
+}
+
 function getTimeNow() {
   var currentDate = new Date();
   var currentHour = currentDate.getHours();
