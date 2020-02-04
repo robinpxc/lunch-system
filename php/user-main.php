@@ -99,33 +99,48 @@ $userRole = $row['role'];
     <div class="card-deck mb-5 text-center">
 
       <!-- today menu -->
-      <div class="card mb-4 shadow-sm text-white bg-danger" id="menu-card-today">
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-danger" id="menu-card-today">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title">尚未点餐</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li id="menu-tip-today">点击按钮开始点餐</li>
+          <h1 class="card-title eating-card-title" id="card-title-today">尚未点餐</h1>
+          <span id="menu-tip-today">点击按钮开始点餐</span>
+          <ul class="list-unstyled mt-3 mb-4 hide" id="card-menu-list-today">
+            <li id="menu-today-01"></li>
+            <li id="menu-today-02"></li>
+            <li id="menu-today-03"></li>
           </ul>
+        </div>
+
+        <div class="card-bottom">
           <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-today">开始点餐</button>
         </div>
       </div>
 
       <!-- Tomorrow menu -->
-      <div class="card mb-4 shadow-sm text-white bg-primary">
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-warning" id="menu-card-tomorrow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">本周午餐预定</h4>
+          <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title">￥15 / 周</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>价格低至&nbsp;<strong>60元/月</strong></li>
+          <h1 class="card-title eating-card-title" id="card-title-tomorrow">尚未点餐</h1>
+          <span id="menu-tip-tomorrow"></span>
+          <ul class="list-unstyled mt-3 mb-4 hide" id="card-menu-list-tomorrow">
+            <li id="menu-tomorrow-01"></li>
+            <li id="menu-tomorrow-02"></li>
+            <li id="menu-tomorrow-03"></li>
+
           </ul>
-          <button type="button" class="btn btn-lg btn-block btn-light">立刻预定</button>
+        </div>
+
+        <div class="card-bottom">
+          <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-tomorrow">开始点餐</button>
         </div>
       </div>
-      <div class="card card-admin mb-4 shadow-sm bg-dark" id="admin-card">
+
+
+      <div class="card card-admin mb-2 mt-2 shadow-sm bg-dark" id="admin-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">管理</h4>
         </div>
@@ -134,6 +149,9 @@ $userRole = $row['role'];
           <ul class="list-unstyled mt-3 mb-4">
             <li>管理员获准使用此组件</li>
           </ul>
+        </div>
+
+        <div class="card-bottom">
           <div class="btn-group" role="group" aria-label="Form submit button group">
             <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">用户管理</button>
             <button type="submit" class="btn btn-lg btn-success ml-2 active" id="menu-manage-btn">菜单管理</button>
