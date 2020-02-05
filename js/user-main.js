@@ -1,5 +1,7 @@
 
 $(document).ready(function () {
+  var menuStatusToday = false;
+  var menuStatusTomorrow = false;
   removeAdminCard();
   initUI();
 
@@ -25,6 +27,7 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        menuStatusToday = (response == "menu-exist") ? true : false;
         setTodayCard(response);
       },
       error: function (errorMsg) {
@@ -43,6 +46,7 @@ $(document).ready(function () {
       },
       dataType: "json",
       success: function (response) {
+        menuStatusTomorrow = (response == "menu-exist") ? true : false;
         setTomorrowCard(response);
       },
       error: function (errorMsg) {
@@ -56,7 +60,7 @@ $(document).ready(function () {
     switch(response) {
       case "menu-exist":
         $("#menu-tip-today").text("12333");
-        $("#menu-order-btn-today").text("已点餐");
+        $("#menu-order-btn-today").text("点击修改");
         $("#card-title-today").text("");
         removeOldClass($("#menu-card-today"), "bg-danger");
         addNewClass($("#menu-card-today"), "bg-success");
@@ -77,8 +81,9 @@ $(document).ready(function () {
     switch(response) {
       case "menu-exist":
         $("#menu-tip-tomorrow").text("45666");
-        $("#menu-order-btn-tomorrow").text("已点餐");
+        $("#menu-order-btn-tomorrow").text("点击修改");
         $("#card-title-tomorrow").text("");
+        hideElement($("#card-title-tomorrow"));
         removeOldClass($("#menu-card-tomorrow"), "bg-warning");
         addNewClass($("#menu-card-tomorrow"), "bg-success");
         break;
@@ -93,6 +98,23 @@ $(document).ready(function () {
       default:
     }
   }
+
+  $("#menu-order-btn-today").click(function() {
+    if(menuStatusToday == true) {
+      alert("今日已点餐");
+      window.location.href = "../php/order-menu.php";
+    } else {
+      alert("今日还没点餐");
+    }
+  });
+
+  $("#menu-order-btn-tomorrow").click(function() {
+    if(menuStatusTomorrow == true) {
+      alert("明日已点餐");
+    } else {
+      alert("明日还没点餐");
+    }
+  });
 });
 
 

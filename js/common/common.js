@@ -158,6 +158,11 @@ function removeOldClass(element, oldClass) {
   }
 }
 
+function replaceClass(element, oldClass, newCLass) {
+  removeOldClass(element, oldClass);
+  addNewClass(element,newCLass);
+}
+
 // Date related functions
 function formatDate(y, m, d, symbol) {
   var symbol = symbol || '-';
