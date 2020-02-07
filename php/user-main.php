@@ -120,12 +120,12 @@ $userRole = $row['role'];
       </div>
 
       <!-- today card disabled -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary hide" id="menu-card-today-disabled">
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary no-menu hide" id="menu-card-today-disabled">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          <h3>尚未设置</h3>
+          尚未设置
         </div>
       </div>
 
@@ -151,12 +151,12 @@ $userRole = $row['role'];
       </div>
 
       <!-- tomorrow card disabled -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary hide" id="menu-card-tomorrow-disabled">
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary no-menu hide" id="menu-card-tomorrow-disabled">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          <h3>尚未设置</h3>
+          尚未设置
         </div>
       </div>
 
