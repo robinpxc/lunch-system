@@ -29,6 +29,7 @@ $userRole = $row['role'];
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="../js/common/common.js"></script>
@@ -118,6 +119,16 @@ $userRole = $row['role'];
         </div>
       </div>
 
+      <!-- today card disabled -->
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary hide" id="menu-card-today-disabled">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">今日午餐</h4>
+        </div>
+        <div class="card-body">
+          <h3>尚未设置</h3>
+        </div>
+      </div>
+
       <!-- Tomorrow menu -->
       <div class="card mb-2 mt-2 shadow-sm text-white bg-warning" id="menu-card-tomorrow">
         <div class="card-header">
@@ -139,6 +150,15 @@ $userRole = $row['role'];
         </div>
       </div>
 
+      <!-- tomorrow card disabled -->
+      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary hide" id="menu-card-tomorrow-disabled">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">明日午餐</h4>
+        </div>
+        <div class="card-body">
+          <h3>尚未设置</h3>
+        </div>
+      </div>
 
       <div class="card card-admin mb-2 mt-2 shadow-sm bg-dark" id="admin-card">
         <div class="card-header">

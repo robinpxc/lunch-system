@@ -8,7 +8,7 @@
    
    $login_session = $row['id'];
    
-   if(!isset($_SESSION['lunch_user_session'])){
-      header("location:login.php");
+   if(!isset($_SESSION['lunch_user_session']) || $_SESSION['lunch_user_session'] == ""){
+      header("location:../php/login.php");
    }
 ?>

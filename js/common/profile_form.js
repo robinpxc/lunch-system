@@ -61,7 +61,7 @@ $(document).ready(function () {
     resetForm();
   });
 
-  // Common function to handle reset operation.
+  // common function to handle reset operation.
   function resetForm() {
     passwordInput.val("");
     setDisable(submitBtn);
@@ -76,7 +76,7 @@ $(document).ready(function () {
     window.getSelection().empty();
   }
 
-  // Common function to handle common operation when modify button clicked.
+  // common function to handle common operation when modify button clicked.
   function modifyBtnClickEvent(selfBtn) {
     setEnable(discardBtn);
     setEnable(submitBtn);

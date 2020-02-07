@@ -106,6 +106,11 @@
         </div>
 
         <div class="card-body menu menu-01">
+          <ul>
+            <li id="food-01-01"></li>
+            <li id="food-01-02"></li>
+            <li id="food-01-03"></li>
+          </ul>
         </div>
       </div>
 
@@ -116,6 +121,11 @@
         </div>
 
         <div class="card-body menu menu-02">
+          <ul>
+            <li id="food-02-01"></li>
+            <li id="food-02-02"></li>
+            <li id="food-02-03"></li>
+          </ul>
         </div>
       </div>
 
@@ -126,6 +136,11 @@
         </div>
 
         <div class="card-body menu menu-03">
+          <ul>
+            <li id="food-03-01"></li>
+            <li id="food-03-02"></li>
+            <li id="food-03-03"></li>
+          </ul>
         </div>
       </div>
 
@@ -136,6 +151,11 @@
         </div>
 
         <div class="card-body menu menu-04">
+          <ul>
+            <li id="food-04-01"></li>
+            <li id="food-04-02"></li>
+            <li id="food-04-03"></li>
+          </ul>
         </div>
       </div>
 
@@ -146,6 +166,11 @@
         </div>
 
         <div class="card-body menu menu-05">
+          <ul>
+            <li id="food-05-01"></li>
+            <li id="food-05-02"></li>
+            <li id="food-05-03"></li>
+          </ul>
         </div>
       </div>
 
@@ -156,16 +181,26 @@
         </div>
 
         <div class="card-body menu menu-06">
+          <ul>
+            <li id="food-06-01"></li>
+            <li id="food-06-02"></li>
+            <li id="food-06-03"></li>
+          </ul>
         </div>
       </div>
 
       <!-- Combo 07 -->
       <div class="card d-flex">
         <div class="card-header">
-          套餐七
+          套餐七(辣)
         </div>
 
         <div class="card-body menu menu-07">
+          <ul>
+            <li id="food-07-01"></li>
+            <li id="food-07-02"></li>
+            <li id="food-07-03"></li>
+          </ul>
         </div>
       </div>
 

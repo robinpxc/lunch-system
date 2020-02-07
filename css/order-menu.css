@@ -1,6 +1,11 @@
 .card {
     margin: 5px;
 }
+
+.card:hover {
+    border: solid lawngreen 6px;
+}
+
 .card-header {
     padding: 0.5rem 1.25rem;
 }
@@ -8,5 +13,3 @@
 .card-body {
     padding: 0.5rem 1.25rem;
 }
-
-@media screen and (max-width: 768px) {}

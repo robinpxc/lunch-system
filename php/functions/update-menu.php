@@ -1,5 +1,5 @@
 <?php
-include('../Common/config.php');
+include('../common/config.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $date = $_POST['date'];
@@ -18,19 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 function isMenuExist($date) {
   global $mysqlConnection;
-  $sql_check_menu = "SELECT * FROM `lunch-menu` WHERE `lunch-menu`.`date` = '$date'";
+  $sql_check_menu = "SELECT * FROM `lunch_menu` WHERE `lunch_menu`.`date` = '$date'";
   $result = mysqli_query($mysqlConnection, $sql_check_menu);
   return mysqli_fetch_array($result, MYSQLI_ASSOC);
 }
 
 function createMenu($date, $menu_list) {
   global $mysqlConnection;
-  $sql_create_menu = "INSERT INTO `lunch-menu` (`date`,`menu-list`) VALUES('$date', '$menu_list')";
+  $sql_create_menu = "INSERT INTO `lunch_menu` (`date`,`menu-list`) VALUES('$date', '$menu_list')";
   return mysqli_query($mysqlConnection, $sql_create_menu);;
 }
 
 function updateMenu($date, $menu_list) {
   global $mysqlConnection;
-  $sql_update_menu = "UPDATE `lunch-menu` SET `menu-list` = '$menu_list' WHERE `lunch-menu`.`date` = '$date'";
+  $sql_update_menu = "UPDATE `lunch_menu` SET `menu-list` = '$menu_list' WHERE `lunch_menu`.`date` = '$date'";
   return mysqli_query($mysqlConnection, $sql_update_menu);
 }
