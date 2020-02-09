@@ -1,9 +1,7 @@
-<?php
-include('common/session.php');
-$orderStatusToday = $_GET['order-status'];
-?>
-
 <!DOCTYPE html>
+<?php
+  include('common/session.php');
+?>
 
 <html lang="zh">
 
@@ -34,6 +32,7 @@ $orderStatusToday = $_GET['order-status'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common_menu.js"></script>
   <script type="text/javascript" src="../js/order-menu.js"></script>
 
 </head>
@@ -107,7 +106,6 @@ $orderStatusToday = $_GET['order-status'];
       <span id="order-info-text"></span>
     </div>
     <form>
-      <input type="hidden" id="order-status" value="<?php echo $orderStatusToday ?>">
       <!-- Combo 01 -->
       <div class="card">
         <div class="card-header">
@@ -210,6 +208,13 @@ $orderStatusToday = $_GET['order-status'];
             <li id="food-07-02"></li>
             <li id="food-07-03"></li>
           </ul>
+        </div>
+      </div>
+
+      <!-- Combo 08 -->
+      <div class="card d-flex bg-warning no-menu">
+        <div class="card-body">
+          <h3 class="d-flex">当日不订餐</h3>
         </div>
       </div>
 

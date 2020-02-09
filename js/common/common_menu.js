@@ -103,4 +103,5 @@ function fetchMenu(date, async) {
       alert("获取菜单失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
     }
   });
+  return menuArray;
 }

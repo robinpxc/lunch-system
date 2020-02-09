@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  include('common/session.php');
+?>
 
 <html lang="zh">
 

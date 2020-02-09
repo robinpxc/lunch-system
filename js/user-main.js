@@ -22,8 +22,6 @@ $(document).ready(function () {
     if(checkMenuStatus(dateToday, false) == "menu-exist") {
       orderStatusToday = checkOrderStatus(dateToday, false, "order-status");
       if(orderStatusToday == "order-exist") {
-        orderStatusToday =
-        $("#menu-tip-today").text("今日已点餐");
         $("#menu-order-btn-today").text("点击修改");
         $("#card-title-today").text("");
         hideElement($("#card-title-today"));
@@ -96,17 +94,18 @@ $(document).ready(function () {
 
   function setCardPreviewData(date, menuList) {
     let menuNum = parseInt(checkOrderStatus(date, false, "order-number"));
-    let itemId = "";
-    if(date === getDateToday()) {
-      itemId = "#menu-today-0";
-    } else if(date === getDateTomorrow()) {
-      itemId = "#menu-tomorrow-0";
-    }
+    let itemIdPrefix = "";
 
+    if(date === getDateToday()) {
+      itemIdPrefix = "#menu-today-0";
+      $("#menu-tip-today").text("今日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+    } else if(date === getDateTomorrow()) {
+      itemIdPrefix = "#menu-tomorrow-0";
+      $("#menu-tip-tomorrow").text("明日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+    }
     for(let i = 0; i < 3; i++) {
-      itemId += toString((i + 1));
-      alert(itemId);
-      $(itemId).text(menuList[menuNum][i]);
+      let itemId = itemIdPrefix + (i + 1);
+      $(itemId).text(decodeUnicode(menuList[menuNum][i]));
     }
   }
 });

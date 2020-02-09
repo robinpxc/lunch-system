@@ -1,7 +1,11 @@
 @import url("common/common.css");
 
 .card-bottom {
-  padding: 1rem;
+  padding: 0rem 1rem 1rem 1rem;
+}
+
+.card-body {
+  padding-bottom: 0;
 }
 
 .no-menu .card-body {
@@ -12,5 +16,12 @@
   color: white;
   font-weight: bold;
   font-size: 2rem;
-  padding-top: 0px;
+}
+
+.card-menu-list, .card-menu-list li {
+  width: 100%;
+}
+
+.card-menu-list li {
+  color: white;
 }

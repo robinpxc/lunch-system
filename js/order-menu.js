@@ -1,5 +1,11 @@
 $(document).ready(function () {
-  var date = $.cookie("order-date");
+  let date = $.cookie("order-date");
+  let orderStatus = checkOrderStatus(date, false, "order-status");
+  let orderNumber;
+  if(isOrderExist()) {
+    orderNumber = checkOrderStatus(date, false, "order-number");
+  }
+
   initUI();
   fetchMenuList(date);
 
@@ -30,11 +36,31 @@ $(document).ready(function () {
   }
 
   function setOrderInfo() {
-    if($("#order-status").val() == "order-exist") {
-      $("#order-info-text".text("今日午餐已选, 点击选项直接修改"));
-      $("#order-info-text").css("color", "green");
-    } else if($("#order-status").val() == "no-order") {
-      $("#order-info-text").text("今日尚未选择午餐, 点击选项以选择");
+    if(isOrderExist()) {
+      if(date == getDateToday) {
+        if(orderNumber == 8) {
+          $("#order-info-text").text("今日已选择不订餐！");
+          $("#order-info-text").css("color", "red");
+        } else {
+          $("#order-info-text").text("今日已选择 " + orderNumber + " 号午餐");
+          $("#order-info-text").css("color", "green");
+        }
+      } else {
+        if(orderNumber == 8) {
+          $("#order-info-text").text("明日已选择不订餐！");
+          $("#order-info-text").css("color", "red");
+        } else {
+          $("#order-info-text").text("明日已选择 " + orderNumber + " 号午餐");
+          $("#order-info-text").css("color", "green");
+        }
+      }
+    } else if(!isOrderExist()) {
+      if(date == getDateToday) {
+        $("#order-info-text").text("今日尚未点餐");
+      } else {
+        $("#order-info-text").text("明日未选午餐");
+      }
+      $("#order-info-text").css("color", "yellow");
     } else {
       alert("订单状态错误");
     }
@@ -64,9 +90,9 @@ $(document).ready(function () {
   }
 
   function setMenuData(menuArray) {
-    for (var i = 0; i < 7; i++) {
-      for (var j = 0; j < 3; j++) {
-        var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+    for (let i = 0; i < 7; i++) {
+      for (let j = 0; j < 3; j++) {
+        let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
         $(foodId).text(decodeUnicode(menuArray[i][j]).split(','));
       }
     }
@@ -75,14 +101,14 @@ $(document).ready(function () {
   // Card click event
   $(".card").each(function () {
     $(this).click(function() {
-      var menuNum = $(this).index();
+      var menuNum = $(this).index() + 1;
       $.ajax({
         type: "POST",
         url: "../php/functions/order-operation.php",
         data: {
           "order-number": menuNum,
           "order-date": date,
-          "order-status":$("#order-status").val()
+          "order-status":orderStatus
         },
         dataType: "json",
         success: function (response) {
@@ -90,10 +116,19 @@ $(document).ready(function () {
           $(this).css("border","solid forestgreen 6px");
         },
         error: function (e, ts, et) {
-          //alert("error:" + ts);
           alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
+        },
+        complete: function() {
+          if(menuNum == 8) {
+            alert("已选择明日不点餐！");
+          } else {
+            alert("成功预定 " + " " + menuNum + " 号餐");
+          }
+
+          window.location.href = "../php/user-main.php";
         }
       });
+
     });
   });
 
@@ -102,6 +137,10 @@ $(document).ready(function () {
     $(".card").each(function(){
       $(this).css("border","");
     });
+  }
+
+  function isOrderExist() {
+    return (orderStatus == "order-exist") ? true : false;
   }
 });
 
