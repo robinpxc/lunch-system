@@ -27,12 +27,12 @@ $userRole = $row['role'];
   <link href="../css/user-main.css" rel="stylesheet">
 
   <!--Java Script-->
-  <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common_menu.js"></script>
   <script type="text/javascript" src="../js/user-main.js"></script>
 
 </head>
@@ -106,14 +106,13 @@ $userRole = $row['role'];
         </div>
         <div class="card-body">
           <h1 class="card-title eating-card-title" id="card-title-today">尚未点餐</h1>
-          <span id="menu-tip-today">点击按钮开始点餐</span>
+          <span id="menu-tip-today"></span>
           <ul class="list-unstyled mt-3 mb-4 hide" id="card-menu-list-today">
             <li id="menu-today-01"></li>
             <li id="menu-today-02"></li>
             <li id="menu-today-03"></li>
           </ul>
         </div>
-
         <div class="card-bottom">
           <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-today">开始点餐</button>
         </div>
@@ -141,7 +140,6 @@ $userRole = $row['role'];
             <li id="menu-tomorrow-01"></li>
             <li id="menu-tomorrow-02"></li>
             <li id="menu-tomorrow-03"></li>
-
           </ul>
         </div>
 

@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  initUI();
   var date = $.cookie("order-date");
+  initUI();
   fetchMenuList(date);
 
   $(window).resize(function(){
@@ -8,6 +8,11 @@ $(document).ready(function () {
   });
 
   function initUI() {
+    setOrderInfo();
+    fitWindow();
+  }
+
+  function fitWindow() {
     if(getWindowWidth() <= 768) {
       $("form").css({
         "display": "block",
@@ -21,6 +26,17 @@ $(document).ready(function () {
         "flex-wrap": "wrap"
       });
       $(".card").css("min-width", "32%");
+    }
+  }
+
+  function setOrderInfo() {
+    if($("#order-status").val() == "order-exist") {
+      $("#order-info-text".text("今日午餐已选, 点击选项直接修改"));
+      $("#order-info-text").css("color", "green");
+    } else if($("#order-status").val() == "no-order") {
+      $("#order-info-text").text("今日尚未选择午餐, 点击选项以选择");
+    } else {
+      alert("订单状态错误");
     }
   }
 
@@ -59,12 +75,14 @@ $(document).ready(function () {
   // Card click event
   $(".card").each(function () {
     $(this).click(function() {
+      var menuNum = $(this).index();
       $.ajax({
         type: "POST",
         url: "../php/functions/order-operation.php",
         data: {
-          "order-number": ($(this).index() + 1),
-          "order-date": date
+          "order-number": menuNum,
+          "order-date": date,
+          "order-status":$("#order-status").val()
         },
         dataType: "json",
         success: function (response) {
@@ -85,7 +103,6 @@ $(document).ready(function () {
       $(this).css("border","");
     });
   }
-
 });
 
 

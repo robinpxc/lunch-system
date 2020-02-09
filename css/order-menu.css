@@ -13,3 +13,10 @@
 .card-body {
     padding: 0.5rem 1.25rem;
 }
+#order-info-text {
+    margin: 10px;
+    color: red;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+

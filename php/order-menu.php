@@ -1,3 +1,8 @@
+<?php
+include('common/session.php');
+$orderStatusToday = $_GET['order-status'];
+?>
+
 <!DOCTYPE html>
 
 <html lang="zh">
@@ -98,7 +103,11 @@
 
 <div class="main-content d-flex">
   <div class="menu-data boxshaw">
+    <div class="order-info">
+      <span id="order-info-text"></span>
+    </div>
     <form>
+      <input type="hidden" id="order-status" value="<?php echo $orderStatusToday ?>">
       <!-- Combo 01 -->
       <div class="card">
         <div class="card-header">
