@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 // Function to show current date and time.
 function showTime() {
-  $("#current_date").html(getDateToday());
+  $("#current_date").html(getDateTodayChinese(false));
   $("#current_time").html(getTimeNow());
   setTimeout(showTime, 1000);
 }
@@ -188,6 +188,44 @@ function getDateToday() {
   var currentDay = currentDate.getDate();
 
   return formatDate(currentYear, currentMonth, currentDay);
+}
+
+function getDateTodayChinese(withWeekDay) {
+  let date = new Date();
+  let year = date.getFullYear()
+  let month = date.getMonth() + 1 ;
+  let day = date.getDate();
+  let weekDay = "";
+  let formattedMonth = (month.toString())[1] ? month : '0' + month;
+  let formattedDay = (day.toString())[1] ? day : '0' + day;
+  switch(date.getDay()) {
+    case 0:
+      weekDay = "星期日";
+      break;
+    case 1:
+      weekDay = "星期一";
+      break;
+    case 2:
+      weekDay = "星期二";
+      break;
+    case 3:
+      weekDay = "星期三";
+      break;
+    case 4:
+      weekDay = "星期四";
+      break;
+    case 5:
+      weekDay = "星期五";
+      break;
+    case 6:
+      weekDay = "星期六";
+      break;
+  }
+  if(withWeekDay) {
+    return year + "年" + formattedMonth + "月" + formattedDay + "日 " + weekDay;
+  } else {
+    return year + "年" + formattedMonth + "月" + formattedDay + "日 ";
+  }
 }
 
 function getDateTomorrow() {

@@ -21,6 +21,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
+  <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/admin-user-management.css" rel="stylesheet">
 
   <!--Java Script-->
@@ -60,6 +61,16 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
 
       <div class="collapse navbar-collapse" id="nav-bar-list">
         <ul class="navbar-nav mr-auto">
+          <div class="dropdown-divider"></div>
+          <li class="nav-item active">
+            <a class="nav-link" href="user-main.php">
+              <span class="d-flex justify-content-left align-items-center">
+                <svg class="icon-sm" viewBox="0 0 1024 1024" version="1.1">
+                  <path d="M 213.923 925.274 l 135.206 0 c 65.9183 0 119.627 -52.1477 127.431 -119.19 L 86.521 806.085 C 94.2972 873.127 148.067 925.274 213.923 925.274 L 213.923 925.274 Z M 349.129 511.441 L 213.923 511.441 c -65.8242 0 -119.563 52.117 -127.37 119.126 l 390.008 0 C 468.722 563.558 415.015 511.441 349.129 511.441 L 349.129 511.441 Z M 63.3831 785.666 l 431.601 0 L 494.984 661.294 L 63.3831 661.294 L 63.3831 785.666 L 63.3831 785.666 Z M 902.197 273.284 l -141.421 0 l 17.7994 -98.2671 l 119.343 0 c 21.297 0 38.5643 -18.1422 38.5643 -40.5618 c 0 -22.3582 -17.299 -40.5311 -38.5643 -40.5311 L 749.036 93.9242 c -0.531096 0 -1.03149 0.313132 -1.53087 0.313132 c -15.2381 0 -29.6319 9.42977 -35.7206 25.1058 l -25.8231 142.232 c -1.49914 3.84047 -1.78055 7.77508 -2.12336 11.6473 l -173.553 0 c -31.1627 0 -56.5172 26.6039 -56.5172 59.4213 s 25.292 59.4224 56.5172 59.4224 l 4.09118 0 l 52.427 532.772 l 278.877 0 l 52.427 -532.772 l 4.05946 0 c 31.2559 0 56.5172 -26.6049 56.5172 -59.4224 S 933.486 273.284 902.197 273.284 L 902.197 273.284 Z M 902.197 273.284" p-id="5400" /></svg>
+                <span class="dropdown-desc">&nbsp;返回主页</span>
+              </span>
+            </a>
+          </li>
           <div class="dropdown-divider"></div>
           <li class="nav-item active">
             <a class="nav-link" href="user-profile.php">

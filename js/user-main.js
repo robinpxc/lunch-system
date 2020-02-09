@@ -13,6 +13,10 @@ $(document).ready(function () {
     window.location.href = "admin-menu-management.php";
   });
 
+  $("#data-manage-btn").click(function () {
+    window.location.href = "admin-data-management.php";
+  });
+
   function initUI() {
     initCardToday();
     initCardTomorrow();

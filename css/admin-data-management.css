@@ -1,0 +1,19 @@
+.card-deck {
+  height: 100%;
+}
+
+.card-statistics {
+  max-width: 30%;
+  height: 200px;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.card-statistics:hover {
+  border: solid 8px lightskyblue;
+}
+
+#date-today {
+  font-size: 16px;
+}

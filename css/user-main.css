@@ -1,5 +1,9 @@
 @import url("common/common.css");
 
+.card {
+  min-height: 200px;
+}
+
 .card-bottom {
   padding: 0rem 1rem 1rem 1rem;
 }
