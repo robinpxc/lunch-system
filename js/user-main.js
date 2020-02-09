@@ -125,7 +125,7 @@ $(document).ready(function () {
   function setNoOrderTextStyle(element) {
     element.css({
       "font-weight": "bold",
-      "font-size": "30px",
+      "font-size": "25px",
     });
   }
 });

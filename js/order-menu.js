@@ -16,6 +16,7 @@ $(document).ready(function () {
   function initUI() {
     setOrderInfo();
     fitWindow();
+    setSelectBorder($(".card").eq(orderNumber - 1));
   }
 
   function fitWindow() {
@@ -102,6 +103,7 @@ $(document).ready(function () {
   $(".card").each(function () {
     $(this).click(function() {
       var menuNum = $(this).index() + 1;
+      setSelectBorder($(this), menuNum);
       $.ajax({
         type: "POST",
         url: "../php/functions/order-operation.php",
@@ -112,8 +114,7 @@ $(document).ready(function () {
         },
         dataType: "json",
         success: function (response) {
-          clearCardBorder();
-          $(this).css("border","solid forestgreen 6px");
+
         },
         error: function (e, ts, et) {
           alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
@@ -124,7 +125,6 @@ $(document).ready(function () {
           } else {
             alert("成功预定 " + "【 " + menuNum + " 】号餐");
           }
-
           window.location.href = "../php/user-main.php";
         }
       });
@@ -137,6 +137,11 @@ $(document).ready(function () {
     $(".card").each(function(){
       $(this).css("border","");
     });
+  }
+
+  function setSelectBorder(element) {
+    clearCardBorder();
+    element.css("border", "solid green 6px");
   }
 
   function isOrderExist() {
