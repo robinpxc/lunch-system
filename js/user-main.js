@@ -96,17 +96,37 @@ $(document).ready(function () {
     let menuNum = parseInt(checkOrderStatus(date, false, "order-number"));
     let itemIdPrefix = "";
 
-    if(date === getDateToday()) {
+    if(date == getDateToday()) {
       itemIdPrefix = "#menu-today-0";
-      $("#menu-tip-today").text("今日已点" + "（" + " " + menuNum + " 号" + " " +"）");
-    } else if(date === getDateTomorrow()) {
+      if(menuNum == 8) {
+        $("#menu-tip-today").text("今日【 不点餐 】");
+        setNoOrderTextStyle($("#menu-tip-today"));
+      } else {
+        $("#menu-tip-today").text("今日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+      }
+    } else if(date == getDateTomorrow()) {
       itemIdPrefix = "#menu-tomorrow-0";
-      $("#menu-tip-tomorrow").text("明日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+      if(menuNum == 8) {
+        $("#menu-tip-tomorrow").text("明日【 不点餐 】");
+        setNoOrderTextStyle($("#menu-tip-tomorrow"));
+      } else {
+        $("#menu-tip-tomorrow").text("明日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+      }
+
     }
     for(let i = 0; i < 3; i++) {
       let itemId = itemIdPrefix + (i + 1);
-      $(itemId).text(decodeUnicode(menuList[menuNum][i]));
+      if(menuNum != 8) {
+        $(itemId).text("【 " + decodeUnicode(menuList[menuNum][i]) + " 】");
+      }
     }
+  }
+
+  function setNoOrderTextStyle(element) {
+    element.css({
+      "font-weight": "bold",
+      "font-size": "30px",
+    });
   }
 });
 

@@ -120,9 +120,9 @@ $(document).ready(function () {
         },
         complete: function() {
           if(menuNum == 8) {
-            alert("已选择明日不点餐！");
+            alert("已选择明日【 不点餐 】！");
           } else {
-            alert("成功预定 " + " " + menuNum + " 号餐");
+            alert("成功预定 " + "【 " + menuNum + " 】号餐");
           }
 
           window.location.href = "../php/user-main.php";
