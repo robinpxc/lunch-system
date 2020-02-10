@@ -1,32 +1,53 @@
 @import url("common/common.css");
 
 .card {
-  min-height: 200px;
-}
-
-.card-bottom {
-  padding: 0rem 1rem 1rem 1rem;
+  min-height: 260px;
 }
 
 .card-body {
   padding-bottom: 0;
 }
 
+.card-bottom {
+  padding: 0rem 1rem 1rem 1rem;
+}
+
 .no-menu .card-body {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: bold;
   font-size: 2rem;
+  padding-top: 0;
+}
+
+.no-menu .card-body span {
+  margin-bottom: 20px;
+}
+
+.card-menu-list {
+  text-align: start;
 }
 
 .card-menu-list, .card-menu-list li {
   width: 100%;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .card-menu-list li {
   color: white;
 }
+
+#menu-tip-today, #menu-tip-tomorrow {
+  font-size: 20px;
+}
+
+#admin-card .card-body {
+  padding-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+

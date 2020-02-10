@@ -36,6 +36,7 @@ $(document).ready(function () {
         $("#menu-tip-today").text("点击按钮开始点餐");
         $("#menu-order-btn-today").text("开始点餐");
         $("#card-title-today").text("尚未点餐");
+        $(".no-menu")
         unhideAndEnableElement($("#menu-order-btn-today"));
         removeOldClass($("#menu-card-today"), "bg-success");
         addNewClass($("#menu-card-today"), "bg-danger");
@@ -120,8 +121,8 @@ $(document).ready(function () {
     }
     for(let i = 0; i < 3; i++) {
       let itemId = itemIdPrefix + (i + 1);
-      if(menuNum != 8) {
-        $(itemId).text("【 " + decodeUnicode(menuList[menuNum][i]) + " 】");
+      if((menuNum) < 8) {
+        $(itemId).text("【 " + decodeUnicode(menuList[menuNum - 1][i]) + " 】");
       }
     }
   }

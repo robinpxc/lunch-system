@@ -152,7 +152,7 @@ $userRole = $row['role'];
           <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          尚未设置
+          <span>尚未设置</span>
         </div>
       </div>
 
@@ -161,10 +161,10 @@ $userRole = $row['role'];
           <h4 class="my-0 font-weight-normal">管理</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title">系统管理</h1>
-          <ul class="list-unstyled mt-3 mb-4">
-            <li>管理员获准使用此组件</li>
-          </ul>
+          <div>
+            <h1 class="card-title eating-card-title">系统管理</h1>
+            <span>管理员获准使用此组件</span>
+          </div>
         </div>
 
         <div class="card-bottom">

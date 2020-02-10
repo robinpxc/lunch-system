@@ -61,7 +61,7 @@ $(document).ready(function () {
       } else {
         $("#order-info-text").text("明日未选午餐");
       }
-      $("#order-info-text").css("color", "yellow");
+      $("#order-info-text").css("color", "orange");
     } else {
       alert("订单状态错误");
     }
