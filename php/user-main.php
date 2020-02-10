@@ -96,6 +96,7 @@ $userRole = $row['role'];
   </div>
 
   <div class="container">
+    <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
     <div class="card-deck mb-5 text-center">
       <!-- today menu -->
       <div class="card mb-2 mt-2 shadow-sm text-white bg-danger" id="menu-card-today">

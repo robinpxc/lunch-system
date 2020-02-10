@@ -38,7 +38,7 @@ $(document).ready(function () {
 
   function setOrderInfo() {
     if(isOrderExist()) {
-      if(date == getDateToday) {
+      if(date == getDateToday()) {
         if(orderNumber == 8) {
           $("#order-info-text").text("今日已选择不订餐！");
           $("#order-info-text").css("color", "red");
@@ -56,7 +56,7 @@ $(document).ready(function () {
         }
       }
     } else if(!isOrderExist()) {
-      if(date == getDateToday) {
+      if(date == getDateToday()) {
         $("#order-info-text").text("今日尚未点餐");
       } else {
         $("#order-info-text").text("明日未选午餐");
@@ -117,13 +117,21 @@ $(document).ready(function () {
 
         },
         error: function (e, ts, et) {
-          alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
+          alert("菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
         },
         complete: function() {
           if(menuNum == 8) {
-            alert("已选择明日【 不点餐 】！");
+            if(date == getDateToday()) {
+              alert("今日 - 已选择【 不订餐 】！");
+            } else {
+              alert("明日 - 已选择【 不订餐 】！");
+            }
           } else {
-            alert("成功预定 " + "【 " + menuNum + " 】号餐");
+            if(date == getDateToday()) {
+              alert("今日 - 成功预定 " + "【 " + menuNum + " 】号餐");
+            } else {
+              alert("明日 - 成功预定 " + "【 " + menuNum + " 】号餐");
+            }
           }
           window.location.href = "../php/user-main.php";
         }
