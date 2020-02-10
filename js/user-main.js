@@ -105,7 +105,8 @@ $(document).ready(function () {
       itemIdPrefix = "#menu-today-0";
       if(menuNum == 8) {
         $("#menu-tip-today").text("今日【 不点餐 】");
-        setNoOrderTextStyle($("#menu-tip-today"));
+        setNoOrderStyle($("#menu-tip-today"));
+        $(".list-today").remove();
       } else {
         $("#menu-tip-today").text("今日已点" + "（" + " " + menuNum + " 号" + " " +"）");
       }
@@ -113,7 +114,8 @@ $(document).ready(function () {
       itemIdPrefix = "#menu-tomorrow-0";
       if(menuNum == 8) {
         $("#menu-tip-tomorrow").text("明日【 不点餐 】");
-        setNoOrderTextStyle($("#menu-tip-tomorrow"));
+        $(".list-tomorrow").remove();
+        setNoOrderStyle($("#menu-tip-tomorrow"));
       } else {
         $("#menu-tip-tomorrow").text("明日已点" + "（" + " " + menuNum + " 号" + " " +"）");
       }
@@ -127,10 +129,17 @@ $(document).ready(function () {
     }
   }
 
-  function setNoOrderTextStyle(element) {
+  function setNoOrderStyle(element) {
     element.css({
       "font-weight": "bold",
       "font-size": "25px",
+    });
+
+    element.parent().css({
+      "display": "flex",
+      "justify-content":"center",
+      "align-items": "center",
+      "padding-top": "0px"
     });
   }
 });

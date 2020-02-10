@@ -105,7 +105,7 @@ $userRole = $row['role'];
         <div class="card-body">
           <h1 class="card-title eating-card-title" id="card-title-today">尚未点餐</h1>
           <span id="menu-tip-today"></span>
-          <ul class="list-unstyled mt-3 mb-4 card-menu-list">
+          <ul class="list-unstyled mt-3 mb-4 card-menu-list list-today">
             <li id="menu-today-01"></li>
             <li id="menu-today-02"></li>
             <li id="menu-today-03"></li>
@@ -134,7 +134,7 @@ $userRole = $row['role'];
         <div class="card-body">
           <h1 class="card-title eating-card-title" id="card-title-tomorrow">尚未点餐</h1>
           <span id="menu-tip-tomorrow"></span>
-          <ul class="list-unstyled mt-3 mb-4 card-menu-list">
+          <ul class="list-unstyled mt-3 mb-4 card-menu-list list-tomorrow">
             <li id="menu-tomorrow-01"></li>
             <li id="menu-tomorrow-02"></li>
             <li id="menu-tomorrow-03"></li>
