@@ -286,12 +286,11 @@ $(document).ready(function () {
         'menu-list': JSON.stringify(menuList)
       },
       dataType: "json",
-      async: true,
+      async: false,
       error: function (errorMsg) {
         alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
       },
       complete: function() {
-        //alert("菜单更新成功！");
         window.location.reload();
       }
     });
