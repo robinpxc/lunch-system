@@ -88,7 +88,7 @@ function fetchMenu(date, async) {
     type: "POST",
     url: "../php/functions/fetch-menu.php",
     data: {
-      'date': date
+      "date": date
     },
     dataType: "json",
     async: async,
