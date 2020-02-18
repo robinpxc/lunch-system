@@ -2,8 +2,17 @@ $(document).ready(function(){
   let workgroup = new Object();
   // let dataArray = fetchDailyOrderStatus(getDateToday(), false);
   let dataArray = fetchDailyOrderStatus("2020-02-11", false);
+  configUI();
   addDropdownListEvent();
   setData(dataArray);
+
+  function configUI() {
+    for(let i = 0; i < 7; i++) {
+      let cardHeaderClassName = ".table-group-" + i + " .card-header";
+      let originalText = $(cardHeaderClassName).text();
+      $(cardHeaderClassName).text(originalText + "（ " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
+    }
+  }
 
   function addDropdownListEvent() {
     $(".dropdown-item").each(function(){
@@ -70,12 +79,21 @@ $(document).ready(function(){
     for(let i = 0; i < 7; i++) {
       setDataToGroupTable(getGroupData(dataArray, i), i);
     }
+  }
 
+  function getGroupOrderNumber(dataArray, groupNumber) {
+    let groupOrder = 0;
+    let group = "group" + groupNumber;
+    for(let i = 0; i < dataArray.length; i++) {
+      if(dataArray[i][3] == group) {
+        groupOrder ++;
+      }
+    }
+    return groupOrder;
   }
 
   function getGroupData(dataArray, groupNumber) {
     let group = "group" + groupNumber;
-    alert(group);
     let groupOrderData = new Array();
     for(let i = 0; i < dataArray.length; i++) {
       if(dataArray[i][3] == group) {
