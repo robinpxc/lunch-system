@@ -67,7 +67,6 @@ function addUser() {
     },
     dataType: "json",
     success: function (response) {
-      alert(response);
       switch (response) {
         case 1:
           alert("添加用户" + username + "成功！");

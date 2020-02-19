@@ -1,7 +1,7 @@
 $(document).ready(function(){
   let workgroup = new Object();
-  // let dataArray = fetchDailyOrderStatus(getDateToday(), false);
-  let dataArray = fetchDailyOrderStatus("2020-02-11", false);
+  let dataArray = fetchDailyOrderStatus(getDateToday(), false);
+  //let dataArray = fetchDailyOrderStatus("2020-02-11", false);
   configUI();
   addDropdownListEvent();
   setData(dataArray);
