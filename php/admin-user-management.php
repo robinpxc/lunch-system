@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
-
-$sql_user_count = "SELECT * from user_info ORDER BY id";
-$result = mysqli_query($mysqlConnection, $sql_user_count);
 ?>
 
 <html lang="zh">
@@ -101,6 +98,7 @@ $result = mysqli_query($mysqlConnection, $sql_user_count);
 </header>
 
 <div class="main-content boxshaw">
+  <input type="hidden" id="current-user-id" value="<?php echo $_SESSION['lunch_user_session']; ?>" />
   <div class="table-group">
     <div class="form-nav d-block">
       <!-- Dropdown list to select data source -->

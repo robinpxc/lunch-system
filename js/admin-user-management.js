@@ -195,14 +195,11 @@ $(document).ready(function () {
     $("body").css("padding-bottom", blankHeight);
   }
 
-
-
-
   function configTableHeader() {
     for(let i = 0; i < 7; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（ " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
+      $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
     }
   }
 
@@ -250,9 +247,12 @@ $(document).ready(function () {
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + data[i][0] + "'" + ">");
       let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
       $(modifyButtonId).append("<button type='button' class='btn btn-light active' id='modify-btn'>修改");
-      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
-      let delButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #del-link";
-      $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + data[i][0] + "'>" + "删除");
+
+      if($("#current-user-id").val() != data[i][0]) {
+        $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
+        let delButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #del-link";
+        $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + data[i][0] + "'>" + "删除");
+      }
     }
   }
 });
