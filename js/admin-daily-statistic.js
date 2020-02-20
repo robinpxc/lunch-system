@@ -48,7 +48,7 @@ $(document).ready(function(){
       $(".tb-group" + group).append("<tr class=" + personClass + ">");
       $("." + personClass).append("<td>" + data[i][0]);
       $("." + personClass).append("<td>" + data[i][1]);
-      $("." + personClass).append("<td>" + data[i][2] + " 号");
+      $("." + personClass).append("<td>" + (data[i][2] == 8 ? "不点餐" : (data[i][2] + " 号")) );
     }
   }
 });
