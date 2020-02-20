@@ -18,6 +18,7 @@ include('common/session.php'); ?>
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
   <link href="../css/common/common.css" rel="stylesheet">
+  <link href="../css/common/common-table-group.css" rel="stylesheet">
   <link href="../css/admin-daily-statistic.css" rel="stylesheet">
 
   <!--Java Script-->
@@ -26,6 +27,7 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/common/common_order.js"></script>
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
 
@@ -95,173 +97,175 @@ include('common/session.php'); ?>
 </header>
 
 <div class="main-content boxshaw">
-  <div class="form-nav d-block">
-    <!-- Dropdown list to select data source -->
-    <div class="btn-group nav-drop-down">
-      <button class="btn btn-success btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        显示：全部显示
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#" id="group-0">显示：巡察办</a>
-        <a class="dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
-        <a class="dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
-        <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
-        <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
-        <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
-        <a class="dropdown-item" href="#" id="group-6">显示：临时人员</a>
-        <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
+  <div class="table-group">
+    <div class="form-nav d-block">
+      <!-- Dropdown list to select data source -->
+      <div class="btn-group nav-drop-down">
+        <button class="btn btn-success btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          显示：全部显示
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#" id="group-0">显示：巡察办</a>
+          <a class="dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
+          <a class="dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
+          <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
+          <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
+          <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
+          <a class="dropdown-item" href="#" id="group-6">显示：临时人员</a>
+          <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
+        </div>
+      </div>
+    </div>
+    <div class="table-content d-block">
+      <!-- 巡察办表格 -->
+      <div class="table-card card table-group-0">
+        <div class="card-header">
+          市委巡察办
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group0">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 一组表格 -->
+      <div class="table-card card table-group-1">
+        <div class="card-header">
+          市委第一巡察组
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group1">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 二组表格 -->
+      <div class="table-card card table-group-2">
+        <div class="card-header">
+          市委第二巡察组
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group2">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 三组表格 -->
+      <div class="table-card card table-group-3">
+        <div class="card-header">
+          市委第三巡察组
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group3">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 四组表格 -->
+      <div class="table-card card table-group-4">
+        <div class="card-header">
+          市委第四巡察组
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group4">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 五组表格 -->
+      <div class="table-card card table-group-5">
+        <div class="card-header">
+          市委第五巡察组
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group5">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 临时组表格 -->
+      <div class="table-card card table-group-6">
+        <div class="card-header">
+          临时人员餐表
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">所选套餐</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-group6">
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="table-content d-block">
-    <!-- 巡察办表格 -->
-    <div class="table-card card table-group-0">
-      <div class="card-header">
-        市委巡察办
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group0">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 一组表格 -->
-    <div class="table-card card table-group-1">
-      <div class="card-header">
-        市委第一巡察组
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group1">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 二组表格 -->
-    <div class="table-card card table-group-2">
-      <div class="card-header">
-        市委第二巡察组
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group2">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 三组表格 -->
-    <div class="table-card card table-group-3">
-      <div class="card-header">
-        市委第三巡察组
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group3">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 四组表格 -->
-    <div class="table-card card table-group-4">
-      <div class="card-header">
-        市委第四巡察组
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group4">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 五组表格 -->
-    <div class="table-card card table-group-5">
-      <div class="card-header">
-        市委第五巡察组
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group5">
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- 临时组表格 -->
-    <div class="table-card card table-group-6">
-      <div class="card-header">
-        临时人员餐表
-      </div>
-      <div class="card-body">
-        <table class="table">
-          <thead class="thead-light">
-          <tr>
-            <th scope="col">姓名</th>
-            <th scope="col">ID</th>
-            <th scope="col">所选套餐</th>
-          </tr>
-          </thead>
-
-          <tbody class="tb-group6">
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
 
   <footer class="pt-4 my-md-4 pt-md-4 border-top">
     <div class="row">

@@ -1,0 +1,55 @@
+.table-group .form-nav {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.table-group .nav-drop-down {
+  max-width: 100%;
+  min-width: 115px;
+}
+
+.table-group .table-content {
+  width: 100%;
+}
+
+.table-group .table-content .table-card {
+  min-height: 150px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.table-group .table-content .table-card .card-body {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+}
+
+.table-group .table-content .table-card .card-body table {
+  table-layout: fixed;
+}
+
+.table-group .table-content .table-card .card-header {
+  font-weight: bold;
+  font-size: 18px;
+  color: red;
+}
+
+.table-group .table-content .table td {
+  font-size: 1.1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .table-group .nav-drop-down {
+    width: 100%;
+  }
+
+  .table-group .nav-drop-down .dropdown-menu {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100%;
+  }
+
+  .table-group .nav-drop-down .dropdown-menu a {
+    margin-top: 5px;
+  }
+}

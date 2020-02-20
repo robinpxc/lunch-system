@@ -1,18 +1,7 @@
 @import url("common/common.css");
 
-table {
-  border-collapse: collapse;
-  border-spacing: 1.5px;
-}
-
-.table-content {
-  display: inline-flex;
-}
-
-.table-content th, 
-.table-content td {
- display: flex;
- vertical-align: middle;
+.main-content {
+  margin-top: 10px;
 }
 
 .create-form {
@@ -51,10 +40,6 @@ table {
  .create-user {
    width: 100%;
    padding: 10px;
- }
-
- .main-content, .main-content * {
-   z-index: 10;
  }
 
  .create-form, .create-form * {
