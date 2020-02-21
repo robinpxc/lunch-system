@@ -29,6 +29,7 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/common/common_order.js"></script>
+  <script type="text/javascript" src="../js/common/common_menu.js"></script>
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
 
 </head>
@@ -259,6 +260,27 @@ include('common/session.php'); ?>
             </thead>
 
             <tbody class="tb-group6">
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 未点餐名单 -->
+      <div class="table-card card table-not-ordered">
+        <div class="card-header">
+          <span class="header-no-order">未点餐人员餐表</span>
+        </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr>
+              <th scope="col">姓名</th>
+              <th scope="col">ID</th>
+              <th scope="col">单位</th>
+            </tr>
+            </thead>
+
+            <tbody class="tb-no-order">
             </tbody>
           </table>
         </div>

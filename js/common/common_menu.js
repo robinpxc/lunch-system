@@ -90,11 +90,11 @@ function fetchMenu(date, async) {
     data: {
       "date": date
     },
-    dataType: "json",
+    dataType: "JSON",
     async: async,
     success: function (response) {
       if (response != null) {
-        menuArray = JSON.parse(response);
+        menuArray = response;
       } else {
         alert("菜单为空！");
       }
@@ -105,3 +105,33 @@ function fetchMenu(date, async) {
   });
   return menuArray;
 }
+
+/*
+* Function to fetch people who did not order for a day
+* This function will return an array include user id, fullname, and workgroup
+* Parameters:
+*   date:  [string] Will determine the date of order.
+*   async: [boolean] will determine the function will work on sync/async mode.
+* */
+function fetchNoOrderUsers(date, async) {
+  let menuArray = new Array();
+  $.ajax({
+    type: "POST",
+    url: "../php/functions/fetch-no-order-users.php",
+    data: {
+      "date": date
+    },
+    dataType: "JSON",
+    async: async,
+    success: function (response) {
+      if (response != null) {
+        menuArray = response;
+      }
+    },
+    error: function (errorMsg) {
+      alert("获取未点餐人员失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    }
+  });
+  return menuArray;
+}
+
