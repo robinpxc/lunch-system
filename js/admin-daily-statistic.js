@@ -1,8 +1,6 @@
 $(document).ready(function(){
-  // let dataArray = fetchDailyOrderStatus(getDateToday(), false);
-  // let noOrderArray = fetchNoOrderUsers(getDateToday(), false);
-  let dataArray = fetchDailyOrderStatus("2020-02-20", false);
-  let noOrderArray = fetchNoOrderUsers("2020-02-20", false);
+  let dataArray = fetchDailyOrderStatus(getDateToday(), false);
+  let noOrderArray = fetchNoOrderUsers(getDateToday(), false);
   configUI();
   initTableGroup();
   setData(dataArray);
@@ -48,9 +46,12 @@ $(document).ready(function(){
     for(let i = 0; i < data.length; i++) {
       let personClass = "group" + "-" + group + "-" + "person" + "-" + i; ;
       $(".tb-group" + group).append("<tr class=" + personClass + ">");
-      $("." + personClass).append("<td>" + data[i][0]);
-      $("." + personClass).append("<td>" + data[i][1]);
-      $("." + personClass).append("<td>" + (data[i][2] == 8 ? "不点餐" : (data[i][2] + " 号")) );
+      let fullname = data[i][0];
+      let userId = data[i][1];
+      let orderNum = data[i][2];
+      $("." + personClass).append("<td>" + fullname);
+      $("." + personClass).append("<td>" + userId);
+      $("." + personClass).append("<td>" + (orderNum == 8 ? "不点餐" : (orderNum + " 号")) );
     }
   }
 
@@ -59,9 +60,12 @@ $(document).ready(function(){
     for(let i = 0; i < data.length; i++) {
       let trClass = "no-order-user" + i;
       $(".tb-no-order").append("<tr class=" + trClass + ">");
-      $("." + trClass).append("<td>" + data[i][1]);
-      $("." + trClass).append("<td>" + data[i][0]);
-      $("." + trClass).append("<td>" + data[i][2]);
+      let fullname = data[i][1];
+      let userId = data[i][0];
+      let workgroup = groupToText(data[i][2]);
+      $("." + trClass).append("<td>" + fullname);
+      $("." + trClass).append("<td>" + userId);
+      $("." + trClass).append("<td>" + workgroup);
     }
   }
 });

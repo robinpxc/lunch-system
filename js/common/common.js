@@ -250,3 +250,25 @@ function getTimeNow() {
 function decodeUnicode(text) {
   return unescape(text.toString().replace(/\u/g, "%u"));
 }
+
+// Function to convert group number to text
+function groupToText(groupNum) {
+  switch (groupNum) {
+    case "group0":
+      return "巡察办";
+    case "group1":
+      return "第一巡察组";
+    case "group2":
+      return "第二巡察组";
+    case "group3":
+      return "第三巡察组";
+    case "group4":
+      return "第四巡察组";
+    case "group5":
+      return "第五巡察组";
+    case "group6":
+      return "临时人员";
+    default:
+      return "其他";
+  }
+}
