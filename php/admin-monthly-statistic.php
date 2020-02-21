@@ -12,13 +12,14 @@ include('common/session.php');
   <meta name="author" content="">
   <link rel="icon" href="../assets/icons/rice_32x32.ico">
 
-  <title>用户管理</title>
+  <title>每月账单统计</title>
 
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <!-- Custom styles-->
   <link href="../css/common/common.css" rel="stylesheet">
+  <link href="../css/common/common-table-group.css" rel="stylesheet">
   <link href="../css/admin-monthly-statistic.css" rel="stylesheet">
 
   <!--Java Script-->
@@ -27,6 +28,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>
 
 </head>

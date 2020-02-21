@@ -11,7 +11,7 @@ include('common/session.php'); ?>
   <meta name="author" content="">
   <link rel="icon" href="../assets/icons/rice_32x32.ico">
 
-  <title>用户管理</title>
+  <title>每日点餐统计</title>
 
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->

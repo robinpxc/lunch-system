@@ -238,7 +238,7 @@ $(document).ready(function () {
       let userRole = data[i][4];
       let nickname = data[i][1];
       let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
-      
+
       $(".tb-group" + group).append("<tr class=" + personClass + ">");
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);

@@ -12,7 +12,7 @@
   <meta name="author" content="">
   <link rel="icon" href="../assets/icons/rice_32x32.ico">
 
-  <title>菜单管理</title>
+  <title>订餐页面</title>
 
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->
