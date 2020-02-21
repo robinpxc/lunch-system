@@ -1,29 +1,35 @@
-.card-deck {
-  height: 100%;
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.card-statistics {
-  height: 200px;
-  justify-content: center;
-  align-items: center;
-  font-size: 30px;
-  cursor:pointer;
+.card {
+  width: 18rem;
+  margin-right: 10px;
 }
 
-.card-statistics:hover {
-  border: solid 8px lightskyblue;
+.card .card-body {
+  min-height: 9rem;
 }
 
-#date-today {
-  font-size: 16px;
+.card .card-footer {
+  padding:0.5rem;
+}
+
+.card .special-text {
+  color: red;
+  font-weight: bold;
+}
+
+.card .card-footer .btn {
+  width: 100%;
 }
 
 @media screen and (max-width: 768px) {
-  .card-deck {
-    padding: 10px;
-  }
-
-  .card-statistics {
+  .card {
     width: 100%;
+    margin: 5px;
   }
 }

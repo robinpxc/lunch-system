@@ -26,6 +26,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/admin-data-management.js"></script>
 
@@ -95,16 +96,36 @@ include('common/session.php');
 </header>
 
 <div class="main-content">
-  <div class="card-deck mt-5 mb-5 text-center">
+  <div class="mt-4 mb-4 card-container">
     <!-- Daily statistics -->
-    <div class="card mb-2 mt-2 shadow-sm text-white bg-primary card-statistics" id="daily-statistics">
-      <span>每日点餐统计</span>
-      <span id="date-today"></span>
+    <div class="card text-left">
+      <div class="card-body">
+        <h5 class="card-title">当日点餐统计</h5>
+        <div class="card-text mt-3">截止到每天上午 10:00 的点餐统计</div>
+        <div class="mt-1">
+          <span>今天是 </span>
+          <span class="special-text" id="date-today"></span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" id="daily-statistics">开始统计</button>
+      </div>
     </div>
 
     <!-- Monthly statistics -->
-    <div class="card mb-2 mt-2 shadow-sm text-white bg-primary card-statistics" id="monthly-statistics">
-      <span>每月价格统计</span>
+    <div class="card text-left">
+      <div class="card-body">
+        <h5 class="card-title">上月点餐统计</h5>
+        <div class="card-text mt-3">每月1日至月底的点餐账目统计</div>
+        <div class="mt-1">
+          <span>上月是 </span>
+          <span class="special-text" id="last-month"></span>
+          <span> 月份</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" id="monthly-statistics">开始统计</button>
+      </div>
     </div>
 
   </div>

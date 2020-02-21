@@ -3,17 +3,23 @@ $(document).ready(function() {
   setCardClickEvent();
 
   function initUI() {
-    let date = new Date();
     $("#date-today").text(getDateTodayChinese(true));
+    $("#last-month").text((getLastMonth() >= 10) ? toString(getLastMonth()) : ("0" + getLastMonth()));
   }
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
+      $.cookie("daily-statistics-date", getDateToday());
       window.location.href = "admin-daily-statistic.php";
     });
 
     $("#monthly-statistics").click(function() {
-      window.location.href = "admin-daily-statistic.php";
+      $.cookie("monthly-statistics-month", getLastMonth());
+      window.location.href = "admin-monthly-statistic.php";
     });
+  }
+
+  function getLastMonth() {
+    return new Date().getMonth();
   }
 });

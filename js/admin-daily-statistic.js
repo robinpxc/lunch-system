@@ -1,5 +1,6 @@
 $(document).ready(function(){
-  let dataArray = fetchDailyOrderStatus(getDateToday(), false);
+  let dataArray = fetchDailyOrderStatus($.cookie("daily-statistics-date"), false);
+  $.cookie("daily-statistics-date", "");
   let noOrderArray = fetchNoOrderUsers(getDateToday(), false);
   configUI();
   initTableGroup();
