@@ -233,25 +233,30 @@ $(document).ready(function () {
 
   function setDataToGroupTable(data, group) {
     for(let i = 0; i < data.length; i++) {
+      let fullname = data[i][2];
+      let userId = data[i][0];
+      let userRole = data[i][4];
+      let nickname = data[i][1];
       let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
+      
       $(".tb-group" + group).append("<tr class=" + personClass + ">");
-      $("." + personClass).append("<td>" + data[i][2]);
-      $("." + personClass).append("<td>" + data[i][0]);
+      $("." + personClass).append("<td>" + fullname);
+      $("." + personClass).append("<td>" + userId);
 
-      $("." + personClass).append("<td>" + (data[i][4] == "user" ? "用户" : "管理员"));
-      $("." + personClass).append("<td>" + data[i][1]);
+      $("." + personClass).append("<td>" + (userRole == "user" ? "用户" : "管理员"));
+      $("." + personClass).append("<td>" + nickname);
       $("." + personClass).append("<td class='operation-btn-group-" + i + "'" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='btn-group btn-group" + "-" + i + "'" + ">");
-      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + data[i][0] + "'>");
-      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + data[i][0] + "'" + ">");
+      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
+      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
       let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
       $(modifyButtonId).append("<button type='button' class='btn btn-light active' id='modify-btn'>修改");
 
-      if($("#current-user-id").val() != data[i][0]) {
+      if($("#current-user-id").val() != userId) {
         $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
         let delButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #del-link";
-        $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + data[i][0] + "'>" + "删除");
+        $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
       }
     }
   }
