@@ -28,6 +28,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common_date.js"></script>
   <script type="text/javascript" src="../js/admin-data-management.js"></script>
 
 </head>
@@ -96,9 +97,9 @@ include('common/session.php');
 </header>
 
 <div class="main-content">
-  <div class="mt-4 mb-4 card-container">
+  <div class="card-container">
     <!-- Daily statistics -->
-    <div class="card text-left">
+    <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">当日点餐统计</h5>
         <div class="card-text mt-3">截止到每天上午 10:00 的点餐统计</div>
@@ -108,14 +109,38 @@ include('common/session.php');
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary" id="daily-statistics">开始统计</button>
+        <button class="btn btn-primary" id="daily-statistics">查看统计结果</button>
+      </div>
+    </div>
+
+    <!-- Custom Daily statistics -->
+    <div class="mt-4 mb-4 card text-left">
+      <div class="card-body">
+        <h5 class="card-title">自定义日期点餐统计</h5>
+        <div class="card-text mt-3">指定日期的点餐统计</div>
+        <div class="mt-1">
+          <div class="date-select" id="daily-date-select">
+            <select class="form-control form-control-sm year-select">
+            </select>
+            <span>年</span>
+            <select class="form-control form-control-sm month-select">
+            </select>
+            <span>月</span>
+            <select class="form-control form-control-sm day-select">
+            </select>
+            <span>日</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-warning" id="custom-daily-statistics">开始统计</button>
       </div>
     </div>
 
     <!-- Monthly statistics -->
-    <div class="card text-left">
+    <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">上月点餐统计</h5>
+        <h5 class="card-title">上月账单统计</h5>
         <div class="card-text mt-3">每月1日至月底的点餐账目统计</div>
         <div class="mt-1">
           <span>上月是 </span>
@@ -124,7 +149,28 @@ include('common/session.php');
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary" id="monthly-statistics">开始统计</button>
+        <button class="btn btn-primary" id="monthly-statistics">查看统计结果</button>
+      </div>
+    </div>
+
+    <!-- Custom Monthly statistics -->
+    <div class="mt-4 mb-4 card text-left">
+      <div class="card-body">
+        <h5 class="card-title">指定月份账单统计</h5>
+        <div class="card-text mt-3">指定月份1日至月底的点餐账目统计</div>
+        <div class="mt-1">
+          <div class="date-select" id="monthly-date-select">
+            <select class="form-control form-control-sm year-select">
+            </select>
+            <span>年</span>
+            <select class="form-control form-control-sm month-select">
+            </select>
+            <span>月</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-warning" id="custom-monthly-statistics">开始统计</button>
       </div>
     </div>
 

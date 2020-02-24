@@ -1,11 +1,14 @@
 $(document).ready(function(){
   let dataArray = fetchDailyOrderStatus($.cookie("daily-statistics-date"), false);
-  $.cookie("daily-statistics-date", "");
   let noOrderArray = fetchNoOrderUsers(getDateToday(), false);
+  let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  collectOrderSum(dataArray);
   configUI();
+  initAlertBox($.cookie("daily-statistics-date") == getDateToday());
   initTableGroup();
   setData(dataArray);
   setNoOrderTable(noOrderArray);
+  // $.cookie("daily-statistics-date", "");
 
   function configUI() {
     for(let i = 0; i < 7; i++) {
@@ -13,6 +16,16 @@ $(document).ready(function(){
       let originalText = $(cardHeaderClassName).text();
       $(cardHeaderClassName).text(originalText + "（ " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
     }
+  }
+
+  function initAlertBox(isToday) {
+    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayChinese(true) : "选择的日期是 ");
+    let orderSum = 0;
+    for(let i = 1; i <= 8; i++) {
+      $("#order-sum-" + i).text(orderCollection[i]);
+      orderSum += orderCollection[i];
+    }
+    $("#order-sum").text(orderSum);
   }
 
   function setData(dataArray) {
@@ -67,6 +80,13 @@ $(document).ready(function(){
       $("." + trClass).append("<td>" + fullname);
       $("." + trClass).append("<td>" + userId);
       $("." + trClass).append("<td>" + workgroup);
+    }
+  }
+
+  function collectOrderSum(data) {
+    for(let i = 0; i < data.length; i++) {
+      let orderNum = data[i][2];
+      orderCollection[orderNum]++;
     }
   }
 });

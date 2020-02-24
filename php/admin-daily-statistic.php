@@ -99,6 +99,52 @@ include('common/session.php'); ?>
 </header>
 
 <div class="main-content boxshaw">
+  <div class="alert alert-primary mt-4 order-collection" role="alert">
+    <div class="show-date-text"></div>
+    <div class="order-count">
+      <table>
+        <thead>
+          <td class="left">餐号</td>
+          <td>份数</td>
+        </thead>
+        <tbody class="tbody-order-sum">
+          <tr>
+            <td class="left">1号</td>
+            <td id="order-sum-1"></td>
+          </tr>
+          <tr>
+            <td class="left">2号</td>
+            <td id="order-sum-2"></td>
+          </tr>
+          <tr>
+            <td class="left">3号</td>
+            <td id="order-sum-3"></td>
+          </tr>
+          <tr>
+            <td class="left">4号</td>
+            <td id="order-sum-4"></td>
+          </tr>
+          <tr>
+            <td class="left">5号</td>
+            <td id="order-sum-5"></td>
+          </tr>
+          <tr>
+            <td class="left">6号</td>
+            <td id="order-sum-6"></td>
+          </tr>
+          <tr>
+            <td class="left">7号</td>
+            <td id="order-sum-7"></td>
+          </tr>
+          <tr>
+            <td class="left bottom">总计</td>
+            <td class="bottom" id="order-sum"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <div class="table-group">
     <div class="form-nav d-block">
       <!-- Dropdown list to select data source -->
@@ -288,8 +334,6 @@ include('common/session.php'); ?>
       </div>
     </div>
   </div>
-
-
   <footer class="pt-4 my-md-4 pt-md-4 border-top">
     <div class="row">
       <div class="col-12 col-md">
