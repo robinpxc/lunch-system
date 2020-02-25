@@ -4,6 +4,7 @@ $(document).ready(function() {
 
   initUI();
   setCustomYearSelect();
+  setSelectChangeEvent();
   setCardClickEvent();
 
   function initUI() {
@@ -24,26 +25,54 @@ $(document).ready(function() {
   }
 
   function setCustomYearSelect() {
-    for(let i = 0; i < yearArray.length; i++) {
-      $(".year-select").append("<option class='year-option-" + i + "'>");
-      $(".year-option-" + i).text(yearArray[i]);
+    if(yearArray.length != 0) {
+      for(let i = 0; i < yearArray.length; i++) {
+        $(".year-select").append("<option class='year-option-" + i + "'>");
+        $(".year-option-" + i).text(yearArray[i]);
+      }
+      setCustomMonthSelect("daily");
+      setCustomMonthSelect("monthly");
     }
   }
 
   function setCustomMonthSelect(type) {
     let monthArray = new Array();
-    let selectedElement= "";
+    let selectedElement = "";
     if(type == "daily") {
-      monthArray = fetchExistMonth($("#daily-date-select").val(), false);
-      selectdElement = ".daily-date-select .month-select";
+      monthArray = fetchExistMonth($("#d-year-select option:selected").val(), false);
+      selectedElement = "#d-month-select";
     } else if(type == "monthly") {
-      monthArray = fetchExistMonth($("#monthly-date-select").val(), false);
-      selectdElement = ".monthly-date-select .month-select";
+      monthArray = fetchExistMonth($("#m-year-select option:selected").val(), false);
+      selectedElement = "#m-month-select";
     }
+    $(selectedElement).empty();
     for(let i = 0; i < monthArray.length; i++) {
      $(selectedElement).append("<option class='month-option-" + i + "'>");
-     $(".month-option-" + i).text(monthArray[i]);
+     $(selectedElement + " .month-option-" + i).text(monthArray[i]);
     }
+    if(type == "daily") {
+      setCustomDaySelect();
+    }
+  }
+
+  function setCustomDaySelect() {
+    let selectedElement = "#d-day-select";
+    $(selectedElement).empty();
+    let dayArray = fetchExistDays($("#d-year-select option:selected").val(), $("#d-month-select option:selected").val(), false);
+    for(let i = 0; i < dayArray.length; i++) {
+      $(selectedElement).append("<option class='day-option-" + i + "'>");
+      $(".day-option-" + i).text(dayArray[i]);
+    }
+  }
+
+  function setSelectChangeEvent() {
+    $("#d-year-select").change(function() {
+      setCustomMonthSelect("daily");
+    });
+
+    $("#m-year-select").change(function() {
+      setCustomMonthSelect("monthly");
+    });
   }
 
   function getLastMonth() {

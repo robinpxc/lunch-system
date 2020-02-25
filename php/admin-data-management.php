@@ -113,30 +113,6 @@ include('common/session.php');
       </div>
     </div>
 
-    <!-- Custom Daily statistics -->
-    <div class="mt-4 mb-4 card text-left">
-      <div class="card-body">
-        <h5 class="card-title">自定义日期点餐统计</h5>
-        <div class="card-text mt-3">指定日期的点餐统计</div>
-        <div class="mt-1">
-          <div class="date-select" id="daily-date-select">
-            <select class="form-control form-control-sm year-select">
-            </select>
-            <span>年</span>
-            <select class="form-control form-control-sm month-select">
-            </select>
-            <span>月</span>
-            <select class="form-control form-control-sm day-select">
-            </select>
-            <span>日</span>
-          </div>
-        </div>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn-warning" id="custom-daily-statistics">开始统计</button>
-      </div>
-    </div>
-
     <!-- Monthly statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
@@ -153,17 +129,41 @@ include('common/session.php');
       </div>
     </div>
 
+    <!-- Custom Daily statistics -->
+    <div class="mt-4 mb-4 card text-left">
+      <div class="card-body">
+        <h5 class="card-title">指定日期点餐统计</h5>
+        <div class="card-text mt-3">自由选择日期的点餐统计</div>
+        <div class="mt-1">
+          <div class="date-select daily-date-select">
+            <select class="form-control form-control-sm year-select" id="d-year-select">
+            </select>
+            <span>年</span>
+            <select class="form-control form-control-sm" id="d-month-select">
+            </select>
+            <span>月</span>
+            <select class="form-control form-control-sm" id="d-day-select">
+            </select>
+            <span>日</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-warning" id="custom-daily-statistics">开始统计</button>
+      </div>
+    </div>
+
     <!-- Custom Monthly statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">指定月份账单统计</h5>
-        <div class="card-text mt-3">指定月份1日至月底的点餐账目统计</div>
+        <div class="card-text mt-3">自由选择年月的点餐账目统计</div>
         <div class="mt-1">
-          <div class="date-select" id="monthly-date-select">
-            <select class="form-control form-control-sm year-select">
+          <div class="date-select monthly-date-select">
+            <select class="form-control form-control-sm year-select" id="m-year-select">
             </select>
             <span>年</span>
-            <select class="form-control form-control-sm month-select">
+            <select class="form-control form-control-sm" id="m-month-select">
             </select>
             <span>月</span>
           </div>
