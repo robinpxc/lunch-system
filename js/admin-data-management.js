@@ -30,7 +30,14 @@ $(document).ready(function() {
     });
 
     $("#monthly-statistics").click(function() {
+      $.cookie("monthly-statistics-year", getCurrentYear());
       $.cookie("monthly-statistics-month", getLastMonth());
+      window.location.href = "admin-monthly-statistic.php";
+    });
+
+    $("#custom-monthly-statistics").click(function(){
+      $.cookie("monthly-statistics-year", $("#m-year-select option:selected").val());
+      $.cookie("monthly-statistics-month", $("#m-month-select option:selected").val());
       window.location.href = "admin-monthly-statistic.php";
     });
   }

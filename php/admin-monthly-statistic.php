@@ -28,6 +28,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common_order.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>
@@ -129,8 +130,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -151,8 +152,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -173,8 +174,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -195,8 +196,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -217,8 +218,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐总数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -239,8 +240,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 
@@ -261,8 +262,8 @@ include('common/session.php');
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数</th>
-              <th scope="col">价格总计</th>
+              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
 

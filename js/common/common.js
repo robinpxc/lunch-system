@@ -48,7 +48,7 @@ function setNavBarWidth() {
   }
 }
 
-// Function to show/hode pricing-header 
+// Function to show/hode pricing-header
 function willShowPricingHeader() {
   var windowWidth = getWindowWidth();
   if (windowWidth >= 575 && ($(".pricing-header").hasClass("hide"))) {
@@ -75,7 +75,7 @@ function hideElement(element) {
   }
 }
 
-// Function to unhide element 
+// Function to unhide element
 function unhideElement(element) {
   if(element.hasClass("hide")) {
     element.removeClass("hide");
@@ -238,12 +238,16 @@ function getDateTomorrow() {
 }
 
 function getTimeNow() {
-  var currentDate = new Date();
-  var currentHour = currentDate.getHours();
-  var currentMinute = currentDate.getMinutes();
-  var currentSecond = currentDate.getSeconds();
+  let currentDate = new Date();
+  return formatTime(currentDate.getHours(), currentDate.getMinutes(), currentDate.getSeconds());
+}
 
-  return formatTime(currentHour, currentMinute, currentSecond);
+function getCurrentYear() {
+  return new Date().getFullYear();
+}
+
+function getCurrentMonth() {
+  return (new Date().getMonth()) + 1;
 }
 
 // Function to decode unicode (Chinese chars)
