@@ -1,6 +1,6 @@
 $(document).ready(function(){
   let dataArray = fetchDailyOrderStatus($.cookie("daily-statistics-date"), false);
-  let noOrderArray = fetchNoOrderUsers(getDateToday(), false);
+  let noOrderArray = fetchNoOrderUsers($.cookie("daily-statistics-date"), false);
   let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   collectOrderSum(dataArray);
   configUI();
@@ -19,7 +19,7 @@ $(document).ready(function(){
   }
 
   function initAlertBox(isToday) {
-    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayChinese(true) : "选择的日期是 ");
+    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayChinese(true) : "选择的日期是 " + $.cookie("daily-statistics-date"));
     let orderSum = 0;
     for(let i = 1; i <= 8; i++) {
       $("#order-sum-" + i).text(orderCollection[i]);

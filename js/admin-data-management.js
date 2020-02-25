@@ -18,6 +18,17 @@ $(document).ready(function() {
       window.location.href = "admin-daily-statistic.php";
     });
 
+    $("#custom-daily-statistics").click(function(){
+      let selectedYear = $("#d-year-select option:selected").val();
+      let selectMonth = $("#d-month-select option:selected").val();
+      let selectDay = $("#d-day-select option:selected").val();
+      selectMonth = selectMonth.length == 1 ? "0" + selectMonth : selectMonth;
+      selectDay = selectDay.length == 1 ? "0" + selectDay : selectDay;
+      let selectedDate = selectedYear + "-" + selectMonth + "-" + selectDay;
+      $.cookie("daily-statistics-date", selectedDate);
+      window.location.href = "admin-daily-statistic.php";
+    });
+
     $("#monthly-statistics").click(function() {
       $.cookie("monthly-statistics-month", getLastMonth());
       window.location.href = "admin-monthly-statistic.php";
