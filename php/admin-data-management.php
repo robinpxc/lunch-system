@@ -102,7 +102,7 @@ include('common/session.php');
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">当日点餐统计</h5>
-        <div class="card-text mt-3">截止到每天上午 10:00 的点餐统计</div>
+        <div class="card-text mt-3">当天午餐统计</div>
         <div class="mt-1">
           <span>今天是 </span>
           <span class="special-text" id="date-today"></span>

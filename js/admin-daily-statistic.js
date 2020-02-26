@@ -19,7 +19,7 @@ $(document).ready(function(){
   }
 
   function initAlertBox(isToday) {
-    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayChinese(true) : "选择的日期是 " + $.cookie("daily-statistics-date"));
+    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayCN(true) : "选择的日期是 " + $.cookie("daily-statistics-date"));
     let orderSum = 0;
     for(let i = 1; i <= 8; i++) {
       $("#order-sum-" + i).text(orderCollection[i]);

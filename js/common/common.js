@@ -24,7 +24,7 @@ $(document).ready(function () {
 
 // Function to show current date and time.
 function showTime() {
-  $("#current_date").html(getDateTodayChinese(false));
+  $("#current_date").html(getDateTodayCN(false));
   $("#current_time").html(getTimeNow());
   setTimeout(showTime, 1000);
 }
@@ -190,39 +190,45 @@ function getDateToday() {
   return formatDate(currentYear, currentMonth, currentDay);
 }
 
-function getDateTodayChinese(withWeekDay) {
+function getDateTodayCN(withWeekDay) {
   let date = new Date();
-  let year = date.getFullYear()
-  let month = date.getMonth() + 1 ;
-  let day = date.getDate();
-  let weekDay = "";
+  return convertDateCN(date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getDay(), withWeekDay);
+}
+
+function getDateTomorrowCN(withWeekDay) {
+  let date = new Date();
+  return convertDateCN(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1, date.getDay() + 1, withWeekDay);
+}
+
+function convertDateCN(year, month, day, weekDay, withWeekDay) {
+  let weekDayCN = "";
   let formattedMonth = (month.toString())[1] ? month : '0' + month;
   let formattedDay = (day.toString())[1] ? day : '0' + day;
-  switch(date.getDay()) {
+  switch(weekDay) {
     case 0:
-      weekDay = "星期日";
+      weekDayCN = "星期日";
       break;
     case 1:
-      weekDay = "星期一";
+      weekDayCN = "星期一";
       break;
     case 2:
-      weekDay = "星期二";
+      weekDayCN = "星期二";
       break;
     case 3:
-      weekDay = "星期三";
+      weekDayCN = "星期三";
       break;
     case 4:
-      weekDay = "星期四";
+      weekDayCN = "星期四";
       break;
     case 5:
-      weekDay = "星期五";
+      weekDayCN = "星期五";
       break;
     case 6:
-      weekDay = "星期六";
+      weekDayCN = "星期六";
       break;
   }
   if(withWeekDay) {
-    return year + "年" + formattedMonth + "月" + formattedDay + "日 " + weekDay;
+    return year + "年" + formattedMonth + "月" + formattedDay + "日 " + weekDayCN;
   } else {
     return year + "年" + formattedMonth + "月" + formattedDay + "日 ";
   }

@@ -1,6 +1,5 @@
 $(document).ready(function() {
   let yearArray = fetchExistYear(false);
-  let dayArray = new Array();
 
   initUI();
   setCustomYearSelect();
@@ -8,7 +7,7 @@ $(document).ready(function() {
   setCardClickEvent();
 
   function initUI() {
-    $("#date-today").text(getDateTodayChinese(true));
+    $("#date-today").text(getDateTodayCN(true));
     $("#last-month").text((getLastMonth() >= 10) ? toString(getLastMonth()) : ("0" + getLastMonth()));
   }
 
