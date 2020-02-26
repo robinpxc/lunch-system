@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-
+  <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form.js"></script>
   <script type="text/javascript" src="../js/user-profile.js"></script>
