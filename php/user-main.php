@@ -115,6 +115,9 @@ $userRole = $row['role'];
         <div class="card-bottom">
           <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-today">开始点餐</button>
         </div>
+<!--        <div class="card-bottom">-->
+<!--          <button type="button" class="btn btn-lg btn-block btn-light" disabled="disabled">已无法修改</button>-->
+<!--        </div>-->
       </div>
 
       <!-- today card disabled -->

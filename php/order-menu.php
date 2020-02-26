@@ -184,32 +184,30 @@
       <!-- Combo 06 -->
       <div class="card d-flex">
         <div class="card-header">
-          套餐六
+          水饺
         </div>
 
-        <div class="card-body menu menu-06">
+        <div class="card-body menu menu-dumplings">
           <ul>
-            <li id="food-06-01"></li>
-            <li id="food-06-02"></li>
-            <li id="food-06-03"></li>
+            <li>干捞水饺</li>
           </ul>
         </div>
       </div>
 
       <!-- Combo 07 -->
-      <div class="card d-flex">
-        <div class="card-header">
-          套餐七(辣)
-        </div>
-
-        <div class="card-body menu menu-07">
-          <ul>
-            <li id="food-07-01"></li>
-            <li id="food-07-02"></li>
-            <li id="food-07-03"></li>
-          </ul>
-        </div>
-      </div>
+<!--      <div class="card d-flex">-->
+<!--        <div class="card-header">-->
+<!--          套餐七(辣)-->
+<!--        </div>-->
+<!---->
+<!--        <div class="card-body menu menu-07">-->
+<!--          <ul>-->
+<!--            <li id="food-07-01"></li>-->
+<!--            <li id="food-07-02"></li>-->
+<!--            <li id="food-07-03"></li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
 
       <!-- Combo 08 -->
       <div class="card d-flex bg-warning no-menu">

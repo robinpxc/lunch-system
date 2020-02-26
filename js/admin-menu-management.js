@@ -181,9 +181,9 @@ $(document).ready(function () {
 
   // Set update button click listener
   function setUpdateBtnClickListener() {
-    var menuArray = new Array(7);
+    var menuArray = new Array(5);
     $("#btn-update-menu").click(function () {
-      for (var i = 0; i < 7; i++) {
+      for (var i = 0; i < 5; i++) {
         menuArray[i] = new Array(3);
         for (var j = 0; j < 3; j++) {
           var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
@@ -243,7 +243,7 @@ $(document).ready(function () {
   // -------------------------- Menu operation functions ------------------------
   // Function to set menu data
   function setMenuData(menuArray) {
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 5; i++) {
       for (var j = 0; j < 3; j++) {
         var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
         $(foodId).val(decodeUnicode(menuArray[i][j]).split(','));
@@ -260,9 +260,10 @@ $(document).ready(function () {
         'date': date
       },
       dataType: "json",
+      timeout: 30000,
       success: function (response) {
         if (response != null) {
-          var menuArray = JSON.parse(response);
+          var menuArray = response;
           backupArray = menuArray;
           setMenuData(menuArray);
         } else {

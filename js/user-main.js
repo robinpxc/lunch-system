@@ -2,6 +2,8 @@
 $(document).ready(function () {
   let dateToday = getDateToday();
   let dateTomorrow = getDateTomorrow();
+  let orderStatusToday = "";
+  let orderStatusTomorrow = "";
   removeAdminCard();
   initUI();
 
@@ -103,27 +105,35 @@ $(document).ready(function () {
 
     if(date == getDateToday()) {
       itemIdPrefix = "#menu-today-0";
-      if(menuNum == 8) {
-        $("#menu-tip-today").text("今日【 不点餐 】");
+      if(menuNum == 7) {
+        $("#menu-tip-today").text("【 不点餐 】");
+        setNoOrderStyle($("#menu-tip-today"));
+        $(".list-today").remove();
+      } else if(menuNum == 6) {
+        $("#menu-tip-today").text("【 6号 】干捞水饺");
         setNoOrderStyle($("#menu-tip-today"));
         $(".list-today").remove();
       } else {
-        $("#menu-tip-today").text("今日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+        $("#menu-tip-today").text("已点" + "（ " + menuNum + " 号 " + "）");
       }
     } else if(date == getDateTomorrow()) {
       itemIdPrefix = "#menu-tomorrow-0";
-      if(menuNum == 8) {
-        $("#menu-tip-tomorrow").text("明日【 不点餐 】");
+      if(menuNum == 7) {
+        $("#menu-tip-tomorrow").text("【 不点餐 】");
         $(".list-tomorrow").remove();
         setNoOrderStyle($("#menu-tip-tomorrow"));
+      } else if(menuNum == 6) {
+        $("#menu-tip-tomorrow").text("【 6号 】干捞水饺");
+        setNoOrderStyle($("#menu-tip-tomorrow"));
+        $(".list-tomorrow").remove();
       } else {
-        $("#menu-tip-tomorrow").text("明日已点" + "（" + " " + menuNum + " 号" + " " +"）");
+        $("#menu-tip-tomorrow").text("已点" + "（" + " " + menuNum + " 号" + " " +"）");
       }
-
     }
+
     for(let i = 0; i < 3; i++) {
       let itemId = itemIdPrefix + (i + 1);
-      if((menuNum) < 8) {
+      if((menuNum) < 6) {
         $(itemId).text("【 " + decodeUnicode(menuList[menuNum - 1][i]) + " 】");
       }
     }

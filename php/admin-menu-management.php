@@ -223,44 +223,36 @@
           <!-- Combo 06 -->
           <div class="form-row combo-container">
             <div class="col-md-2 mb-3">
-              <input type="text" class="form-control menu-label" value="套餐【 6 】" disabled="disabled">
+              <input type="text" class="form-control menu-label" value="水饺【 6 】" disabled="disabled">
             </div>
 
             <div class="form-row col-md-10 combo-01">
-              <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-06-01" placeholder="一号菜" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-06-02" placeholder="二号菜" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <div class="input-group">
-                  <input type="text" class="form-control combo-content" id="food-06-03" placeholder="三号菜" required>
-                </div>
+              <div class="col-md-12 mb-3">
+                <input type="text" class="form-control" id="food-dumplings" placeholder="干捞水饺🥟" disabled="disabled">
               </div>
             </div>
           </div>
 
           <!-- Combo 07 -->
-          <div class="form-row combo-container">
-            <div class="col-md-2 mb-3">
-              <input type="text" class="form-control menu-label" value="辣餐【 7 】" disabled="disabled">
-            </div>
-
-            <div class="form-row col-md-10 combo-01">
-              <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-07-01" placeholder="一号菜" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <input type="text" class="form-control combo-content" id="food-07-02" placeholder="二号菜" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <div class="input-group">
-                  <input type="text" class="form-control combo-content" id="food-07-03" placeholder="三号菜" required>
-                </div>
-              </div>
-            </div>
-          </div>
+<!--          <div class="form-row combo-container">-->
+<!--            <div class="col-md-2 mb-3">-->
+<!--              <input type="text" class="form-control menu-label" value="辣餐【 7 】" disabled="disabled">-->
+<!--            </div>-->
+<!---->
+<!--            <div class="form-row col-md-10 combo-01">-->
+<!--              <div class="col-md-4 mb-3">-->
+<!--                <input type="text" class="form-control combo-content" id="food-07-01" placeholder="一号菜" required>-->
+<!--              </div>-->
+<!--              <div class="col-md-4 mb-3">-->
+<!--                <input type="text" class="form-control combo-content" id="food-07-02" placeholder="二号菜" required>-->
+<!--              </div>-->
+<!--              <div class="col-md-4 mb-3">-->
+<!--                <div class="input-group">-->
+<!--                  <input type="text" class="form-control combo-content" id="food-07-03" placeholder="三号菜" required>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
           <div class="operation-btn-group menu-update-btn-group form-row col-md-12" role="group">
             <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">创建菜单</button>
@@ -275,8 +267,6 @@
           <div class="operation-btn-group form-row col-md-12">
             <button type="button" class="btn btn-warning col-md-12 mb-2 hide" id="btn-discard-menu" disabled = "disabled">放弃修改</button>
           </div>
-
-          
 
           <input type="hidden" name="menu-status" id="menu-status" value="">
         </form>

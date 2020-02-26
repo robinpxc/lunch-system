@@ -56,6 +56,10 @@
   }
 }
 
+#food-dumplings {
+  text-align: center;
+}
+
 @media screen and (max-width: 768px) {
   #btn-update-menu, #btn-modify-menu {
     border-top-right-radius: 3px;

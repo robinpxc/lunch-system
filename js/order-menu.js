@@ -39,7 +39,7 @@ $(document).ready(function () {
   function setOrderInfo() {
     if(isOrderExist()) {
       if(date == getDateToday()) {
-        if(orderNumber == 8) {
+        if(orderNumber == 7) {
           $("#order-info-text").text("今日已选择不订餐！");
           $("#order-info-text").css("color", "red");
         } else {
@@ -47,7 +47,7 @@ $(document).ready(function () {
           $("#order-info-text").css("color", "green");
         }
       } else {
-        if(orderNumber == 8) {
+        if(orderNumber == 7) {
           $("#order-info-text").text("明日已选择不订餐！");
           $("#order-info-text").css("color", "red");
         } else {
@@ -78,7 +78,7 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         if (response != null) {
-          var menuArray = JSON.parse(response);
+          var menuArray = response;
           setMenuData(menuArray);
         } else {
           alert("获取状态失败，请重试！");
@@ -91,7 +91,7 @@ $(document).ready(function () {
   }
 
   function setMenuData(menuArray) {
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 3; j++) {
         let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
         $(foodId).text(decodeUnicode(menuArray[i][j]).split(','));
@@ -120,11 +120,17 @@ $(document).ready(function () {
           alert("菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
         },
         complete: function() {
-          if(menuNum == 8) {
+          if(menuNum == 7) {
             if(date == getDateToday()) {
               alert("今日 - 已选择【 不订餐 】！");
             } else {
               alert("明日 - 已选择【 不订餐 】！");
+            }
+          } else if(menuNum == 6) {
+            if(date == getDateToday()) {
+              alert("今日 - 成功预定【干捞水饺】");
+            } else {
+              alert("明日 - 成功预定【干捞水饺】");
             }
           } else {
             if(date == getDateToday()) {
