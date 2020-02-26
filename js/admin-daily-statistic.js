@@ -1,10 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function() {
+  alert($.cookie("daily-statistics-date"));
   let dataArray = fetchDailyOrderStatus($.cookie("daily-statistics-date"), false);
   let noOrderArray = fetchNoOrderUsers($.cookie("daily-statistics-date"), false);
   let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   collectOrderSum(dataArray);
   configUI();
-  initAlertBox($.cookie("daily-statistics-date") == getDateToday());
+  initAlertBox($.cookie("daily-statistics-date"));
   initTableGroup();
   setData(dataArray);
   setNoOrderTable(noOrderArray);
@@ -18,8 +19,14 @@ $(document).ready(function(){
     }
   }
 
-  function initAlertBox(isToday) {
-    $(".show-date-text").text(isToday ? "今天是 " + getDateTodayCN(true) : "选择的日期是 " + $.cookie("daily-statistics-date"));
+  function initAlertBox(date) {
+    if(date == getDateToday()) {
+      $(".show-date-text").text("今天是 " + getDateTodayCN(true));
+    } else if(date == getDateTomorrow()) {
+      $(".show-date-text").text("明天是 " + getDateTomorrowCN(true));
+    } else {
+      $(".show-date-text").text("选择的日期是 " + date);
+    }
     let orderSum = 0;
     for(let i = 1; i <= 8; i++) {
       $("#order-sum-" + i).text(orderCollection[i]);

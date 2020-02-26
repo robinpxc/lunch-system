@@ -113,6 +113,21 @@ include('common/session.php');
       </div>
     </div>
 
+    <!-- Tomorrow statistics -->
+    <div class="mt-4 mb-4 card text-left">
+      <div class="card-body">
+        <h5 class="card-title">次日点餐统计</h5>
+        <div class="card-text mt-3"><span class="special-text">明天</span> 的午餐统计</div>
+        <div class="mt-1">
+          <span>明天是</span>
+          <span class="special-text" id="date-tomorrow"></span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" id="tomorrow-statistics">查看统计结果</button>
+      </div>
+    </div>
+
     <!-- Monthly statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">

@@ -8,12 +8,18 @@ $(document).ready(function() {
 
   function initUI() {
     $("#date-today").text(getDateTodayCN(true));
+    $("#date-tomorrow").text(getDateTomorrowCN(true));
     $("#last-month").text((getLastMonth() >= 10) ? toString(getLastMonth()) : ("0" + getLastMonth()));
   }
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
       $.cookie("daily-statistics-date", getDateToday());
+      window.location.href = "admin-daily-statistic.php";
+    });
+
+    $("#tomorrow-statistics").click(function() {
+      $.cookie("daily-statistics-date", getDateTomorrow());
       window.location.href = "admin-daily-statistic.php";
     });
 
