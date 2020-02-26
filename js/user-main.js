@@ -74,14 +74,14 @@ $(document).ready(function () {
     }
   }
 
-  $("#menu-order-btn-today").click(function() {
-    if(orderStatusToday != "") {
-      $.cookie("order-date", getDateToday());
-      window.location.href = "../php/order-menu.php";
-    } else {
-      alert("今日订单信息获取失败，请刷新重试");
-    }
-  });
+  // $("#menu-order-btn-today").click(function() {
+  //   if(orderStatusToday != "") {
+  //     $.cookie("order-date", getDateToday());
+  //     window.location.href = "../php/order-menu.php";
+  //   } else {
+  //     alert("今日订单信息获取失败，请刷新重试");
+  //   }
+  // });
 
   $("#menu-order-btn-tomorrow").click(function() {
     if(orderStatusTomorrow != "") {
