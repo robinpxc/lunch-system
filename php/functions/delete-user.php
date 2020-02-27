@@ -2,7 +2,7 @@
 include('../common/session.php');
 
 $user_id = $_GET["user_id"];
-$delete_sql =  "DELETE FROM user_info WHERE id = '$user_id'";
-$delete_result = mysqli_query($mysqlConnection, $delete_sql);
+$sql_mark_del = "UPDATE `user_info` SET `user_info`.`status` = 'D' WHERE `user_info`.`id` = '$user_id'";
+$delete_result = mysqli_query($mysqlConnection, $sql_mark_del);
 echo "<script>window.location.href='../admin-user-management.php'</script>";
 ?>
