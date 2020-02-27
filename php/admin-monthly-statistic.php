@@ -27,6 +27,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common_order.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
@@ -122,7 +123,10 @@ include('common/session.php');
       <!-- 巡察办表格 -->
       <div class="table-card card table-group-0">
         <div class="card-header">
-          市委巡察办
+          <span>市委巡察办</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -144,7 +148,10 @@ include('common/session.php');
       <!-- 一组表格 -->
       <div class="table-card card table-group-1">
         <div class="card-header">
-          市委第一巡察组
+          <span>市委第一巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -166,7 +173,10 @@ include('common/session.php');
       <!-- 二组表格 -->
       <div class="table-card card table-group-2">
         <div class="card-header">
-          市委第二巡察组
+          <span>市委第二巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-2" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -188,7 +198,10 @@ include('common/session.php');
       <!-- 三组表格 -->
       <div class="table-card card table-group-3">
         <div class="card-header">
-          市委第三巡察组
+          <span>市委第三巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-3" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -210,7 +223,10 @@ include('common/session.php');
       <!-- 四组表格 -->
       <div class="table-card card table-group-4">
         <div class="card-header">
-          市委第四巡察组
+          <span>市委第四巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-4" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -232,7 +248,10 @@ include('common/session.php');
       <!-- 五组表格 -->
       <div class="table-card card table-group-5">
         <div class="card-header">
-          市委第五巡察组
+          <span>市委第五巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-5" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -254,7 +273,10 @@ include('common/session.php');
       <!-- 临时组表格 -->
       <div class="table-card card table-group-6">
         <div class="card-header">
-          临时人员账单
+          <span>临时人员账单</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-6" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
