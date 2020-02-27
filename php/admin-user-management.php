@@ -27,6 +27,8 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
+  <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/profile_form.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
@@ -123,7 +125,10 @@ include('common/session.php');
       <!-- 巡察办人员名单 -->
       <div class="table-card card table-group-0">
         <div class="card-header">
-          市委巡察办
+          <span class="tb-title">市委巡察办</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -133,7 +138,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group0">
@@ -146,7 +151,10 @@ include('common/session.php');
       <!-- 一组人员名单 -->
       <div class="table-card card table-group-1">
         <div class="card-header">
-          市委第一巡察组
+          <span class="tb-title">市委第一巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -156,7 +164,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group1">
@@ -169,7 +177,10 @@ include('common/session.php');
       <!-- 二组人员名单 -->
       <div class="table-card card table-group-2">
         <div class="card-header">
-          市委第二巡察组
+          <span class="tb-title">市委第二巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -179,7 +190,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group2">
@@ -192,7 +203,10 @@ include('common/session.php');
       <!-- 三组人员名单 -->
       <div class="table-card card table-group-3">
         <div class="card-header">
-          市委第三巡察组
+          <span class="tb-title">市委第三巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -202,7 +216,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group3">
@@ -215,7 +229,10 @@ include('common/session.php');
       <!-- 四组人员名单 -->
       <div class="table-card card table-group-4">
         <div class="card-header">
-          市委第四巡察组
+          <span class="tb-title">市委第四巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -225,7 +242,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group4">
@@ -238,7 +255,10 @@ include('common/session.php');
       <!-- 五组人员名单 -->
       <div class="table-card card table-group-5">
         <div class="card-header">
-          市委第五巡察组
+          <span class="tb-title">市委第五巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -248,7 +268,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group5">
@@ -261,7 +281,10 @@ include('common/session.php');
       <!-- 临时人员名单 -->
       <div class="table-card card table-group-6">
         <div class="card-header">
-          临时人员名单
+          <span class="tb-title">临时人员</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table table-dark">
@@ -271,7 +294,7 @@ include('common/session.php');
               <th scope="col" class="id-info">ID</th>
               <th scope="col" class="role-info hide-small-screen">权限</th>
               <th scope="col" class="nickname-info hide-small-screen">昵称</th>
-              <th scope="col" class="operation">操作</th>
+              <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
             <tbody class="tb-group6">

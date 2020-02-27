@@ -50,6 +50,16 @@
    width: 100%;
  }
 
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-print {
+  float: right;
+}
+
 @media screen and (max-width: 768px) {
   .create-form {
     width: 100%;

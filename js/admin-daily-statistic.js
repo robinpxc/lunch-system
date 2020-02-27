@@ -77,7 +77,7 @@ $(document).ready(function() {
   }
 
   function setNoOrderTable(data) {
-    $(".header-no-order").text("未点餐人员 （ " + data.length + " ） 人");
+    $(".no-order-title").text("未点餐人员 （ " + data.length + " ） 人");
     for(let i = 0; i < data.length; i++) {
       let trClass = "no-order-user" + i;
       $(".tb-no-order").append("<tr class=" + trClass + ">");
@@ -99,7 +99,7 @@ $(document).ready(function() {
 
   function setNoOrderTablePrint() {
     $(".tb-print-no-order").click(function() {
-      initPrintFunction($(".table-not-ordered .card-body"));
+      initPrintFunction($(".table-not-ordered"));
     });
   }
 });

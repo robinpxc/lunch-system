@@ -4,6 +4,7 @@ $(document).ready(function () {
   initTableGroup();
   configTableHeader();
   setData(dataArray);
+  setGroupTablePrint();
 
   $('.del-btn').on('click', function () {
     showConfirmDeleteDialog(this);
@@ -197,7 +198,7 @@ $(document).ready(function () {
 
   function configTableHeader() {
     for(let i = 0; i < 7; i++) {
-      let cardHeaderClassName = ".table-group-" + i + " .card-header";
+      let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
       $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
     }
@@ -245,7 +246,7 @@ $(document).ready(function () {
 
       $("." + personClass).append("<td class='hide-small-screen'>" + (userRole == "user" ? "用户" : "管理员"));
       $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
-      $("." + personClass).append("<td class='operation-btn-group-" + i + "'" + ">");
+      $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
