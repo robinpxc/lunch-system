@@ -13,15 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $userId =  $row['id'];
     $userPassword = $row['password'];
+    $userStatus = $row['status'];
 
-    $pwdHasher = new PasswordHash(8, FALSE);
+    if($userStatus == "A") {
+      $pwdHasher = new PasswordHash(8, FALSE);
 
-    // If result matched $myusername and $myLoginPwd, table row must be 1 row
-    if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
+      // If result matched $myUsername and $myLoginPwd, table row must be 1 row
+      if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
         $_SESSION['lunch_user_session'] = $userId;
         header("location: user-main.php");
-    } else {
+      } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
+      }
+    } else {
+      echo "<script>alert('当前账户处于删除状态，请联系804小潘(85252796/15268571882)')</script>";
     }
 }
 ?>
