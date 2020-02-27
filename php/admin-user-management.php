@@ -131,8 +131,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -154,8 +154,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -177,8 +177,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -200,8 +200,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -223,8 +223,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -246,8 +246,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -269,8 +269,8 @@ include('common/session.php');
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info">权限</th>
-              <th scope="col" class="nickname-info">昵称</th>
+              <th scope="col" class="role-info hide-small-screen">权限</th>
+              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation">操作</th>
             </tr>
             </thead>
@@ -336,11 +336,11 @@ include('common/session.php');
         </div>
 
         <div class="d-inline-flex form-table extend-content hide">
-          <button id="extend-btn" type="button" class="form-control btn btn-success content-control">展开操作</button>
+          <button id="extend-btn" type="button" class="form-control btn btn-success content-control">点击操作添加用户</button>
         </div>
 
         <div class="d-inline-flex form-table hide-content hide">
-          <button id="hide-btn" type="button" class="form-control btn btn-success content-control">折叠操作</button>
+          <button id="hide-btn" type="button" class="form-control btn btn-success content-control">收起操作面板</button>
         </div>
       </div>
     </form>

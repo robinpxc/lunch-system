@@ -55,6 +55,18 @@
     width: 100%;
   }
 
+  .dropdown-workgroup {
+    margin: 5px;
+  }
+
+  .card-body {
+    padding: 0 !important;
+  }
+
+  .hide-small-screen {
+    display: none;
+  }
+
   .extend-content button, .hide-content button {
     width: 100% !important;
   }

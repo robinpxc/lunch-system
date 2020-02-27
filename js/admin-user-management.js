@@ -243,8 +243,8 @@ $(document).ready(function () {
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);
 
-      $("." + personClass).append("<td>" + (userRole == "user" ? "用户" : "管理员"));
-      $("." + personClass).append("<td>" + nickname);
+      $("." + personClass).append("<td class='hide-small-screen'>" + (userRole == "user" ? "用户" : "管理员"));
+      $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
       $("." + personClass).append("<td class='operation-btn-group-" + i + "'" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='btn-group btn-group" + "-" + i + "'" + ">");
