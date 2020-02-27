@@ -1,7 +1,7 @@
 function initPrintFunction(element) {
   element.print({
     addGlobalStyles : true,
-    stylesheet : null,
+    stylesheet : "../css/common/print.css",
     rejectWindow : true,
     noPrintSelector : ".no-print",
     iframe : true,
