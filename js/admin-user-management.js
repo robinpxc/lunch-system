@@ -96,7 +96,6 @@ $(document).ready(function () {
         switch (response) {
           case 1:
             alert("添加用户" + username + "成功！");
-            showAlert();
             break;
           case 2:
             alert("设置的昵称已经被使用了");
