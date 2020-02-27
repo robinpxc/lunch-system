@@ -98,7 +98,7 @@ $(document).ready(function () {
             showAlert();
             break;
           case 2:
-            showAlert("昵称已经被使用了");
+            alert("设置的昵称已经被使用了");
             break;
         }
       }
