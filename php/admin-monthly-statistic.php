@@ -30,6 +30,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common_order.js"></script>
+  <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>

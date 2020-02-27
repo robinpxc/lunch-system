@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  alert($.cookie("daily-statistics-date"));
   let dataArray = fetchDailyOrderStatus($.cookie("daily-statistics-date"), false);
   let noOrderArray = fetchNoOrderUsers($.cookie("daily-statistics-date"), false);
   let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -9,11 +8,12 @@ $(document).ready(function() {
   initTableGroup();
   setData(dataArray);
   setNoOrderTable(noOrderArray);
-  // $.cookie("daily-statistics-date", "");
+  setGroupTablePrint();
+  setNoOrderTablePrint();
 
   function configUI() {
     for(let i = 0; i < 7; i++) {
-      let cardHeaderClassName = ".table-group-" + i + " .card-header";
+      let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
       $(cardHeaderClassName).text(originalText + "（ " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
     }
@@ -95,5 +95,11 @@ $(document).ready(function() {
       let orderNum = data[i][2];
       orderCollection[orderNum]++;
     }
+  }
+
+  function setNoOrderTablePrint() {
+    $(".tb-print-no-order").click(function() {
+      initPrintFunction($(".table-not-ordered .card-body"));
+    });
   }
 });

@@ -7,7 +7,7 @@ $(document).ready(function(){
 
   setDataToTable();
   addSummaryForGroups();
-  setPrintBtnClickEvent();
+  setGroupTablePrint();
 
 
   function setDataToTable() {
@@ -41,21 +41,4 @@ $(document).ready(function(){
   function getGropNumber(groupNum) {
     return groupNum[5];
   }
-
-  function setPrintBtnClickEvent() {
-    for(let i = 0; i < 7; i++) {
-      $(".tb-print-" + i).click(function() {
-        $(".table-group-" + i + " .card-body").print({
-          addGlobalStyles : true,
-          stylesheet : null,
-          rejectWindow : true,
-          noPrintSelector : ".no-print",
-          iframe : true,
-          append : null,
-          prepend : null
-        });
-      });
-    }
-  }
-
 });

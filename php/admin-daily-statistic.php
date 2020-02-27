@@ -32,6 +32,7 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/common/common_order.js"></script>
   <script type="text/javascript" src="../js/common/common_menu.js"></script>
+  <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
 
 </head>
@@ -169,7 +170,10 @@ include('common/session.php'); ?>
       <!-- 巡察办表格 -->
       <div class="table-card card table-group-0">
         <div class="card-header">
-          市委巡察办
+          <span class="tb-title">市委巡察办</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-0" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -190,7 +194,10 @@ include('common/session.php'); ?>
       <!-- 一组表格 -->
       <div class="table-card card table-group-1">
         <div class="card-header">
-          市委第一巡察组
+          <span class="tb-title">市委第一巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -211,7 +218,10 @@ include('common/session.php'); ?>
       <!-- 二组表格 -->
       <div class="table-card card table-group-2">
         <div class="card-header">
-          市委第二巡察组
+          <span class="tb-title">市委第二巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -232,7 +242,10 @@ include('common/session.php'); ?>
       <!-- 三组表格 -->
       <div class="table-card card table-group-3">
         <div class="card-header">
-          市委第三巡察组
+          <span class="tb-title">市委第三巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -253,7 +266,10 @@ include('common/session.php'); ?>
       <!-- 四组表格 -->
       <div class="table-card card table-group-4">
         <div class="card-header">
-          市委第四巡察组
+          <span class="tb-title">市委第四巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -274,7 +290,10 @@ include('common/session.php'); ?>
       <!-- 五组表格 -->
       <div class="table-card card table-group-5">
         <div class="card-header">
-          市委第五巡察组
+          <span class="tb-title">市委第五巡察组</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -295,7 +314,10 @@ include('common/session.php'); ?>
       <!-- 临时组表格 -->
       <div class="table-card card table-group-6">
         <div class="card-header">
-          临时人员餐表
+          <span class="tb-title">临时工作人员</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-1" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">
@@ -316,7 +338,10 @@ include('common/session.php'); ?>
       <!-- 未点餐名单 -->
       <div class="table-card card table-not-ordered">
         <div class="card-header">
-          <span class="header-no-order">未点餐人员餐表</span>
+          <span class="no-order-title">未点餐人员名单</span>
+          <span>
+            <button class="btn btn-success btn-print tb-print-no-order" type="button">打印表格</button>
+          </span>
         </div>
         <div class="card-body">
           <table class="table">

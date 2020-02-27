@@ -1,4 +1,4 @@
-.header-no-order {
+.no-order-title{
   color: blue;
 }
 
@@ -35,6 +35,15 @@
   border-bottom: 0;
 }
 
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-print {
+  float: right;
+}
 
 @media screen and (max-width: 768px) {
  .main-content {
