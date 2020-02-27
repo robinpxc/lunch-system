@@ -2,7 +2,6 @@
 include('../common/session.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $pwdHasher = new PasswordHash(8, false);
-
   $nickname = mysqli_real_escape_string($mysqlConnection, $_POST['nickname']);
   $fullname = mysqli_real_escape_string($mysqlConnection, $_POST['username']);
   $password = mysqli_real_escape_string($mysqlConnection, $pwdHasher->HashPassword($_POST['password']));
@@ -16,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($row) {
     echo 2;
   } else {
-    $insert_sql = "INSERT INTO `user_info` (nick_name`, `fullname`, `password`, `role`, `workgroup`) VALUES ('$nickname', '$fullname', '$password', '$role', '$workgroup')";
-    $insertResult = mysqli_query($mysqlConnection, $insert_sql);
+    $insert_sql = "INSERT INTO `user_info` (`nick_name`, `fullname`, `password`, `role`, `workgroup`) VALUES ('$nickname', '$fullname', '$password', '$role', '$workgroup')";
+    mysqli_query($mysqlConnection, $insert_sql);
     echo 1;
   }
 }

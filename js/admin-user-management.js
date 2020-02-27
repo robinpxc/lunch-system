@@ -91,6 +91,7 @@ $(document).ready(function () {
         "workgroup": workgroup
       },
       dataType: "json",
+      async: false,
       success: function (response) {
         switch (response) {
           case 1:
