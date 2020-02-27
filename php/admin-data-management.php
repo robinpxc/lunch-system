@@ -28,7 +28,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/common/common_date.js"></script>
+  <script type="text/javascript" src="../js/common/common-date.js"></script>
   <script type="text/javascript" src="../js/admin-data-management.js"></script>
 
 </head>

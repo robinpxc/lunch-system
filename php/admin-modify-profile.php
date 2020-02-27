@@ -39,7 +39,7 @@ $userWorkgroup = $row['workgroup'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/common/profile_form_new.js"></script>
+  <script type="text/javascript" src="../js/common/profile-form-new.js"></script>
   <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
 
 </head>
