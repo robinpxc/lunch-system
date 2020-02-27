@@ -25,8 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       } else {
         echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
       }
-    } else {
+    } else if($userStatus == "D") {
       echo "<script>alert('当前账户处于删除状态，请联系804小潘(85252796/15268571882)')</script>";
+    } else {
+      echo "<script>alert('当前账户不存在，请联系804小潘(85252796/15268571882)')</script>";
     }
 }
 ?>
