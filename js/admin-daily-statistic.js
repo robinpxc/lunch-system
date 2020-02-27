@@ -15,7 +15,7 @@ $(document).ready(function() {
     for(let i = 0; i < 7; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（ " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
+      $(cardHeaderClassName).text(originalText + "（共" +  getGroupOrderSum(dataArray, i) + "人有效点餐）");
     }
   }
 
@@ -41,12 +41,15 @@ $(document).ready(function() {
     }
   }
 
-  function getGroupOrderNumber(dataArray, groupNumber) {
+  function getGroupOrderSum(dataArray, groupNumber) {
     let groupOrder = 0;
     let group = "group" + groupNumber;
     for(let i = 0; i < dataArray.length; i++) {
+      let orderNum = dataArray[i][2];
       if(dataArray[i][3] == group) {
-        groupOrder ++;
+        if(orderNum != 7) {
+          groupOrder ++;
+        }
       }
     }
     return groupOrder;
@@ -65,14 +68,19 @@ $(document).ready(function() {
 
   function setDataToGroupTable(data, group) {
     for(let i = 0; i < data.length; i++) {
-      let personClass = "group" + "-" + group + "-" + "person" + "-" + i; ;
-      $(".tb-group" + group).append("<tr class=" + personClass + ">");
       let fullname = data[i][0];
       let userId = data[i][1];
       let orderNum = data[i][2];
+      let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
+      if(orderNum == 7) {
+        $(".tb-group" + group).append("<tr class='" + personClass + " no-print" + "'>");
+      } else {
+        $(".tb-group" + group).append("<tr class=" + personClass + ">");
+      }
+      
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);
-      $("." + personClass).append("<td>" + (orderNum == 8 ? "不点餐" : (orderNum + " 号")) );
+      $("." + personClass).append("<td>" + (orderNum == 7 ? "不点餐" : (orderNum + " 号")) );
     }
   }
 
