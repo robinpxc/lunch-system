@@ -1,0 +1,101 @@
+@import url("common/common.css");
+
+.main-content {
+  margin-top: 10px;
+}
+
+.create-form {
+  margin-bottom: 0;
+  position: fixed;
+  bottom: 0;
+}
+
+.fullname-input {
+  width: auto;
+  max-width: 80px;
+}
+
+.role-select {
+  width: auto;
+  max-width: 100px;
+}
+
+.btn-group {
+  min-width: 120px;
+}
+
+.btn-group button {
+  display: inline-block;
+}
+
+#modify-btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0; 
+}
+
+.del-btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+ .create-user {
+   width: 100%;
+   padding: 10px;
+ }
+
+ .create-form, .create-form * {
+   z-index: 15;
+ }
+
+ .blank {
+   width: 100%;
+ }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-print {
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+  .create-form {
+    width: 100%;
+  }
+
+  .dropdown-workgroup {
+    margin: 5px;
+  }
+
+  .card-body {
+    padding: 0 !important;
+  }
+
+  .hide-small-screen {
+    display: none;
+  }
+
+  .extend-content button, .hide-content button {
+    width: 100% !important;
+  }
+
+  .form-table {
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .form-control {
+    margin: 1px;
+  }
+
+  .form-control select,
+  .form-control input {
+    width: 100% !important;
+  }
+
+  #show-content {
+    display: block;
+  }
+}

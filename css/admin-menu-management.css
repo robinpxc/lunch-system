@@ -1,0 +1,73 @@
+@import url("common/common.css");
+
+.main-content {
+  padding-top: 10px;
+}
+
+.calendar {
+  margin-right: 10px;
+}
+
+.today {
+  font-size: 16px;
+  font-weight: bold;
+  color: red;
+}
+
+.menu-data {
+  width: 100%;
+  padding: 10px;
+}
+
+.form-row input {
+  min-width: 100px;
+}
+
+.operation-btn-group {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#btn-update-menu, #btn-modify-menu {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+#btn-clear-menu, #btn-delete-menu {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+@media screen and (max-width: 995px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .menu-data {
+    margin-top: 10px;
+  }
+
+  .form-control {
+    width: 100%;
+  }
+
+  #schedule-box {
+    width: 100%;
+  }
+}
+
+#food-dumplings {
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  #btn-update-menu, #btn-modify-menu {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+  }
+
+  #btn-clear-menu, #btn-delete-menu {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+  }
+}

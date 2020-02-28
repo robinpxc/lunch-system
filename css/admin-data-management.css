@@ -1,0 +1,52 @@
+.card-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  min-width: 18rem;
+  width: 30%;
+  margin-right: 10px;
+}
+
+.card .card-body {
+  min-height: 9rem;
+}
+
+.card .card-footer {
+  padding:0.5rem;
+}
+
+.card .special-text {
+  color: red;
+  font-weight: bold;
+}
+
+.card .card-footer .btn {
+  width: 100%;
+}
+
+.date-select {
+  margin-top: 5px;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+}
+
+.date-select span {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.date-select .form-control {
+  width: 25%;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin: 5px;
+  }
+}

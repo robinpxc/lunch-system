@@ -1,0 +1,56 @@
+.no-order-title{
+  color: blue;
+}
+
+.show-date-text {
+  font-weight: bold;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.order-count {
+  margin-top: 5px;
+}
+
+.order-count table {
+  width: 250px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border: solid black 1px;
+  border-radius: 5px;
+  text-align: center;
+  border-spacing: 0;
+}
+
+.order-count table td {
+  border-left: solid black 1px;;
+  border-bottom: solid black 1px;
+}
+
+.order-count table .left {
+  border-left: 0;
+}
+
+.order-count table .bottom {
+  border-bottom: 0;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-print {
+  float: right;
+}
+
+@media screen and (max-width: 768px) {
+ .main-content {
+    padding: 10px;
+  }
+
+  .order-count table {
+    width: 100%;
+  }
+}
