@@ -5,9 +5,10 @@ $(document).ready(function () {
   $("input[name='login-info']").focus();
 
   // Function calls
-  setInputTextChangeListener();
   disableZoom();
-
+  setInputTextChangeListener();
+  setInputEnterKeyEvent();
+  
   // Function definitions
   loginBtn.click(function () {
     setDisable($(this));
@@ -45,13 +46,15 @@ $(document).ready(function () {
     });
   }
 
-  function setInputBlur() {
-    $("input").each(function() {
-      $(this).blur(function() {
-        setLoginBtn();
-      });
-    });
+  function setInputEnterKeyEvent() {
+    $("input[type=password]").on("keydown",function(e){
+      if(e.key=="Enter"){
+        $("#login-btn").trigger("click");
+      }
+    })
   }
+
+
 
   function setLoginBtn() {
     loginInfo = $("input[name='login-info']").val();
