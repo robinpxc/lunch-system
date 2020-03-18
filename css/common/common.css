@@ -89,12 +89,6 @@ body {
   font-weight: bold;
 }
 
-.card-admin h1,
-.card-admin h4,
-.card-admin li {
-  color: white;
-}
-
 .right-radius {
   border-top-right-radius: 3px !important;
   border-bottom-right-radius: 3px !important;

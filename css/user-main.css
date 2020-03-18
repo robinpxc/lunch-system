@@ -1,7 +1,8 @@
 @import url("common/common.css");
 
 .card {
-  min-height: 260px;
+  height: 220px;
+  border-width: 2px;
 }
 
 .card-body {
@@ -16,14 +17,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   font-weight: bold;
   font-size: 2rem;
   padding-top: 0;
 }
 
-.no-menu .card-body span {
-  margin-bottom: 20px;
+.no-menu .card-body {
+  margin-bottom: 30px;
 }
 
 .card-menu-list {
@@ -36,7 +37,7 @@
 }
 
 .card-menu-list li {
-  color: white;
+  color: black;
 }
 
 #menu-tip-today, #menu-tip-tomorrow {
@@ -48,6 +49,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
+}
+
+#admin-card .card-bottom button {
+  height: 45px;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    height: auto;
+    min-height: 220px;
+    border-width: 2px;
+  }
 }
 

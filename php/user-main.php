@@ -100,12 +100,11 @@ $userRole = $row['role'];
     <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
     <div class="card-deck mb-5 text-center">
       <!-- today menu -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-danger" id="menu-card-today">
+      <div class="card mb-2 mt-2 border-success shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title" id="card-title-today">尚未点餐</h1>
           <span id="menu-tip-today"></span>
           <ul class="list-unstyled mt-3 mb-4 card-menu-list list-today">
             <li id="menu-today-01"></li>
@@ -113,21 +112,15 @@ $userRole = $row['role'];
             <li id="menu-today-03"></li>
           </ul>
         </div>
-<!--        <div class="card-bottom">-->
-<!--          <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-today">开始点餐</button>-->
-<!--        </div>-->
-        <div class="card-bottom">
-          <button type="button" class="btn btn-lg btn-block btn-light" disabled="disabled">无法修改</button>
-        </div>
       </div>
 
-      <!-- today card disabled -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary no-menu hide" id="menu-card-today-disabled">
+      <!-- Common card: today no menu -->
+      <div class="card mb-2 mt-2 border-secondary mb-3 no-menu hide" id="menu-card-today-disabled">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          尚未设置
+          <span>尚未点餐</span>
         </div>
       </div>
 
@@ -137,7 +130,6 @@ $userRole = $row['role'];
           <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          <h1 class="card-title eating-card-title" id="card-title-tomorrow">尚未点餐</h1>
           <span id="menu-tip-tomorrow"></span>
           <ul class="list-unstyled mt-3 mb-4 card-menu-list list-tomorrow">
             <li id="menu-tomorrow-01"></li>
@@ -152,31 +144,30 @@ $userRole = $row['role'];
       </div>
 
       <!-- tomorrow card disabled -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-secondary no-menu hide" id="menu-card-tomorrow-disabled">
+      <div class="card mb-2 mt-2 border-secondary mb-3 no-menu hide" id="menu-card-tomorrow-disabled">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          <span>尚未设置</span>
+          <span>尚未点餐</span>
         </div>
       </div>
 
-      <div class="card card-admin mb-2 mt-2 shadow-sm bg-dark" id="admin-card">
+      <div class="card card-admin mb-2 mt-2 border-danger" id="admin-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">管理</h4>
         </div>
         <div class="card-body">
           <div>
-            <h1 class="card-title eating-card-title">系统管理</h1>
-            <span>管理员获准使用此组件</span>
+            <h4 class="card-title eating-card-title">联络员使用此组件</h4>
           </div>
         </div>
 
         <div class="card-bottom">
           <div class="btn-group" role="group" aria-label="Form submit button group">
-            <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">用户管理</button>
-            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">菜单管理</button>
-            <button type="submit" class="btn btn-lg btn-primary ml-2 active" id="data-manage-btn">数据管理</button>
+            <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">人员管理</button>
+            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">点餐管理</button>
+            <button type="submit" class="btn btn-lg btn-primary ml-2 active" id="data-manage-btn">数据统计</button>
           </div>
         </div>
       </div>

@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
   let dateToday = getDateToday();
   let dateTomorrow = getDateTomorrow();
@@ -7,11 +6,11 @@ $(document).ready(function () {
   removeAdminCard();
   initUI();
 
-  $("#user-manage-btn").click(function() {
+  $("#user-manage-btn").click(function () {
     window.location.href = "admin-user-management.php";
   });
 
-  $("#menu-manage-btn").click(function() {
+  $("#menu-manage-btn").click(function () {
     window.location.href = "admin-menu-management.php";
   });
 
@@ -25,34 +24,20 @@ $(document).ready(function () {
   }
 
   function initCardToday() {
-    if(checkMenuStatus(dateToday, false) == "menu-exist") {
+    if (checkMenuStatus(dateToday, false) == "menu-exist") {
       orderStatusToday = checkOrderStatus(dateToday, false, "order-status");
-      if(orderStatusToday == "order-exist") {
-        $("#menu-order-btn-today").text("点击修改");
-        $("#card-title-today").text("");
-        hideElement($("#card-title-today"));
-        removeOldClass($("#menu-card-today"), "bg-danger");
-        addNewClass($("#menu-card-today"), "bg-success");
+      if (orderStatusToday == "order-exist") {
         setCardPreviewData(dateToday, fetchMenu(dateToday, false));
       } else {
-        $("#menu-tip-today").text("点击按钮开始点餐");
-        $("#menu-order-btn-today").text("开始点餐");
-        $("#card-title-today").text("尚未点餐");
-        $(".no-menu")
-        unhideAndEnableElement($("#menu-order-btn-today"));
-        removeOldClass($("#menu-card-today"), "bg-success");
-        addNewClass($("#menu-card-today"), "bg-danger");
+        hideElement($("#menu-card-today"));
       }
-    } else {
-      $("#menu-card-today").remove();
-      removeOldClass($("#menu-card-today-disabled"), "hide");
     }
   }
 
   function initCardTomorrow() {
-    if(checkMenuStatus(dateTomorrow, false) == "menu-exist") {
+    if (checkMenuStatus(dateTomorrow, false) == "menu-exist") {
       orderStatusTomorrow = checkOrderStatus(dateTomorrow, false, "order-status");
-      if(orderStatusTomorrow == "order-exist") {
+      if (orderStatusTomorrow == "order-exist") {
         $("#menu-tip-tomorrow").text("明日已点餐");
         $("#menu-order-btn-tomorrow").text("点击修改");
         $("#card-title-tomorrow").text("");
@@ -74,17 +59,17 @@ $(document).ready(function () {
     }
   }
 
-  // $("#menu-order-btn-today").click(function() {
-  //   if(orderStatusToday != "") {
-  //     $.cookie("order-date", getDateToday());
-  //     window.location.href = "../php/order-menu.php";
-  //   } else {
-  //     alert("今日订单信息获取失败，请刷新重试");
-  //   }
-  // });
+// $("#menu-order-btn-today").click(function() {
+//   if(orderStatusToday != "") {
+//     $.cookie("order-date", getDateToday());
+//     window.location.href = "../php/order-menu.php";
+//   } else {
+//     alert("今日订单信息获取失败，请刷新重试");
+//   }
+// });
 
-  $("#menu-order-btn-tomorrow").click(function() {
-    if(orderStatusTomorrow != "") {
+  $("#menu-order-btn-tomorrow").click(function () {
+    if (orderStatusTomorrow != "") {
       $.cookie("order-date", getDateTomorrow());
       window.location.href = "../php/order-menu.php";
     } else {
@@ -103,37 +88,37 @@ $(document).ready(function () {
     let menuNum = parseInt(checkOrderStatus(date, false, "order-number"));
     let itemIdPrefix = "";
 
-    if(date == getDateToday()) {
+    if (date == getDateToday()) {
       itemIdPrefix = "#menu-today-0";
-      if(menuNum == 7) {
+      if (menuNum == 7) {
         $("#menu-tip-today").text("【 不点餐 】");
         setNoOrderStyle($("#menu-tip-today"));
         $(".list-today").remove();
-      } else if(menuNum == 6) {
+      } else if (menuNum == 6) {
         $("#menu-tip-today").text("【 6号 】干捞水饺");
         setNoOrderStyle($("#menu-tip-today"));
         $(".list-today").remove();
       } else {
         $("#menu-tip-today").text("已点" + "（ " + menuNum + " 号 " + "）");
       }
-    } else if(date == getDateTomorrow()) {
+    } else if (date == getDateTomorrow()) {
       itemIdPrefix = "#menu-tomorrow-0";
-      if(menuNum == 7) {
+      if (menuNum == 7) {
         $("#menu-tip-tomorrow").text("【 不点餐 】");
         $(".list-tomorrow").remove();
         setNoOrderStyle($("#menu-tip-tomorrow"));
-      } else if(menuNum == 6) {
+      } else if (menuNum == 6) {
         $("#menu-tip-tomorrow").text("【 6号 】干捞水饺");
         setNoOrderStyle($("#menu-tip-tomorrow"));
         $(".list-tomorrow").remove();
       } else {
-        $("#menu-tip-tomorrow").text("已点" + "（" + " " + menuNum + " 号" + " " +"）");
+        $("#menu-tip-tomorrow").text("已点" + "（" + " " + menuNum + " 号" + " " + "）");
       }
     }
 
-    for(let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       let itemId = itemIdPrefix + (i + 1);
-      if((menuNum) < 6) {
+      if ((menuNum) < 6) {
         $(itemId).text("【 " + decodeUnicode(menuList[menuNum - 1][i]) + " 】");
       }
     }
@@ -147,12 +132,13 @@ $(document).ready(function () {
 
     element.parent().css({
       "display": "flex",
-      "justify-content":"center",
+      "justify-content": "center",
       "align-items": "center",
       "padding-top": "0px"
     });
   }
-});
+})
+;
 
 
 
