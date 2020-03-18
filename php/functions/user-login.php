@@ -20,18 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
           $_SESSION['lunch_user_session'] = $userId;
           echo(json_encode("status-success"));
-          //header("location: user-main.php");
         } else {
           echo(json_encode("status-failed"));
-          //echo "<script>alert('密码错误！')</script>";
         }
       } else if ($userStatus == "D") {
         echo(json_encode("status-deleted"));
-        //echo "<script>alert('账户已删除，请联系804小潘(85252796/15268571882)')</script>";
       }
     } else {
       echo(json_encode("status-not-exist"));
-      //echo "<script>alert('账户不存在，请联系804小潘(85252796/15268571882)')</script>";
     }
   }
 }
