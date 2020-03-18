@@ -110,3 +110,13 @@ body {
   font-size: 13px;
   text-align: left;
 }
+
+.login-btn-content {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-btn-content .spinner-border {
+  margin-right: 10px;
+}

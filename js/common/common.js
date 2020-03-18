@@ -282,20 +282,3 @@ function groupToText(groupNum) {
       return "其他";
   }
 }
-
-// Spinner related functions
-function setSpinner(willActive, containerElement, spinnerStyle) {
-  if(willActive == true) {
-    if($(".spinner-container").length == 0) {
-      let spinnerClass = "spinner-border " + spinnerStyle;
-      $(containerElement).append("<div class='spinner-container'>");
-      $(".spinner-container").append("<div class='" + spinnerClass + "' role='status'>");
-    }
-  }
-}
-
-function removeSpinner() {
-  if($(".spinner-container").length > 0) {
-    $(".spinner-container").remove();
-  }
-}

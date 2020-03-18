@@ -1,40 +1,6 @@
 <!DOCTYPE html>
-<?php
-include("common/config.php");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // username and password sent from form
-    $myLoginInfo = mysqli_real_escape_string($mysqlConnection, $_POST['login_name']);
-    $myLoginPwd = mysqli_real_escape_string($mysqlConnection, $_POST['password']);
-
-    $sql = "SELECT * FROM user_info WHERE (id = '$myLoginInfo' OR nick_name = '$myLoginInfo')";
-    $result = mysqli_query($mysqlConnection, $sql);
-    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-    $userId =  $row['id'];
-    $userPassword = $row['password'];
-    $userStatus = $row['status'];
-
-    if($userStatus == "A") {
-      $pwdHasher = new PasswordHash(8, FALSE);
-
-      // If result matched $myUsername and $myLoginPwd, table row must be 1 row
-      if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
-        $_SESSION['lunch_user_session'] = $userId;
-        header("location: user-main.php");
-      } else {
-        echo "<script>alert('用户名或密码错误！ 别急，心急吃不了热豆腐')</script>";
-      }
-    } else if($userStatus == "D") {
-      echo "<script>alert('当前账户处于删除状态，请联系804小潘(85252796/15268571882)')</script>";
-    } else {
-      echo "<script>alert('当前账户不存在，请联系804小潘(85252796/15268571882)')</script>";
-    }
-}
-?>
 
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -55,12 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="../js/common/common.js"></script>
     <!-- Custom JS -->
     <script type="text/javascript" src="../js/login.js"></script>
 </head>
 
 <body class="text-center">
-    <form class="form-signin" action="" method="post">
+    <form class="form-signin" action="" method="">
         <div class="title-container mb-4">
             <img class="food_icon" src="../assets/images/food.png" alt="Left food icon" description="Food icon left">
             <h1 class="h3 font-weight-normal">中午吃啥?</h1>
@@ -72,11 +39,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" class="form-control" name='login_name' placeholder="编号(ID)/姓名" required maxlength="45">
+        <input type="text" class="form-control" name='login-info' placeholder="编号(ID)/姓名" required maxlength="45">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" class="form-control mb-3" name='password' placeholder="吃饭密码" required maxlength="16">
+        <input type="password" class="form-control mb-3" name='password' placeholder="密码" required maxlength="16">
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit" value="submit">进入系统</button>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="login-btn" disabled="disabled">
+          <div class="login-btn-content d-flex">
+            <span class="spinner-border spinner-border-sm hide" role="status" aria-hidden="true"></span>
+            <span id="login-btn-text">进入系统</span>
+          </div>
+        </button>
 
         <div class="quotes">
             <div class="mt-4 mb-1 text-muted">
