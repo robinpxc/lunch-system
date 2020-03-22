@@ -46,7 +46,7 @@ function checkMenuStatus(date, async) {
 * */
 function checkOrderStatus(date, async, type) {
   let orderStatus = "";
-  let orderNumber = -1;
+  let orderContent = new Object();
   $.ajax({
     type: "post",
     url: "../php/functions/check-order-status.php",
@@ -59,19 +59,19 @@ function checkOrderStatus(date, async, type) {
     success: function (response) {
       if(type == "order-status") {
         orderStatus = response;
-      } else if(type == "order-number") {
-        orderNumber = response;
+      } else if(type == "order-content") {
+        orderContent = response;
       }
     },
     error: function (errorMsg) {
-      alert("订单状态检查失败，Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
+      alert("订单状态检查失败，请刷新页面或者切换网络环境，或联系开发者");
     }
   });
 
   if(type == "order-status") {
     return orderStatus;
   } else {
-    return orderNumber;
+    return orderContent;
   }
 }
 

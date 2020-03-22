@@ -34,6 +34,7 @@ $userRole = $row['role'];
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-menu.js"></script>
+  <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/user-main.js"></script>
 
 </head>
@@ -103,20 +104,20 @@ $userRole = $row['role'];
       <!-- Menu card today-->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">今日午餐</h4>
+          <h4 class="my-0 font-weight-normal card-title-today">今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <span id="order-info-today"></span>
+          <h4 id="order-info-today"></h4>
         </div>
       </div>
 
       <!-- Menu card tomorrow -->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-tomorrow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">明日午餐</h4>
+          <h4 class="my-0 font-weight-normal card-title-tomorrow">明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <span id="order-info-tomorrow"></span>
+          <h4 id="order-info-tomorrow"></h4>
         </div>
       </div>
 
@@ -127,7 +128,7 @@ $userRole = $row['role'];
         </div>
         <div class="card-body">
           <div>
-            <h4 class="card-title eating-card-title">联络员使用此组件</h4>
+            <h4 class="card-info">联络员使用此组件</h4>
           </div>
         </div>
 

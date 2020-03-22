@@ -8,10 +8,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $result = mysqli_query($mysqlConnection, $sql_order_status);
 
   if($type == "order-status") {
-    echo(json_encode(mysqli_num_rows($result) === 0 ? "no-order" : "order-exist"));
-  } else if($type == "order-number") {
+    echo(json_encode(mysqli_num_rows($result) == 0 ? "no-order" : "order-exist"));
+  } else if($type == "order-content") {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    echo($row['menu_number']);
+    echo(json_encode($row));
   }
 }
 

@@ -1,22 +1,12 @@
 $(document).ready(function () {
-  let dateToday = getDateToday();
-  let dateTomorrow = getDateTomorrow();
-  let orderStatusToday = "";
-  let orderStatusTomorrow = "";
+  let formattedDateToday = getDateToday();
+  let formattedDateTomorrow = getDateTomorrow();
+  let weekdayToday = new Date().getDay();
+  let orderStatusToday = checkOrderStatus(formattedDateToday, false, "order-status");
+  let orderStatusTomorrow = checkOrderStatus(formattedDateTomorrow, false, "order-status");
   removeAdminCard();
   initUI();
-
-  $("#user-manage-btn").click(function () {
-    window.location.href = "admin-user-management.php";
-  });
-
-  $("#menu-manage-btn").click(function () {
-    window.location.href = "admin-menu-management.php";
-  });
-
-  $("#data-manage-btn").click(function () {
-    window.location.href = "admin-data-management.php";
-  });
+  setManageButtonEvents;
 
   function initUI() {
     initCardToday();
@@ -25,24 +15,38 @@ $(document).ready(function () {
 
   function initCardToday() {
     let cardToday = $("#menu-card-today");
-    if (checkOrderStatus(dateToday, false, "order-status") == "order-exist") {
+    $(".card-title-today span").text(getWeekDayCN(weekdayToday));
+    setWeekendTitleStyle(true, weekdayToday);
+    if (orderStatusToday == "order-exist") {
       updateCardStatus(cardToday, true);
-      setCardPreviewData(dateToday);
+      $("#order-info-today").text(setOrderInfoText(true, formattedDateToday));
     } else {
       updateCardStatus(cardToday, false);
+      $("#order-info-today").text(setOrderInfoText(false, ""));
     }
-    $("#order-info-today").text(setOrderInfoText(true, dateToday));
   }
 
   function initCardTomorrow() {
     let cardTomorrow = $("#menu-card-tomorrow");
-    if (checkOrderStatus(dateTomorrow, false, "order-status") == "order-exist") {
+    $(".card-title-tomorrow span").text(getWeekDayCN(weekdayToday + 1));
+    setWeekendTitleStyle(false, weekdayToday + 1);
+    if (orderStatusTomorrow == "order-exist") {
       updateCardStatus(cardTomorrow, true);
-      setCardPreviewData(dateTomorrow);
+      $("#order-info-tomorrow").text(setOrderInfoText(true, formattedDateTomorrow));
     } else {
       updateCardStatus(cardTomorrow, false);
     }
-    $("#order-info-tomorrow").text(setOrderInfoText(true, dateTomorrow));
+    $("#order-info-tomorrow").text(setOrderInfoText(false, ""));
+  }
+
+  function setWeekendTitleStyle(isToday, weekDay) {
+    if(weekDay == 6 || weekDay == 0) {
+      if(isToday) {
+        $(".card-title-today .card-title-weekday").css("color", "red");
+      } else {
+        $(".card-title-tomorrow .card-title-weekday").css("color", "red");
+      }
+    }
   }
 
   function updateCardStatus(currentCard, isOrderExist) {
@@ -51,7 +55,8 @@ $(document).ready(function () {
   }
 
   function setOrderInfoText(isOrderExist, date) {
-    return (isOrderExist ? fetchDailyOrderStatus(date, false) : "尚未设置");
+    alert(isOrderExist);
+    return (isOrderExist ? setCardPreview(date) : "尚未点餐");
   }
 
   $("#menu-order-btn-tomorrow").click(function () {
@@ -70,37 +75,9 @@ $(document).ready(function () {
     }
   }
 
-  function setCardPreviewData(date) {
-    let menuNum = parseInt(checkOrderStatus(date, false, "order-number"));
-    let itemIdPrefix = "";
-
-    if (date == getDateToday()) {
-      itemIdPrefix = "#menu-today-0";
-      if (menuNum == 7) {
-        $("#menu-tip-today").text("【 不点餐 】");
-        setNoOrderStyle($("#menu-tip-today"));
-        $(".list-today").remove();
-      } else if (menuNum == 6) {
-        $("#menu-tip-today").text("【 6号 】干捞水饺");
-        setNoOrderStyle($("#menu-tip-today"));
-        $(".list-today").remove();
-      } else {
-        $("#menu-tip-today").text("已点" + "（ " + menuNum + " 号 " + "）");
-      }
-    } else if (date == getDateTomorrow()) {
-      itemIdPrefix = "#menu-tomorrow-0";
-      if (menuNum == 7) {
-        $("#menu-tip-tomorrow").text("【 不点餐 】");
-        $(".list-tomorrow").remove();
-        setNoOrderStyle($("#menu-tip-tomorrow"));
-      } else if (menuNum == 6) {
-        $("#menu-tip-tomorrow").text("【 6号 】干捞水饺");
-        setNoOrderStyle($("#menu-tip-tomorrow"));
-        $(".list-tomorrow").remove();
-      } else {
-        $("#menu-tip-tomorrow").text("已点" + "（" + " " + menuNum + " 号" + " " + "）");
-      }
-    }
+  function setCardPreview(date) {
+    let orderContent = checkOrderStatus(date, false, "order-content");
+    return "已点 " + orderContent.menu_number + " 号" + (orderContent.count == 1 ? "" : (" [" + orderContent.count +"份]"));
   }
 
   function setNoOrderStyle(element) {
@@ -116,8 +93,21 @@ $(document).ready(function () {
       "padding-top": "0px"
     });
   }
-})
-;
+
+  function setManageButtonEvents() {
+    $("#user-manage-btn").click(function () {
+      window.location.href = "admin-user-management.php";
+    });
+
+    $("#menu-manage-btn").click(function () {
+      window.location.href = "admin-menu-management.php";
+    });
+
+    $("#data-manage-btn").click(function () {
+      window.location.href = "admin-data-management.php";
+    });
+  }
+});
 
 
 

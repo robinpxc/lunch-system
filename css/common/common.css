@@ -84,8 +84,7 @@ body {
 
 #current_date,
 #current_time {
-  font-size: 16px;
-  font-family: 'Courier New', Courier, monospace;
+  font-size: 1rem;
   font-weight: bold;
 }
 

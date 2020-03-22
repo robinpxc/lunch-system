@@ -201,36 +201,28 @@ function getDateTomorrowCN(withWeekDay) {
 }
 
 function convertDateCN(year, month, day, weekDay, withWeekDay) {
-  let weekDayCN = "";
   let formattedMonth = (month.toString())[1] ? month : '0' + month;
   let formattedDay = (day.toString())[1] ? day : '0' + day;
+
+  return year + "年" + formattedMonth + "月" + formattedDay + "日 " + (withWeekDay ? getWeekDayCN(weekDay) : "");
+}
+
+function getWeekDayCN(weekDay) {
   switch(weekDay) {
     case 0:
-      weekDayCN = "星期日";
-      break;
+      return "星期日";
     case 1:
-      weekDayCN = "星期一";
-      break;
+      return "星期一";
     case 2:
-      weekDayCN = "星期二";
-      break;
+      return "星期二";
     case 3:
-      weekDayCN = "星期三";
-      break;
+      return "星期三";
     case 4:
-      weekDayCN = "星期四";
-      break;
+      return "星期四";
     case 5:
-      weekDayCN = "星期五";
-      break;
+      return "星期五";
     case 6:
-      weekDayCN = "星期六";
-      break;
-  }
-  if(withWeekDay) {
-    return year + "年" + formattedMonth + "月" + formattedDay + "日 " + weekDayCN;
-  } else {
-    return year + "年" + formattedMonth + "月" + formattedDay + "日 ";
+      return "星期六";
   }
 }
 
