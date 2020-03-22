@@ -24,49 +24,35 @@ $(document).ready(function () {
   }
 
   function initCardToday() {
-    if (checkMenuStatus(dateToday, false) == "menu-exist") {
-      orderStatusToday = checkOrderStatus(dateToday, false, "order-status");
-      if (orderStatusToday == "order-exist") {
-        setCardPreviewData(dateToday, fetchMenu(dateToday, false));
-      } else {
-        hideElement($("#menu-card-today"));
-      }
+    let cardToday = $("#menu-card-today");
+    if (checkOrderStatus(dateToday, false, "order-status") == "order-exist") {
+      updateCardStatus(cardToday, true);
+      setCardPreviewData(dateToday);
+    } else {
+      updateCardStatus(cardToday, false);
     }
+    $("#order-info-today").text(setOrderInfoText(true, dateToday));
   }
 
   function initCardTomorrow() {
-    if (checkMenuStatus(dateTomorrow, false) == "menu-exist") {
-      orderStatusTomorrow = checkOrderStatus(dateTomorrow, false, "order-status");
-      if (orderStatusTomorrow == "order-exist") {
-        $("#menu-tip-tomorrow").text("明日已点餐");
-        $("#menu-order-btn-tomorrow").text("点击修改");
-        $("#card-title-tomorrow").text("");
-        hideElement($("#card-title-tomorrow"));
-        removeOldClass($("#menu-card-tomorrow"), "bg-warning");
-        addNewClass($("#menu-card-tomorrow"), "bg-success");
-        setCardPreviewData(dateTomorrow, fetchMenu(dateTomorrow, false));
-      } else {
-        $("#menu-tip-tomorrow").text("点击按钮开始点餐");
-        $("#menu-order-btn-tomorrow").text("开始点餐");
-        $("#card-title-tomorrow").text("尚未点餐");
-        unhideAndEnableElement($("#menu-order-btn-tomorrow"));
-        removeOldClass($("#menu-card-tomorrow"), "bg-success");
-        addNewClass($("#menu-card-tomorrow"), "bg-warning");
-      }
+    let cardTomorrow = $("#menu-card-tomorrow");
+    if (checkOrderStatus(dateTomorrow, false, "order-status") == "order-exist") {
+      updateCardStatus(cardTomorrow, true);
+      setCardPreviewData(dateTomorrow);
     } else {
-      $("#menu-card-tomorrow").remove();
-      removeOldClass($("#menu-card-tomorrow-disabled"), "hide");
+      updateCardStatus(cardTomorrow, false);
     }
+    $("#order-info-tomorrow").text(setOrderInfoText(true, dateTomorrow));
   }
 
-// $("#menu-order-btn-today").click(function() {
-//   if(orderStatusToday != "") {
-//     $.cookie("order-date", getDateToday());
-//     window.location.href = "../php/order-menu.php";
-//   } else {
-//     alert("今日订单信息获取失败，请刷新重试");
-//   }
-// });
+  function updateCardStatus(currentCard, isOrderExist) {
+    removeOldClass(currentCard, isOrderExist ? "border-secondary" : "border-success");
+    addNewClass(currentCard, isOrderExist ? "border-success" : "border-secondary");
+  }
+
+  function setOrderInfoText(isOrderExist, date) {
+    return (isOrderExist ? fetchDailyOrderStatus(date, false) : "尚未设置");
+  }
 
   $("#menu-order-btn-tomorrow").click(function () {
     if (orderStatusTomorrow != "") {
@@ -84,7 +70,7 @@ $(document).ready(function () {
     }
   }
 
-  function setCardPreviewData(date, menuList) {
+  function setCardPreviewData(date) {
     let menuNum = parseInt(checkOrderStatus(date, false, "order-number"));
     let itemIdPrefix = "";
 
@@ -113,13 +99,6 @@ $(document).ready(function () {
         $(".list-tomorrow").remove();
       } else {
         $("#menu-tip-tomorrow").text("已点" + "（" + " " + menuNum + " 号" + " " + "）");
-      }
-    }
-
-    for (let i = 0; i < 3; i++) {
-      let itemId = itemIdPrefix + (i + 1);
-      if ((menuNum) < 6) {
-        $(itemId).text("【 " + decodeUnicode(menuList[menuNum - 1][i]) + " 】");
       }
     }
   }

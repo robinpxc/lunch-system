@@ -99,63 +99,31 @@ $userRole = $row['role'];
   <div class="container main-content">
     <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
     <div class="card-deck mb-5 text-center">
-      <!-- today menu -->
-      <div class="card mb-2 mt-2 border-success shadow-sm mb-3" id="menu-card-today">
+
+      <!-- Menu card today-->
+      <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">今日午餐</h4>
         </div>
         <div class="card-body">
-          <span id="menu-tip-today"></span>
-          <ul class="list-unstyled mt-3 mb-4 card-menu-list list-today">
-            <li id="menu-today-01"></li>
-            <li id="menu-today-02"></li>
-            <li id="menu-today-03"></li>
-          </ul>
+          <span id="order-info-today"></span>
         </div>
       </div>
 
-      <!-- Common card: today no menu -->
-      <div class="card mb-2 mt-2 border-secondary mb-3 no-menu hide" id="menu-card-today-disabled">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">今日午餐</h4>
-        </div>
-        <div class="card-body">
-          <span>尚未点餐</span>
-        </div>
-      </div>
-
-      <!-- Tomorrow menu -->
-      <div class="card mb-2 mt-2 shadow-sm text-white bg-warning" id="menu-card-tomorrow">
+      <!-- Menu card tomorrow -->
+      <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-tomorrow">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">明日午餐</h4>
         </div>
         <div class="card-body">
-          <span id="menu-tip-tomorrow"></span>
-          <ul class="list-unstyled mt-3 mb-4 card-menu-list list-tomorrow">
-            <li id="menu-tomorrow-01"></li>
-            <li id="menu-tomorrow-02"></li>
-            <li id="menu-tomorrow-03"></li>
-          </ul>
-        </div>
-
-        <div class="card-bottom">
-          <button type="button" class="btn btn-lg btn-block btn-light" id="menu-order-btn-tomorrow">开始点餐</button>
+          <span id="order-info-tomorrow"></span>
         </div>
       </div>
 
-      <!-- tomorrow card disabled -->
-      <div class="card mb-2 mt-2 border-secondary mb-3 no-menu hide" id="menu-card-tomorrow-disabled">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">明日午餐</h4>
-        </div>
-        <div class="card-body">
-          <span>尚未点餐</span>
-        </div>
-      </div>
-
+      <!-- Admin card -->
       <div class="card card-admin mb-2 mt-2 border-danger" id="admin-card">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal">管理</h4>
+          <h4 class="my-0 font-weight-normal">综合管理</h4>
         </div>
         <div class="card-body">
           <div>
