@@ -6,7 +6,7 @@ $(document).ready(function () {
   let orderStatusTomorrow = checkOrderStatus(formattedDateTomorrow, false, "order-status");
   removeAdminCard();
   initUI();
-  setManageButtonEvents;
+  setManageButtonEvents();
 
   function initUI() {
     initCardToday();
@@ -35,8 +35,9 @@ $(document).ready(function () {
       $("#order-info-tomorrow").text(setOrderInfoText(true, formattedDateTomorrow));
     } else {
       updateCardStatus(cardTomorrow, false);
+      $("#order-info-tomorrow").text(setOrderInfoText(false, ""));
     }
-    $("#order-info-tomorrow").text(setOrderInfoText(false, ""));
+
   }
 
   function setWeekendTitleStyle(isToday, weekDay) {
@@ -55,7 +56,6 @@ $(document).ready(function () {
   }
 
   function setOrderInfoText(isOrderExist, date) {
-    alert(isOrderExist);
     return (isOrderExist ? setCardPreview(date) : "尚未点餐");
   }
 
@@ -77,21 +77,26 @@ $(document).ready(function () {
 
   function setCardPreview(date) {
     let orderContent = checkOrderStatus(date, false, "order-content");
-    return "已点 " + orderContent.menu_number + " 号" + (orderContent.count == 1 ? "" : (" [" + orderContent.count +"份]"));
+    let orderNum = orderContent.menu_number;
+    let orderCount = orderContent.count;
+    if(orderNum > 0 && orderNum <= 6) {
+      if(orderNum != 6) {
+        return "已点 " + orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
+      } else {
+        setNoOrderStyle(date);
+        return "不点餐";
+      }
+    }
   }
 
-  function setNoOrderStyle(element) {
-    element.css({
-      "font-weight": "bold",
-      "font-size": "25px",
-    });
-
-    element.parent().css({
-      "display": "flex",
-      "justify-content": "center",
-      "align-items": "center",
-      "padding-top": "0px"
-    });
+  function setNoOrderStyle(date) {
+    if(date == formattedDateToday) {
+      replaceClass($("#menu-card-today"), "border-secondary", "border-warning");
+    } else if(date == formattedDateTomorrow) {
+      replaceClass($("#menu-card-tomorrow"), "border-secondary", "border-warning");
+    } else {
+      alert("日期传递发生错误, 请刷新重试");
+    }
   }
 
   function setManageButtonEvents() {
