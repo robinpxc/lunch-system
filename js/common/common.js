@@ -70,14 +70,14 @@ function hasAttribute(currentElement, attrName) {
 
 // Function to hide element
 function hideElement(element) {
-  if(!(element.hasClass("hide"))) {
+  if (!(element.hasClass("hide"))) {
     element.addClass("hide");
   }
 }
 
 // Function to unhide element
 function unhideElement(element) {
-  if(element.hasClass("hide")) {
+  if (element.hasClass("hide")) {
     element.removeClass("hide");
   }
 }
@@ -120,6 +120,10 @@ function disableZoom() {
   });
 }
 
+function isElementExist(element) {
+  return element.length > 0 ? true : false;
+}
+
 // Function to judge if an element is enabled
 function isEnable(currentElement) {
   return !(typeof (currentElement.attr("disabled")) != "undefined" || typeof (currentElement.attr("readonly")) != "undefined");
@@ -160,7 +164,7 @@ function removeOldClass(element, oldClass) {
 
 function replaceClass(element, oldClass, newCLass) {
   removeOldClass(element, oldClass);
-  addNewClass(element,newCLass);
+  addNewClass(element, newCLass);
 }
 
 // Date related functions
@@ -208,7 +212,7 @@ function convertDateCN(year, month, day, weekDay, withWeekDay) {
 }
 
 function getWeekDayCN(weekDay) {
-  switch(weekDay) {
+  switch (weekDay) {
     case 0:
       return "星期日";
     case 1:
@@ -272,5 +276,20 @@ function groupToText(groupNum) {
       return "临时人员";
     default:
       return "其他";
+  }
+}
+
+// Spinner related functions
+function addSpinner() {
+  if (!isElementExist($(".spinner-container"))) {
+    $("body").append("<div class='spinner-container'>");
+    $(".spinner-container").append("<div class='spinner-border text-light circle-spinner' role='status'>");
+    $(".spinner-border").append("<span class='sr-only'>");
+  }
+}
+
+function removeSpinner() {
+  if (isElementExist($(".spinner-container"))) {
+    $($(".spinner-container")).remove();
   }
 }

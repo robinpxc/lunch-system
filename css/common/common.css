@@ -108,3 +108,23 @@ body {
 .hide {
   display: none !important;
 }
+
+/* Spinner related css */
+.spinner-container {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.75);
+  overflow: hidden;
+}
+
+.spinner-container .circle-spinner {
+  width: 3rem;
+  height: 3rem;
+}

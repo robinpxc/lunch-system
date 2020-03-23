@@ -1,9 +1,4 @@
 /*
-* This file contains all functions for menu operation
-* */
-$(document).ready(function() {
-});
-/*
 * Function to check if a menu has been set for a day.
 * This function will return a "menu-exist" if a menu exist for a day,
 * and return a "no-menu" if menu not exist for a day.
@@ -56,6 +51,11 @@ function checkOrderStatus(date, async, type) {
     },
     dataType: "json",
     async: async,
+    beforeSend: function() {
+      if(async) {
+        addSpinner();
+      }
+    },
     success: function (response) {
       if(type == "order-status") {
         orderStatus = response;
@@ -63,8 +63,12 @@ function checkOrderStatus(date, async, type) {
         orderContent = response;
       }
     },
+    complete: function() {
+      removeSpinner();
+    },
     error: function (errorMsg) {
       alert("订单状态检查失败，请刷新页面或者切换网络环境，或联系开发者");
+      removeSpinner();
     }
   });
 
