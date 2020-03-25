@@ -277,11 +277,16 @@ $(document).ready(function () {
       $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
       $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
-      $("." + btnGroupClass).append("<div class='btn-group btn-group" + "-" + i + "'" + ">");
+      $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
       let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
-      $(modifyButtonId).append("<button type='button' class='btn btn-light active' id='modify-btn'>修改");
+
+      if($("#current-user-id").val() != userId) {
+        $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light active' id='modify-btn'>修改");
+      } else {
+        $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light single-btn active' id='modify-btn'>修改");
+      }
 
       if($("#current-user-id").val() != userId) {
         $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
