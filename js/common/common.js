@@ -283,7 +283,7 @@ function groupToText(groupNum) {
 function addSpinner() {
   if (!isElementExist($(".spinner-container"))) {
     $("body").append("<div class='spinner-container'>");
-    $(".spinner-container").append("<div class='spinner-border text-light circle-spinner' role='status'>");
+    $(".spinner-container").append("<div class='spinner-border text-primary circle-spinner' role='status'>");
     $(".spinner-border").append("<span class='sr-only'>");
   }
 }
