@@ -25,6 +25,7 @@ include('common/session.php');
   <!--Java Script-->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
@@ -131,8 +132,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -157,8 +158,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -183,8 +184,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -209,8 +210,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -235,8 +236,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -261,8 +262,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -271,6 +272,7 @@ include('common/session.php');
               <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
+            </thead>
             <tbody class="tb-group5">
 
             </tbody>
@@ -278,7 +280,7 @@ include('common/session.php');
         </div>
       </div>
 
-      <!-- 临时人员名单 -->
+      <!-- 物业人员名单 -->
       <div class="table-card card table-group-6">
         <div class="card-header">
           <span class="tb-title">临时人员</span>
@@ -287,8 +289,8 @@ include('common/session.php');
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-dark">
-            <thead>
+          <table class="table">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="username-info">姓名</th>
               <th scope="col" class="id-info">ID</th>
@@ -307,7 +309,7 @@ include('common/session.php');
     </div>
   </div>
 
-  <div class="create-form">
+  <div class="create-form no-print">
     <form class="form-inline" action="" method="post">
       <div class="create-user bg-light mt-3 form-table">
         <div class="form-content">
@@ -320,7 +322,7 @@ include('common/session.php');
           </div>
 
           <div class="input-group d-inline-flex form-table">
-            <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" required maxlength="30">
+            <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" maxlength="30">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
                 <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
@@ -337,7 +339,8 @@ include('common/session.php');
           <div class="d-inline-flex form-table">
             <select class="form-control" id="new-user-role">
               <option value="user">普通用户</option>
-              <option value="admin">管理员</option>
+              <option value="admin-group">组管理员</option>
+              <option id="super-user" value="admin-super">高级管理员</option>
             </select>
           </div>
 
@@ -349,7 +352,7 @@ include('common/session.php');
               <option value="group3">市委第三巡察组</option>
               <option value="group4">市委第四巡察组</option>
               <option value="group5">市委第五巡察组</option>
-              <option value="group6">临时工作人员</option>
+              <option value="group6">物业</option>
             </select>
           </div>
 

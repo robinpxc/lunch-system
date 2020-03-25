@@ -7,6 +7,7 @@ $result = mysqli_query($mysqlConnection, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
 $userRole = $row['role'];
+$userGroup = $row['workgroup'];
 ?>
 
 <html lang="zh">
@@ -99,6 +100,7 @@ $userRole = $row['role'];
 
   <div class="container main-content">
     <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
+    <input  type="hidden" id="user-group-input" value="<?php echo($userGroup)?>">
     <div class="card-deck mb-5 text-center">
 
       <!-- Menu card today-->

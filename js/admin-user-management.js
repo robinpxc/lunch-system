@@ -1,33 +1,18 @@
 $(document).ready(function () {
-  let dataArray = fetchUserInfo();
-  showHideExtraCols();
-  initTableGroup();
-  configTableHeader();
-  setData(dataArray);
-  setGroupTablePrint();
+  let role = $.cookie("current-user-role");
+  let group = $.cookie("current-user-group");
+  let groupNumber = role == "admin-group" ? 1 : 7;
+  let dataArray = new Array();
 
-  $('.del-btn').on('click', function () {
-    showConfirmDeleteDialog(this);
+  configUI();
+  addGlobalListeners();
+  addFormButtonClickEvents();
+
+  fetchUserInfo().done(function(responsedDataArray) {
+    dataArray = responsedDataArray;
+    setData(dataArray);
+    configTableHeader();
   });
-
-  $("#create-new-user-btn").click(function () {
-    addUser();
-  });
-
-  $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
-    enableCreateUserBtn();
-  });
-
-  $("#extend-btn").on("click", function() {
-    formControlBtnClick($("#extend-btn"));
-  });
-
-  $("#hide-btn").on("click", function() {
-    formControlBtnClick($("#hide-btn"));
-  });
-
-  adjustCreationFormSize();
-  setDynamicCreateUserSize();
 
   $(window).resize(function () {
     showHideExtraCols();
@@ -36,31 +21,64 @@ $(document).ready(function () {
   });
 
   // Function to fetch user info
+  function configUI() {
+    // Dynamic resize UI elements
+    showHideExtraCols();
+    adjustCreationFormSize();
+    setDynamicCreateUserSize();
+
+    // Table related UI functions
+    initUI();
+    initTableGroup();
+    setGroupTablePrint();
+  }
+
+  function initUI() {
+    let groupNum = group[5];
+    if (role == "admin-group") {
+      $(".nav-drop-down").remove();
+      $(".table-card").each(function() {
+        if(!$(this).hasClass("table-group-" + groupNum)) {
+          $(this).remove();
+        }
+      });
+      $("#super-user").remove();
+      $("#new-user-group option").each(function() {
+        if($(this).val() != group) {
+          $(this).remove();
+        }
+      });
+    }
+  }
+
   function fetchUserInfo() {
-    let dataArray = new Array();
+    let deferred = $.Deferred();
+    let groupType;
+    groupType = role == "admin-group" ? group : "all";
     $.ajax({
-      type: "POST",
+      type: "post",
       url: "../php/functions/fetch-user-info.php",
       data: {
+        "group-type": groupType
       },
-      async: false,
       dataType: "JSON",
+      beforeSend: function() {addSpinner();},
       success: function (response) {
-        dataArray = response;
+        deferred.resolve(response);
       },
       error: function () {
         alert("获取用户信息失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
       },
-      complete: function() {}
+      complete: function() {removeSpinner();}
     });
-    return dataArray;
+    return deferred.promise();
   }
 
 // Function to show/hide extra table contents
   function showHideExtraCols() {
-    var roleInfo = $(".role-info");
-    var workgroupInfo = $(".workgroup-info");
-    var nickNameInfo = $(".nickname-info");
+    let roleInfo = $(".role-info");
+    let workgroupInfo = $(".workgroup-info");
+    let nickNameInfo = $(".nickname-info");
 
     if (getWindowWidth() >= 768 && roleInfo.hasClass("hide")) {
       roleInfo.removeClass("hide");
@@ -75,11 +93,14 @@ $(document).ready(function () {
 
 // Function to add a new user
   function addUser() {
-    var username = $("#new-fullname").val();
-    var userNickName = $("#new-nickname").val();
-    var password = $("#new-user-password-edit").val();
-    var role = $("#new-user-role option:selected").val();
-    var workgroup = $("#new-user-group option:selected").val();
+    let username = $("#new-fullname").val();
+    let userNickName = $("#new-nickname").val();
+    let password = $("#new-user-password-edit").val();
+    if(password == null || password == "") {
+      password = "123";
+    }
+    let role = $("#new-user-role option:selected").val();
+    let workgroup = $("#new-user-group option:selected").val();
     $.ajax({
       type: "post",
       url: "../php/functions/add-user.php",
@@ -91,7 +112,7 @@ $(document).ready(function () {
         "workgroup": workgroup
       },
       dataType: "json",
-      async: false,
+      beforeSend: function() {addSpinner();},
       success: function (response) {
         switch (response) {
           case 1:
@@ -101,7 +122,8 @@ $(document).ready(function () {
             alert("设置的昵称已经被使用了");
             break;
         }
-      }
+      },
+      complete: function() {removeSpinner();}
     });
   }
 
@@ -142,15 +164,14 @@ $(document).ready(function () {
 
 // Function to enable submit button when all require filed has done.
   function enableCreateUserBtn() {
-    $fullname = $("#new-fullname").val();
-    $nickname = $("#new-nickname").val();
-    $password = $("#new-user-password-edit").val();
-    $createUserBtn = $("#create-new-user-btn");
+    let fullname = $("#new-fullname").val();
+    let nickname = $("#new-nickname").val();
+    let createUserBtn = $("#create-new-user-btn");
 
-    if ($fullname != "" && $nickname != "" && $password != "") {
-      setEnable($createUserBtn);
+    if (fullname != "" && nickname != "") {
+      setEnable(createUserBtn);
     } else {
-      setDisable($createUserBtn);
+      setDisable(createUserBtn);
     }
   }
 
@@ -171,9 +192,9 @@ $(document).ready(function () {
 
 // Function to control the add user menu in mobile mode.
   function formControlBtnClick(button) {
-    var formContent = $(".form-content");
-    var extendBtn = $(".extend-content");
-    var hideBtn = $(".hide-content");
+    let formContent = $(".form-content");
+    let extendBtn = $(".extend-content");
+    let hideBtn = $(".hide-content");
     switch(button.attr("id")) {
       case "extend-btn":
         addNewClass(extendBtn, "hide");
@@ -190,8 +211,8 @@ $(document).ready(function () {
 
 // Function to adjust create user block and blank block width
   function setDynamicCreateUserSize() {
-    var createUserWidth = $(".main-content").width();
-    var blankHeight = $(".create-form").height();
+    let createUserWidth = $(".main-content").width();
+    let blankHeight = $(".create-form").height();
     $(".create-form").width(createUserWidth);
     $("body").css("padding-bottom", blankHeight);
   }
@@ -205,7 +226,7 @@ $(document).ready(function () {
   }
 
   function setData(dataArray) {
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < groupNumber; i++) {
       setDataToGroupTable(getGroupData(dataArray, i), i);
     }
   }
@@ -244,6 +265,14 @@ $(document).ready(function () {
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);
 
+      let userRoleCN = "";
+      if(userRole == "admin-super") {
+        userRoleCN = "高级管理员";
+      } else if(userRole == "admin-group") {
+        userRole = "组管理员";
+      } else {
+        userRole = "用户";
+      }
       $("." + personClass).append("<td class='hide-small-screen'>" + (userRole == "user" ? "用户" : "管理员"));
       $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
       $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
@@ -260,6 +289,30 @@ $(document).ready(function () {
         $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
       }
     }
+  }
+
+  function addGlobalListeners() {
+    $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
+      enableCreateUserBtn();
+    });
+  }
+
+  function addFormButtonClickEvents() {
+    $(".del-btn").click(function() {
+      showConfirmDeleteDialog(this);
+    });
+
+    $("#create-new-user-btn").click(function () {
+      addUser();
+    });
+
+    $("#extend-btn").click(function() {
+      formControlBtnClick($("#extend-btn"));
+    });
+
+    $("#hide-btn").click(function() {
+      formControlBtnClick($("#hide-btn"));
+    });
   }
 });
 

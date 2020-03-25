@@ -122,16 +122,30 @@ $(document).ready(function () {
 
   function setManageButtonEvents() {
     $("#user-manage-btn").click(function () {
+      transferUserData();
       window.location.href = "admin-user-management.php";
     });
 
     $("#menu-manage-btn").click(function () {
+      transferUserData();
       window.location.href = "admin-menu-management.php";
     });
 
     $("#data-manage-btn").click(function () {
+      transferUserData();
       window.location.href = "admin-data-management.php";
     });
+  }
+
+  function transferUserData() {
+    let userRole = $("#user-role-input").val();
+    let userGroup = $("#user-group-input").val();
+    if(userRole != "" && userGroup != "") {
+      $.cookie("current-user-role", userRole);
+      $.cookie("current-user-group", userGroup);
+    } else {
+      alert("用户数据传输错误，请刷新重试");
+    }
   }
 });
 
