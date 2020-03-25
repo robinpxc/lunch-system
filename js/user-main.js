@@ -2,12 +2,22 @@ $(document).ready(function () {
   let formattedDateToday = getDateToday();
   let formattedDateTomorrow = getDateTomorrow();
   let weekdayToday = new Date().getDay();
-  let orderStatusToday = checkOrderStatus(formattedDateToday, false, "order-status");
-  let orderStatusTomorrow = checkOrderStatus(formattedDateTomorrow, false, "order-status");
+  let orderStatusToday = null;
+  let orderStatusTomorrow = null;
+
+  // Function calls
+  checkOrderStatus(formattedDateToday, "order-status").done(function(response) {
+    orderStatusToday = response;
+    checkOrderStatus(formattedDateTomorrow, "order-status").done(function(response) {
+      orderStatusTomorrow = response;
+      initUI();
+    });
+  });
+
   removeAdminCard();
-  initUI();
   setManageButtonEvents();
 
+  // Function declarations
   function initUI() {
     initCardToday();
     initCardTomorrow();
@@ -19,10 +29,10 @@ $(document).ready(function () {
     setWeekendTitleStyle(true, weekdayToday);
     if (orderStatusToday == "order-exist") {
       updateCardStatus(cardToday, true);
-      $("#order-info-today").text(setOrderInfoText(true, formattedDateToday));
+      setCardPreview(true, formattedDateToday);
     } else {
       updateCardStatus(cardToday, false);
-      $("#order-info-today").text(setOrderInfoText(false, ""));
+      setCardPreview(false, formattedDateToday);
     }
   }
 
@@ -32,12 +42,11 @@ $(document).ready(function () {
     setWeekendTitleStyle(false, weekdayToday + 1);
     if (orderStatusTomorrow == "order-exist") {
       updateCardStatus(cardTomorrow, true);
-      $("#order-info-tomorrow").text(setOrderInfoText(true, formattedDateTomorrow));
+      setCardPreview(true, formattedDateTomorrow);
     } else {
       updateCardStatus(cardTomorrow, false);
-      $("#order-info-tomorrow").text(setOrderInfoText(false, ""));
+      setCardPreview(false, formattedDateTomorrow);
     }
-
   }
 
   function setWeekendTitleStyle(isToday, weekDay) {
@@ -55,11 +64,7 @@ $(document).ready(function () {
     addNewClass(currentCard, isOrderExist ? "border-success" : "border-secondary");
   }
 
-  function setOrderInfoText(isOrderExist, date) {
-    return (isOrderExist ? setCardPreview(date) : "尚未点餐");
-  }
-
-  $("#menu-order-btn-tomorrow").click(function () {
+  $("#menu-order-btn-tomorrow" ).click(function () {
     if (orderStatusTomorrow != "") {
       $.cookie("order-date", getDateTomorrow());
       window.location.href = "../php/order-menu.php";
@@ -75,17 +80,33 @@ $(document).ready(function () {
     }
   }
 
-  function setCardPreview(date) {
-    let orderContent = checkOrderStatus(date, false, "order-content");
-    let orderNum = orderContent.menu_number;
-    let orderCount = orderContent.count;
-    if(orderNum > 0 && orderNum <= 6) {
-      if(orderNum != 6) {
-        return "已点 " + orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
-      } else {
-        setNoOrderStyle(date);
-        return "不点餐";
-      }
+  function setCardPreview(isOrderExist, date) {
+    if(isOrderExist) {
+      checkOrderStatus(date, "order-content").done(function(orderContent) {
+        let orderNum = null;
+        let orderCount = null
+        orderNum = orderContent.menu_number;
+        orderCount = orderContent.count;
+        if(orderNum > 0 && orderNum <= 6) {
+          if(orderNum != 6) {
+            let orderDetail = "已点 " + orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
+            setOrderInfoText(date, orderDetail);
+          } else {
+            setNoOrderStyle(date);
+            setOrderInfoText(date,  "不点餐");
+          }
+        }
+      });
+    } else {
+      setOrderInfoText(date, "尚未点餐");
+    }
+  }
+
+  function setOrderInfoText(date, text) {
+    if(date ==formattedDateToday) {
+      $("#order-info-today").text(text);
+    } else {
+      $("#order-info-tomorrow").text(text);
     }
   }
 

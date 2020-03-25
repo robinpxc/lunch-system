@@ -39,9 +39,8 @@ function checkMenuStatus(date, async) {
 *   (User id will be used by session data)
 *   type:  [string] Will determine data return type. "order-status" and "order-number"
 * */
-function checkOrderStatus(date, async, type) {
-  let orderStatus = "";
-  let orderContent = new Object();
+function checkOrderStatus(date, type) {
+  let deferred = $.Deferred();
   $.ajax({
     type: "post",
     url: "../php/functions/check-order-status.php",
@@ -50,18 +49,12 @@ function checkOrderStatus(date, async, type) {
       "check-type":type
     },
     dataType: "json",
-    async: async,
+    async: true,
     beforeSend: function() {
-      if(async) {
-        addSpinner();
-      }
+      addSpinner();
     },
     success: function (response) {
-      if(type == "order-status") {
-        orderStatus = response;
-      } else if(type == "order-content") {
-        orderContent = response;
-      }
+      deferred.resolve(response);
     },
     complete: function() {
       removeSpinner();
@@ -71,12 +64,7 @@ function checkOrderStatus(date, async, type) {
       removeSpinner();
     }
   });
-
-  if(type == "order-status") {
-    return orderStatus;
-  } else {
-    return orderContent;
-  }
+  return deferred.promise();
 }
 
 /*
