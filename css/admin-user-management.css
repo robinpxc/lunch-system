@@ -20,16 +20,12 @@
   max-width: 100px;
 }
 
-.btn-group {
+.operation-btn-group {
+  width: 100%;
   min-width: 120px;
 }
 
-.operation-btn-group {
-  width: 100%;
-}
-
 .operation-btn-group a {
-  min-width: 60px;
   width: 50%;
 }
 
@@ -55,10 +51,6 @@
    padding: 10px;
  }
 
- .create-form, .create-form * {
-   z-index: 15;
- }
-
  .blank {
    width: 100%;
  }
@@ -74,6 +66,10 @@
 }
 
 @media screen and (max-width: 768px) {
+  .main-content {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
   .create-form {
     width: 100%;
   }
@@ -92,6 +88,14 @@
 
   .extend-content button, .hide-content button {
     width: 100% !important;
+  }
+
+  .table {
+    table-layout: auto !important;
+  }
+
+  .table .small-width {
+    width: 40%;
   }
 
   .form-table {

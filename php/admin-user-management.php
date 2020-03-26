@@ -142,7 +142,7 @@ include('common/session.php');
               <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
-            <tbody class="tb-group0">
+            <tbody class="form-control0">
 
             </tbody>
           </table>
@@ -187,10 +187,10 @@ include('common/session.php');
           <table class="table">
             <thead  class="thead-light">
             <tr table-content>
-              <th scope="col" class="username-info">姓名</th>
-              <th scope="col" class="id-info">ID</th>
-              <th scope="col" class="role-info hide-small-screen">权限</th>
-              <th scope="col" class="nickname-info hide-small-screen">昵称</th>
+              <th scope="col" class="small-width username-info">姓名</th>
+              <th scope="col" class="small-width id-info">ID</th>
+              <th scope="col" class="small-width role-info hide-small-screen">权限</th>
+              <th scope="col" class="small-width nickname-info hide-small-screen">昵称</th>
               <th scope="col" class="operation no-print">操作</th>
             </tr>
             </thead>
