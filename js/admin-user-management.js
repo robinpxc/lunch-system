@@ -116,14 +116,16 @@ $(document).ready(function () {
       success: function (response) {
         switch (response) {
           case 1:
+            removeSpinner();
             alert("添加用户" + username + "成功！");
             break;
           case 2:
+            removeSpinner();
             alert("设置的昵称已经被使用了");
             break;
         }
       },
-      complete: function() {removeSpinner();}
+      complete: function() {}
     });
   }
 
@@ -269,11 +271,11 @@ $(document).ready(function () {
       if(userRole == "admin-super") {
         userRoleCN = "高级管理员";
       } else if(userRole == "admin-group") {
-        userRole = "组管理员";
+        userRoleCN = "组管理员";
       } else {
-        userRole = "用户";
+        userRoleCN = "用户";
       }
-      $("." + personClass).append("<td class='hide-small-screen'>" + (userRole == "user" ? "用户" : "管理员"));
+      $("." + personClass).append("<td class='hide-small-screen'>" + userRoleCN);
       $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
       $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
@@ -281,11 +283,13 @@ $(document).ready(function () {
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
       let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
-
-      if($("#current-user-id").val() != userId) {
-        $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light active' id='modify-btn'>修改");
-      } else {
-        $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light single-btn active' id='modify-btn'>修改");
+      $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light active' id='modify-btn'>修改");
+      if($("#current-user-id").val() == userId) {
+        $(".operation-btn-group a button").css({
+          "width": "100%",
+          "border-top-right-radius": "4px",
+          "border-bottom-right-radius": "4px"
+        });
       }
 
       if($("#current-user-id").val() != userId) {
