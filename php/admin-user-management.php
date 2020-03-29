@@ -17,24 +17,35 @@ include('common/session.php');
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
   <!-- Custom styles-->
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
   <link href="../css/admin-user-management.css" rel="stylesheet">
+  <link href="../third-party/fontawesome/css/all.min.css" rel="stylesheet">
 
   <!--Java Script-->
-  <script type="text/javascript" src="../third-party/popper.min.js"></script>
+  <!-- Common -->
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+  <!-- Plugins -->
+  <script type="text/javascript" src="../js/common/profile-form.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
-  <script type="text/javascript" src="../js/common/common-print.js"></script>
-  <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/common/profile-form.js"></script>
-  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
-  <script type="text/javascript" src="../js/admin-user-management.js"></script>
+  <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
 
+  <!-- Common -->
+  <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-user.js"></script>
+  <script type="text/javascript" src="../js/common/common-print.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+
+  <!-- Current page -->
+  <script type="text/javascript" src="../js/admin-user-management.js"></script>
 </head>
 
 <body class="d-block">
@@ -49,7 +60,6 @@ include('common/session.php');
             </svg>
             &nbsp;&nbsp;
           </span>
-
           <span class="d-bolck">
             <span id="current_date"></span>
             <br>

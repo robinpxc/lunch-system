@@ -137,28 +137,15 @@ $(document).ready(function () {
     $.confirm({
       title: "用户删除确认",
       content: "确认从数据库中删除【" + userName + "】吗？",
+      icon: "fa fa-exclamation-triangle",
+      animation: "top",
       buttons: {
         confirm: {
           btnClass: "btn-danger",
           text: "确认删除",
           keys: ["enter"],
           action: function () {
-            deleteUser(userId).done(function(response) {
-              $.confirm({
-                title: response == "success" ? "删除成功" : "删除失败",
-                content: response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试",
-                buttons: {
-                  cancel: {
-                    btnClass: "btn-success",
-                    text: "确定",
-                    keys: ["enter"],
-                    action: function() {
-                      window.location.reload();
-                    }
-                  }
-                }
-              });
-            });
+            delUser(userId, userName);
           }
         },
         cancel: {
@@ -167,6 +154,26 @@ $(document).ready(function () {
           keys: ["esc"],
         }
       }
+    });
+  }
+
+  function delUser(userId, userName) {
+    deleteUser(userId).done(function(response) {
+      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试");
+      // $.confirm({
+      //   title: response == "success" ? "删除成功" : "删除失败",
+      //   content: response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试",
+      //   buttons: {
+      //     cancel: {
+      //       btnClass: "btn-success",
+      //       text: "确定",
+      //       keys: ["enter"],
+      //       action: function() {
+      //         window.location.reload();
+      //       }
+      //     }
+      //   }
+      // });
     });
   }
 

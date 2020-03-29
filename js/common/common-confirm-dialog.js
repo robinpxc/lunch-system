@@ -4,43 +4,47 @@ function jqAlert(title, content) {
     title: title,
     content: content,
     icon:"fa fa-exclamation-triangle",
+    animation: "top",
     buttons: {
       confirm: {
         btnClass: "btn-danger",
-        text: "确认"
+        text: "确认",
+        action: function() {
+          window.location.reload();
+        }
       }
     }
   });
 }
 
-function jqConfirm(title, content, iconType, confirmText, confirmFunction) {
-  jqCommonConfirmDialog(title, content, icon, confirmText, confirmFunction(), false);
-}
-
-function jqCommonConfirmDialog(title, content, iconType, confirmText, confirmFunction, backgroundDismiss) {
-  let icon;
-  switch (iconType) {
-    case "alert":
-      icon = "fa fa-exclamation-triangle";
-      break;
-    case "info":
-      icon = "fa fa-info-circle";
-      break;
-    case "warning":
-      icon = "fa fa-exclamation-triangle";
-    default:
-      icon = "";
-  }
-
+function jqInfo(title, content) {
   $.confirm({
-    title:title,
+    title: title,
     content: content,
-    icon: icon,
-    theme: "white",
+    icon:"fa fa-info-circle",
     animation: "top",
     buttons: {
       confirm: {
-        text: confirmText,
+        btnClass: "btn-primary",
+        text: "确认",
+        action: function() {
+          window.location.reload();
+        }
+      }
+    }
+  });
+}
+
+function jqConfirm(title, content, confirmFunction) {
+  $.confirm({
+    title:title,
+    content: content,
+    icon: "fa fa-exclamation-triangle",
+    animation: "top",
+    buttons: {
+      confirm: {
+        text: "确认",
+        btnClass: "btn-danger",
         keys: ["enter"],
         action: function() {
           confirmFunction();
@@ -49,7 +53,6 @@ function jqCommonConfirmDialog(title, content, iconType, confirmText, confirmFun
       cancel: {
         text: "取消"
       }
-    },
-    backgroundDismiss: backgroundDismiss
+    }
   });
 }
