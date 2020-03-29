@@ -12,6 +12,9 @@ $(document).ready(function () {
     dataArray = responsedDataArray;
     setData(dataArray);
     configTableHeader();
+    $(".del-btn").click(function() {
+      showConfirmDeleteDialog(this);
+    });
   });
 
   $(window).resize(function () {
@@ -116,33 +119,46 @@ $(document).ready(function () {
       success: function (response) {
         switch (response) {
           case 1:
-            removeSpinner();
             alert("添加用户" + username + "成功！");
             break;
           case 2:
-            removeSpinner();
             alert("设置的昵称已经被使用了");
             break;
         }
       },
-      complete: function() {}
+      complete: function() {removeSpinner();}
     });
   }
 
 // Function to show confirm dialog when deleting a user.
   function showConfirmDeleteDialog(btn) {
     let userId = $(btn).parent().parent().find("input").val();
+    let userName = $("#fullname-" + userId).text();
     $.confirm({
       title: "用户删除确认",
-      content: '确认从数据库中删除该用户吗？',
+      content: "确认从数据库中删除【" + userName + "】吗？",
       buttons: {
         confirm: {
           btnClass: "btn-danger",
           text: "确认删除",
           keys: ["enter"],
           action: function () {
-            var delUrl = "../php/functions/delete-user.php?user_id=" + userId;
-            window.location.href = delUrl;
+            deleteUser(userId).done(function(response) {
+              $.confirm({
+                title: response == "success" ? "删除成功" : "删除失败",
+                content: response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试",
+                buttons: {
+                  cancel: {
+                    btnClass: "btn-success",
+                    text: "确定",
+                    keys: ["enter"],
+                    action: function() {
+                      window.location.reload();
+                    }
+                  }
+                }
+              });
+            });
           }
         },
         cancel: {
@@ -150,16 +166,6 @@ $(document).ready(function () {
           text: "取消",
           keys: ["esc"],
         }
-      }
-    });
-  }
-
-// Function to show general alert
-  function showAlert() {
-    $.alert({
-      title: 'Alert!',
-      content: 'Simple alert!',
-      confirm: function(){
       }
     });
   }
@@ -264,7 +270,7 @@ $(document).ready(function () {
       let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
 
       $(".tb-group" + group).append("<tr class=" + personClass + ">");
-      $("." + personClass).append("<td>" + fullname);
+      $("." + personClass).append("<td id='" + "fullname-" + userId + "'>" + fullname);
       $("." + personClass).append("<td>" + userId);
 
       let userRoleCN = "";
@@ -307,11 +313,6 @@ $(document).ready(function () {
   }
 
   function addFormButtonClickEvents() {
-    $(".del-btn").click(function() {
-      alert("12333")
-      //showConfirmDeleteDialog(this);
-    });
-
     $("#create-new-user-btn").click(function () {
       addUser();
     });
