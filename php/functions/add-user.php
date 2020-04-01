@@ -13,11 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $row = mysqli_fetch_array($checkResult, MYSQLI_ASSOC);
 
   if ($row) {
-    echo 2;
+    echo json_encode("nickname-exist");
   } else {
     $insert_sql = "INSERT INTO `user_info` (`nick_name`, `fullname`, `password`, `role`, `workgroup`) VALUES ('$nickname', '$fullname', '$password', '$role', '$workgroup')";
     mysqli_query($mysqlConnection, $insert_sql);
-    echo 1;
+    echo json_encode("success");
   }
 }
 

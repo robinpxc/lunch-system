@@ -95,38 +95,23 @@ $(document).ready(function () {
   }
 
 // Function to add a new user
-  function addUser() {
+  function addOneUser() {
     let username = $("#new-fullname").val();
-    let userNickName = $("#new-nickname").val();
+    let nickName = $("#new-nickname").val();
     let password = $("#new-user-password-edit").val();
     if(password == null || password == "") {
       password = "123";
     }
     let role = $("#new-user-role option:selected").val();
     let workgroup = $("#new-user-group option:selected").val();
-    $.ajax({
-      type: "post",
-      url: "../php/functions/add-user.php",
-      data: {
-        "username": username,
-        "nickname": userNickName,
-        "password": password,
-        "role": role,
-        "workgroup": workgroup
-      },
-      dataType: "json",
-      beforeSend: function() {addSpinner();},
-      success: function (response) {
-        switch (response) {
-          case 1:
-            alert("添加用户" + username + "成功！");
-            break;
-          case 2:
-            alert("设置的昵称已经被使用了");
-            break;
-        }
-      },
-      complete: function() {removeSpinner();}
+    addUser(username, nickName, password, role, workgroup).done(function(response) {
+      if(response == "success") {
+        alert("操作成功, 成功的添加了用户【" + username + "】");
+      } else if(response == "nickname-exist") {
+        alert("操作失败, 昵称已经被使用了!");
+      } else {
+        alert("操作失败, 发生异常，请重试!");
+      }
     });
   }
 
@@ -160,20 +145,6 @@ $(document).ready(function () {
   function delUser(userId, userName) {
     deleteUser(userId).done(function(response) {
       jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试");
-      // $.confirm({
-      //   title: response == "success" ? "删除成功" : "删除失败",
-      //   content: response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试",
-      //   buttons: {
-      //     cancel: {
-      //       btnClass: "btn-success",
-      //       text: "确定",
-      //       keys: ["enter"],
-      //       action: function() {
-      //         window.location.reload();
-      //       }
-      //     }
-      //   }
-      // });
     });
   }
 
@@ -321,7 +292,7 @@ $(document).ready(function () {
 
   function addFormButtonClickEvents() {
     $("#create-new-user-btn").click(function () {
-      addUser();
+      addOneUser();
     });
 
     $("#extend-btn").click(function() {

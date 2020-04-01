@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
-
-// Get user profile from database
-$uid = $_GET["uid"];
-$sql = "SELECT * FROM user_info WHERE id = '$uid'";
-$result = mysqli_query($mysqlConnection, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-$userId = $row['id'];
-$userFullName = $row['fullname'];
-$userNickName = $row['nick_name'];
-$userRole = $row['role'];
-$userWorkgroup = $row['workgroup'];
-
 ?>
 
 <html lang="zh">

@@ -295,7 +295,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">物业</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-6 no-print" type="button">打印表格</button>
+            <button class="btn btn-success btn-print tb-print-6  no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">

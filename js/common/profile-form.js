@@ -43,8 +43,8 @@ function getUserInfo(userInfoObject) {
 // Function to handle all modify button click events
 function modifyButtonClickEvent(btnGroup) {
   btnGroup.each(function () {
-    var self = $(this);
-    var btnId = self.attr("id");
+    let self = $(this);
+    let btnId = self.attr("id");
     self.click(function () {
       setEnable($("#discard-btn"));
       setEnable($("#submit-btn"));
@@ -77,7 +77,7 @@ function modifyButtonClickEvent(btnGroup) {
 
 // Function to discard all input field
 function discardChanges(modifyBtnGroup, defaultUserInfoObj) {
-  var idField = $("input[name='user-id']");
+  let idField = $("input[name='user-id']");
   var fullnameField = $("input[name='user-fullname']");
   var roleField = $("#user-role");
   var workgroupField = $("#user-workgroup");
