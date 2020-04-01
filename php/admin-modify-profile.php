@@ -127,8 +127,9 @@ $userWorkgroup = $row['workgroup'];
         </div>
         <input type="hidden" id="user-role-value" value="<?php echo $userRole; ?>" readonly="readonly" />
         <select class="form-control" id="user-role" disabled="disabled">
-          <option value="user">普通用户</option>
-          <option value="admin">管理员</option>
+          <option value="user">用户</option>
+          <option value="admin-group">组管理员</option>
+          <option value="admin-super">高级管理员</option>
         </select>
         <div class="input-group-append permission-text">
         <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="role-edit-btn">修改</button>
@@ -148,6 +149,7 @@ $userWorkgroup = $row['workgroup'];
           <option value="group3">市委第三巡察组</option>
           <option value="group4">市委第四巡察组</option>
           <option value="group5">市委第五巡察组</option>
+          <option value="group6">物业</option>
         </select>
         <div class="input-group-append permission-text">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="workgroup-edit-btn">修改</button>
