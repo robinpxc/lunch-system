@@ -30,6 +30,7 @@ $userWorkgroup = $row['workgroup'];
   <!-- Style sheets-->
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
   <!-- Custom styles-->
   <link href="../css/admin-modify-profile.css" rel="stylesheet">
 
@@ -39,8 +40,10 @@ $userWorkgroup = $row['workgroup'];
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
-  <script type="text/javascript" src="../js/common/profile-form-new.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
+  <script type="text/javascript" src="../js/common/profile-form.js"></script>
   <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
+
 
 </head>
 
