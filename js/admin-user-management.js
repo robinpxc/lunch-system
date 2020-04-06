@@ -163,9 +163,9 @@ $(document).ready(function () {
 
 // Function to show/hide create user when screen width <= 768
   function adjustCreationFormSize() {
-    var formContent = $(".form-content");
-    var extendContentBtn = $(".extend-content");
-    var hideContentBtn = $(".hide-content");
+    let formContent = $(".form-content");
+    let extendContentBtn = $(".extend-content");
+    let hideContentBtn = $(".hide-content");
     if (getWindowWidth() > 768) {
       removeOldClass(formContent, "hide");
       addNewClass(extendContentBtn, "hide");
@@ -266,14 +266,11 @@ $(document).ready(function () {
       $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
-      let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
-      $(modifyButtonId).append("<button type='button' class='btn modify-btn btn-light active' id='modify-btn'>修改");
+      let modifyButton = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
+      let modifyButtonId = "modify-btn-" + userId;
+      $(modifyButton).append("<button type='button' class='btn modify-btn btn-light active' id='" + modifyButtonId + "'>修改");
       if($("#current-user-id").val() == userId) {
-        $(".operation-btn-group a button").css({
-          "width": "100%",
-          "border-top-right-radius": "4px",
-          "border-bottom-right-radius": "4px"
-        });
+        addNewClass($("#" + modifyButtonId), "current-user");
       }
 
       if($("#current-user-id").val() != userId) {

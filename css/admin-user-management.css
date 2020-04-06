@@ -39,21 +39,22 @@
 
 .modify-btn {
   border-top-right-radius: 0;
-  border-bottom-right-radius: 0; 
+  border-bottom-right-radius: 0;
 }
 
 .del-btn {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
- .create-user {
-   width: 100%;
-   padding: 10px;
- }
 
- .blank {
-   width: 100%;
- }
+.create-user {
+  width: 100%;
+  padding: 10px;
+}
+
+.blank {
+  width: 100%;
+}
 
 .card-header {
   display: flex;
@@ -65,11 +66,18 @@
   float: right;
 }
 
+.current-user {
+  width: 100%;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
 @media screen and (max-width: 768px) {
   .main-content {
     margin-right: 5px;
     margin-left: 5px;
   }
+
   .create-form {
     width: 100%;
   }
