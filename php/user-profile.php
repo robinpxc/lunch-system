@@ -2,40 +2,40 @@
 <?php
 include('common/session.php');
 
-// Get user profile from database
-$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
-$result = mysqli_query($mysqlConnection, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-$userId = $row['id'];
-$userFullName = $row['fullname'];
-$userNickName = $row['nick_name'];
-$userRole = $row['role'];
-$userWorkgroup = $row['workgroup'];
-
-// Update modified user profile data to database.
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
-  $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
-  // Encryp password
-  $pwdHasher = new PasswordHash(8, FALSE);
-  $encrypedPwd = $pwdHasher->HashPassword($modifiedPassword);   
-
-  $sql_check_user_name = "SELECT * FROM user_info WHERE (nick_name = '$modifiedNickName' AND id <> '$userId')";
-  $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
-  $row = mysqli_fetch_array($checkResult, MYSQLI_ASSOC);
-
-  if ($row) {
-    echo "<script>alert('该昵称已被他人使用！')</script>";
-  } else {
-    if ($pwdHasher->CheckPassword($encrypedPwd, $row['password'])) {
-      $encrypedPwd = $row['password'];
-    }
-    $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
-    $result = mysqli_query($mysqlConnection, $update_sql);
-    header("location: user-profile.php");
-  }
-}
+//// Get user profile from database
+//$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
+//$result = mysqli_query($mysqlConnection, $sql);
+//$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+//
+//$userId = $row['id'];
+//$userFullName = $row['fullname'];
+//$userNickName = $row['nick_name'];
+//$userRole = $row['role'];
+//$userWorkgroup = $row['workgroup'];
+//
+//// Update modified user profile data to database.
+//if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//  $modifiedNickName = mysqli_real_escape_string($mysqlConnection, $_POST['user-nickname-edit']);
+//  $modifiedPassword = mysqli_real_escape_string($mysqlConnection, $_POST['user-password-edit']);
+//  // Encryp password
+//  $pwdHasher = new PasswordHash(8, FALSE);
+//  $encrypedPwd = $pwdHasher->HashPassword($modifiedPassword);
+//
+//  $sql_check_user_name = "SELECT * FROM user_info WHERE (nick_name = '$modifiedNickName' AND id <> '$userId')";
+//  $checkResult = mysqli_query($mysqlConnection, $sql_check_user_name);
+//  $row = mysqli_fetch_array($checkResult, MYSQLI_ASSOC);
+//
+//  if ($row) {
+//    echo "<script>alert('该昵称已被他人使用！')</script>";
+//  } else {
+//    if ($pwdHasher->CheckPassword($encrypedPwd, $row['password'])) {
+//      $encrypedPwd = $row['password'];
+//    }
+//    $update_sql = "UPDATE user_info SET nick_name = '$modifiedNickName', password = '$encrypedPwd' WHERE id = '$userId'";
+//    $result = mysqli_query($mysqlConnection, $update_sql);
+//    header("location: user-profile.php");
+//  }
+//}
 
 ?>
 
@@ -61,7 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/profile-form.js"></script>
   <script type="text/javascript" src="../js/user-profile.js"></script>
 
@@ -129,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input profile-input" value="<?php echo $userId; ?>" disabled />
+        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input profile-input"  disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -140,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="<?php echo $userFullName; ?>" disabled />
+        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input profile-input"  disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -151,11 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input profile-input" value="<?php if ($userRole == "admin") {
-                                                                                                                                      echo "管理员(Admin)";
-                                                                                                                                    } else {
-                                                                                                                                      echo "标准用户(User)";
-                                                                                                                                    }  ?>" disabled />
+        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input profile-input"  disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -166,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">所在单位</span>
         </div>
-        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input profile-input" value="<?php echo $userWorkgroup; ?>" disabled />
+        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input profile-input" disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -177,7 +175,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly" required maxlength="30">
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" readonly="readonly" required maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>

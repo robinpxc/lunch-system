@@ -1,5 +1,9 @@
 $(document).ready(function () {
   let currentUserId = $.cookie("modify-user-id");
+  if(currentUserId == null || currentUserId == "") {
+    currentUserId = "session";
+  }
+
   let defaultUserInfo = {};
 
   let modifyButtonGroup = $(".modify-btn");
@@ -11,7 +15,7 @@ $(document).ready(function () {
   let submitBtn = $("#submit-btn");
   let eyeBtn = $("#show-hide-pwd-btn");
 
-  fetchCurrentUserInfo(currentUserId).done(function(response) {
+  fetchUserInfo(currentUserId).done(function(response) {
     defaultUserInfo.id = response.id;
     defaultUserInfo.fullname = response.fullname;
     defaultUserInfo.nickname = response.nick_name;
