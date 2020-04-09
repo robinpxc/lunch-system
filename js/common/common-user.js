@@ -1,8 +1,30 @@
-function getUserData() {
+function fetchGroupUserInfo(role) {
+  let deferred = $.Deferred();
+  let groupType = role == "admin-group" ? group : "all";
+  $.ajax({
+    type: "post",
+    url: "../php/functions/fetch-group-user-info.php",
+    data: {
+      "group-type": groupType
+    },
+    dataType: "JSON",
+    beforeSend: function() {addSpinner();},
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("获取用户信息失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {removeSpinner();}
+  });
+  return deferred.promise();
+}
+
+function fetchCurrentUserInfo(userId) {
   let deferred = $.Deferred();
   $.ajax({
     type: "post",
-    url: "../php/functions/get-person-info.php",
+    url: "../php/functions/fetch-user-info.php",
     data: {
       "userId": userId
     },
@@ -14,12 +36,13 @@ function getUserData() {
       deferred.resolve(response);
     },
     error: function (errorMsg) {
-      alert("用户删除失败，请刷新页面或者切换网络环境，或联系开发者");
+      alert("当前用户信息获取失败，请重试！");
     },
     complete: function() {
       removeSpinner();
     }
   });
+  return deferred.promise();
 }
 
 function addUser(username, nickName, password, role, workgroup) {
@@ -40,6 +63,37 @@ function addUser(username, nickName, password, role, workgroup) {
       deferred.resolve(response);
     },
     complete: function() {removeSpinner();}
+  });
+  return deferred.promise();
+}
+
+// Function to submit modified data as an object via ajax
+function updateUserInfo(userInfoObject) {
+  let deferred = new $.Deferred();
+  $.ajax({
+    type: "post",
+    url: "../php/functions/modify-user-info.php",
+    dataType: "text",
+    data: {
+      "id": userInfoObject.id,
+      "fullname": userInfoObject.fullname,
+      "nickname": userInfoObject.nickname,
+      "workgroup":userInfoObject.workgroup,
+      "password": userInfoObject.password,
+      "role": userInfoObject.role
+    },
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function(response) {
+      jqAlert("失败", "用户信息修改失败,请重试!");
+    },
+    complete: function() {
+      removeSpinner();
+    }
   });
   return deferred.promise();
 }

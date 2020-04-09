@@ -15,20 +15,29 @@ include('common/session.php');
   <title>用户信息修改</title>
 
   <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Common -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
+  <link rel="stylesheet" href="../third-party/fontawesome/css/all.min.css">
+
   <!-- Custom styles-->
   <link href="../css/admin-modify-profile.css" rel="stylesheet">
 
   <!--Java Script-->
+  <!-- Common -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
+
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/profile-form.js"></script>
+
+  <!-- Custom -->
   <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
 
 
@@ -85,7 +94,6 @@ include('common/session.php');
       </div>
     </nav>
   </header>
-
   <div class="profile-form-container mt-4">
     <div class="profile-title mb-4">
       <h2>个人信息</h2>
@@ -96,7 +104,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="<?php echo $userId; ?>" readonly="readonly" />
+        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="" readonly="readonly" />
       </div>
 
       <!-- User fullname input field -->
@@ -104,7 +112,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="<?php echo $userFullName; ?>" maxlength="30" readonly="readonly" />
+        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="" maxlength="30" readonly="readonly" />
         <div class="input-group-append permission-text">
         <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="fullname-edit-btn">修改</button>
         </div>
@@ -115,7 +123,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="hidden" id="user-role-value" value="<?php echo $userRole; ?>" readonly="readonly" />
+        <input type="hidden" id="user-role-value" value="" readonly="readonly" />
         <select class="form-control" id="user-role" disabled="disabled">
           <option value="user">用户</option>
           <option value="admin-group">组管理员</option>
@@ -131,7 +139,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">所在单位</span>
         </div>
-        <input type="hidden" id="user-workgroup-value" value="<?php echo $userWorkgroup; ?>" readonly="readonly"/>
+        <input type="hidden" id="user-workgroup-value" readonly="readonly"/>
         <select class="form-control" id="user-workgroup" disabled="disabled">
           <option value="group0">市委巡察办</option>
           <option value="group1">市委第一巡察组</option>
@@ -151,7 +159,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="<?php echo $userNickName; ?>" readonly="readonly" required maxlength="30">
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="" readonly="readonly" required maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>

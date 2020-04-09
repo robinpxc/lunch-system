@@ -1,1 +1,5 @@
 @import url("user-profile.css");
+
+.profile-form select {
+  padding-left: 9px;
+}

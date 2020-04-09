@@ -8,12 +8,21 @@ $(document).ready(function () {
   addGlobalListeners();
   addFormButtonClickEvents();
 
-  fetchUserInfo().done(function(responsedDataArray) {
-    dataArray = responsedDataArray;
-    setData(dataArray);
+  fetchGroupUserInfo(role).done(function(data) {
+    setData(data);
     configTableHeader();
     $(".del-btn").click(function() {
       showConfirmDeleteDialog(this);
+    });
+
+    $(".modify-btn").click(function() {
+      let id = $(this).parent().find("input").val();
+      if(id == "") {
+        alert("用户信息异常，请刷新重试");
+      } else {
+        $.cookie("modify-user-id", id);
+        window.location.href = "admin-modify-profile.php";
+      }
     });
   });
 
@@ -23,7 +32,6 @@ $(document).ready(function () {
     setDynamicCreateUserSize();
   });
 
-  // Function to fetch user info
   function configUI() {
     // Dynamic resize UI elements
     showHideExtraCols();
@@ -52,29 +60,6 @@ $(document).ready(function () {
         }
       });
     }
-  }
-
-  function fetchUserInfo() {
-    let deferred = $.Deferred();
-    let groupType;
-    groupType = role == "admin-group" ? group : "all";
-    $.ajax({
-      type: "post",
-      url: "../php/functions/fetch-user-info.php",
-      data: {
-        "group-type": groupType
-      },
-      dataType: "JSON",
-      beforeSend: function() {addSpinner();},
-      success: function (response) {
-        deferred.resolve(response);
-      },
-      error: function () {
-        alert("获取用户信息失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
-      },
-      complete: function() {removeSpinner();}
-    });
-    return deferred.promise();
   }
 
 // Function to show/hide extra table contents
@@ -106,9 +91,11 @@ $(document).ready(function () {
     let workgroup = $("#new-user-group option:selected").val();
     addUser(username, nickName, password, role, workgroup).done(function(response) {
       if(response == "success") {
-        alert("操作成功, 成功的添加了用户【" + username + "】");
+        jqInfo("操作成功", "成功的添加了用户【" + username + "】");
+        //alert("操作成功, 成功的添加了用户【" + username + "】");
       } else if(response == "nickname-exist") {
-        alert("操作失败, 昵称已经被使用了!");
+        jqAlert("操作失败", "昵称已经被使用, 请更换昵称!");
+        //alert("操作失败, 昵称已经被使用了!");
       } else {
         alert("操作失败, 发生异常，请重试!");
       }
@@ -117,7 +104,7 @@ $(document).ready(function () {
 
 // Function to show confirm dialog when deleting a user.
   function showConfirmDeleteDialog(btn) {
-    let userId = $(btn).parent().parent().find("input").val();
+    let userId = $(btn).parent().find("input").val();
     let userName = $("#fullname-" + userId).text();
     $.confirm({
       title: "用户删除确认",
@@ -265,18 +252,16 @@ $(document).ready(function () {
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
-      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
-      let modifyButton = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
       let modifyButtonId = "modify-btn-" + userId;
-      $(modifyButton).append("<button type='button' class='btn modify-btn btn-light active' id='" + modifyButtonId + "'>修改");
+      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<button type='button' class='btn modify-btn btn-light active' id='" + modifyButtonId + "'>修改");
+      // let modifyButton = "." + btnGroupClass + " " + ".btn-group-" + i + " .operation-buttons";
+
       if($("#current-user-id").val() == userId) {
-        addNewClass($("#" + modifyButtonId), "current-user");
+        $("#" + modifyButtonId).addClass("current-user");
       }
 
       if($("#current-user-id").val() != userId) {
-        $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
-        let delButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #del-link";
-        $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
+        $("." + btnGroupClass + " " + ".btn-group-" + i).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
       }
     }
   }
