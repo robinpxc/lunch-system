@@ -45,14 +45,6 @@ function fetchUserInfo(userId) {
   return deferred.promise();
 }
 
-function fetchCurrentUserInfo() {
-  let userInfo = null;
-  fetchUserInfo("session").done(function(response) {
-    userInfo = response;
-  });
-  return userInfo;
-}
-
 function addUser(username, nickName, password, role, workgroup) {
   let deferred = $.Deferred();
   $.ajax({

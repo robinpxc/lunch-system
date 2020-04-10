@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let currentUserId = $.cookie("modify-user-id");
   if(currentUserId == null || currentUserId == "") {
-    currentUserId = "session";
+    currentUserId = $.cookie("current-user-id");
   }
 
   let defaultUserInfo = {};
