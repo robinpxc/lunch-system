@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // If result matched $myUsername and $myLoginPwd, table row must be 1 row
         if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
           $_SESSION['lunch_user_session'] = $userId;
-          echo(json_encode("status-success"));
+          echo(json_encode($userId));
         } else {
           echo(json_encode("status-failed"));
         }

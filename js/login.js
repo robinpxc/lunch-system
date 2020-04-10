@@ -39,7 +39,6 @@ $(document).ready(function () {
     })
   }
 
-
   function setLoginBtn() {
     loginInfo = $("input[name='login-info']").val();
     loginPassword = $("input[name='password']").val();
@@ -76,9 +75,6 @@ $(document).ready(function () {
       dataType: "JSON",
       success: function (response) {
         switch (response) {
-          case "status-success":
-            window.location.href = "../php/user-main.php";
-            break;
           case "status-failed":
             alert("密码错误！");
             resetLogin(false);
@@ -91,6 +87,14 @@ $(document).ready(function () {
             alert("账户不存在，请联系804小潘(85252796/15268571882)");
             resetLogin(true);
             break;
+          default:
+            let userId = response;
+            if(!isNaN(userId) && userId.length == 4) {
+              $.cookie("current-user-id", userId);
+              window.location.href = "../php/user-main.php";
+            } else {
+              alert("登录发生错误，请重试！");
+            }
         }
       },
       error: function () {
