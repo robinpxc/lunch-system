@@ -1,19 +1,14 @@
 $(document).ready(function () {
   let currentUserId = $.cookie("modify-user-id");
-  if(currentUserId == null || currentUserId == "") {
-    currentUserId = $.cookie("current-user-id");
-  }
-
   let defaultUserInfo = {};
-
   let modifyButtonGroup = $(".modify-btn");
-  let userRoleSelect = $("#user-role");
-  let userRoleValue = $("#user-role-value").val();
-  let userWorkgroupSelect = $("#user-workgroup");
-  let userWorkgroupValue = $("#user-workgroup-value").val();
   let discardBtn = $("#discard-btn");
   let submitBtn = $("#submit-btn");
   let eyeBtn = $("#show-hide-pwd-btn");
+
+  if(currentUserId == null || currentUserId == "") {
+    currentUserId = $.cookie("current-user-id");
+  }
 
   fetchUserInfo(currentUserId).done(function(response) {
     defaultUserInfo.id = response.id;
@@ -39,15 +34,13 @@ $(document).ready(function () {
     eyeBtn.click(function () {
       eyeBtnClickEvent();
     });
-
-
   });
 
   function setUserData(userInfo) {
     $("#user-id-input").val(userInfo.id);
     $("#user-fullname-input").val(userInfo.fullname);
-    $("#user-role").val(userInfo.role);
-    $("#user-workgroup").val(userInfo.workgroup);
+    $("#user-role").val($("#user-role").hasClass("text-only") ? roleToText(userInfo.role) : userInfo.role);
+    $("#user-workgroup").val($("#user-workgroup").hasClass("text-only")? groupToText(userInfo.workgroup) : userInfo.workgroup);
     $("#nickname-input").val(userInfo.nickname);
   }
 

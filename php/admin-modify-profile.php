@@ -123,7 +123,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="hidden" id="user-role-value" value="" readonly="readonly" />
+        <input type="hidden" id="user-role-value" readonly="readonly" />
         <select class="form-control" id="user-role" disabled="disabled">
           <option value="user">用户</option>
           <option value="admin-group">组管理员</option>

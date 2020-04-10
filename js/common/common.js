@@ -279,6 +279,20 @@ function groupToText(groupNum) {
   }
 }
 
+function roleToText(userRole) {
+  switch(userRole) {
+    case "user":
+      return "用户";
+    case "admin-group":
+      return "组管理员";
+    case "admin-super":
+      return "高级管理员";
+    default:
+      return "未知类型";
+  }
+}
+
+
 // Spinner related functions
 function addSpinner() {
   if (!isElementExist($(".spinner-container"))) {

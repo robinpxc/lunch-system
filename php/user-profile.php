@@ -131,7 +131,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" aria-label="user-id" class="form-control less-permission-input profile-input"  disabled="disabled" />
+        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input"  disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -142,7 +142,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" aria-label="user-fullname" class="form-control less-permission-input profile-input"  disabled="disabled" />
+        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input"  disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -153,7 +153,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户权限</span>
         </div>
-        <input type="text" name="user-role" aria-label="user-role" class="form-control less-permission-input profile-input"  disabled="disabled" />
+        <input type="text" name="user-role" id="user-role" aria-label="user-role" class="form-control less-permission-input profile-input text-only" disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -164,7 +164,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">所在单位</span>
         </div>
-        <input type="text" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input profile-input" disabled="disabled" />
+        <input type="text" id="user-workgroup" name="user-workgroup" aria-label="user-workgroup" class="form-control less-permission-input profile-input text-only" disabled="disabled" />
         <div class="input-group-append permission-text">
           <span class="input-group-text">无修改权限</span>
         </div>
@@ -186,7 +186,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
+        <input type="password" name="user-password-edit" id="password-input" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">
