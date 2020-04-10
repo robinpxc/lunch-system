@@ -15,20 +15,25 @@ include('common/session.php');
   <title>数据管理</title>
 
   <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-  <!-- Custom styles-->
+  <!-- Common-->
   <link href="../css/common/common.css" rel="stylesheet">
+  <!-- Custom -->
   <link href="../css/admin-data-management.css" rel="stylesheet">
 
   <!--Java Script-->
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
+  <!-- Common-->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-date.js"></script>
+  <!-- Custom -->
   <script type="text/javascript" src="../js/admin-data-management.js"></script>
 
 </head>

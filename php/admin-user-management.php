@@ -15,36 +15,35 @@ include('common/session.php');
   <title>用户管理</title>
 
   <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
-  <!-- Custom styles-->
+  <!-- Common-->
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
   <link href="../css/admin-user-management.css" rel="stylesheet">
+  <!-- Custom -->
   <link href="../third-party/fontawesome/css/all.min.css" rel="stylesheet">
 
   <!--Java Script-->
-  <!-- Common -->
-  <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-
-  <!-- Plugins -->
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
-
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
-
-  <!-- Current page -->
+  <!-- Custom -->
   <script type="text/javascript" src="../js/admin-user-management.js"></script>
+
 </head>
 
 <body class="d-block">

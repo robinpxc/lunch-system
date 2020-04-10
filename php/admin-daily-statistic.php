@@ -14,25 +14,30 @@ include('common/session.php'); ?>
   <title>每日点餐统计</title>
 
   <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-  <!-- Custom styles-->
+  <!-- Common -->
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
+  <!-- Custom -->
   <link href="../css/admin-daily-statistic.css" rel="stylesheet">
 
   <!--Java Script-->
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
-  <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
-  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <!-- Common -->
+  <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <!-- Custom -->
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
 
 </head>

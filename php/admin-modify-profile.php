@@ -15,31 +15,29 @@ include('common/session.php');
   <title>用户信息修改</title>
 
   <!-- Style sheets-->
-  <!-- Common -->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
   <link rel="stylesheet" href="../third-party/fontawesome/css/all.min.css">
-
-  <!-- Custom styles-->
+  <!-- Custom -->
   <link href="../css/admin-modify-profile.css" rel="stylesheet">
 
   <!--Java Script-->
-  <!-- Common -->
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
-
+  <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/profile-form.js"></script>
-
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-modify-profile.js"></script>
-
 
 </head>
 

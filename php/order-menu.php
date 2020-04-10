@@ -14,25 +14,27 @@
 
   <title>订餐页面</title>
 
-  <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Style Sheets-->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-  <!-- Custom styles-->
-  <link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">
+  <!-- Common -->
   <link rel="stylesheet" href="../css/common/calendar.css">
+  <!-- Custom -->
   <link rel="stylesheet" href="../css/admin-menu-management.css">
   <link rel="stylesheet" href="../css/order-menu.css">
 
-
-
-  <!--Java Script-->
+  <!-- Java Script -->
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-menu.js"></script>
+  <!-- Custom -->
   <script type="text/javascript" src="../js/order-menu.js"></script>
 
 </head>
