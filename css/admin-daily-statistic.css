@@ -46,10 +46,6 @@
 }
 
 @media screen and (max-width: 768px) {
- .main-content {
-    padding: 10px;
-  }
-
   .order-count table {
     width: 100%;
   }

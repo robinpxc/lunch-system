@@ -1,9 +1,4 @@
 @import url("common/common.css");
-
-.main-content {
-  margin-top: 10px;
-}
-
 .create-form {
   margin-bottom: 0;
   position: fixed;

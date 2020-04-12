@@ -128,7 +128,7 @@ $(document).ready(function () {
 
     $("#menu-manage-btn").click(function () {
       transferUserData();
-      window.location.href = "admin-menu-management.php";
+      window.location.href = "admin-menu-operation.php";
     });
 
     $("#data-manage-btn").click(function () {
@@ -141,8 +141,8 @@ $(document).ready(function () {
     let userRole = $("#user-role-input").val();
     let userGroup = $("#user-group-input").val();
     if(userRole != "" && userGroup != "") {
-      $.cookie("current-user-role", userRole);
-      $.cookie("current-user-group", userGroup);
+      $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT, userRole);
+      $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT, userGroup);
     } else {
       alert("用户数据传输错误，请刷新重试");
     }

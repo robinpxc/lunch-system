@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  let role = $.cookie("current-user-role");
-  let group = $.cookie("current-user-group");
+  let role = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
+  let group = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
   let groupNumber = role == "admin-group" ? 1 : 7;
   let dataArray = new Array();
 
