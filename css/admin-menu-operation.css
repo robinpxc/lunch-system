@@ -20,31 +20,6 @@
   font-size: 1.3rem;
 }
 
-.statistic-container {
-  display: flex;
-  flex-basis: auto;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.today-order {
-  width: 250px;
-}
-
-.today-detail {
-  flex: 1;
-  margin-left: 5px;
-}
-
-@media screen and (max-width: 768px) {
-  .date-box #date-prefix {
-    display: none;
-  }
-  .today-order {
-    width: 100%;
-  }
-
-  .today-detail {
-    margin-left: 0;
-  }
+.operation-container {
+  margin-top: 5px;
 }

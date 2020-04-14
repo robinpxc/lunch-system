@@ -127,73 +127,204 @@ include('common/session.php');
     </div>
   </div>
 
-  <div class="statistic-container">
-    <div class="alert alert-primary info-table-container today-order" role="alert">
-      <div class="order-count">
-        <div class="info-title mb-2">
-          <span class="info-title-text">今日点餐统计</span>
+  <div class="operation-container table-group">
+    <div class="form-nav d-block">
+      <!-- Dropdown list to select data source -->
+      <div class="btn-group nav-drop-down">
+        <button class="btn btn-danger btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          显示：全部显示
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#" id="group-0">显示：巡察办</a>
+          <a class="dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
+          <a class="dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
+          <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
+          <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
+          <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
+          <a class="dropdown-item" href="#" id="group-6">显示：物业</a>
+          <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
-        <table class="info-table">
-          <thead class="info-thead">
-          <td class="info-td left">餐号</td>
-          <td class="info-td">份数</td>
-          </thead>
-          <tbody class="info-tbody">
-          <tr class="info-tr">
-            <td class="info-td left">1号</td>
-            <td class="info-td" id="order-sum-1"></td>
-          </tr>
-          <tr class="info-tr">
-            <td class="info-td left">2号</td>
-            <td class="info-td" id="order-sum-2"></td>
-          </tr>
-          <tr class="info-tr">
-            <td class="info-td left">3号</td>
-            <td class="info-td" id="order-sum-3"></td>
-          </tr>
-          <tr class="info-tr">
-            <td class="info-td left">4号</td>
-            <td class="info-td" id="order-sum-4"></td>
-          </tr>
-          <tr class="info-tr">
-            <td class="info-td left">5号</td>
-            <td class="info-td" id="order-sum-5"></td>
-          </tr>
-          <tr class="info-tr">
-            <td class="info-td left bottom">总计</td>
-            <td class="info-td bottom" id="order-sum"></td>
-          </tr>
-          </tbody>
-        </table>
+      </div>
+
+      <div class="table-content mt-2 d-block">
+        <!-- 巡察办人员名单 -->
+        <div class="table-card card table-group-0">
+          <div class="card-header">
+            <span class="tb-title">市委巡察办</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group0">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 一组人员名单 -->
+        <div class="table-card card table-group-1">
+          <div class="card-header">
+            <span class="tb-title">市委第一巡察组</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-1 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group1">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 二组人员名单 -->
+        <div class="table-card card table-group-2">
+          <div class="card-header">
+            <span class="tb-title">市委第二巡察组</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-2 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group2">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 三组人员名单 -->
+        <div class="table-card card table-group-3">
+          <div class="card-header">
+            <span class="tb-title">市委第三巡察组</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-3 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group3">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 四组人员名单 -->
+        <div class="table-card card table-group-4">
+          <div class="card-header">
+            <span class="tb-title">市委第四巡察组</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-4 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group4">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 五组人员名单 -->
+        <div class="table-card card table-group-5">
+          <div class="card-header">
+            <span class="tb-title">市委第五巡察组</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-5 no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead  class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              </thead>
+              <tbody class="tb-group5">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 物业人员名单 -->
+        <div class="table-card card table-group-6">
+          <div class="card-header">
+            <span class="tb-title">物业</span>
+            <span>
+            <button class="btn btn-success btn-print tb-print-6  no-print" type="button">打印表格</button>
+          </span>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead class="thead-light">
+              <tr table-content>
+                <th scope="col" class="username-info">姓名</th>
+                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="operation no-print">操作</th>
+              </tr>
+              </thead>
+              <tbody class="tb-group6">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div class="alert alert-primary info-table-container today-detail" role="alert">
-      <div class="show-date-text"></div>
-      <div class="group-detail">
-        <div class="info-title mb-2">
-          <span class="info-title-text">今日点餐细节</span>
-        </div>
-        <table class="info-table">
-          <thead class="info-thead">
-            <td class="info-td left">姓名</td>
-            <td class="info-td">餐号</td>
-            <td class="info-td">份数</td>
-          </thead>
-          <tbody class="info-tbody">
-            <tr class="info-tr">
-              <td class="info-td left">张三</td>
-              <td class="info-td">1号</td>
-              <td class="info-td">3份</td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <div class="operation-container">
-
   </div>
 </div>
 

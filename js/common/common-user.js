@@ -1,4 +1,4 @@
-function fetchGroupUserInfo(role) {
+function fetchGroupUserInfo(role, group) {
   let deferred = $.Deferred();
   let groupType = role == "admin-group" ? group : "all";
   $.ajax({

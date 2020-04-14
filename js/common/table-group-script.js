@@ -1,6 +1,24 @@
 
-function initTableGroup() {
+function initTableGroup(userRole, userGroup) {
+  setTable(userRole, userGroup);
   addDropdownListEvent();
+}
+
+function setTable(userRole, userGroup) {
+  if(userRole == "admin-super") {
+    addDropdownListEvent();
+  } else {
+    keepCurrentGroupTable(userGroup);
+  }
+}
+
+function keepCurrentGroupTable(userGroup) {
+  let groupNum = userGroup[5];
+  $(".table-card").each(function() {
+    if(!$(this).hasClass("table-group-" + groupNum)) {
+      $(this).remove();
+    }
+  });
 }
 
 function addDropdownListEvent() {

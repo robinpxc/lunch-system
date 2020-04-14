@@ -51,16 +51,6 @@
   width: 100%;
 }
 
-.card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.btn-print {
-  float: right;
-}
-
 .current-user {
   width: 100% !important;
   border-top-right-radius: 4px;
