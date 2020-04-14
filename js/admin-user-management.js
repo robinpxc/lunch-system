@@ -1,14 +1,14 @@
 $(document).ready(function () {
-  let role = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
-  let group = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
-  let groupNumber = role == "admin-group" ? 1 : 7;
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let groupCount = userRole == "admin-group" ? 1 : 7;
   let dataArray = new Array();
 
   configUI();
   addGlobalListeners();
   addFormButtonClickEvents();
 
-  fetchGroupUserInfo(role).done(function(data) {
+  fetchGroupUserInfo(userRole, userGroup).done(function(data) {
     setData(data);
     configTableHeader();
     $(".del-btn").click(function() {
@@ -40,13 +40,13 @@ $(document).ready(function () {
 
     // Table related UI functions
     initUI();
-    initTableGroup();
+    initTableGroup(userRole, userGroup);
     setGroupTablePrint();
   }
 
   function initUI() {
-    let groupNum = group[5];
-    if (role == "admin-group") {
+    let groupNum = userGroup[5];
+    if (userRole == "admin-group") {
       $(".nav-drop-down").remove();
       $(".table-card").each(function() {
         if(!$(this).hasClass("table-group-" + groupNum)) {
@@ -55,7 +55,7 @@ $(document).ready(function () {
       });
       $("#super-user").remove();
       $("#new-user-group option").each(function() {
-        if($(this).val() != group) {
+        if($(this).val() != userGroup) {
           $(this).remove();
         }
       });
@@ -90,14 +90,17 @@ $(document).ready(function () {
     let role = $("#new-user-role option:selected").val();
     let workgroup = $("#new-user-group option:selected").val();
     addUser(username, nickName, password, role, workgroup).done(function(response) {
-      if(response == "success") {
-        jqInfo("操作成功", "成功的添加了用户【" + username + "】");
-        //alert("操作成功, 成功的添加了用户【" + username + "】");
-      } else if(response == "nickname-exist") {
-        jqAlert("操作失败", "昵称已经被使用, 请更换昵称!");
-        //alert("操作失败, 昵称已经被使用了!");
-      } else {
-        alert("操作失败, 发生异常，请重试!");
+      switch(response) {
+        case "success":
+          alert(response);
+          jqInfo("操作成功", "成功的添加了用户【" + username + "】");
+          break;
+        case "nickname-exist":
+          alert(response);
+          jqAlert("操作失败", "昵称已经被使用, 请更换昵称!");
+          break;
+        default:
+          alert("操作失败, 发生异常，请重试!");
       }
     });
   }
@@ -106,26 +109,8 @@ $(document).ready(function () {
   function showConfirmDeleteDialog(btn) {
     let userId = $(btn).parent().find("input").val();
     let userName = $("#fullname-" + userId).text();
-    $.confirm({
-      title: "用户删除确认",
-      content: "确认从数据库中删除【" + userName + "】吗？",
-      icon: "fa fa-exclamation-triangle",
-      animation: "top",
-      buttons: {
-        confirm: {
-          btnClass: "btn-danger",
-          text: "确认删除",
-          keys: ["enter"],
-          action: function () {
-            delUser(userId, userName);
-          }
-        },
-        cancel: {
-          btnClass: "btn-primary",
-          text: "取消",
-          keys: ["esc"],
-        }
-      }
+    jqConfirm("用户删除确认", "确认从数据库中删除【" + userName + "】吗？", function() {
+      delUser(userId, userName)
     });
   }
 
@@ -194,48 +179,48 @@ $(document).ready(function () {
     for(let i = 0; i < 7; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
+      $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupMemberCount(dataArray, i) + " 人 ）");
     }
   }
 
   function setData(dataArray) {
-    for(let i = 0; i < groupNumber; i++) {
-      setDataToGroupTable(getGroupData(dataArray, i), i);
+    for(let i = 0; i < groupCount; i++) {
+      setDataToGroupTable(getGroupData(dataArray, groupCount == 1 ? userGroup : i), groupCount == 1 ? userGroup : i);
     }
   }
 
-  function getGroupOrderNumber(dataArray, groupNumber) {
-    let groupOrder = 0;
+  function getGroupMemberCount(dataArray, groupNumber) {
+    let groupMembers = 0;
     let group = "group" + groupNumber;
     for(let i = 0; i < dataArray.length; i++) {
       if(dataArray[i][5] == group) {
-        groupOrder ++;
+        groupMembers ++;
       }
     }
-    return groupOrder;
+    return groupMembers;
   }
 
   function getGroupData(dataArray, groupNumber) {
-    let group = "group" + groupNumber;
-    let groupOrderData = new Array();
+    let group = groupCount == 1 ? groupNumber : "group" + groupNumber;
+    let groupMemberData = new Array();
     for(let i = 0; i < dataArray.length; i++) {
-      if(dataArray[i][5] == group) {
-        groupOrderData.push(dataArray[i]);
+      if(dataArray[i][4] == group) {
+        groupMemberData.push(dataArray[i]);
       }
     }
-    return groupOrderData;
+    return groupMemberData;
   }
 
-  function setDataToGroupTable(data, group) {
-    for(let i = 0; i < data.length; i++) {
-      let fullname = data[i][2];
-      let userId = data[i][0];
-      let userRole = data[i][4];
-      let nickname = data[i][1];
-      let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
-
-      $(".tb-group" + group).append("<tr class=" + personClass + ">");
-      $("." + personClass).append("<td id='" + "fullname-" + userId + "'>" + fullname);
+  function setDataToGroupTable(groupMemberData, userGroup) {
+    for(let i = 0; i < groupMemberData.length; i++) {
+      let fullName = groupMemberData[i][0];
+      let userId = groupMemberData[i][1];
+      let userRole = groupMemberData[i][2];
+      let nickName = groupMemberData[i][3];
+      let groupNum = groupCount == 1 ? userGroup[5] : userGroup;
+      let personClass = "group" + "-" + groupNum + "-" + "person" + "-" + i;
+      $(".tb-group" + groupNum).append("<tr class=" + personClass + ">");
+      $("." + personClass).append("<td id='" + "fullname-" + userId + "'>" + fullName);
       $("." + personClass).append("<td>" + userId);
 
       let userRoleCN = "";
@@ -247,7 +232,7 @@ $(document).ready(function () {
         userRoleCN = "用户";
       }
       $("." + personClass).append("<td class='hide-small-screen'>" + userRoleCN);
-      $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
+      $("." + personClass).append("<td class='hide-small-screen'>" + nickName);
       $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");

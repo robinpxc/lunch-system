@@ -58,11 +58,18 @@ function addUser(username, nickName, password, role, workgroup) {
       "workgroup": workgroup
     },
     dataType: "json",
-    beforeSend: function() {addSpinner();},
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       deferred.resolve(response);
     },
-    complete: function() {removeSpinner();}
+    error: function() {
+      alert("网络异常，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
   });
   return deferred.promise();
 }
