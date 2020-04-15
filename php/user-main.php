@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <?php
 include('common/session.php');
-
-$sql = "SELECT `user_info`.`role`, `user_info`.`workgroup` FROM `user_info` WHERE `user_info`.`id` = '$login_session'";
-$result = mysqli_query($mysqlConnection, $sql);
-$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-$userRole = $row['role'];
-$userGroup = $row['workgroup'];
 ?>
 
 <html lang="zh">
@@ -102,8 +95,6 @@ $userGroup = $row['workgroup'];
   </div>
 
   <div class="container main-content">
-    <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
-    <input type="hidden" id="user-group-input" value="<?php echo($userGroup)?>">
     <div class="card-deck mb-5 text-center">
 
       <!-- Menu card today-->

@@ -13,13 +13,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $userId = $row['id'];
       $userPassword = $row['password'];
       $userStatus = $row['status'];
+      $userFullname = $row['fullname'];
+      $userRole = $row['role'];
+      $userGroup = $row['workgroup'];
 
       if ($userStatus == "A") {
         $pwdHasher = new PasswordHash(8, FALSE);
         // If result matched $myUsername and $myLoginPwd, table row must be 1 row
         if ($pwdHasher->CheckPassword($myLoginPwd, $userPassword)) {
           $_SESSION['lunch_user_session'] = $userId;
-          echo(json_encode($userId));
+          $userInfo = array($userId, $userFullname, $userRole, $userGroup);
+          echo(json_encode($userInfo));
         } else {
           echo(json_encode("status-failed"));
         }

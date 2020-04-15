@@ -18,7 +18,7 @@ $(document).ready(function () {
       if(id == "") {
         alert("用户信息异常，请刷新重试");
       } else {
-        $.cookie("modify-user-id", id);
+        $.cookie(CONSTANTS.COOKIE.USER_ID_MODIFIED, id);
         window.location.href = "admin-modify-profile.php";
       }
     });

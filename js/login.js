@@ -88,9 +88,15 @@ $(document).ready(function () {
             resetLogin(true);
             break;
           default:
-            let userId = response;
-            if(!isNaN(userId) && userId.length == 4) {
-              $.cookie("USER_ID", userId);
+            let userId = response[0];
+            let userFullname = response[1];
+            let userRole = response[2];
+            let userGroup = response[3];
+            if(response != "" || response != null) {
+              $.cookie(CONSTANTS.COOKIE.USER_ID_CURRENT, userId);
+              $.cookie(CONSTANTS.COOKIE.USERNAME_CURRENT, userFullname);
+              $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT, userRole);
+              $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT, userGroup);
               window.location.href = "../php/user-main.php";
             } else {
               alert("登录发生错误，请重试！");
