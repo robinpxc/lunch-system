@@ -27,7 +27,7 @@ $(document).ready(function () {
 
     // Submit button click event
     submitBtn.click(function () {
-      submitModifiedUserInfo(defaultUserInfo, defaultUserInfo.id);
+      submitModifiedUserInfo(defaultUserInfo);
     });
 
     // Function of password eye button
@@ -110,39 +110,50 @@ $(document).ready(function () {
   }
 
 // Function to submit modified user information
-  function submitModifiedUserInfo(userInfoObj, oldId) {
+  function submitModifiedUserInfo(userInfoObj) {
     let userInfoUpdate = {};
+    let modificationCount = 0
     $(".form-control").each(function(){
       let self = $(this);
       switch(self.attr("id")) {
         case "user-id-input":
+          modificationCount += isDataModified(self, userInfoObj.id) ? 1 : 0;
           userInfoUpdate.id = isDataModified(self, userInfoObj.id) ? self.val() : userInfoObj.id;
           break;
         case "user-fullname-input":
+          modificationCount += isDataModified(self, userInfoObj.fullname) ? 1 : 0;
           userInfoUpdate.fullname = isDataModified(self, userInfoObj.fullname) ? self.val() : userInfoObj.fullname;
           break;
         case "user-role":
+          modificationCount += isDataModified(self, userInfoObj.role) ? 1 : 0;
           userInfoUpdate.role = isDataModified(self, userInfoObj.role) ? self.val() : userInfoObj.role;
           break;
         case "user-workgroup":
+          modificationCount += isDataModified(self, userInfoObj.workgroup) ? 1 : 0;
           userInfoUpdate.workgroup = isDataModified(self, userInfoObj.workgroup) ? self.val() : userInfoObj.workgroup;
           break;
         case "nickname-input":
+          modificationCount += isDataModified(self, userInfoObj.nickname) ? 1 : 0;
           userInfoUpdate.nickname = isDataModified(self, userInfoObj.nickname) ? self.val() : userInfoObj.nickname;
           break;
         case "password-input":
+          modificationCount += (self.val() == "" || self.val() == null) ? 0 : 1;
           userInfoUpdate.password = self.val();
           break;
       }
     });
 
-    updateUserInfo(userInfoUpdate).done(function(response) {
-      if(response == "success") {
-        jqInfo("成功", "用户信息修改成功!");
-      } else {
-        jqAlert("失败", "用户信息修改失败,请重试!");
-      }
-    })
+    if(modificationCount > 0) {
+      updateUserInfo(userInfoUpdate).done(function(response) {
+        if(response == "success") {
+          jqInfo("修改成功", "修改了【" + modificationCount + "】处信息!" );
+        } else {
+          jqAlert("修改失败", "用户信息修改失败,请重试!");
+        }
+      });
+    } else {
+      jqInfo("无改动", "您没有修改任何信息");
+    }
   }
 
 // Function to judge if the modified data

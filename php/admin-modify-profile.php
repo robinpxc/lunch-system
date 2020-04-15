@@ -102,7 +102,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">用户ID</span>
         </div>
-        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="" readonly="readonly" />
+        <input type="text" name="user-id" id="user-id-input" aria-label="user-id" class="form-control less-permission-input profile-input" value="" disabled="disabled" />
       </div>
 
       <!-- User fullname input field -->
@@ -110,7 +110,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">姓名</span>
         </div>
-        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="" maxlength="30" readonly="readonly" />
+        <input type="text" name="user-fullname" id="user-fullname-input" aria-label="user-fullname" class="form-control less-permission-input profile-input" value="" maxlength="30" disabled="disabled" />
         <div class="input-group-append permission-text">
         <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="fullname-edit-btn">修改</button>
         </div>
@@ -157,7 +157,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">昵称</span>
         </div>
-        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="" readonly="readonly" required maxlength="30">
+        <input type="text" name="user-nickname-edit" id="nickname-input" aria-label="user-nickname" class="form-control profile-input" value="" disabled="disabled" required maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="nickname-edit-btn">修改</button>
         </div>
@@ -168,7 +168,7 @@ include('common/session.php');
         <div class="input-group-prepend">
           <span class="input-group-text item-title">密码</span>
         </div>
-        <input type="password" id="password-input" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击输入新密码" required readonly="readonly" maxlength="30">
+        <input type="password" id="password-input" name="user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="点击[修改]设置新密码" required disabled="disabled" maxlength="30">
         <div class="input-group-append">
           <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn" disabled>
             <svg class="icon-eye hide" id="eye-icon" viewBox="0 0 1024 1024">
