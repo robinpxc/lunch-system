@@ -46,7 +46,7 @@ $(document).ready(function () {
   // Function to check menu status based on user selected date
   function checkMenuStatus() {
     $.ajax({
-      type: "post",
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/check-menu-status.php",
       data: {
         "selected-date": dateSelected
@@ -254,7 +254,7 @@ $(document).ready(function () {
   // Function to fetch menu from server
   function fetchMenu(date) {
     $.ajax({
-      type: "POST",
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/fetch-menu.php",
       data: {
         'date': date
@@ -280,7 +280,7 @@ $(document).ready(function () {
   // Function to create / update menu
   function updateMenu(menuList, date) {
     $.ajax({
-      type: "POST",
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/update-menu.php",
       data: {
         'date': date,
@@ -300,7 +300,7 @@ $(document).ready(function () {
   // Function to delete menu
   function deleteMenu(date) {
     $.ajax({
-      type: 'POST',
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: '../php/functions/delete-menu.php',
       data: {
         'date': date

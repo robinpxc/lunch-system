@@ -281,11 +281,11 @@ function groupToText(groupNum) {
 
 function roleToText(userRole) {
   switch(userRole) {
-    case "user":
+    case CONSTANTS.USER.ROLE.USER:
       return "用户";
-    case "admin-group":
+    case CONSTANTS.USER.ROLE.ADMIN_GROUP:
       return "组管理员";
-    case "admin-super":
+    case CONSTANTS.USER.ROLE.ADMIN_SUPER:
       return "高级管理员";
     default:
       return "未知类型";

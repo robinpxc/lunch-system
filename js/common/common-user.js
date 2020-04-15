@@ -1,8 +1,8 @@
 function fetchGroupUserInfo(role, group) {
   let deferred = $.Deferred();
-  let groupType = role == "admin-group" ? group : "all";
+  let groupType = role == CONSTANTS.USER.ROLE.ADMIN_GROUP ? group : "all";
   $.ajax({
-    type: "post",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-group-user-info.php",
     data: {
       "group-type": groupType
@@ -23,7 +23,7 @@ function fetchGroupUserInfo(role, group) {
 function fetchUserInfo(userId) {
   let deferred = $.Deferred();
   $.ajax({
-    type: "post",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-user-info.php",
     data: {
       "userId": userId
@@ -48,7 +48,7 @@ function fetchUserInfo(userId) {
 function addUser(username, nickName, password, role, workgroup) {
   let deferred = $.Deferred();
   $.ajax({
-    type: "post",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/add-user.php",
     data: {
       "username": username,
@@ -78,7 +78,7 @@ function addUser(username, nickName, password, role, workgroup) {
 function updateUserInfo(userInfoObject) {
   let deferred = new $.Deferred();
   $.ajax({
-    type: "post",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/modify-user-info.php",
     dataType: "text",
     data: {
@@ -108,7 +108,7 @@ function updateUserInfo(userInfoObject) {
 function deleteUser(userId) {
   let deferred = $.Deferred();
   $.ajax({
-    type: "post",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/delete-user.php",
     data: {
       "userId": userId

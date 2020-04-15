@@ -1,9 +1,9 @@
 $(document).ready(function () {
   let date = $.cookie("order-date");
-  let orderStatus = checkOrderStatus(date, false, "order-status");
+  let orderStatus = checkOrderStatus(date,CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session");
   let orderNumber;
   if(isOrderExist()) {
-    orderNumber = checkOrderStatus(date, false, "order-number");
+    orderNumber = checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session");
   }
 
   initUI();
@@ -70,7 +70,7 @@ $(document).ready(function () {
 // Function to fetch menu from server
   function fetchMenuList(date) {
     $.ajax({
-      type: "POST",
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/fetch-menu.php",
       data: {
         'date': date
@@ -105,7 +105,7 @@ $(document).ready(function () {
       var menuNum = $(this).index() + 1;
       setSelectBorder($(this), menuNum);
       $.ajax({
-        type: "POST",
+        type: CONSTANTS.AJAX.TYPE.POST,
         url: "../php/functions/order-operation.php",
         data: {
           "order-number": menuNum,

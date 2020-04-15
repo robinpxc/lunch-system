@@ -38,6 +38,8 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-user.js"></script>
+  <script type="text/javascript" src="../js/common/common-order.js"></script>
+  <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
@@ -122,7 +124,7 @@ include('common/session.php');
 <div class="main-content boxshaw">
   <div class="card date-box mt-2">
     <div class="card-body">
-      <span id="date-prefix">今天是</span>
+      <span id="date-prefix">【明天】是 </span>
       <span id="date-title"></span>
     </div>
   </div>

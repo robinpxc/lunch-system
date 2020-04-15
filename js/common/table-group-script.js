@@ -1,13 +1,13 @@
 
 function initTableGroup(userRole, userGroup) {
   setTable(userRole, userGroup);
-  addDropdownListEvent();
 }
 
 function setTable(userRole, userGroup) {
-  if(userRole == "admin-super") {
+  if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
     addDropdownListEvent();
   } else {
+    $(".nav-drop-down").remove();
     keepCurrentGroupTable(userGroup);
   }
 }

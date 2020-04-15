@@ -7,7 +7,7 @@
 function fetchExistYear(async) {
   let menuArray = new Array();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-years.php",
     data: {},
     dataType: "JSON",
@@ -34,7 +34,7 @@ function fetchExistYear(async) {
 function fetchExistMonth(year, async) {
   let menuArray = new Array();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-months.php",
     data: {
       "year": year
@@ -64,7 +64,7 @@ function fetchExistMonth(year, async) {
 function fetchExistDays(year, month, async) {
   let menuArray = new Array();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-days.php",
     data: {
       "year": year,

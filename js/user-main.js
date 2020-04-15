@@ -6,9 +6,9 @@ $(document).ready(function () {
   let orderStatusTomorrow = null;
 
   // Function calls
-  checkOrderStatus(formattedDateToday, "order-status").done(function(response) {
+  checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session").done(function(response) {
     orderStatusToday = response;
-    checkOrderStatus(formattedDateTomorrow, "order-status").done(function(response) {
+    checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session").done(function(response) {
       orderStatusTomorrow = response;
       initUI();
     });
@@ -27,7 +27,7 @@ $(document).ready(function () {
     let cardToday = $("#menu-card-today");
     $(".card-title-today span").text(getWeekDayCN(weekdayToday));
     setWeekendTitleStyle(true, weekdayToday);
-    if (orderStatusToday == "order-exist") {
+    if (orderStatusToday == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
       updateCardStatus(cardToday, true);
       setCardPreview(true, formattedDateToday);
     } else {
@@ -40,7 +40,7 @@ $(document).ready(function () {
     let cardTomorrow = $("#menu-card-tomorrow");
     $(".card-title-tomorrow span").text(getWeekDayCN(weekdayToday + 1));
     setWeekendTitleStyle(false, weekdayToday + 1);
-    if (orderStatusTomorrow == "order-exist") {
+    if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
       updateCardStatus(cardTomorrow, true);
       setCardPreview(true, formattedDateTomorrow);
     } else {
@@ -82,7 +82,7 @@ $(document).ready(function () {
 
   function setCardPreview(isOrderExist, date) {
     if(isOrderExist) {
-      checkOrderStatus(date, "order-content").done(function(orderContent) {
+      checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, "session").done(function(orderContent) {
         let orderNum = null;
         let orderCount = null
         orderNum = orderContent.menu_number;

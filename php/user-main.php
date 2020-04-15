@@ -37,7 +37,6 @@ $userGroup = $row['workgroup'];
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
-  <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/user-main.js"></script>

@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let userRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
   let userGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
-  let groupCount = userRole == "admin-group" ? 1 : 7;
+  let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : 7;
 
   configUI();
   addGlobalListeners();
@@ -44,7 +44,7 @@ $(document).ready(function () {
 
   function initUI() {
     let groupNum = userGroup[5];
-    if (userRole == "admin-group") {
+    if (userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
       $(".nav-drop-down").remove();
       $(".table-card").each(function() {
         if(!$(this).hasClass("table-group-" + groupNum)) {
@@ -223,12 +223,12 @@ $(document).ready(function () {
       $("." + personClass).append("<td>" + userId);
 
       let userRoleCN = "";
-      if(userRole == "admin-super") {
-        userRoleCN = "高级管理员";
-      } else if(userRole == "admin-group") {
-        userRoleCN = "组管理员";
+      if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_SUPER;
+      } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_GROUP;
       } else {
-        userRoleCN = "用户";
+        userRoleCN = CONSTANTS.USER.ROLE.CN.USER;
       }
       $("." + personClass).append("<td class='hide-small-screen'>" + userRoleCN);
       $("." + personClass).append("<td class='hide-small-screen'>" + nickName);

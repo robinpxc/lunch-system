@@ -66,7 +66,7 @@ $(document).ready(function () {
   // Login request
   function login() {
     $.ajax({
-      type: "POST",
+      type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/user-login.php",
       data: {
         "login-info": loginInfo,
