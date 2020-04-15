@@ -2,7 +2,6 @@ $(document).ready(function () {
   let userRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
   let userGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
   let groupCount = userRole == "admin-group" ? 1 : 7;
-  let dataArray = new Array();
 
   configUI();
   addGlobalListeners();
@@ -10,7 +9,6 @@ $(document).ready(function () {
 
   fetchGroupUserInfo(userRole, userGroup).done(function(data) {
     setData(data);
-    configTableHeader();
     $(".del-btn").click(function() {
       showConfirmDeleteDialog(this);
     });
@@ -175,7 +173,7 @@ $(document).ready(function () {
     $("body").css("padding-bottom", blankHeight);
   }
 
-  function configTableHeader() {
+  function configTableHeader(dataArray) {
     for(let i = 0; i < 7; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
@@ -184,16 +182,17 @@ $(document).ready(function () {
   }
 
   function setData(dataArray) {
+    configTableHeader(dataArray);
     for(let i = 0; i < groupCount; i++) {
       setDataToGroupTable(getGroupData(dataArray, groupCount == 1 ? userGroup : i), groupCount == 1 ? userGroup : i);
     }
   }
 
-  function getGroupMemberCount(dataArray, groupNumber) {
+  function getGroupMemberCount(dataArray, groupNum) {
     let groupMembers = 0;
-    let group = "group" + groupNumber;
+    let group = "group" + groupNum;
     for(let i = 0; i < dataArray.length; i++) {
-      if(dataArray[i][5] == group) {
+      if(dataArray[i][4] === group) {
         groupMembers ++;
       }
     }
