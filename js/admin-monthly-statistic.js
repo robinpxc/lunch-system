@@ -28,7 +28,7 @@ $(document).ready(function(){
   }
 
   function addSummaryForGroups() {
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let trClass = "tb-group" + i + "sum";
       $(".tb-group" + i).append("<tr class='sum " + trClass + "'>");
       $("." + trClass).append("<td>" + "合计");

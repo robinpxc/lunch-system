@@ -2,7 +2,7 @@
 <?php
 include('common/session.php');
 
-$sql = "SELECT * FROM user_info WHERE id = '$login_session'";
+$sql = "SELECT `user_info`.`role`, `user_info`.`workgroup` FROM `user_info` WHERE `user_info`.`id` = '$login_session'";
 $result = mysqli_query($mysqlConnection, $sql);
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -103,7 +103,7 @@ $userGroup = $row['workgroup'];
 
   <div class="container main-content">
     <input type="hidden" id="user-role-input" value="<?php echo($userRole); ?>">
-    <input  type="hidden" id="user-group-input" value="<?php echo($userGroup)?>">
+    <input type="hidden" id="user-group-input" value="<?php echo($userGroup)?>">
     <div class="card-deck mb-5 text-center">
 
       <!-- Menu card today-->

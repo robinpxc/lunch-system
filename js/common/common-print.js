@@ -11,7 +11,7 @@ function initPrintFunction(element) {
 }
 
 function setGroupTablePrint() {
-  for(let i = 0; i < 7; i++) {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     $(".tb-print-" + i).click(function() {
       initPrintFunction($(".table-group-" + i));
     });

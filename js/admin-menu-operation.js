@@ -1,6 +1,7 @@
 $(document).ready(function() {
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
   initUI();
   refreshTables();
@@ -20,7 +21,8 @@ $(document).ready(function() {
       let userLists = filterUsers(response);
 
       // Step 02: set unordered operational user table
-      setOperationalTable(userLists[0]);
+      setUnorderedTable(userLists[0]);
+      setOrderedTable(userLists[1]);
     });
   }
 
@@ -42,9 +44,17 @@ $(document).ready(function() {
     return userList;
   }
 
-  function setOperationalTable(unorderedUserList) {
-    if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
-      
+  function setUnorderedTable(unorderedUserList) {
+    setTableData(unorderedUserList);
+  }
+
+  function setOrderedTable(orderedUserList) {
+    setTableData(orderedUserList);
+  }
+
+  function setTableData(dataList) {
+    for(let i = 0; i < groupIndexCount; i++) {
+
     }
   }
 });

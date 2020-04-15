@@ -1,7 +1,7 @@
 $(document).ready(function () {
   let userRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
   let userGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
-  let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : 7;
+  let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
   configUI();
   addGlobalListeners();
@@ -174,7 +174,7 @@ $(document).ready(function () {
   }
 
   function configTableHeader(dataArray) {
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
       $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupMemberCount(dataArray, i) + " 人 ）");

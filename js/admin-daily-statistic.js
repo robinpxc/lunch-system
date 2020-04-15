@@ -12,7 +12,7 @@ $(document).ready(function() {
   setNoOrderTablePrint();
 
   function configUI() {
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
       $(cardHeaderClassName).text(originalText + "（共" +  getGroupOrderSum(dataArray, i) + "人有效点餐）");
@@ -36,7 +36,7 @@ $(document).ready(function() {
   }
 
   function setData(dataArray) {
-    for(let i = 0; i < 7; i++) {
+    for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       setDataToGroupTable(getGroupData(dataArray, i), i);
     }
   }
@@ -47,7 +47,7 @@ $(document).ready(function() {
     for(let i = 0; i < dataArray.length; i++) {
       let orderNum = dataArray[i][2];
       if(dataArray[i][3] == group) {
-        if(orderNum != 7) {
+        if(orderNum != CONSTANTS.ORDER.CONTENT.NO_ORDER) {
           groupOrder ++;
         }
       }
@@ -72,7 +72,7 @@ $(document).ready(function() {
       let userId = data[i][1];
       let orderNum = data[i][2];
       let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
-      if(orderNum == 7) {
+      if(orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER) {
         $(".tb-group" + group).append("<tr class='" + personClass + " no-print" + "'>");
       } else {
         $(".tb-group" + group).append("<tr class=" + personClass + ">");
@@ -80,7 +80,7 @@ $(document).ready(function() {
       
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);
-      $("." + personClass).append("<td>" + (orderNum == 7 ? "不点餐" : (orderNum + " 号")) );
+      $("." + personClass).append("<td>" + (orderNum == 7 ? CONSTANTS.ORDER.CONTENT.NO_ORDER : (orderNum + " 号")) );
     }
   }
 

@@ -90,7 +90,7 @@ $(document).ready(function () {
           default:
             let userId = response;
             if(!isNaN(userId) && userId.length == 4) {
-              $.cookie("current-user-id", userId);
+              $.cookie("USER_ID", userId);
               window.location.href = "../php/user-main.php";
             } else {
               alert("登录发生错误，请重试！");

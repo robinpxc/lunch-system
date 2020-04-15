@@ -1,4 +1,5 @@
 const CONSTANTS = {
+  WORKGROUP_COUNT: 7,
   AJAX: {
     TYPE: {
       POST: "POST",
@@ -43,6 +44,13 @@ const CONSTANTS = {
     STATUS: {
       NO_ORDER: "NO_ORDER",
       ORDER_EXIST: "ORDER_EXIST"
+    },
+    CONTENT: {
+      NO_ORDER: 7
+    },
+    INFO_TEXT: {
+      NO_ORDER: "不订餐",
+
     }
   }
 };

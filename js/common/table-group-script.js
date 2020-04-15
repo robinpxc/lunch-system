@@ -68,7 +68,7 @@ function setListMenuClickEventUI(listItem) {
 
 function filterTables(currentItemNum) {
   let itemPrefix = ".table-group-";
-  for(let i = 0; i < 7; i++) {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     hideElement($(itemPrefix + i));
   }
   unhideElement($(itemPrefix + currentItemNum));
@@ -76,7 +76,7 @@ function filterTables(currentItemNum) {
 
 function unhideAllGroup() {
   let itemPrefix = ".table-group-";
-  for(let i = 0; i < 7; i++) {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     unhideElement($(itemPrefix + i));
   }
 }
