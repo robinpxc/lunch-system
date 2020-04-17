@@ -5,6 +5,7 @@ $(document).ready(function () {
   $("input[name='login-info']").focus();
 
   // Function calls
+  checkLoginStatus();
   setInputTextChangeListener();
   setInputEnterKeyEvent();
 
@@ -15,6 +16,13 @@ $(document).ready(function () {
     $("#login-btn-text").text("正在登录");
     login();
   });
+
+  function checkLoginStatus() {
+    let userId = $.cookie(CONSTANTS.COOKIE.USER_ID_CURRENT);
+    if(userId != "" && userId != null) {
+      window.location.href = "../php/user-main.php";
+    }
+  }
 
   function setInputTextChangeListener() {
     $("input").each(function () {
