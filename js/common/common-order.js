@@ -9,7 +9,7 @@
 *   (User id will be used by session data)
 *   type:  [string] Will determine data return type. "order-status" and "order-number"
 * */
-function checkOrderStatus(date, checkType, userId) {
+function checkOrderStatus(date, checkType, userId, async) {
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
@@ -20,7 +20,7 @@ function checkOrderStatus(date, checkType, userId) {
       "user-id": userId
     },
     dataType: "json",
-    async: true,
+    async: async,
     beforeSend: function() {
       addSpinner();
     },

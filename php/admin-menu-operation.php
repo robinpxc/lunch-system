@@ -144,6 +144,7 @@ include('common/session.php');
           <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
           <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
           <a class="dropdown-item" href="#" id="group-6">显示：物业</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
@@ -162,7 +163,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -187,7 +188,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -212,7 +213,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -237,7 +238,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -262,7 +263,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -287,7 +288,7 @@ include('common/session.php');
               <thead  class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
@@ -313,7 +314,7 @@ include('common/session.php');
               <thead class="thead-light">
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="id-info">ID</th>
+                <th scope="col" class="nickname-info">昵称</th>
                 <th scope="col" class="role-info hide-small-screen">点餐状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>

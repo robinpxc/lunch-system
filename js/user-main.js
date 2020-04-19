@@ -6,9 +6,9 @@ $(document).ready(function () {
   let orderStatusTomorrow = null;
 
   // Function calls
-  checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session").done(function(response) {
+  checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
     orderStatusToday = response;
-    checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session").done(function(response) {
+    checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
       orderStatusTomorrow = response;
       initUI();
     });
@@ -82,7 +82,7 @@ $(document).ready(function () {
 
   function setCardPreview(isOrderExist, date) {
     if(isOrderExist) {
-      checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, "session").done(function(orderContent) {
+      checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, "session", true).done(function(orderContent) {
         let orderNum = null;
         let orderCount = null
         orderNum = orderContent.menu_number;
