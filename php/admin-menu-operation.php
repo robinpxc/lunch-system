@@ -164,7 +164,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -189,7 +189,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -214,7 +214,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -239,7 +239,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -264,7 +264,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -289,7 +289,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>
@@ -315,7 +315,7 @@ include('common/session.php');
               <tr table-content>
                 <th scope="col" class="username-info">姓名</th>
                 <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">点餐状态</th>
+                <th scope="col" class="role-info hide-small-screen">状态</th>
                 <th scope="col" class="operation no-print">操作</th>
               </tr>
               </thead>

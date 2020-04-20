@@ -17,7 +17,7 @@ function jqAlert(title, content) {
   });
 }
 
-function jqInfo(title, content) {
+function jqInfo(title, content, fun) {
   $.confirm({
     title: title,
     content: content,
@@ -28,7 +28,7 @@ function jqInfo(title, content) {
         btnClass: "btn-primary",
         text: "确认",
         action: function() {
-          window.location.reload();
+          fun();
         }
       }
     }

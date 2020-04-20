@@ -77,8 +77,8 @@ $(document).ready(function() {
 
       // Set table data for each group
       let currentGroup = "group" + i;
-      setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
-      setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED)
+      setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER, CONSTANTS.ORDER.STATUS_USER.ORDERED);
+      setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
     }
   }
 
@@ -111,76 +111,112 @@ $(document).ready(function() {
 
           // Set operation
           $("." + userClassName).append("<td class='" + "operation-" + userId + "'>");
-          addOrderDropDown($(".operation-" + userId), userId);
+          addOrderDropDown($(".operation-" + userId), userId, orderStatus);
         } else {
           // Set order status
-          $("." + userClassName).append("<td class='" + "order-status-" + userId + "'>" + CONSTANTS.ORDER.INFO_TEXT_STATUS.ORDERED);
-          $(".order-status-" + userId).css({
-            "color": "green",
-            "font-weight": "bold"
-          });
+          checkOrderStatus(getDateTomorrow(), CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
+            let orderNum = response.menu_number;
+            let orderStatusText = orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : orderNum + " 号";
+            $("." + userClassName).append("<td class='" + "order-status-" + userId + "'>" + orderStatusText);
+            $(".order-status-" + userId).css("font-weight", "bold");
+            if(orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER) {
+              $(".order-status-" + userId).css("color", "blue");
+            } else {
+              $(".order-status-" + userId).css("color", "green");
+            }
 
-          // Set operation
-          $("." + userClassName).append("<td class='" + "operation-" + userId + "'>");
+
+            $("." + userClassName).append("<td class='" + "operation-" + userId + "'>");
+            $(".operation-" + userId).append("<button class='btn btn-sm btn-warning btn-operation modify-order" + userId + "'>" + "修改");
+            $(".modify-order" + userId).click(function() {
+              $(this).remove();
+              addOrderDropDown($(".operation-" + userId), userId, orderStatus);
+              addNewClass($(".dropdown-order-" + userId + " #order-" + orderNum), "active");
+              $(".dropdown-order-" + userId + " .dropdown-toggle").text($(".dropdown-menu-" + userId + " #order-" + orderNum).text());
+            });
+          });
         }
       }
     }
   }
 
-  function addOrderDropDown(container, userId) {
+  function addOrderDropDown(container, userId, orderStatus) {
     let orderDropdownClassName = "dropdown-order-" + userId;
     let dropdownListClassName = "dropdown-menu-" + userId;
-    container.append("<div class='btn-group dropdown-order " + orderDropdownClassName + "'>");
-    $(".dropdown-order").css({
-      "min-width": "80px",
-      "width": "50%"
-    });
-    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选择餐号");
+    container.append("<div class='btn-group btn-operation dropdown-order " + orderDropdownClassName + "'>");
+    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
     $("." + orderDropdownClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
     for(let i = 1; i <= CONSTANTS.ORDER_COUNT; i++) {
-      let orderNumText = i == 6 ? "不订餐" : i + "号";
+      let orderNumText = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "不订餐" : i + " 号";
+      let itemClassName = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "dropdown-item no-order-item" : "dropdown-item";
+      $("." + dropdownListClassName).append("<a class='" + itemClassName + "' href='#' id='order-" + i +"'>" + orderNumText);
       if(i == 5) {
         $("." + dropdownListClassName).append("<div class='dropdown-divider'>");
       }
-      $("." + dropdownListClassName).append("<a class='dropdown-item' href='#' id='order-" + i +"'>" + orderNumText);
     }
 
     let dropdownItemClassName = $(".dropdown-menu-" + userId + " .dropdown-item");
-    addOrderDropdownListEvent(dropdownItemClassName, userId);
+    addOrderDropdownListEvent(dropdownItemClassName, userId, orderStatus);
   }
 
   // Order dropdown related functions
-  function addOrderDropdownListEvent(dropdownItem, userId) {
+  function addOrderDropdownListEvent(dropdownItem, userId, orderStatus) {
     let orderDropdownBtn = $(".dropdown-order-" + userId + " .dropdown-order-btn");
     $(dropdownItem).each(function(){
       $(this).click(function() {
         setOrderDropdownInactive($(".dropdown-item"));
         addNewClass($(this), "active");
         orderDropdownBtn.text($(this).text());
-        setOrderListMenuClickEventUI($(this));
+        setOrderListMenuClickEventUI($(this), userId, orderStatus);
       });
     });
   }
 
-  function setOrderListMenuClickEventUI(listItem) {
+  function setOrderListMenuClickEventUI(listItem, userId, orderStatus) {
     switch (listItem.attr("id")) {
       case "order-1":
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_1, orderStatus);
         break;
       case "order-2":
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_2, orderStatus);
         break;
       case "order-3":
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_3, orderStatus);
         break;
       case "order-4":
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_4, orderStatus);
         break;
       case "order-5":
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_5, orderStatus);
         break;
       default:
+        setOrder(userId, CONSTANTS.ORDER.CONTENT.NO_ORDER, orderStatus);
     }
   }
 
   function setOrderDropdownInactive(element) {
     $(element).each(function() {
       removeOldClass($(this), "active");
+    });
+  }
+
+  // Order operation related functions
+  function setOrder(userId, orderNum, orderStatus) {
+    setDailyOrder(getDateTomorrow(), userId, orderNum, orderStatus).done(function(isSuccess) {
+      if(isSuccess) {
+        if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
+          jqInfo("订餐成功", "成功订餐 " + orderNum + " 号", function() {
+            window.location.reload();
+          });
+        } else {
+          jqInfo("修改成功", "成功修改为 【" + orderNum + " 号】", function() {
+            window.location.reload();
+          });
+        }
+
+      } else {
+        jqAlert("订餐失败", "请重试");
+      }
     });
   }
 });

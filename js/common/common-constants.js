@@ -52,14 +52,20 @@ const CONSTANTS = {
       NOT_ORDER: "NOT_ORDER"
     },
     CONTENT: {
-      NO_ORDER: 7
+      ORDER_1: 1,
+      ORDER_2: 2,
+      ORDER_3: 3,
+      ORDER_4: 4,
+      ORDER_5: 5,
+      NO_ORDER: 6
     },
     INFO_TEXT: {
       NO_ORDER: "不订餐"
     },
     INFO_TEXT_STATUS: {
       ORDERED: "已订餐",
-      NOT_ORDER: "未订餐"
+      NOT_ORDER: "未订餐",
+      NO_ORDER: "不订餐"
     }
   }
 };

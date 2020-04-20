@@ -95,3 +95,44 @@ function fetchMonthlySummary(year, month, async) {
   });
   return dataArray;
 }
+
+/*
+* Function to set user daily order, normally set for the next day.
+* Parameters:
+*   date: formatted date as "YYYY-MM-DD"
+*   user-id: userId
+*   order-num: order number, value between 1-6, 6 is not order tomorrow
+* */
+function setDailyOrder(date, userId, orderNum, orderStatus) {
+  alert("date = " + date);
+  alert("user id = " + userId);
+  alert("order num = " + orderNum);
+  alert("order status = " + orderStatus);
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/order-operation.php",
+    data: {
+      "date": date,
+      "user-id": userId,
+      "order-number": orderNum,
+      "order-status": orderStatus
+    },
+    async: true,
+    dataType: "JSON",
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("点餐异常，请重试");
+      window.location.reload();
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}

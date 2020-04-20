@@ -80,7 +80,7 @@ $(document).ready(function() {
       
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + userId);
-      $("." + personClass).append("<td>" + (orderNum == 7 ? CONSTANTS.ORDER.CONTENT.NO_ORDER : (orderNum + " 号")) );
+      $("." + personClass).append("<td>" + (orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : (orderNum + " 号")) );
     }
   }
 

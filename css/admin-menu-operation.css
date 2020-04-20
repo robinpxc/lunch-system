@@ -23,3 +23,21 @@
 .operation-container {
   margin-top: 5px;
 }
+
+.dropdown-order .dropdown-item:hover {
+  background-color: limegreen;
+}
+
+.dropdown-order .no-order-item:hover {
+  background-color: orange;
+}
+
+.btn-operation {
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .btn-operation {
+    width: 100%;
+  }
+}
