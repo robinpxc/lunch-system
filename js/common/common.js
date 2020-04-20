@@ -20,6 +20,10 @@ $(document).ready(function () {
   });
 
   disableZoom();
+
+  $(".logout-btn").click(function() {
+    logout();
+  });
 });
 
 // Function to show current date and time.
@@ -305,5 +309,17 @@ function addSpinner() {
 function removeSpinner() {
   if (isElementExist($(".spinner-container"))) {
     $($(".spinner-container")).remove();
+  }
+}
+
+// Sign out related functions
+function logout() {
+  clearCookies();
+}
+
+function clearCookies() {
+  let cookies = $.cookie();
+  for(let cookie in cookies) {
+    $.removeCookie(cookie);
   }
 }

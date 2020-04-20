@@ -104,10 +104,6 @@ function fetchMonthlySummary(year, month, async) {
 *   order-num: order number, value between 1-6, 6 is not order tomorrow
 * */
 function setDailyOrder(date, userId, orderNum, orderStatus) {
-  alert("date = " + date);
-  alert("user id = " + userId);
-  alert("order num = " + orderNum);
-  alert("order status = " + orderStatus);
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,

@@ -90,7 +90,7 @@ include('common/session.php');
           </a>
         </li>
         <div class=" dropdown-divider"></div>
-        <li class="nav-item active">
+        <li class="nav-item logout-btn active">
           <a class="nav-link" href="./common/logout.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
