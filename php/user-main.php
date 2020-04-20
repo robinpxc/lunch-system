@@ -97,6 +97,26 @@ include('common/session.php');
   <div class="container main-content">
     <div class="card-deck mb-5 text-center">
 
+      <!-- Admin card -->
+      <div class="card card-admin mb-2 mt-2 border-danger" id="admin-card">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">综合管理</h4>
+        </div>
+        <div class="card-body">
+          <div>
+            <h4 class="card-info">联络员使用此组件</h4>
+          </div>
+        </div>
+
+        <div class="card-bottom">
+          <div class="btn-group" role="group" aria-label="Form submit button group">
+            <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">人员管理</button>
+            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">点餐管理</button>
+            <button type="submit" class="btn btn-lg btn-primary ml-2 active" id="data-manage-btn">数据统计</button>
+          </div>
+        </div>
+      </div>
+
       <!-- Menu card today-->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
@@ -117,25 +137,7 @@ include('common/session.php');
         </div>
       </div>
 
-      <!-- Admin card -->
-      <div class="card card-admin mb-2 mt-2 border-danger" id="admin-card">
-        <div class="card-header">
-          <h4 class="my-0 font-weight-normal">综合管理</h4>
-        </div>
-        <div class="card-body">
-          <div>
-            <h4 class="card-info">联络员使用此组件</h4>
-          </div>
-        </div>
 
-        <div class="card-bottom">
-          <div class="btn-group" role="group" aria-label="Form submit button group">
-            <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">人员管理</button>
-            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">点餐管理</button>
-            <button type="submit" class="btn btn-lg btn-primary ml-2 active" id="data-manage-btn">数据统计</button>
-          </div>
-        </div>
-      </div>
     </div>
 
     <footer class="pt-4 my-md-4 pt-md-4 border-top">

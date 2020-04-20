@@ -15,7 +15,7 @@ $(document).ready(function() {
     for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（共" +  getGroupOrderSum(dataArray, i) + "人有效点餐）");
+      $(cardHeaderClassName).text(originalText + "(" +  getGroupOrderSum(dataArray, i) + "人有效点餐)");
     }
   }
 

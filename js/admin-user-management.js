@@ -177,7 +177,7 @@ $(document).ready(function () {
     for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupMemberCount(dataArray, i) + " 人 ）");
+      $(cardHeaderClassName).text(originalText + "(" +  getGroupMemberCount(dataArray, i) + "人)");
     }
   }
 

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let currentGroupNum = currentUserGroup[5];
   let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
   initUI();
@@ -65,18 +66,18 @@ $(document).ready(function() {
   function setTableTitle(groupUserList) {
     for(let i = 0; i < groupUserList.length; i++) {
       let originalTitle = $(".table-group-" + i + " .tb-title").text();
-      $(".table-group-" + i + " .tb-title").text(originalTitle + "（共 " + groupUserList[i].length + " 人）");
+      $(".table-group-" + i + " .tb-title").text(originalTitle + "(" + groupUserList[i].length + "人)");
     }
   }
 
   function setTableData(groupUserList) {
     for(let i = 0; i < groupIndexCount; i++) {
-      let userLists = filterUsersByOrder(groupUserList[i]);
+      let userLists = filterUsersByOrder(groupUserList[groupIndexCount == 7 ? i : currentGroupNum]);
       let unOrderedUsers = userLists[0];
       let orderedUsers = userLists[1];
 
       // Set table data for each group
-      let currentGroup = "group" + i;
+      let currentGroup = "group" + (groupIndexCount == 7 ? i : currentGroupNum);
       setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER, CONSTANTS.ORDER.STATUS_USER.ORDERED);
       setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
     }
@@ -204,7 +205,7 @@ $(document).ready(function() {
   function setOrder(userId, orderNum, orderStatus) {
     setDailyOrder(getDateTomorrow(), userId, orderNum, orderStatus).done(function(isSuccess) {
       if(isSuccess) {
-        if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
+        if (orderStatus ==  CONSTANTS.ORDER.CONTENT.NO_ORDER) {
           jqInfo("订餐成功", "成功订餐 " + orderNum + " 号", function() {
             window.location.reload();
           });
