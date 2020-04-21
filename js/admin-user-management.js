@@ -1,6 +1,6 @@
 $(document).ready(function () {
-  let userRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
-  let userGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
   configUI();
@@ -18,7 +18,7 @@ $(document).ready(function () {
       if(id == "") {
         alert("用户信息异常，请刷新重试");
       } else {
-        $.cookie(CONSTANTS.COOKIE.USER_ID_MODIFIED, id);
+        $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED, id);
         window.location.href = "admin-modify-profile.php";
       }
     });

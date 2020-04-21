@@ -1,6 +1,6 @@
 $(document).ready(function() {
-  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
-  let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let currentGroupNum = currentUserGroup[5];
   let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 

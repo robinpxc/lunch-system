@@ -18,7 +18,7 @@ $(document).ready(function () {
   });
 
   function checkLoginStatus() {
-    let userId = $.cookie(CONSTANTS.COOKIE.USER_ID_CURRENT);
+    let userId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID);
     if(userId != "" && userId != null) {
       window.location.href = "../php/user-main.php";
     }
@@ -101,10 +101,10 @@ $(document).ready(function () {
             let userRole = response[2];
             let userGroup = response[3];
             if(response != "" || response != null) {
-              $.cookie(CONSTANTS.COOKIE.USER_ID_CURRENT, userId);
-              $.cookie(CONSTANTS.COOKIE.USERNAME_CURRENT, userFullname);
-              $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT, userRole);
-              $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT, userGroup);
+              $.cookie(CONSTANTS.COOKIE.USER.KEY_ID, userId);
+              $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME, userFullname);
+              $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE, userRole);
+              $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP, userGroup);
               window.location.href = "../php/user-main.php";
             } else {
               alert("登录发生错误，请重试！");

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  let currentUserId = $.cookie(CONSTANTS.COOKIE.USER_ID_MODIFIED);
+  let currentUserId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED);
   let defaultUserInfo = {};
   let modifyButtonGroup = $(".modify-btn");
   let discardBtn = $("#discard-btn");

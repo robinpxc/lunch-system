@@ -1,7 +1,7 @@
 $(document).ready(function() {
   let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // index 0-6是办到物业，最后一个是没点的人数
-  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER_ROLE_CURRENT);
-  let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER_GROUP_CURRENT);
+  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let group = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? "all" : currentUserGroup;
   let date = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE);
 
