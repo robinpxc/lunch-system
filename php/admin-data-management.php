@@ -106,22 +106,22 @@ include('common/session.php');
     <!-- Daily statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">当日点餐统计</h5>
-        <div class="card-text mt-3">当天午餐统计</div>
+        <h5 class="card-title">【当日】统计数据</h5>
+        <div class="card-text mt-3">当天的点餐统计（已无法修改）</div>
         <div class="mt-1">
           <span>今天是 </span>
           <span class="special-text" id="date-today"></span>
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary" id="daily-statistics">查看统计结果</button>
+        <button class="btn btn-primary" id="daily-statistics">查看【今日】数据</button>
       </div>
     </div>
 
     <!-- Tomorrow statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">次日点餐统计</h5>
+        <h5 class="card-title">【次日】点餐统计</h5>
         <div class="card-text mt-3"><span class="special-text">明天</span> 的午餐统计</div>
         <div class="mt-1">
           <span>明天是</span>
@@ -129,15 +129,15 @@ include('common/session.php');
         </div>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary" id="tomorrow-statistics">查看统计结果</button>
+        <button class="btn btn-primary" id="tomorrow-statistics">查看【明日】数据</button>
       </div>
     </div>
 
     <!-- Monthly statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">上月账单统计</h5>
-        <div class="card-text mt-3">每月1日至月底的点餐账目统计</div>
+        <h5 class="card-title">【上月】账单统计</h5>
+        <div class="card-text mt-3"><span class="special-text">上个月</span> 1日至月底的点餐账目统计</div>
         <div class="mt-1">
           <span>上月是 </span>
           <span class="special-text" id="last-month"></span>
@@ -152,7 +152,7 @@ include('common/session.php');
     <!-- Custom Daily statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">指定日期点餐统计</h5>
+        <h5 class="card-title">【指定日期】点餐统计</h5>
         <div class="card-text mt-3">自由选择日期的点餐统计</div>
         <div class="mt-1">
           <div class="date-select daily-date-select">
@@ -176,7 +176,7 @@ include('common/session.php');
     <!-- Custom Monthly statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">指定月份账单统计</h5>
+        <h5 class="card-title">【指定月份】账单统计</h5>
         <div class="card-text mt-3">自由选择年月的点餐账目统计</div>
         <div class="mt-1">
           <div class="date-select monthly-date-select">

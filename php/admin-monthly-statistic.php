@@ -108,6 +108,26 @@ include('common/session.php');
 <div class="main-content boxshaw">
   <div class="table-group">
     <div class="form-nav d-block">
+      <div class="price-area">
+        <div class="set-price input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text">输入每餐单价 ￥</span>
+          </div>
+          <input type="number" min="0" class="form-control">
+          <div class="input-group-append">
+            <span class="input-group-text">.00</span>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-primary btn-md" type="button">开始计算</button>
+          </div>
+        </div>
+        <div class="alert alert-primary" role="alert">
+          <span class="summary-title">
+            <span>根据您提供的单价，本月各单位(巡察办 + 5巡察组 + 物业)共点餐</span>
+            <span class="summary"></span>
+          </span>
+        </div>
+      </div>
       <!-- Dropdown list to select data source -->
       <div class="btn-group nav-drop-down">
         <button class="btn btn-success btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
