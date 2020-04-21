@@ -66,25 +66,31 @@ function fetchMenu(date, async) {
 *   date:  [string] Will determine the date of order.
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchNoOrderUsers(date, async) {
-  let menuArray = new Array();
+function fetchNoOrderUsers(date, group) {
+  let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-no-order-users.php",
     data: {
-      "date": date
+      "date": date,
+      "group": group
     },
     dataType: "JSON",
-    async: async,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       if (response != null) {
-        menuArray = response;
+        deferred.resolve(response);
       }
     },
     error: function (errorMsg) {
       alert("获取未点餐人员失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuArray;
+  return deferred.promise();
 }
 

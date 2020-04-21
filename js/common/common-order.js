@@ -52,7 +52,7 @@ function fetchDailyOrderStatus(date, group) {
     url: "../php/functions/fetch-daily-orders.php",
     data: {
       "date": date,
-      "user-group": group
+      "group": group
     },
     dataType: "JSON",
     success: function (response) {

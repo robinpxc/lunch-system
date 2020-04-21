@@ -14,12 +14,12 @@ $(document).ready(function() {
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
-      $.cookie("daily-statistics-date", getDateToday());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, getDateToday());
       window.location.href = "admin-daily-statistic.php";
     });
 
     $("#tomorrow-statistics").click(function() {
-      $.cookie("daily-statistics-date", getDateTomorrow());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, getDateTomorrow());
       window.location.href = "admin-daily-statistic.php";
     });
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
       selectMonth = selectMonth.length == 1 ? "0" + selectMonth : selectMonth;
       selectDay = selectDay.length == 1 ? "0" + selectDay : selectDay;
       let selectedDate = selectedYear + "-" + selectMonth + "-" + selectDay;
-      $.cookie("daily-statistics-date", selectedDate);
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, selectedDate);
       window.location.href = "admin-daily-statistic.php";
     });
 
