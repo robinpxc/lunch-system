@@ -1,6 +1,7 @@
 $(document).ready(function(){
   let year = $.cookie("monthly-statistics-year");
   let month = $.cookie("monthly-statistics-month");
+  let price = $("#price-input").val();
   let data = fetchMonthlySummary(year, month, false);
 
   let separateGroupSumPrice = [0, 0, 0, 0, 0, 0, 0];
@@ -16,7 +17,7 @@ $(document).ready(function(){
       let userId = data[i][1];
       let workgroup = data[i][2];
       let orderSum = data[i][3];
-      let price = orderSum * 3;
+      let totalPrice = orderSum * 3;
       separateGroupSumPrice[getGropNumber(workgroup)] += price;
       let trClass = "tb-" + workgroup + "-" + "person" + i;
       $(".tb-" + workgroup).append("<tr class='" + trClass +"'>");

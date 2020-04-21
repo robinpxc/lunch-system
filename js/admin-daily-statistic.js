@@ -1,12 +1,22 @@
 $(document).ready(function() {
-  let orderCollection = [0, 0, 0, 0, 0, 0, 0, 0, 0]; // index 0-6是办到物业，最后一个是没点的人数
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let group = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? "all" : currentUserGroup;
   let date = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE);
 
   fetchDailyOrderStatus(date, group).done(function(dataList) {
-    let dataArray = dataList;
+    let dataArray = new Array();
+    if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+      dataArray = dataList;
+    } else {
+      for(let i = 0; i < dataList.length; i++) {
+        let userGroup = dataList[i][2];
+        if(userGroup == currentUserGroup) {
+          dataArray.push(dataList[i]);
+        }
+      }
+    }
+    
     fetchNoOrderUsers(date, group).done(function(dataList){
       let noOrderArray = dataList;
       collectOrderSum(dataArray);
@@ -102,13 +112,6 @@ $(document).ready(function() {
           $("." + trClass).append("<td>" + fullname);
           $("." + trClass).append("<td>" + userId);
           $("." + trClass).append("<td>" + workgroup);
-        }
-      }
-
-      function collectOrderSum(data) {
-        for(let i = 0; i < data.length; i++) {
-          let orderNum = data[i][2];
-          orderCollection[orderNum]++;
         }
       }
 

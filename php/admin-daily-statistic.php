@@ -37,6 +37,7 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../js/common/summary-table.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
 
@@ -108,7 +109,7 @@ include('common/session.php'); ?>
 <div class="main-content boxshaw">
   <div class="alert alert-primary mt-4 order-collection" role="alert">
     <div class="show-date-text"></div>
-    <div class="order-count">
+    <div class="summary-tb">
       <table>
         <thead>
           <td class="left">餐号</td>
@@ -116,36 +117,28 @@ include('common/session.php'); ?>
         </thead>
         <tbody class="tbody-order-sum">
           <tr>
-            <td class="left">1号</td>
-            <td id="order-sum-1"></td>
+            <td class="left">1  号</td>
+            <td class="right" id="order-sum-1"></td>
           </tr>
           <tr>
-            <td class="left">2号</td>
-            <td id="order-sum-2"></td>
+            <td class="left">2  号</td>
+            <td class="right" id="order-sum-2"></td>
           </tr>
           <tr>
-            <td class="left">3号</td>
-            <td id="order-sum-3"></td>
+            <td class="left">3  号</td>
+            <td class="right" id="order-sum-3"></td>
           </tr>
           <tr>
-            <td class="left">4号</td>
-            <td id="order-sum-4"></td>
+            <td class="left">4  号</td>
+            <td class="right" id="order-sum-4"></td>
           </tr>
           <tr>
-            <td class="left">5号</td>
-            <td id="order-sum-5"></td>
-          </tr>
-          <tr>
-            <td class="left">6号</td>
-            <td id="order-sum-6"></td>
-          </tr>
-          <tr>
-            <td class="left">7号</td>
-            <td id="order-sum-7"></td>
+            <td class="left">5  号</td>
+            <td class="right" id="order-sum-5"></td>
           </tr>
           <tr>
             <td class="left bottom">总计</td>
-            <td class="bottom" id="order-sum"></td>
+            <td class="right bottom" id="order-sum"></td>
           </tr>
         </tbody>
       </table>
@@ -167,6 +160,7 @@ include('common/session.php'); ?>
           <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
           <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
           <a class="dropdown-item" href="#" id="group-6">显示：临时人员</a>
+          <div class="dropdown-divider"></div>
           <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>

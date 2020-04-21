@@ -111,14 +111,14 @@ include('common/session.php');
       <div class="price-area">
         <div class="set-price input-group mb-2">
           <div class="input-group-prepend">
-            <span class="input-group-text">输入每餐单价 ￥</span>
+            <span class="input-group-text">修改每份单价 ￥</span>
           </div>
-          <input type="number" min="0" class="form-control">
+          <input id="price-input" type="number" min="0" value="8" class="form-control">
           <div class="input-group-append">
             <span class="input-group-text">.00</span>
           </div>
           <div class="input-group-append">
-            <button class="btn btn-primary btn-md" type="button">开始计算</button>
+            <button class="btn btn-primary btn-md" id="calc-btn" type="button">开始计算</button>
           </div>
         </div>
         <div class="alert alert-primary" role="alert">
@@ -126,6 +126,44 @@ include('common/session.php');
             <span>根据您提供的单价，本月各单位(巡察办 + 5巡察组 + 物业)共点餐</span>
             <span class="summary"></span>
           </span>
+
+          <div class="alert alert-primary mt-4 order-collection" role="alert">
+            <div class="show-date-text"></div>
+            <div class="summary-tb">
+              <table>
+                <thead>
+                <td class="left">餐号</td>
+                <td>份数</td>
+                </thead>
+                <tbody class="tbody-order-sum">
+                <tr>
+                  <td class="left">1  号</td>
+                  <td class="right" id="order-sum-1"></td>
+                </tr>
+                <tr>
+                  <td class="left">2  号</td>
+                  <td class="right" id="order-sum-2"></td>
+                </tr>
+                <tr>
+                  <td class="left">3  号</td>
+                  <td class="right" id="order-sum-3"></td>
+                </tr>
+                <tr>
+                  <td class="left">4  号</td>
+                  <td class="right" id="order-sum-4"></td>
+                </tr>
+                <tr>
+                  <td class="left">5  号</td>
+                  <td class="right" id="order-sum-5"></td>
+                </tr>
+                <tr>
+                  <td class="left bottom">总计</td>
+                  <td class="right bottom" id="order-sum"></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Dropdown list to select data source -->
