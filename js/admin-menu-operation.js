@@ -6,6 +6,7 @@ $(document).ready(function() {
 
   initUI();
   refreshTables();
+  setGroupTablePrint();
 
   function initUI() {
     setDateTitle();
@@ -111,7 +112,7 @@ $(document).ready(function() {
           });
 
           // Set operation
-          $("." + userClassName).append("<td class='" + "operation-" + userId + "'>");
+          $("." + userClassName).append("<td class='" + "operation-" + userId + " no-print'>");
           addOrderDropDown($(".operation-" + userId), userId, orderStatus);
         } else {
           // Set order status
@@ -127,7 +128,7 @@ $(document).ready(function() {
             }
 
 
-            $("." + userClassName).append("<td class='" + "operation-" + userId + "'>");
+            $("." + userClassName).append("<td class='" + "operation-" + userId + " no-print'>");
             $(".operation-" + userId).append("<button class='btn btn-sm btn-warning btn-operation modify-order" + userId + "'>" + "修改");
             $(".modify-order" + userId).click(function() {
               $(this).remove();
