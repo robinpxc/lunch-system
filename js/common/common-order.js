@@ -74,7 +74,8 @@ function fetchDailyOrderStatus(date, group) {
 *   month: [string] will determine the month of orders.
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchMonthlySummary(year, month, async) {
+function fetchMonthlySummary(year, month) {
+  let deferred = $.Deferred();
   let dataArray = new Array();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
@@ -83,17 +84,16 @@ function fetchMonthlySummary(year, month, async) {
       "year": year,
       "month": month
     },
-    async: async,
     dataType: "JSON",
     success: function (response) {
-      dataArray = response;
+      deferred.resolve(response);
     },
     error: function () {
       alert("获取月账单失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
     },
     complete: function() {}
   });
-  return dataArray;
+  return deferred.promise();
 }
 
 /*
