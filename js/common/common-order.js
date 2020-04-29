@@ -76,7 +76,6 @@ function fetchDailyOrderStatus(date, group) {
 * */
 function fetchMonthlySummary(year, month) {
   let deferred = $.Deferred();
-  let dataArray = new Array();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-monthly-data.php",
@@ -90,6 +89,27 @@ function fetchMonthlySummary(year, month) {
     },
     error: function () {
       alert("获取月账单失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {}
+  });
+  return deferred.promise();
+}
+
+function fetchMonthCountByOrderNum(year, month) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/fetch-monthly-count-by-order-num.php",
+    data: {
+      "year": year,
+      "month": month
+    },
+    dataType: "JSON",
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("获取月统计数据失败，请重试");
     },
     complete: function() {}
   });

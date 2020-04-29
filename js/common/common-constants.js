@@ -27,7 +27,9 @@ const CONSTANTS = {
     },
 
     STATISTICS: {
-      KEY_DATE: "DATE_STATISTICS"
+      KEY_DATE: "DATE_STATISTICS",
+      KEY_YEAR: "KEY_YEAR",
+      KEY_MONTH: "KEY_MONTH"
     }
   },
 

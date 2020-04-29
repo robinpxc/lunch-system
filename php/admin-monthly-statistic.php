@@ -134,16 +134,19 @@
         </div>
         <div class="alert alert-primary" role="alert">
           <span class="summary-title">
-            <span class="show-month-text"></span>
-            <span>上月各部门（巡察办 + 5个巡察组 + 物业）共</span>
-            <br />
-            <span>点  餐  :</span>
+            <h4 class="last-month-title md-2">
+              <span class="show-year"></span>
+              <span> 年 </span>
+              <span class="show-month"></span>
+              <span> 月 </span>
+            </h4>
+            <h6 class="summary-title">各部门（巡察办 + 5个巡察组 + 物业）</h6>
+            <span>共点餐【</span>
             <span class="summary-data order-num-text"></span>
-            <spam>(次)</spam>
-            <br />
-            <span>总  计  :</span>
+            <span>】次</span>
+            <span>，总计【</span>
             <span class="summary-data order-price"></span>
-            <spam>(元)</spam>
+            <spam>】元</spam>
           </span>
           <div class="summary-tb mt-2">
             <table>

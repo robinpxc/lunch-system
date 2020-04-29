@@ -35,14 +35,14 @@ $(document).ready(function() {
     });
 
     $("#monthly-statistics").click(function() {
-      $.cookie("monthly-statistics-year", getCurrentYear());
-      $.cookie("monthly-statistics-month", getLastMonth());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, getCurrentYear());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, getLastMonth());
       window.location.href = "admin-monthly-statistic.php";
     });
 
     $("#custom-monthly-statistics").click(function(){
-      $.cookie("monthly-statistics-year", $("#m-year-select option:selected").val());
-      $.cookie("monthly-statistics-month", $("#m-month-select option:selected").val());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, $("#m-year-select option:selected").val());
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, $("#m-month-select option:selected").val());
       window.location.href = "admin-monthly-statistic.php";
     });
   }

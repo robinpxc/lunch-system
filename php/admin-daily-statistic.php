@@ -159,7 +159,7 @@ include('common/session.php'); ?>
           <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
           <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
           <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
-          <a class="dropdown-item" href="#" id="group-6">显示：临时人员</a>
+          <a class="dropdown-item" href="#" id="group-6">显示：物业</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
@@ -310,10 +310,10 @@ include('common/session.php'); ?>
         </div>
       </div>
 
-      <!-- 临时组表格 -->
+      <!-- 物业组表格 -->
       <div class="table-card card table-group-6">
         <div class="card-header">
-          <span class="tb-title">临时工作人员</span>
+          <span class="tb-title">物业</span>
           <span>
             <button class="btn btn-success btn-print tb-print-1 no-print" type="button">打印表格</button>
           </span>
