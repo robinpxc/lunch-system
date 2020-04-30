@@ -17,12 +17,15 @@ include('common/session.php');
   <!-- Style sheets-->
   <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../third-party/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
   <!-- Custom-->
   <link href="../css/user-main.css" rel="stylesheet">
 
   <!--Java Script-->
   <!-- Third Party -->
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
@@ -31,6 +34,7 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/user-main.js"></script>
 

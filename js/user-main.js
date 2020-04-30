@@ -122,16 +122,35 @@ $(document).ready(function () {
 
   function setManageButtonEvents() {
     $("#user-manage-btn").click(function () {
-      window.location.href = "admin-user-management.php";
+      jumpTo("admin-user-management.php");
     });
 
     $("#menu-manage-btn").click(function () {
-      window.location.href = "admin-menu-operation.php";
+      jumpTo("admin-menu-operation.php")
     });
 
     $("#data-manage-btn").click(function () {
       window.location.href = "admin-data-management.php";
+      jumpTo("admin-data-management.php");
     });
+  }
+
+  function jumpTo(urlStr) {
+    if(checkError()) {
+      window.location.href = urlStr;
+    } else {
+      jqAlert("跳转错误", "必要数据加载失败，请尝试刷新或重新登录！");
+    }
+  }
+
+  function checkError() {
+    if(orderStatusToday != null && orderStatusToday != "") {
+      if(orderStatusTomorrow != null && orderStatusTomorrow != "") {
+        return true;
+      }
+      return false;
+    }
+    return false;
   }
 });
 

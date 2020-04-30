@@ -235,12 +235,11 @@ function getWeekDayCN(weekDay) {
 }
 
 function getDateTomorrow() {
-  var currentDate = new Date();
-  var currentYear = currentDate.getFullYear();
-  var currentMonth = currentDate.getMonth() + 1;
-  var currentDay = currentDate.getDate() + 1;
-
-  return formatDate(currentYear, currentMonth, currentDay);
+  let today = new Date(getDateToday());
+  let y = today.getFullYear();
+  let m = isLastDay(getDateToday()) ? today.getMonth() + 2 : today.getMonth() + 1;
+  let d = isLastDay(getDateToday()) ? "01" : today.getDate() + 1;
+  return formatDate(y, m, d);
 }
 
 function getTimeNow() {
@@ -254,6 +253,12 @@ function getCurrentYear() {
 
 function getCurrentMonth() {
   return (new Date().getMonth()) + 1;
+}
+
+function isLastDay(dateString) {
+  let date = new Date(dateString);
+  let endDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  return date.getDate() == endDayOfMonth;
 }
 
 // Function to decode unicode (Chinese chars)

@@ -6,6 +6,7 @@ $(document).ready(function(){
   let data = new Array();
   fetchMonthlySummary(year, month).done(function(response) {
     data = response;
+    initTableGroup($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE), $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP));
     setModifyBtnClickEvent();
     setSummaryData(data);
     setDataToTable();

@@ -31,6 +31,7 @@ function checkOrderStatus(date, checkType, userId, async) {
       removeSpinner();
     },
     error: function (errorMsg) {
+      $(".main-content").html(errorMsg.responseText);
       alert("订单状态检查失败，请刷新页面或者切换网络环境，或联系开发者");
       removeSpinner();
     }
