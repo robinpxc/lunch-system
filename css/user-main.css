@@ -56,6 +56,21 @@
   height: 45px;
 }
 
+.card-bottom {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.card-bottom .btn-group {
+  width: 100%;
+  padding: 0;
+}
+
+.card-bottom .btn-group button {
+  margin: 2px !important;
+  padding: 0 !important;
+}
+
 @media screen and (max-width: 768px) {
   .card {
     height: auto;

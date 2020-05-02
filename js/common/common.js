@@ -205,7 +205,6 @@ function getDateTodayCN(withWeekDay) {
 
 function getDateTomorrowCN(withWeekDay) {
   let date = new Date(getDateTomorrow());
-  alert(date.getDay());
   return convertDateCN(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1, date.getDay() + 1, withWeekDay);
 }
 

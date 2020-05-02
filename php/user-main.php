@@ -121,6 +121,8 @@ include('common/session.php');
         </div>
       </div>
 
+      <!-- Admin card: modify prices -->
+
       <!-- Menu card today-->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
