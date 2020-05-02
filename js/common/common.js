@@ -173,27 +173,27 @@ function replaceClass(element, oldClass, newCLass) {
 
 // Date related functions
 function formatDate(y, m, d, symbol) {
-  var symbol = symbol || '-';
-  var m = (m.toString())[1] ? m : '0' + m;
-  var d = (d.toString())[1] ? d : '0' + d;
-  return y + symbol + m + symbol + d;
+  let dateSymbol = symbol || '-';
+  let month = (m.toString())[1] ? m : '0' + m;
+  let day = (d.toString())[1] ? d : '0' + d;
+  return y + dateSymbol +  month + dateSymbol + day;
 }
 
 function formatTime(h, m, s, symbol) {
-  var symbol = symbol || ':';
-  var m = (m.toString())[1] ? m : '0' + m;
-  var s = (s.toString())[1] ? s : '0' + s;
+  let dateSymbol = symbol || ':';
+  let month = (m.toString())[1] ? m : '0' + m;
+  let seconds = (s.toString())[1] ? s : '0' + s;
 
-  return h + symbol + m + symbol + s;
+  return h + dateSymbol + month + dateSymbol + seconds;
 }
 
 
 // Date & time related function
 function getDateToday() {
-  var currentDate = new Date();
-  var currentYear = currentDate.getFullYear();
-  var currentMonth = currentDate.getMonth() + 1;
-  var currentDay = currentDate.getDate();
+  let currentDate = new Date();
+  let currentYear = currentDate.getFullYear();
+  let currentMonth = currentDate.getMonth() + 1;
+  let currentDay = currentDate.getDate();
 
   return formatDate(currentYear, currentMonth, currentDay);
 }
@@ -204,7 +204,8 @@ function getDateTodayCN(withWeekDay) {
 }
 
 function getDateTomorrowCN(withWeekDay) {
-  let date = new Date();
+  let date = new Date(getDateTomorrow());
+  alert(date.getDay());
   return convertDateCN(date.getFullYear(), date.getMonth() + 1, date.getDate() + 1, date.getDay() + 1, withWeekDay);
 }
 

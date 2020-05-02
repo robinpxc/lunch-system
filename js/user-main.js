@@ -2,6 +2,7 @@ $(document).ready(function () {
   let formattedDateToday = getDateToday();
   let formattedDateTomorrow = getDateTomorrow();
   let weekdayToday = new Date().getDay();
+  let weekdayTomorrow = weekdayToday == 6 ? 0 : weekdayToday + 1;
   let orderStatusToday = null;
   let orderStatusTomorrow = null;
 
@@ -38,8 +39,8 @@ $(document).ready(function () {
 
   function initCardTomorrow() {
     let cardTomorrow = $("#menu-card-tomorrow");
-    $(".card-title-tomorrow span").text(getWeekDayCN(weekdayToday + 1));
-    setWeekendTitleStyle(false, weekdayToday + 1);
+    $(".card-title-tomorrow span").text(getWeekDayCN(weekdayTomorrow));
+    setWeekendTitleStyle(false, weekdayTomorrow);
     if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
       updateCardStatus(cardTomorrow, true);
       setCardPreview(true, formattedDateTomorrow);
