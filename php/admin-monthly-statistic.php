@@ -17,6 +17,7 @@
   <!-- Style sheets-->
   <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../third-party/fontawesome/css/all.min.css">
   <!-- Common-->
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
