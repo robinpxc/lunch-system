@@ -73,6 +73,19 @@
   padding: 0 !important;
 }
 
+
+#user-manage-btn:hover {
+  background-color: darkred;
+}
+
+#menu-manage-btn:hover {
+  background-color: darkgreen;
+}
+
+#data-manage-btn:hover {
+  background-color: midnightblue;
+}
+
 .card-body-price {
   padding: 5px;
   flex-direction: column;

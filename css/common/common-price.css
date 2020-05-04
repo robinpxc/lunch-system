@@ -4,7 +4,7 @@
 }
 
 .btn-price-modify:hover {
-  background-color: darkorange;
+  background-color: darkred;
 }
 
 .btn-price-discard {
@@ -13,5 +13,5 @@
 }
 
 .btn-price-discard:hover {
-  background-color: lightskyblue;
+  background-color: midnightblue;
 }
