@@ -55,7 +55,7 @@ function fetchDailyOrderStatus(date, group) {
       "date": date,
       "group": group
     },
-    dataType: "JSON",
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
     success: function (response) {
       deferred.resolve(response);
     },
@@ -153,3 +153,64 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
   });
   return deferred.promise();
 }
+
+/*
+* Function to get order price by type "original order" and "discount order", will return an array.
+* */
+function getOrderPrice() {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/get-order-price.php",
+    data: {
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("价格信息异常，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
+/*
+* Function to update order price by type "original order" and "discount order", will return an array.
+* Parameters:
+*   price: single price for a meal
+*   type: determine the price type, from CONSTANT.PRICE
+* */
+function updateOrderPrice(price, type) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/update-order-price.php",
+    data: {
+      "price": price,
+      "type": type
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("价格更新异常，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
+

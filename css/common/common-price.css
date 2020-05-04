@@ -1,0 +1,17 @@
+.btn-price-modify {
+  background-color: #bd2130;
+  color: white;
+}
+
+.btn-price-modify:hover {
+  background-color: darkorange;
+}
+
+.btn-price-discard {
+  background: #0062CC;
+  color: white;
+}
+
+.btn-price-discard:hover {
+  background-color: lightskyblue;
+}

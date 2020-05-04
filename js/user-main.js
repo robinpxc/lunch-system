@@ -5,13 +5,19 @@ $(document).ready(function () {
   let weekdayTomorrow = weekdayToday == 6 ? 0 : weekdayToday + 1;
   let orderStatusToday = null;
   let orderStatusTomorrow = null;
+  let oriPrice;
+  let discountPrice;
 
   // Function calls
   checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
     orderStatusToday = response;
     checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
       orderStatusTomorrow = response;
-      initUI();
+      getOrderPrice().done(function(priceData) {
+        oriPrice = Number(priceData[0][1]).toFixed(2);
+        discountPrice = Number(priceData[1][1]).toFixed(2);
+        initUI();
+      });
     });
   });
 
@@ -22,6 +28,7 @@ $(document).ready(function () {
   function initUI() {
     initCardToday();
     initCardTomorrow();
+    initPriceModifyComponent(oriPrice, discountPrice);
   }
 
   function initCardToday() {

@@ -1,25 +1,32 @@
 $(document).ready(function(){
   let year = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR);
   let month = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH);
-  let originalPrice = $("#price-input").val();
   let separateGroupSumPrice = [0, 0, 0, 0, 0, 0, 0];
-  let data = new Array();
+  let summaryDataArray = new Array();
+  let oriPrice;
+  let discountPrice;
   fetchMonthlySummary(year, month).done(function(response) {
-    data = response;
-    initTableGroup($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE), $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP));
-    setModifyBtnClickEvent();
-    setSummaryData(data);
-    setDataToTable();
-    addSummaryForGroups();
-    setGroupTablePrint();
+    summaryDataArray = response;
+    getOrderPrice().done(function(priceArray) {
+      oriPrice = priceArray[0][1];
+      discountPrice = priceArray[1][1];
+      initPriceModifyComponent(oriPrice, discountPrice);
+      initTableGroup($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE), $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP));
+      setModifyBtnClickEvent();
+      setSummaryData(summaryDataArray);
+      setDataToTable();
+      addSummaryForGroups();
+      setGroupTablePrint();
+    });
   });
+
 
   function setSummaryData(dataArray) {
     let orderCount = getSummaryOrderCount(dataArray);
     $(".show-year").text(year);
     $(".show-month").text(month);
     $(".order-num-text").text(orderCount);
-    $(".order-price").text(originalPrice * orderCount);
+    $(".order-price").text(oriPrice * orderCount);
 
     fetchMonthCountByOrderNum(year, month).done(function(responseArray) {
       let orderSum = 0;
@@ -40,12 +47,12 @@ $(document).ready(function(){
   }
 
   function setDataToTable() {
-    for(let i = 0; i < data.length; i++) {
-      let fullName = data[i][0];
-      let userId = data[i][1];
-      let workgroup = data[i][2];
-      let orderSum = data[i][3];
-      let totalPrice = orderSum * 3;
+    for(let i = 0; i < summaryDataArray.length; i++) {
+      let fullName = summaryDataArray[i][0];
+      let userId = summaryDataArray[i][1];
+      let workgroup = summaryDataArray[i][2];
+      let orderSum = summaryDataArray[i][3];
+      let totalPrice = orderSum * discountPrice;
       separateGroupSumPrice[getGropNumber(workgroup)] = totalPrice;
       let trClass = "tb-" + workgroup + "-" + "person" + i;
       $(".tb-" + workgroup).append("<tr class='" + trClass +"'>");
@@ -79,12 +86,17 @@ $(document).ready(function(){
   }
 
   function setModifyBtnClickEvent() {
-    $("#price-modify-btn").click(function() {
-
+    $(".price-modify-btn").click(function() {
+      let self = $(this);
+      switch (self.attr("id")) {
+        case "btn-price-ori":
+          alert(1);
+          break;
+        case "btn-price-discount":
+          alert(2);
+          break;
+      }
     });
   }
 
-  function modifyPrice() {
-
-  }
 });

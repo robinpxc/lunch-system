@@ -21,6 +21,7 @@
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
   <!-- Custom -->
+  <link href="../css/common/common-price.css" rel="stylesheet">
   <link href="../css/admin-monthly-statistic.css" rel="stylesheet">
 
   <!--Java Script-->
@@ -33,10 +34,12 @@
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>
 
@@ -120,18 +123,30 @@
   <div class="table-group">
     <div class="form-nav d-block">
       <div class="price-area">
-        <div class="set-price input-group mb-2">
-          <div class="input-group-prepend">
-            <span class="input-group-text">每餐单价 ￥</span>
-          </div>
-          <input id="price-input" type="number" min="0" value="8" class="form-control" disabled="disabled">
-          <div class="input-group-append">
-            <span class="input-group-text">元</span>
-          </div>
-          <div class="input-group-append">
-            <button class="btn btn-primary btn-md" id="price-modify-btn" type="button">修改</button>
+        <div class="price-container ori-price mt-2">
+          <div class="input-group input-group-ori">
+            <div class="input-group-prepend">
+              <span class="input-group-text">原始价(￥)</span>
+            </div>
+            <input type="text" class="form-control" id="input-ori-price" disabled="disabled">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary btn-price" id="btn-price-ori" type="button">修改</button>
+            </div>
           </div>
         </div>
+        <div class="price-container discount-price mt-2 mb-2">
+          <div class="input-group input-group-discount">
+            <div class="input-group-prepend">
+              <span class="input-group-text">折扣价(￥)</span>
+            </div>
+            <input type="text" class="form-control" id="input-discount-price" disabled="disabled">
+            <div class="input-group-append" id="button-addon4">
+              <button class="btn btn-outline-secondary btn-price" id="btn-price-discount" type="button">修改</button>
+              <!--                <button class="btn btn-outline-secondary" type="button">撤销</button>-->
+            </div>
+          </div>
+        </div>
+
         <div class="alert alert-primary" role="alert">
           <span class="summary-title">
             <h4 class="last-month-title md-2">
@@ -144,7 +159,7 @@
             <span>共点餐【</span>
             <span class="summary-data order-num-text"></span>
             <span>】次</span>
-            <span>，总计【</span>
+            <span>，总计原价【</span>
             <span class="summary-data order-price"></span>
             <spam>】元</spam>
           </span>

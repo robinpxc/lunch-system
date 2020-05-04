@@ -21,6 +21,7 @@ include('common/session.php');
   <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
   <!-- Custom-->
   <link href="../css/user-main.css" rel="stylesheet">
+  <link href="../css/common/common-price.css" rel="stylesheet">
 
   <!--Java Script-->
   <!-- Third Party -->
@@ -35,6 +36,7 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
+  <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/user-main.js"></script>
 
@@ -100,7 +102,6 @@ include('common/session.php');
 
   <div class="container main-content">
     <div class="card-deck mb-5 text-center">
-
       <!-- Admin card -->
       <div class="card card-admin mb-2 mt-2 border-danger" id="admin-card">
         <div class="card-header">
@@ -121,12 +122,10 @@ include('common/session.php');
         </div>
       </div>
 
-      <!-- Admin card: modify prices -->
-
       <!-- Menu card today-->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal card-title-today">今日（<span class="card-title-weekday"></span>）</h4>
+          <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
           <h4 id="order-info-today"></h4>
@@ -136,13 +135,45 @@ include('common/session.php');
       <!-- Menu card tomorrow -->
       <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-tomorrow">
         <div class="card-header">
-          <h4 class="my-0 font-weight-normal card-title-tomorrow">明日（<span class="card-title-weekday"></span>）</h4>
+          <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
           <h4 id="order-info-tomorrow"></h4>
         </div>
       </div>
 
+      <!-- Admin card: modify prices -->
+      <div class="card card-admin mb-2 border-danger" id="admin-card">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">修改价格</h4>
+        </div>
+        <div class="card-body card-body-price">
+          <div class="price-container ori-price">
+            <div class="input-group input-group-ori">
+              <div class="input-group-prepend">
+                <span class="input-group-text">原始价(￥)</span>
+              </div>
+              <input type="text" class="form-control" id="input-ori-price" disabled="disabled">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary btn-price" id="btn-price-ori" type="button">修改</button>
+              </div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="price-container discount-price">
+            <div class="input-group input-group-discount">
+              <div class="input-group-prepend">
+                <span class="input-group-text">折扣价(￥)</span>
+              </div>
+              <input type="text" class="form-control" id="input-discount-price" disabled="disabled">
+              <div class="input-group-append" id="button-addon4">
+                <button class="btn btn-outline-secondary btn-price" id="btn-price-discount" type="button">修改</button>
+                <!--                <button class="btn btn-outline-secondary" type="button">撤销</button>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
 

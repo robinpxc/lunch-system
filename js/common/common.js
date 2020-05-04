@@ -218,19 +218,19 @@ function convertDateCN(year, month, day, weekDay, withWeekDay) {
 function getWeekDayCN(weekDay) {
   switch (weekDay) {
     case 0:
-      return "星期日";
+      return "周日";
     case 1:
-      return "星期一";
+      return "周一";
     case 2:
-      return "星期二";
+      return "周二";
     case 3:
-      return "星期三";
+      return "周三";
     case 4:
-      return "星期四";
+      return "周四";
     case 5:
-      return "星期五";
+      return "周五";
     case 6:
-      return "星期六";
+      return "周六";
   }
 }
 

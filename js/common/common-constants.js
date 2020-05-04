@@ -75,5 +75,10 @@ const CONSTANTS = {
       NOT_ORDER: "未订餐",
       NO_ORDER: "不订餐"
     }
+  },
+
+  PRICE: {
+    TYPE_ORIGINAL: "ORIGINAL_PRICE",
+    TYPE_DISCOUNT: "DISCOUNT_PRICE"
   }
 };
