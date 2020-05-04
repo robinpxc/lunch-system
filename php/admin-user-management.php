@@ -355,10 +355,11 @@ include('common/session.php');
           </div>
 
           <div class="d-inline-flex form-table">
-            <select class="form-control" id="new-user-role">
+            <select class="form-control" id="user-role">
               <option value="user">普通用户</option>
               <option value="admin-group">组管理员</option>
-              <option id="super-user" value="admin-super">高级管理员</option>
+              <option value="admin-super">高级管理员</option>
+              <option value="guest">临时人员</option>
             </select>
           </div>
 

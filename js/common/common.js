@@ -270,35 +270,37 @@ function decodeUnicode(text) {
 // Function to convert group number to text
 function groupToText(groupNum) {
   switch (groupNum) {
-    case "group0":
-      return "巡察办";
-    case "group1":
-      return "第一巡察组";
-    case "group2":
-      return "第二巡察组";
-    case "group3":
-      return "第三巡察组";
-    case "group4":
-      return "第四巡察组";
-    case "group5":
-      return "第五巡察组";
-    case "group6":
-      return "临时人员";
+    case CONSTANTS.WORKGROUP.GROUP_0:
+      return CONSTANTS.WORKGROUP.CN.GROUP_0;
+    case CONSTANTS.WORKGROUP.GROUP_1:
+      return CONSTANTS.WORKGROUP.CN.GROUP_1;
+    case CONSTANTS.WORKGROUP.GROUP_2:
+      return CONSTANTS.WORKGROUP.CN.GROUP_2;
+    case CONSTANTS.WORKGROUP.GROUP_3:
+      return CONSTANTS.WORKGROUP.CN.GROUP_3;
+    case CONSTANTS.WORKGROUP.GROUP_4:
+      return CONSTANTS.WORKGROUP.CN.GROUP_4;
+    case CONSTANTS.WORKGROUP.GROUP_5:
+      return CONSTANTS.WORKGROUP.CN.GROUP_5;
+    case CONSTANTS.WORKGROUP.GROUP_6:
+      return CONSTANTS.WORKGROUP.CN.GROUP_6;
     default:
-      return "其他";
+      return "数据异常";
   }
 }
 
 function roleToText(userRole) {
   switch(userRole) {
     case CONSTANTS.USER.ROLE.USER:
-      return "用户";
+      return CONSTANTS.USER.ROLE.CN.USER;
     case CONSTANTS.USER.ROLE.ADMIN_GROUP:
-      return "组管理员";
+      return CONSTANTS.USER.ROLE.CN.ADMIN_GROUP;
     case CONSTANTS.USER.ROLE.ADMIN_SUPER:
-      return "高级管理员";
+      return CONSTANTS.USER.ROLE.CN.ADMIN_SUPER;
+    case CONSTANTS.USER.ROLE.GUEST:
+      return CONSTANTS.USER.ROLE.CN.GUEST;
     default:
-      return "未知类型";
+      return "!数据异常";
   }
 }
 

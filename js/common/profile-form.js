@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let currentUserId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED);
-  let defaultUserInfo = {};
+  let currentUserInfo = {};
   let modifyButtonGroup = $(".modify-btn");
   let discardBtn = $("#discard-btn");
   let submitBtn = $("#submit-btn");
@@ -11,23 +11,24 @@ $(document).ready(function () {
   }
 
   fetchUserInfo(currentUserId).done(function(response) {
-    defaultUserInfo.id = response.id;
-    defaultUserInfo.fullname = response.fullname;
-    defaultUserInfo.nickname = response.nick_name;
-    defaultUserInfo.workgroup = response.workgroup;
-    defaultUserInfo.role = response.role;
-    setUserData(defaultUserInfo);
+    currentUserInfo.id = response.id;
+    currentUserInfo.fullname = response.fullname;
+    currentUserInfo.nickname = response.nick_name;
+    currentUserInfo.role = response.role;
+    currentUserInfo.workgroup = response.workgroup;
+
+    setUserData(currentUserInfo);
 
     modifyButtonClickEvent(modifyButtonGroup);
 
     // Discard button click event
     discardBtn.click(function () {
-      discardChanges(modifyButtonGroup, defaultUserInfo);
+      discardChanges(modifyButtonGroup, currentUserInfo);
     });
 
     // Submit button click event
     submitBtn.click(function () {
-      submitModifiedUserInfo(defaultUserInfo);
+      submitModifiedUserInfo(currentUserInfo);
     });
 
     // Function of password eye button
@@ -39,7 +40,7 @@ $(document).ready(function () {
   function setUserData(userInfo) {
     $("#user-id-input").val(userInfo.id);
     $("#user-fullname-input").val(userInfo.fullname);
-    $("#user-role").val($("#user-role").hasClass("text-only") ? roleToText(userInfo.role) : userInfo.role);
+    $("#user-role").val($("#user-role").hasClass("text-only") ? roleToText(userInfo.role) : (userInfo.role.toLowerCase()));
     $("#user-workgroup").val($("#user-workgroup").hasClass("text-only")? groupToText(userInfo.workgroup) : userInfo.workgroup);
     $("#nickname-input").val(userInfo.nickname);
   }
@@ -82,7 +83,7 @@ $(document).ready(function () {
 // Function to discard all input field
   function discardChanges(modifyBtnGroup, defaultUserInfoObj) {
     let idField = $("input[name='user-id']");
-    let fullnameField = $("input[name='user-fullname']");
+    let userNameField = $("input[name='user-fullname']");
     let roleField = $("#user-role");
     let workgroupField = $("#user-workgroup");
     let nicknameField = $("input[name='user-nickname-edit']");
@@ -90,8 +91,8 @@ $(document).ready(function () {
 
     idField.val(defaultUserInfoObj.id);
     setReadOnly(idField);
-    fullnameField.val(defaultUserInfoObj.fullname);
-    setReadOnly(fullnameField);
+    userNameField.val(defaultUserInfoObj.fullname);
+    setReadOnly(userNameField);
     roleField.val(defaultUserInfoObj.role);
     setDisable(roleField);
     workgroupField.val(defaultUserInfoObj.workgroup);

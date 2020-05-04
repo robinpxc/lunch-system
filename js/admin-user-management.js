@@ -85,7 +85,7 @@ $(document).ready(function () {
     if(password == null || password == "") {
       password = "123";
     }
-    let role = $("#new-user-role option:selected").val();
+    let role = $("#user-role option:selected").val();
     let workgroup = $("#new-user-group option:selected").val();
     addUser(username, nickName, password, role, workgroup).done(function(response) {
       switch(response) {

@@ -38,12 +38,33 @@ const CONSTANTS = {
       ADMIN_SUPER: "ADMIN_SUPER",
       ADMIN_GROUP: "ADMIN_GROUP",
       USER: "USER",
+      GUEST: "GUEST",
       CN: {
         ADMIN_SUPER: "高级管理员",
         ADMIN_GROUP: "组管理员",
         USER: "用户",
+        GUEST: "临时人员"
       }
     },
+  },
+
+  WORKGROUP: {
+    GROUP_0: "group0",
+    GROUP_1: "group1",
+    GROUP_2: "group2",
+    GROUP_3: "group3",
+    GROUP_4: "group4",
+    GROUP_5: "group5",
+    GROUP_6: "group6",
+    CN :{
+      GROUP_0: "市委巡察办",
+      GROUP_1: "市委第一巡察组",
+      GROUP_2: "市委第二巡察组",
+      GROUP_3: "市委第三巡察组",
+      GROUP_4: "市委第四巡察组",
+      GROUP_5: "市委第五巡察组",
+      GROUP_6: "物业"
+    }
   },
 
   ORDER: {
