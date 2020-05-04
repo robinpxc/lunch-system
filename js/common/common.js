@@ -3,6 +3,7 @@ $(document).ready(function () {
   var headerMenuList = $("#nav-bar-list");
   setNavBarWidth();
   willShowPricingHeader();
+  setFooterText();
 
   // Hide nav list when click on blank.
   $(document).click(function (event) {
@@ -54,7 +55,7 @@ function setNavBarWidth() {
 
 // Function to show/hode pricing-header
 function willShowPricingHeader() {
-  var windowWidth = getWindowWidth();
+  let windowWidth = getWindowWidth();
   if (windowWidth >= 575 && ($(".pricing-header").hasClass("hide"))) {
     $(".pricing-header").removeClass("hide");
   } else if (windowWidth < 575 && !($("body").hasClass("hide"))) {
@@ -64,7 +65,7 @@ function willShowPricingHeader() {
 
 // Function to judge if the element has current attr name
 function hasAttribute(currentElement, attrName) {
-  var attribute = currentElement.attr(attrName);
+  let attribute = currentElement.attr(attrName);
   if (typeof (attribute.attr(attrName)) == "undefined") {
     return false;
   } else {
@@ -105,14 +106,14 @@ function getWindowWidth() {
 
 // Function to disable safari zoom
 function disableZoom() {
-  var lastTouchEnd = 0;
+  let lastTouchEnd = 0;
   document.addEventListener('touchstart', function (event) {
     if (event.touches.length > 1) {
       event.preventDefault();
     }
   });
   document.addEventListener('touchend', function (event) {
-    var now = (new Date()).getTime();
+    let now = (new Date()).getTime();
     if (now - lastTouchEnd <= 300) {
       event.preventDefault();
     }
@@ -315,6 +316,11 @@ function removeSpinner() {
   if (isElementExist($(".spinner-container"))) {
     $($(".spinner-container")).remove();
   }
+}
+
+function setFooterText() {
+  $(".footer-text-copyright").html(CONSTANTS.STRING.FOOTER.COPY_RIGHT);
+  $(".footer-text-contact").html(CONSTANTS.STRING.FOOTER.CONTACT_ME);
 }
 
 // Sign out related functions

@@ -318,6 +318,15 @@ include('common/session.php');
     </div>
   </div>
 
+  <footer class="footer pt-4 my-md-4 pt-md-4 border-top">
+    <div class="footer-container row">
+      <div class="col-12 col-md">
+        <h6 class="d-block mb-3 text-muted footer-text-copyright"></h6>
+        <h6 class="d-block mb-3 text-muted footer-text-contact"></h6>
+      </div>
+    </div>
+  </footer>
+
   <div class="create-form no-print">
     <form class="form-inline" action="" method="post">
       <div class="create-user bg-light mt-3 form-table">
@@ -379,6 +388,7 @@ include('common/session.php');
         </div>
       </div>
     </form>
+
   </div>
 
 </html>

@@ -80,5 +80,12 @@ const CONSTANTS = {
   PRICE: {
     TYPE_ORIGINAL: "ORIGINAL_PRICE",
     TYPE_DISCOUNT: "DISCOUNT_PRICE"
+  },
+
+  STRING: {
+    FOOTER: {
+      COPY_RIGHT: "&copy; 2019 - Robin.Pan",
+      CONTACT_ME: "有问题请联系 804 潘潘"
+    }
   }
 };
