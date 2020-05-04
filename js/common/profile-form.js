@@ -7,7 +7,7 @@ $(document).ready(function () {
   let eyeBtn = $("#show-hide-pwd-btn");
 
   if(currentUserId == null || currentUserId == "") {
-    currentUserId = $.cookie("current-user-id");
+    currentUserId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID);
   }
 
   fetchUserInfo(currentUserId).done(function(response) {
