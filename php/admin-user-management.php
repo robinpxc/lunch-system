@@ -118,15 +118,15 @@ include('common/session.php');
           显示：全部显示
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#" id="group-0">显示：巡察办</a>
-          <a class="dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
-          <a class="dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
-          <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
-          <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
-          <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
-          <a class="dropdown-item" href="#" id="group-6">显示：物业</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-0">显示：巡察办</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-6">显示：物业</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
+          <a class="dropdown-item nav-dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
     </div>

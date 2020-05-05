@@ -33,7 +33,7 @@ function addDropdownListEvent() {
 }
 
 function setDropdownInactive() {
-  $(".dropdown-item").each(function() {
+  $(".nav-dropdown-item").each(function() {
     removeOldClass($(this), "active");
   });
 }

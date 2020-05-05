@@ -32,12 +32,40 @@
   background-color: orange;
 }
 
+.td-operation {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.td-operation .dropdown-item:hover {
+  background-color: dodgerblue;
+}
+
 .btn-operation {
   width: 50%;
+  margin-right: 5px;
+  flex-grow: 1;
 }
+
+.count-container {
+  width: 50%;
+  flex-grow: 1;
+}
+
+.input-count {
+  text-align: center;
+}
+
+
 
 @media screen and (max-width: 768px) {
   .btn-operation {
     width: 100%;
+  }
+
+  .th-nickname, .td-nickname {
+    display: none;
   }
 }

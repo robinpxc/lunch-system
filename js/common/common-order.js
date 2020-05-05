@@ -213,4 +213,37 @@ function updateOrderPrice(price, type) {
   return deferred.promise();
 }
 
+/*
+* Function to get/set order count
+* Parameters:
+*   price: single price for a meal
+*   type: determine the price type, from CONSTANT.PRICE
+* */
+function orderCountOperation(userId, date, count) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/order-count-operation.php",
+    data: {
+      "user-id": userId,
+      "date": date,
+      "count": count
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function () {
+      alert("餐数操作异常，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
 

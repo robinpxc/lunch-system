@@ -137,15 +137,15 @@ include('common/session.php');
           显示：全部显示
         </button>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#" id="group-0">显示：巡察办</a>
-          <a class="dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
-          <a class="dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
-          <a class="dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
-          <a class="dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
-          <a class="dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
-          <a class="dropdown-item" href="#" id="group-6">显示：物业</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-0">显示：巡察办</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-1">显示：第一巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-2">显示：第二巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-3">显示：第三巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-4">显示：第四巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-5">显示：第五巡察组</a>
+          <a class="dropdown-item nav-dropdown-item" href="#" id="group-6">显示：物业</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item active" href="#" id="group-all">显示：全部显示</a>
+          <a class="dropdown-item nav-dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
 
@@ -162,10 +162,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group0">
@@ -187,10 +187,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group1">
@@ -212,10 +212,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group2">
@@ -237,10 +237,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group3">
@@ -262,10 +262,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group4">
@@ -287,10 +287,10 @@ include('common/session.php');
             <table class="table">
               <thead  class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               </thead>
@@ -313,10 +313,10 @@ include('common/session.php');
             <table class="table">
               <thead class="thead-light">
               <tr table-content>
-                <th scope="col" class="username-info">姓名</th>
-                <th scope="col" class="nickname-info">昵称</th>
-                <th scope="col" class="role-info hide-small-screen">状态</th>
-                <th scope="col" class="operation no-print">操作</th>
+                <th scope="col" class="th-username username-info">姓名</th>
+                <th scope="col" class="th-nickname nickname-info">昵称</th>
+                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+                <th scope="col" class="th-operation operation no-print">操作</th>
               </tr>
               </thead>
               <tbody class="tb-group6">
