@@ -27,6 +27,11 @@ $(document).ready(function () {
   });
 });
 
+// Reload page
+function refresh() {
+  window.location.reload();
+}
+
 // Function to show current date and time.
 function showTime() {
   $("#current_date").html(getDateTodayCN(false));

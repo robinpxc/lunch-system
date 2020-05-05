@@ -35,10 +35,10 @@ const CONSTANTS = {
 
   USER: {
     ROLE: {
-      ADMIN_SUPER: "ADMIN_SUPER",
-      ADMIN_GROUP: "ADMIN_GROUP",
-      USER: "USER",
-      GUEST: "GUEST",
+      ADMIN_SUPER: "admin-super",
+      ADMIN_GROUP: "admin-group",
+      USER: "user",
+      GUEST: "guest",
       CN: {
         ADMIN_SUPER: "高级管理员",
         ADMIN_GROUP: "组管理员",

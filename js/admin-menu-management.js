@@ -17,7 +17,7 @@ $(document).ready(function () {
         if(document.getElementById("date-value")) {
           var clickedDate = formatDate(y, m, d);
           $.cookie('selected-date',clickedDate);
-          window.location.reload();
+          refresh();
         }
       }
     });
@@ -292,7 +292,7 @@ $(document).ready(function () {
         alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
       },
       complete: function() {
-        window.location.reload();
+        refresh();
       }
     });
   }

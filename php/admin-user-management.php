@@ -389,7 +389,5 @@ include('common/session.php');
         </div>
       </div>
     </form>
-
   </div>
-
 </html>

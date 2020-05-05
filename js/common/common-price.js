@@ -30,7 +30,7 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
               updateOrderPrice(originalPriceNew, CONSTANTS.PRICE.TYPE_ORIGINAL).done(function(response) {
                 if(response == "success") {
                   jqInfo("修改成功", "成功地修改原始单价为 " + originalPriceNew + "元", function() {
-                    window.location.reload();
+                    refresh();
                   });
                 } else {
                   jqAlert("修改失败", "原始单价修改失败，请重试");
@@ -42,13 +42,13 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
         case "btn-price-discount":
           let discountPriceNew = $("#input-discount-price").val();
           if(discountPriceNew === discountPrice) {
-            jqInfo("无修改", "折扣价数值前后无变化", null);
+            jqInfo("无修改", "折扣价数值前后无变化", function() {});
           } else {
             jqConfirm("修改确认", "确认修改【折扣价】为 " + discountPriceNew + "元?", function() {
               updateOrderPrice(discountPriceNew, CONSTANTS.PRICE.TYPE_DISCOUNT).done(function(response) {
                 if(response == "success") {
                   jqInfo("修改成功", "成功地修改折扣价为 " + discountPriceNew + "元", function() {
-                    window.location.reload();
+                    refresh();
                   });
                 } else {
                   jqAlert("修改失败", "折扣价修改失败，请重试");

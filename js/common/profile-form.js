@@ -40,7 +40,7 @@ $(document).ready(function () {
   function setUserData(userInfo) {
     $("#user-id-input").val(userInfo.id);
     $("#user-fullname-input").val(userInfo.fullname);
-    $("#user-role").val($("#user-role").hasClass("text-only") ? roleToText(userInfo.role) : (userInfo.role.toLowerCase()));
+    $("#user-role").val($("#user-role").hasClass("text-only") ? roleToText(userInfo.role) : userInfo.role);
     $("#user-workgroup").val($("#user-workgroup").hasClass("text-only")? groupToText(userInfo.workgroup) : userInfo.workgroup);
     $("#nickname-input").val(userInfo.nickname);
   }
@@ -147,13 +147,15 @@ $(document).ready(function () {
     if(modificationCount > 0) {
       updateUserInfo(userInfoUpdate).done(function(response) {
         if(response == "success") {
-          jqInfo("修改成功", "修改了【" + modificationCount + "】处信息!" );
+          jqInfo("修改成功", "修改了【" + modificationCount + "】处信息!", function() {
+            refresh();
+          } );
         } else {
           jqAlert("修改失败", "用户信息修改失败,请重试!");
         }
       });
     } else {
-      jqInfo("无改动", "您没有修改任何信息");
+      jqInfo("无改动", "您没有修改任何信息", function() {});
     }
   }
 

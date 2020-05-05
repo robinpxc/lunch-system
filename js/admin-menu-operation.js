@@ -208,11 +208,11 @@ $(document).ready(function() {
       if(isSuccess) {
         if (orderStatus ==  CONSTANTS.ORDER.CONTENT.NO_ORDER) {
           jqInfo("订餐成功", "成功订餐 " + orderNum + " 号", function() {
-            window.location.reload();
+            refresh();
           });
         } else {
           jqInfo("修改成功", "成功修改为 【" + orderNum + " 号】", function() {
-            window.location.reload();
+            refresh();
           });
         }
 

@@ -10,7 +10,7 @@ function jqAlert(title, content) {
         btnClass: "btn-danger",
         text: "确认",
         action: function() {
-          window.location.reload();
+          refresh();
         }
       }
     }

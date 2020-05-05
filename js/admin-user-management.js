@@ -91,7 +91,9 @@ $(document).ready(function () {
       switch(response) {
         case "success":
           alert(response);
-          jqInfo("操作成功", "成功的添加了用户【" + username + "】");
+          jqInfo("操作成功", "成功的添加了用户【" + username + "】", function() {
+            refresh();
+          });
           break;
         case "nickname-exist":
           alert(response);
@@ -114,7 +116,9 @@ $(document).ready(function () {
 
   function delUser(userId, userName) {
     deleteUser(userId).done(function(response) {
-      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试");
+      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试", function() {
+        refresh();
+      });
     });
   }
 

@@ -145,7 +145,7 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
     },
     error: function () {
       alert("点餐异常，请重试");
-      window.location.reload();
+      refresh();
     },
     complete: function() {
       removeSpinner();
