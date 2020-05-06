@@ -114,7 +114,7 @@ $(document).ready(function() {
           // Set operation
           $("." + userClassName).append("<td class='" + "td-operation operation-" + userId + " no-print'>");
           addOrderDropDown($(".operation-" + userId), userId, orderStatus, null);
-          addCountOperation($(".operation-" + userId), userId);
+          addCountOperation($(".operation-" + userId), userId, orderStatus);
         } else {
           // Set order status
           checkOrderStatus(getDateTomorrow(), CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
@@ -136,15 +136,7 @@ $(document).ready(function() {
               // Set operation <td> (last)
               $("." + userClassName).append("<td class='" + "td-operation operation-group operation-" + userId + " no-print'>");
               addOrderDropDown($(".operation-" + userId), userId, orderStatus, orderNum);
-              addCountOperation($(".operation-" + userId), userId);
-              // $(".operation-" + userId).append("<button class='btn btn-sm btn-warning btn-operation modify-order" + userId + "'>" + "修改");
-              // $(".modify-order" + userId).click(function() {
-              //   $(this).remove();
-              //   addOrderDropDown($(".operation-" + userId), userId, orderStatus);
-              //   addCountOperation($(".operation-" + userId), userId);
-              //   addNewClass($(".dropdown-order-" + userId + " #order-" + orderNum), "active");
-              //   $(".dropdown-order-" + userId + " .dropdown-toggle").text($(".dropdown-menu-" + userId + " #order-" + orderNum).text());
-              // });
+              addCountOperation($(".operation-" + userId), userId, orderStatus);
             });
           });
         }
@@ -158,7 +150,9 @@ $(document).ready(function() {
     // Set Outer dropdown container to <td>
     container.append("<div class='btn-group btn-operation dropdown-order " + orderDropdownClassName + "'>");
     // Set dropdown toggle button to dropdown container
-    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-outline-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
+    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-sm dropdown-toggle dropdown-order-btn' id='order-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
+    let orderToggleBtn = $("#order-toggle-" + userId);
+    addNewClass(orderToggleBtn, orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER ? "btn-outline-secondary" : "btn-outline-success");
     // Set dropdown option list to dropdown container
     $("." + orderDropdownClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
     // Set dropdown list content.
@@ -175,56 +169,78 @@ $(document).ready(function() {
       setOrderSelect($("." + dropdownListClassName + " #order-" + orderNum), userId, orderNum);
     }
 
-    // Set ids for each dropdown item.
+    // Declare ids for each dropdown item.
     let dropdownItemClassName = $(".dropdown-menu-" + userId + " .dropdown-item");
     // Set dropdown item click event.
     addOrderDropdownListEvent(dropdownItemClassName, userId, orderStatus);
   }
 
-  function addCountOperation(container, userId) {
+  function addCountOperation(container, userId, orderStatus) {
     orderCountOperation(userId, getDateTomorrow(), null).done(function(orderCountTomorrow) {
       let orderCount = orderCountTomorrow == null ? 1 : orderCountTomorrow;
       let orderCountNew = null;
       let countContainerClassName = "count-operation-" + userId;
       let dropdownListClassName = "count-dropdown-menu-" + userId;
       container.append("<div class='btn-group btn-operation dropdown-count " + countContainerClassName + "'>");
-      $("." + countContainerClassName).append("<button type='button' class='btn btn-outline-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>");
-      $("." + countContainerClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
-      //setCountSelect($("#count-" + userId + "-" + orderCount, userId, orderCount));
-      for(let i = 1; i <= 5; i++) {
-        $("." + dropdownListClassName).append("<a class='dropdown-item count-dropdown-item' href='#' id='count-" + userId + "-" + i +"'>" + i + " 份");
-        $("#count-" + userId + "-" + i).click(function() {
-          orderCountNew = i;
-          $.confirm({
-            title:"份数修改确认",
-            content: "确认要将份数改为【" + orderCountNew + "份】吗？",
-            icon: "fa fa-exclamation-triangle",
-            animation: "top",
-            buttons: {
-              confirm: {
-                text: "确认",
-                btnClass: "btn-danger",
-                keys: ["enter"],
-                action: function() {
-                  setCountSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
-                }
-              },
-              cancel: {
-                text: "取消",
-                keys: ["esc"],
-                action: function() {
-                  setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
-                }
+      $("." + countContainerClassName).append("<button type='button' class='btn btn-sm dropdown-toggle dropdown-order-btn' id='count-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>");
+      let countToggleBtn = $("#count-toggle-" + userId);
+      if(orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
+        countToggleBtn.text("1 份");
+        addNewClass(countToggleBtn, "btn-outline-secondary");
+        setDisable($("#count-toggle-" + userId));
+      } else {
+        addNewClass(countToggleBtn, orderCount > 1 ? "btn-outline-warning" : "btn-outline-success");
+        $("." + countContainerClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
+        // If order num = 6 than set count to be "不订餐" and disable it
+        if($(".dropdown-menu-" + userId + " #order-6").hasClass("active")) {
+          $("#count-toggle-" + userId).text("不订餐");
+          setDisable($("#count-toggle-" + userId));
+        } else {
+          for(let i = 1; i <= 5; i++) {
+            $("." + dropdownListClassName).append("<a class='dropdown-item count-dropdown-item' href='#' id='count-" + userId + "-" + i +"'>" + i + " 份");
+            $("#count-" + userId + "-" + i).click(function() {
+              orderCountNew = i;
+              if(orderCountNew != orderCount) {
+                setCountSelect($(this), orderCountNew);
+                $("." + countContainerClassName + " .dropdown-order-btn").text(orderCountNew + " 份");
+                $.confirm({
+                  title:"份数修改确认",
+                  content: "确认要将份数改为【" + orderCountNew + "份】吗？",
+                  icon: "fa fa-exclamation-triangle",
+                  animation: "top",
+                  buttons: {
+                    confirm: {
+                      text: "确认修改",
+                      btnClass: "btn-danger",
+                      keys: ["enter"],
+                      action: function() {
+                        setCountSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
+                        orderCountOperation(userId, getDateTomorrow(), orderCountNew).done(function(success) {
+                          if(success) {
+                            jqInfo("设置成功", "已成功将点餐份数设置为【" + orderCountNew + "】份!", function() {
+                              refresh();
+                            });
+                          } else {
+                            jqAlert("设置成功", "点餐份数设置失败，请重试!");
+                          }
+                        });
+                      }
+                    },
+                    cancel: {
+                      text: "取消",
+                      keys: ["esc"],
+                      action: function() {
+                        setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
+                      }
+                    }
+                  }
+                });
               }
-            }
-          });
-          if(orderCountNew != orderCount) {
-            setCountSelect($(this), orderCountNew);
-            $("." + countContainerClassName + " .dropdown-order-btn").text(orderCountNew + " 份");
+            });
           }
-        });
+          setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
+        }
       }
-      setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
     });
   }
 
@@ -232,16 +248,27 @@ $(document).ready(function() {
     $(".dropdown-menu-" + userId + " .dropdown-item").each(function() {
       removeOldClass($(this), "active");
     });
+
+    if(orderNum != 6) {
+      element.val(orderNum);
+      $("#order-toggle-" + userId).text(orderNum + " 号");
+    } else {
+      $("#order-toggle-" + userId).text("不订餐");
+    }
     addNewClass(element, "active");
-    $(element.parent().parent().find("button")).text(orderNum + " 号");
   }
 
   function setCountSelect(element, userId, orderCount) {
     $(".count-dropdown-menu-" + userId + " .count-dropdown-item").each(function() {
       removeOldClass($(this), "active");
     });
-    addNewClass(element, "active");
-    $(element.parent().parent().find("button")).text(orderCount + " 份");
+    if(orderCount != 0) {
+      addNewClass(element, "active");
+      element.val(orderCount);
+      $("#count-toggle-" + userId).text(orderCount + " 份");
+    } else {
+      $("#count-toggle-" + userId).text("不订餐");
+    }
   }
 
   // Order dropdown related functions
@@ -258,31 +285,15 @@ $(document).ready(function() {
         // Set selected item text value to dropdown toggle button.
         orderDropdownBtn.text($(this).text());
         // Network request, update order data to server
-        setOrderListMenuClickEventUI($(this), userId, orderStatus);
+        setOrderNumber($(this), userId, orderStatus);
       });
     });
   }
 
-  function setOrderListMenuClickEventUI(listItem, userId, orderStatus) {
-    switch (listItem.attr("id")) {
-      case "order-1":
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_1, orderStatus);
-        break;
-      case "order-2":
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_2, orderStatus);
-        break;
-      case "order-3":
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_3, orderStatus);
-        break;
-      case "order-4":
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_4, orderStatus);
-        break;
-      case "order-5":
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.ORDER_5, orderStatus);
-        break;
-      default:
-        setOrder(userId, CONSTANTS.ORDER.CONTENT.NO_ORDER, orderStatus);
-    }
+  function setOrderNumber(listItem, userId, orderStatus) {
+    let lastIndex = listItem.attr("id").length - 1;
+    let orderNum = listItem.attr("id")[lastIndex];
+    setOrder(userId, orderNum, orderStatus);
   }
 
   function setOrderDropdownInactive(element) {
