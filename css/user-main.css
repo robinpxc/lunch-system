@@ -73,6 +73,15 @@
   padding: 0 !important;
 }
 
+.btn-price {
+  border-color: red;
+  color: red;
+}
+
+.btn-price:hover {
+  background-color: darkred;
+  color: white;
+}
 
 #user-manage-btn:hover {
   background-color: darkred;
