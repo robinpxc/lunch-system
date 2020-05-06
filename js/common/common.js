@@ -2,6 +2,7 @@ $(document).ready(function () {
   // Variables
   var headerMenuList = $("#nav-bar-list");
   setNavBarWidth();
+  setSystemConfigBtn();
   willShowPricingHeader();
   setFooterText();
 
@@ -30,6 +31,10 @@ $(document).ready(function () {
 // Reload page
 function refresh() {
   window.location.reload();
+}
+
+function setSystemConfigBtn() {
+  $(".btn-sys-config span").text("你好，" + $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME));
 }
 
 // Function to show current date and time.
@@ -116,7 +121,8 @@ function disableZoom() {
     if (event.touches.length > 1) {
       event.preventDefault();
     }
-  });
+  }, false);
+
   document.addEventListener('touchend', function (event) {
     let now = (new Date()).getTime();
     if (now - lastTouchEnd <= 300) {

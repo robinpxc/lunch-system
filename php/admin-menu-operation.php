@@ -71,7 +71,7 @@ include('common/session.php');
           </span>
         </div>
       </span>
-    <button class="btn btn-danger dropdown-toggle" type="button" data-toggle="collapse" data-target="#nav-bar-list"
+    <button class="btn btn-danger dropdown-toggle btn-sys-config" type="button" data-toggle="collapse" data-target="#nav-bar-list"
             aria-controls="nav-bar-list" aria-expanded="false" aria-label="Toggle navigation">
       <span>系统操作</span>
     </button>

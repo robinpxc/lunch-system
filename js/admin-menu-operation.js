@@ -113,29 +113,38 @@ $(document).ready(function() {
 
           // Set operation
           $("." + userClassName).append("<td class='" + "td-operation operation-" + userId + " no-print'>");
-          addOrderDropDown($(".operation-" + userId), userId, orderStatus);
+          addOrderDropDown($(".operation-" + userId), userId, orderStatus, null);
           addCountOperation($(".operation-" + userId), userId);
         } else {
           // Set order status
           checkOrderStatus(getDateTomorrow(), CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
             let orderNum = response.menu_number;
-            let orderStatusText = orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : orderNum + " 号";
-            $("." + userClassName).append("<td class='" + "td-status order-status-" + userId + "'>" + orderStatusText);
-            $(".order-status-" + userId).css("font-weight", "bold");
-            if(orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER) {
-              $(".order-status-" + userId).css("color", "blue");
-            } else {
-              $(".order-status-" + userId).css("color", "green");
-            }
+            orderCountOperation(userId, getDateTomorrow(), null).done(function(orderCount) {
+              // Determine the order status text will be "不点餐" or "X号" or "X号【Y份】"
+              let orderStatusText = orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : orderNum + " 号";
+              orderStatusText += orderCount > 1 ? ("【" + orderCount + "份】") : "";
 
-            $("." + userClassName).append("<td class='" + "td-operation operation-group operation-" + userId + " no-print'>");
-            $(".operation-" + userId).append("<button class='btn btn-sm btn-warning btn-operation modify-order" + userId + "'>" + "修改");
-            $(".modify-order" + userId).click(function() {
-              $(this).remove();
-              addOrderDropDown($(".operation-" + userId), userId, orderStatus);
+              // Set order status text and UI styles to <td>
+              $("." + userClassName).append("<td class='" + "td-status order-status-" + userId + "'>" + orderStatusText);
+              $(".order-status-" + userId).css("font-weight", "bold");
+              if(orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER) {
+                $(".order-status-" + userId).css("color", "blue");
+              } else {
+                $(".order-status-" + userId).css("color", "green");
+              }
+
+              // Set operation <td> (last)
+              $("." + userClassName).append("<td class='" + "td-operation operation-group operation-" + userId + " no-print'>");
+              addOrderDropDown($(".operation-" + userId), userId, orderStatus, orderNum);
               addCountOperation($(".operation-" + userId), userId);
-              addNewClass($(".dropdown-order-" + userId + " #order-" + orderNum), "active");
-              $(".dropdown-order-" + userId + " .dropdown-toggle").text($(".dropdown-menu-" + userId + " #order-" + orderNum).text());
+              // $(".operation-" + userId).append("<button class='btn btn-sm btn-warning btn-operation modify-order" + userId + "'>" + "修改");
+              // $(".modify-order" + userId).click(function() {
+              //   $(this).remove();
+              //   addOrderDropDown($(".operation-" + userId), userId, orderStatus);
+              //   addCountOperation($(".operation-" + userId), userId);
+              //   addNewClass($(".dropdown-order-" + userId + " #order-" + orderNum), "active");
+              //   $(".dropdown-order-" + userId + " .dropdown-toggle").text($(".dropdown-menu-" + userId + " #order-" + orderNum).text());
+              // });
             });
           });
         }
@@ -143,12 +152,16 @@ $(document).ready(function() {
     }
   }
 
-  function addOrderDropDown(container, userId, orderStatus) {
-    let orderDropdownClassName = "dropdown-order-" + userId;
-    let dropdownListClassName = "dropdown-menu-" + userId;
+  function addOrderDropDown(container, userId, orderStatus, orderNum) {
+    let orderDropdownClassName = "dropdown-order-" + userId; // Order dropdown container <div> class name, will bind with user id.
+    let dropdownListClassName = "dropdown-menu-" + userId;   // Order dropdown list class name.
+    // Set Outer dropdown container to <td>
     container.append("<div class='btn-group btn-operation dropdown-order " + orderDropdownClassName + "'>");
+    // Set dropdown toggle button to dropdown container
     $("." + orderDropdownClassName).append("<button type='button' class='btn btn-outline-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
+    // Set dropdown option list to dropdown container
     $("." + orderDropdownClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
+    // Set dropdown list content.
     for(let i = 1; i <= CONSTANTS.ORDER_COUNT; i++) {
       let orderNumText = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "不订餐" : i + " 号";
       let itemClassName = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "dropdown-item no-order-item" : "dropdown-item";
@@ -158,7 +171,13 @@ $(document).ready(function() {
       }
     }
 
+    if(orderStatus != CONSTANTS.ORDER.STATUS_USER.NOT_ORDER && orderNum != null) {
+      setOrderSelect($("." + dropdownListClassName + " #order-" + orderNum), userId, orderNum);
+    }
+
+    // Set ids for each dropdown item.
     let dropdownItemClassName = $(".dropdown-menu-" + userId + " .dropdown-item");
+    // Set dropdown item click event.
     addOrderDropdownListEvent(dropdownItemClassName, userId, orderStatus);
   }
 
@@ -171,13 +190,9 @@ $(document).ready(function() {
       container.append("<div class='btn-group btn-operation dropdown-count " + countContainerClassName + "'>");
       $("." + countContainerClassName).append("<button type='button' class='btn btn-outline-primary btn-sm dropdown-toggle dropdown-order-btn' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>");
       $("." + countContainerClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
-      $("." + countContainerClassName + " .dropdown-order-btn").text(orderCount + " 份");
+      //setCountSelect($("#count-" + userId + "-" + orderCount, userId, orderCount));
       for(let i = 1; i <= 5; i++) {
         $("." + dropdownListClassName).append("<a class='dropdown-item count-dropdown-item' href='#' id='count-" + userId + "-" + i +"'>" + i + " 份");
-        if(i == 1) {
-          setSelect($("#count-" + userId + "-" + i), userId, orderCount);
-        }
-
         $("#count-" + userId + "-" + i).click(function() {
           orderCountNew = i;
           $.confirm({
@@ -191,28 +206,37 @@ $(document).ready(function() {
                 btnClass: "btn-danger",
                 keys: ["enter"],
                 action: function() {
-                  setSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
+                  setCountSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
                 }
               },
               cancel: {
                 text: "取消",
                 keys: ["esc"],
                 action: function() {
-                  setSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
+                  setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
                 }
               }
             }
           });
           if(orderCountNew != orderCount) {
-            setSelect($(this), orderCountNew);
+            setCountSelect($(this), orderCountNew);
             $("." + countContainerClassName + " .dropdown-order-btn").text(orderCountNew + " 份");
           }
         });
       }
+      setCountSelect($("#count-" + userId + "-" + orderCount), userId, orderCount);
     });
   }
 
-  function setSelect(element, userId, orderCount) {
+  function setOrderSelect(element, userId, orderNum) {
+    $(".dropdown-menu-" + userId + " .dropdown-item").each(function() {
+      removeOldClass($(this), "active");
+    });
+    addNewClass(element, "active");
+    $(element.parent().parent().find("button")).text(orderNum + " 号");
+  }
+
+  function setCountSelect(element, userId, orderCount) {
     $(".count-dropdown-menu-" + userId + " .count-dropdown-item").each(function() {
       removeOldClass($(this), "active");
     });
@@ -222,12 +246,18 @@ $(document).ready(function() {
 
   // Order dropdown related functions
   function addOrderDropdownListEvent(dropdownItem, userId, orderStatus) {
+    // Get dropdown toggle button as element obj.
     let orderDropdownBtn = $(".dropdown-order-" + userId + " .dropdown-order-btn");
+    // Set dropdown items' click event for each dropdown operation group
     $(dropdownItem).each(function(){
       $(this).click(function() {
+        // Clear all "active" class tag
         setOrderDropdownInactive($(".dropdown-item"));
+        // Add a new "active" class tag to selected item
         addNewClass($(this), "active");
+        // Set selected item text value to dropdown toggle button.
         orderDropdownBtn.text($(this).text());
+        // Network request, update order data to server
         setOrderListMenuClickEventUI($(this), userId, orderStatus);
       });
     });
