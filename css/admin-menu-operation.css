@@ -24,6 +24,10 @@
   margin-top: 5px;
 }
 
+.table td, .table th {
+  vertical-align: center !important;
+}
+
 .dropdown-order .dropdown-item:hover {
   background-color: limegreen;
 }
@@ -36,15 +40,15 @@
   width: 100%;
   display: inline-flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
 }
+
 
 .td-operation .dropdown-item:hover {
   background-color: dodgerblue;
 }
 
 .btn-operation {
-  width: 50%;
+  width: 100%;
   margin-right: 5px;
   flex-grow: 1;
 }
@@ -58,14 +62,12 @@
   text-align: center;
 }
 
-
-
 @media screen and (max-width: 768px) {
-  .btn-operation {
-    width: 100%;
+  .th-nickname, .td-nickname {
+    display: none;
   }
 
-  .th-nickname, .td-nickname {
+  .th-status, .td-status {
     display: none;
   }
 }

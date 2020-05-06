@@ -105,14 +105,14 @@ $(document).ready(function() {
         // Set order status and operation in different case
         if(orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
           // Set order status
-          $("." + userClassName).append("<td class='" + "td-status order-status-" + userId + "'>" + CONSTANTS.ORDER.INFO_TEXT_STATUS.NOT_ORDER);
+          $("." + userClassName).append("<td class='td-status order-status-" + userId + "'>" + CONSTANTS.ORDER.INFO_TEXT_STATUS.NOT_ORDER);
           $(".order-status-" + userId).css({
             "color": "red",
             "font-weight": "bold"
           });
 
           // Set operation
-          $("." + userClassName).append("<td class='" + "td-operation operation-" + userId + " no-print'>");
+          $("." + userClassName).append("<td class='td-operation operation-" + userId + " no-print'>");
           addOrderDropDown($(".operation-" + userId), userId, orderStatus, null);
           addCountOperation($(".operation-" + userId), userId, orderStatus);
         } else {
