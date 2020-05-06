@@ -143,7 +143,7 @@ include('common/session.php');
       </div>
 
       <!-- Admin card: modify prices -->
-      <div class="card card-admin mb-2 border-danger" id="admin-card">
+      <div class="card card-admin mb-2 border-danger" id="admin-price-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">修改价格</h4>
         </div>

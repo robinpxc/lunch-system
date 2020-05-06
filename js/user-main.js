@@ -8,6 +8,9 @@ $(document).ready(function () {
   let oriPrice;
   let discountPrice;
 
+  removeAdminCard();
+  setManageButtonEvents();
+
   // Function calls
   checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
     orderStatusToday = response;
@@ -20,9 +23,6 @@ $(document).ready(function () {
       });
     });
   });
-
-  removeAdminCard();
-  setManageButtonEvents();
 
   // Function declarations
   function initUI() {
@@ -82,9 +82,11 @@ $(document).ready(function () {
   });
 
   function removeAdminCard() {
-    let userRole = $("#user-role-input").val();
-    if (userRole === "user") {
-      $("#admin-card").remove();
+    let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+    if (userRole === CONSTANTS.USER.ROLE.USER || userRole === CONSTANTS.USER.ROLE.GUEST) {
+      $(".card-admin").remove();
+    } else if(userRole === CONSTANTS.USER.ROLE.ADMIN_GROUP) {
+      $("#admin-price-card").remove();
     }
   }
 
