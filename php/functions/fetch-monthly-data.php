@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     while ($row = $result->fetch_row()) {
       array_push($resultArray, $row);
     }
-    echo json_encode($resultArray);
+    print_r(json_encode($resultArray));
   }
 }
 

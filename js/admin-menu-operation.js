@@ -309,7 +309,7 @@ $(document).ready(function() {
         if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
           reloadTable();
         } else {
-          jqInfo("修改成功", "成功修改为 【" + orderNum + " 号】", function() {
+          jqInfo("修改成功", orderNum == 6 ? "已改为【不订餐】" : "成功修改为 【" + orderNum + " 号】", function() {
             reloadTable();
           });
         }

@@ -1,8 +1,11 @@
 $(document).ready(function(){
   let year = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR);
   let month = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH);
+  let separateGroupOrderCount = [0, 0, 0, 0, 0, 0, 0];
   let separateGroupSumPrice = [0, 0, 0, 0, 0, 0, 0];
   let summaryDataArray = new Array();
+  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let oriPrice;
   let discountPrice;
   fetchMonthlySummary(year, month).done(function(response) {
@@ -10,10 +13,15 @@ $(document).ready(function(){
     getOrderPrice().done(function(priceArray) {
       oriPrice = priceArray[0][1];
       discountPrice = priceArray[1][1];
-      initPriceModifyComponent(oriPrice, discountPrice);
-      initTableGroup($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE), $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP));
-      setModifyBtnClickEvent();
-      setSummaryData(summaryDataArray);
+      if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+        initPriceModifyComponent(oriPrice, discountPrice);
+        setModifyBtnClickEvent();
+        setSummaryData(summaryDataArray);
+      } else {
+        $(".price-area").remove();
+      }
+
+      initTableGroup(currentUserRole, currentUserGroup);
       setDataToTable();
       addSummaryForGroups();
       setGroupTablePrint();
@@ -53,7 +61,8 @@ $(document).ready(function(){
       let workgroup = summaryDataArray[i][2];
       let orderSum = summaryDataArray[i][3];
       let totalPrice = orderSum * discountPrice;
-      separateGroupSumPrice[getGropNumber(workgroup)] = totalPrice;
+      separateGroupOrderCount[getGropNumber(workgroup)] = Number(separateGroupOrderCount[getGropNumber(workgroup)]) + Number(orderSum);
+      separateGroupSumPrice[getGropNumber(workgroup)] = Number(separateGroupSumPrice[getGropNumber(workgroup)]) + Number(totalPrice);
       let trClass = "tb-" + workgroup + "-" + "person" + i;
       $(".tb-" + workgroup).append("<tr class='" + trClass +"'>");
       $("." + trClass).append("<td>" + fullName);
@@ -69,7 +78,7 @@ $(document).ready(function(){
       $(".tb-group" + i).append("<tr class='sum " + trClass + "'>");
       $("." + trClass).append("<td>" + "合计");
       $("." + trClass).append("<td>" + "--");
-      $("." + trClass).append("<td>" + "--");
+      $("." + trClass).append("<td>" + separateGroupOrderCount[i]);
       $("." + trClass).append("<td>" + separateGroupSumPrice[i]);
     }
   }

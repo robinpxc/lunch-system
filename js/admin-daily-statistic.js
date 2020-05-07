@@ -10,7 +10,7 @@ $(document).ready(function() {
       dataArray = dataList;
     } else {
       for(let i = 0; i < dataList.length; i++) {
-        let userGroup = dataList[i][2];
+        let userGroup = dataList[i][4];
         if(userGroup == currentUserGroup) {
           dataArray.push(dataList[i]);
         }
@@ -32,7 +32,7 @@ $(document).ready(function() {
         for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
           let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
           let originalText = $(cardHeaderClassName).text();
-          $(cardHeaderClassName).text(originalText + "[" +  getGroupOrderSum(dataArray, i) + "人点餐]");
+          $(cardHeaderClassName).text(originalText + "（" +  getGroupOrderSum(dataArray, i) + "人点餐）");
         }
       }
 
@@ -63,7 +63,7 @@ $(document).ready(function() {
         let group = "group" + groupNumber;
         for(let i = 0; i < dataArray.length; i++) {
           let orderNum = dataArray[i][2];
-          if(dataArray[i][3] == group) {
+          if(dataArray[i][4] == group) {
             if(orderNum != CONSTANTS.ORDER.CONTENT.NO_ORDER) {
               groupOrder ++;
             }
@@ -76,7 +76,7 @@ $(document).ready(function() {
         let group = "group" + groupNumber;
         let groupOrderData = new Array();
         for(let i = 0; i < dataArray.length; i++) {
-          if(dataArray[i][3] == group) {
+          if(dataArray[i][4] == group) {
             groupOrderData.push(dataArray[i]);
           }
         }
@@ -86,8 +86,9 @@ $(document).ready(function() {
       function setDataToGroupTable(data, group) {
         for(let i = 0; i < data.length; i++) {
           let fullname = data[i][0];
-          let userId = data[i][1];
+          let nickName = data[i][1];
           let orderNum = data[i][2];
+          let orderCount = data[i][3];
           let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
           if(orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER) {
             $(".tb-group" + group).append("<tr class='" + personClass + " no-print" + "'>");
@@ -96,8 +97,8 @@ $(document).ready(function() {
           }
 
           $("." + personClass).append("<td>" + fullname);
-          $("." + personClass).append("<td>" + userId);
-          $("." + personClass).append("<td>" + (orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : (orderNum + " 号")) );
+          $("." + personClass).append("<td>" + nickName);
+          $("." + personClass).append("<td>" + (orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : (orderNum + " 号【" + orderCount + "份】")) );
         }
       }
 

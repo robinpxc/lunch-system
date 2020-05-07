@@ -15,7 +15,7 @@ function setTable(userRole, userGroup) {
 function keepCurrentGroupTable(userGroup) {
   let groupNum = userGroup[5];
   $(".table-card").each(function() {
-    if(!$(this).hasClass("table-group-" + groupNum)) {
+    if(!$(this).hasClass("table-group-" + groupNum) && !$(this).hasClass("table-not-ordered")) {
       $(this).remove();
     }
   });

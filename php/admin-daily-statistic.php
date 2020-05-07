@@ -179,7 +179,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -203,7 +203,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -227,7 +227,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -251,7 +251,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -275,7 +275,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -299,7 +299,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
@@ -323,7 +323,7 @@ include('common/session.php'); ?>
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
-              <th scope="col">ID</th>
+              <th scope="col">用户名</th>
               <th scope="col">所选套餐</th>
             </tr>
             </thead>
