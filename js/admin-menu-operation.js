@@ -3,6 +3,8 @@ $(document).ready(function() {
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let currentGroupNum = currentUserGroup[5];
   let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
+  let dateType = $.cookie(CONSTANTS.COOKIE.KEY_DATE);
+  let targetDate = dateType == CONSTANTS.DATE.TODAY ? getDateToday() : getDateTomorrow();
 
   initUI();
   loadTables();
@@ -14,7 +16,8 @@ $(document).ready(function() {
   }
 
   function setDateTitle() {
-    $("#date-title").text(getDateTomorrowCN(true));
+    $(".date-text").text(dateType == CONSTANTS.DATE.TODAY ? "今天" : "明天");
+    $("#date-title").text(dateType == CONSTANTS.DATE.TODAY ? getDateTodayCN(true) : getDateTomorrowCN(true));
   }
 
   function loadTables() {
@@ -53,7 +56,7 @@ $(document).ready(function() {
 
     for(let i = 0; i < response.length; i++) {
       let userId = response[i][1];
-      checkOrderStatus(getDateTomorrow(), CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, userId, false).done(function(orderStatus) {
+      checkOrderStatus(targetDate, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, userId, false).done(function(orderStatus) {
         if(orderStatus != CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
           userList[0].push(response[i]);
         } else {
@@ -117,9 +120,9 @@ $(document).ready(function() {
           addCountOperation($(".operation-" + userId), userId, orderStatus);
         } else {
           // Set order status
-          checkOrderStatus(getDateTomorrow(), CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
+          checkOrderStatus(targetDate, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
             let orderNum = response.menu_number;
-            orderCountOperation(userId, getDateTomorrow(), null).done(function(orderCount) {
+            orderCountOperation(userId, targetDate, null).done(function(orderCount) {
               // Determine the order status text will be "不点餐" or "X号" or "X号【Y份】"
               let orderStatusText = orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : orderNum + " 号";
               orderStatusText += orderCount > 1 ? ("【" + orderCount + "份】") : "";
@@ -176,7 +179,7 @@ $(document).ready(function() {
   }
 
   function addCountOperation(container, userId, orderStatus) {
-    orderCountOperation(userId, getDateTomorrow(), null).done(function(orderCountTomorrow) {
+    orderCountOperation(userId, targetDate, null).done(function(orderCountTomorrow) {
       let orderCount = orderCountTomorrow == null ? 1 : orderCountTomorrow;
       let orderCountNew = null;
       let countContainerClassName = "count-operation-" + userId;
@@ -215,7 +218,7 @@ $(document).ready(function() {
                       keys: ["enter"],
                       action: function() {
                         setCountSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
-                        orderCountOperation(userId, getDateTomorrow(), orderCountNew).done(function(success) {
+                        orderCountOperation(userId, targetDate, orderCountNew).done(function(success) {
                           if(success) {
                             jqInfo("设置成功", "已成功将点餐份数设置为【" + orderCountNew + "】份!", function() {
                               reloadTable();
@@ -304,7 +307,7 @@ $(document).ready(function() {
 
   // Order operation related functions
   function setOrder(userId, orderNum, orderStatus) {
-    setDailyOrder(getDateTomorrow(), userId, orderNum, orderStatus).done(function(isSuccess) {
+    setDailyOrder(targetDate, userId, orderNum, orderStatus).done(function(isSuccess) {
       if(isSuccess) {
         if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
           reloadTable();

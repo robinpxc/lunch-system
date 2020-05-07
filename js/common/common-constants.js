@@ -1,6 +1,11 @@
 const CONSTANTS = {
   WORKGROUP_COUNT: 7,
   ORDER_COUNT: 6,
+  TIME_LIMIT: {
+    HOUR: 9,
+    MINUTE: 30
+  },
+
   AJAX: {
     TYPE: {
       POST: "POST",
@@ -30,7 +35,9 @@ const CONSTANTS = {
       KEY_DATE: "DATE_STATISTICS",
       KEY_YEAR: "KEY_YEAR",
       KEY_MONTH: "KEY_MONTH"
-    }
+    },
+
+    KEY_DATE: "DATE_TYPE"
   },
 
   USER: {
@@ -107,6 +114,15 @@ const CONSTANTS = {
     FOOTER: {
       COPY_RIGHT: "&copy; 2019 - Robin.Pan",
       CONTACT_ME: "有问题请联系 804 潘潘"
+    }
+  },
+
+  DATE: {
+    TODAY: "TODAY",
+    TOMORROW: "TOMORROW",
+    CN: {
+      TODAY: "今天",
+      TOMORROW: "明天",
     }
   }
 };

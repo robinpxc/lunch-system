@@ -184,6 +184,14 @@ function replaceClass(element, oldClass, newCLass) {
 }
 
 // Date related functions
+function getCurrentHour() {
+  return new Date().getHours();
+}
+
+function getCurrentMinute() {
+  return new Date().getMinutes();
+}
+
 function formatDate(y, m, d, symbol) {
   let dateSymbol = symbol || '-';
   let month = (m.toString())[1] ? m : '0' + m;
@@ -224,7 +232,7 @@ function convertDateCN(year, month, day, weekDay, withWeekDay) {
   let formattedMonth = (month.toString())[1] ? month : '0' + month;
   let formattedDay = (day.toString())[1] ? day : '0' + day;
 
-  return year + "年" + formattedMonth + "月" + formattedDay + "日 " + (withWeekDay ? getWeekDayCN(weekDay) : "");
+  return year + "年" + formattedMonth + "月" + formattedDay + "日 " + (withWeekDay ? "(" + getWeekDayCN(weekDay) + ")" : "");
 }
 
 function getWeekDayCN(weekDay) {

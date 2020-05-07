@@ -153,7 +153,7 @@ include('common/session.php');
               <div class="input-group-prepend">
                 <span class="input-group-text">原始价(￥)</span>
               </div>
-              <input type="text" class="form-control" id="input-ori-price" disabled="disabled">
+              <input type="number" class="form-control" id="input-ori-price" disabled="disabled">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary btn-price" id="btn-price-ori" type="button">修改</button>
               </div>
@@ -165,10 +165,9 @@ include('common/session.php');
               <div class="input-group-prepend">
                 <span class="input-group-text">折扣价(￥)</span>
               </div>
-              <input type="text" class="form-control" id="input-discount-price" disabled="disabled">
+              <input type="number" class="form-control" id="input-discount-price" disabled="disabled">
               <div class="input-group-append" id="button-addon4">
                 <button class="btn btn-outline-secondary btn-price" id="btn-price-discount" type="button">修改</button>
-                <!--                <button class="btn btn-outline-secondary" type="button">撤销</button>-->
               </div>
             </div>
           </div>

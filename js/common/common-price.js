@@ -17,14 +17,17 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
       setEnable(self.parent().parent().find("input"));
       self.text("提交");
       addNewClass(self, "btn-price-modify");
-      self.parent().append("<button class='btn btn-outline-secondary btn-price-discard' type='button'>取消");
+      let idName = self.attr("id") == "btn-price-ori" ? "btn-ori-discard" : "btn-discount-discard"
+      self.parent().append("<button class='btn btn-outline-secondary btn-price-discard' id='" + idName + "' type='button'>取消");
       setPriceDiscardBtnEvent(oriPrice, discountPrice);
     } else {
       switch(self.attr("id")) {
         case "btn-price-ori":
           let originalPriceNew = $("#input-ori-price").val();
           if(originalPriceNew === oriPrice) {
-            jqInfo("无修改", "原始单价数值前后无变化", function() {});
+            jqInfo("无修改", "原始单价数值前后无变化", function() {
+              $("#btn-ori-discard").trigger("click");
+            });
           } else {
             jqConfirm("修改确认", "确认修改【原价】为 " + originalPriceNew + "元?", function() {
               updateOrderPrice(originalPriceNew, CONSTANTS.PRICE.TYPE_ORIGINAL).done(function(response) {
@@ -42,7 +45,9 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
         case "btn-price-discount":
           let discountPriceNew = $("#input-discount-price").val();
           if(discountPriceNew === discountPrice) {
-            jqInfo("无修改", "折扣价数值前后无变化", function() {});
+            jqInfo("无修改", "折扣价数值前后无变化", function() {
+              $("#btn-discount-discard").trigger("click");
+            });
           } else {
             jqConfirm("修改确认", "确认修改【折扣价】为 " + discountPriceNew + "元?", function() {
               updateOrderPrice(discountPriceNew, CONSTANTS.PRICE.TYPE_DISCOUNT).done(function(response) {

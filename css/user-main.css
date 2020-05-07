@@ -127,6 +127,23 @@
   border-top-color: #DC3545;
 }
 
+.jconfirm-buttons {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.jconfirm-buttons button {
+  display: flex;
+}
+
+.jconfirm-buttons .btn-purple,
+.jconfirm-buttons .btn-green {
+  flex-grow: 1;
+  width: 100%;
+}
+
 @media screen and (max-width: 768px) {
   .card-admin .card-info {
     display: none;

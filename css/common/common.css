@@ -144,6 +144,12 @@ body {
   color: #0077F6;
 }
 
+.emphasised-red {
+  font-weight: bold;
+  color: red;
+  font-size: 1.1rem;
+}
+
 @media screen and (max-width: 768px) {
   .main-content {
     padding: 5px !important;

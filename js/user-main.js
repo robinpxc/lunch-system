@@ -136,12 +136,38 @@ $(document).ready(function () {
     });
 
     $("#menu-manage-btn").click(function () {
-      jumpTo("admin-menu-operation.php")
+      if(getCurrentHour() < CONSTANTS.TIME_LIMIT.HOUR) {chooseOrderDate();}
+      else if(getCurrentHour() == CONSTANTS.TIME_LIMIT.HOUR) {
+        if(getCurrentMinute() >= CONSTANTS.TIME_LIMIT.MINUTE) {
+          directToTomorrow();
+        } else {
+          chooseOrderDate();
+        }
+      } else {
+        directToTomorrow();
+      }
     });
 
     $("#data-manage-btn").click(function () {
       window.location.href = "admin-data-management.php";
       jumpTo("admin-data-management.php");
+    });
+  }
+
+  function chooseOrderDate() {
+    jqDialog("请选择点餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
+      $.cookie(CONSTANTS.COOKIE.KEY_DATE, CONSTANTS.DATE.TODAY);
+      jumpTo("admin-menu-operation.php");
+    }, function() {
+      $.cookie(CONSTANTS.COOKIE.KEY_DATE, CONSTANTS.DATE.TOMORROW);
+      jumpTo("admin-menu-operation.php");
+    });
+  }
+
+  function directToTomorrow() {
+    jqWarning("跳转提示", "今日订餐已<span class='emphasised-red'>无法修改</span>，将直接跳转到<span class='emphasised-red'>【明日】</span>订餐界面", function() {
+      $(".btn-orange").attr("id", "single-warning");
+      jumpTo("admin-menu-operation.php");
     });
   }
 

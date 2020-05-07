@@ -124,7 +124,7 @@ include('common/session.php');
 <div class="main-content boxshaw">
   <div class="card date-box mt-2">
     <div class="card-body">
-      <span id="date-prefix">【明天】是 </span>
+      <span id="date-prefix">【<span class="date-text">明天</span>】是 </span>
       <span id="date-title"></span>
     </div>
   </div>
