@@ -5,7 +5,7 @@ $(document).ready(function() {
   let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
   initUI();
-  refreshTables();
+  loadTables();
   setGroupTablePrint();
 
   function initUI() {
@@ -17,7 +17,7 @@ $(document).ready(function() {
     $("#date-title").text(getDateTomorrowCN(true));
   }
 
-  function refreshTables() {
+  function loadTables() {
     fetchGroupUserInfo(currentUserRole, currentUserGroup).done(function(response) {
       /* Step 01:
       *  Filter the responded "userList", pick the users into 7 different arrays as 7 different groups.
@@ -218,7 +218,7 @@ $(document).ready(function() {
                         orderCountOperation(userId, getDateTomorrow(), orderCountNew).done(function(success) {
                           if(success) {
                             jqInfo("设置成功", "已成功将点餐份数设置为【" + orderCountNew + "】份!", function() {
-                              refresh();
+                              reloadTable();
                             });
                           } else {
                             jqAlert("设置成功", "点餐份数设置失败，请重试!");
@@ -306,19 +306,27 @@ $(document).ready(function() {
   function setOrder(userId, orderNum, orderStatus) {
     setDailyOrder(getDateTomorrow(), userId, orderNum, orderStatus).done(function(isSuccess) {
       if(isSuccess) {
-        if (orderStatus ==  CONSTANTS.ORDER.CONTENT.NO_ORDER) {
-          jqInfo("订餐成功", "成功订餐 " + orderNum + " 号", function() {
-            refresh();
-          });
+        if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
+          reloadTable();
         } else {
           jqInfo("修改成功", "成功修改为 【" + orderNum + " 号】", function() {
-            refresh();
+            reloadTable();
           });
         }
 
       } else {
         jqAlert("订餐失败", "请重试");
       }
+    });
+  }
+
+  function reloadTable() {
+    fetchGroupUserInfo(currentUserRole, currentUserGroup).done(function(response) {
+      for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+        $(".tb-group" + i + " tr").remove();
+      }
+      let groupUserList = filterUserByGroup(response);
+      setTableData(groupUserList);
     });
   }
 });
