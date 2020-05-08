@@ -99,7 +99,7 @@ $(document).ready(function () {
         orderCount = orderContent.count;
         if(orderNum > 0 && orderNum <= 6) {
           if(orderNum != CONSTANTS.ORDER.CONTENT.NO_ORDER) {
-            let orderDetail = "已点 " + orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
+            let orderDetail = orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
             setOrderInfoText(date, orderDetail);
           } else {
             setNoOrderStyle(date);
