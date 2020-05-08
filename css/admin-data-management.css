@@ -37,6 +37,7 @@
 }
 
 .date-select {
+  -webkit-appearance: none;
   margin-top: 5px;
   width: 100%;
   display: inline-flex;

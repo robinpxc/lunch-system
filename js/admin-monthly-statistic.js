@@ -63,7 +63,7 @@ $(document).ready(function(){
       let totalPrice = orderSum * discountPrice;
       separateGroupOrderCount[getGropNumber(workgroup)] = Number(separateGroupOrderCount[getGropNumber(workgroup)]) + Number(orderSum);
       separateGroupSumPrice[getGropNumber(workgroup)] = Number(separateGroupSumPrice[getGropNumber(workgroup)]) + Number(totalPrice);
-      let trClass = "tb-" + workgroup + "-" + "person" + i;
+      let trClass = "tb-" + workgroup + "-" + "person-" + i;
       $(".tb-" + workgroup).append("<tr class='" + trClass +"'>");
       $("." + trClass).append("<td>" + fullName);
       $("." + trClass).append("<td>" + userId);
