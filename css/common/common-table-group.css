@@ -54,9 +54,6 @@
   font-size: 1.1rem;
 }
 
-.table-group .table-content .table td * {
-  display: inline-block;
-}
 
 .modify-btn, .del-btn {
   padding: 0.15rem 0.5rem;
