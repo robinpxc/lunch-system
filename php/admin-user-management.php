@@ -36,6 +36,7 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/profile-form.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
@@ -340,7 +341,7 @@ include('common/session.php');
           </div>
 
           <div class="input-group d-inline-flex form-table">
-            <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码" maxlength="30">
+            <input type="password" name="user-password-edit" id="new-user-password-edit" data-options="required:true" aria-label="user-password" class="form-control profile-input" placeholder="新密码(不填默认123)" maxlength="30">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" id="show-hide-pwd-btn">
                 <svg class="icon-eye" id="eye-icon" viewBox="0 0 1024 1024">

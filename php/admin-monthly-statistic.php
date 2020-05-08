@@ -33,6 +33,7 @@
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>

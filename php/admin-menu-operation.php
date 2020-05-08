@@ -43,6 +43,7 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-menu-operation.js"></script>
 
