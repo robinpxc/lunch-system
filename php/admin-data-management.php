@@ -170,7 +170,7 @@ include('common/session.php');
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">【次日】点餐统计</h5>
-        <div class="card-text mt-3"><span class="special-text">明天</span> 的午餐统计</div>
+        <div class="card-text mt-3"><span class="special-text">明天</span> 的点餐统计</div>
         <div class="mt-1">
           <span>明天是</span>
           <span class="special-text" id="date-tomorrow"></span>

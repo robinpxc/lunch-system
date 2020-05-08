@@ -151,7 +151,7 @@ include('common/session.php');
   <div class="container main-content">
     <div class="card-deck mb-5 text-center">
       <!-- Menu card today-->
-      <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-today">
+      <div class="card mb-2 mt-2 border-secondary shadow-sm" id="menu-card-today">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
@@ -161,7 +161,7 @@ include('common/session.php');
       </div>
 
       <!-- Menu card tomorrow -->
-      <div class="card mb-2 mt-2 border-secondary shadow-sm mb-3" id="menu-card-tomorrow">
+      <div class="card mb-2 mt-2 border-secondary shadow-sm" id="menu-card-tomorrow">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
@@ -191,7 +191,7 @@ include('common/session.php');
       </div>
 
       <!-- Admin card: modify prices -->
-      <div class="card card-admin mb-2 border-danger" id="admin-price-card">
+      <div class="card card-admin mb-2 mt-2 border-danger" id="admin-price-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">修改价格</h4>
         </div>
