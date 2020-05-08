@@ -13,6 +13,8 @@
 }
 
 .table-group .table-content .table-card {
+  border-width: 2px;
+  border-color: lightgray;
   min-height: 150px;
   width: 100%;
   margin-top: 10px;
@@ -32,16 +34,36 @@
 
 .table-group .table-content .table-card .card-body table {
   table-layout: fixed;
+  margin-bottom: 0px
+}
+
+.table .thead-light th {
+  padding: 0.5rem 1rem;
 }
 
 .table-group .table-content .table-card .card-header {
+  padding: 0.4rem 1.25rem;
   font-weight: bold;
   font-size: 18px;
   color: red;
 }
 
 .table-group .table-content .table td {
+  vertical-align: middle;
+  padding: 0.3rem 1.1rem;
   font-size: 1.1rem;
+}
+
+.table-group .table-content .table td * {
+  display: inline-block;
+}
+
+.modify-btn, .del-btn {
+  padding: 0.15rem 0.5rem;
+}
+
+.btn-print {
+  padding: 0.25rem 0.75rem;
 }
 
 @media screen and (max-width: 768px) {

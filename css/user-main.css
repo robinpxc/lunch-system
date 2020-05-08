@@ -12,6 +12,13 @@
   max-width: 340px;
 }
 
+.card-header {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+}
+
 .card-body {
   padding-bottom: 0;
 }
@@ -101,7 +108,7 @@
 }
 
 .card-body-price {
-  padding: 5px;
+  padding: 5px 10px;
   flex-direction: column;
 }
 
@@ -126,6 +133,12 @@
 
 .card-body-price .ori-price {
   margin-top: 5px;
+}
+
+.card-empty {
+  height: 1px;
+  border: none;
+  background-color: transparent;
 }
 
 .divider {
@@ -162,6 +175,18 @@
     min-width: auto;
     max-width: none;
     border-width: 2px;
+  }
+
+  .ori-price {
+    margin-bottom: 5px !important;
+  }
+
+  .discount-price {
+    margin-top: 5px !important;
+  }
+
+  .card-empty {
+    display: none;
   }
 
   .card-body-price .price-container {
