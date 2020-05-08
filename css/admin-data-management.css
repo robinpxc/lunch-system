@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
@@ -28,6 +30,12 @@
   width: 100%;
 }
 
+.empty-card {
+  height: 1px;
+  border: none;
+  background-color: transparent;
+}
+
 .date-select {
   margin-top: 5px;
   width: 100%;
@@ -48,5 +56,9 @@
   .card {
     width: 100%;
     margin: 5px;
+  }
+
+  .empty-card {
+    display: none;
   }
 }

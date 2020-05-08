@@ -241,8 +241,13 @@ include('common/session.php');
         <button class="btn btn-warning" id="custom-monthly-statistics">开始统计</button>
       </div>
     </div>
+
+    <!-- Empty card -->
+    <div class="mt-4 mb-4 card text-left empty-card"></div>
   </div>
 
+
+  
   <footer class="footer pt-4 my-md-4 pt-md-4 border-top">
     <div class="footer-container row">
       <div class="col-12 col-md">
