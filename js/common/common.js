@@ -5,6 +5,7 @@ $(document).ready(function () {
   setSystemConfigBtn();
   willShowPricingHeader();
   setFooterText();
+  removeAdminNavItems();
 
   // Hide nav list when click on blank.
   $(document).click(function (event) {
@@ -50,6 +51,13 @@ function showNavMenu(willShowMenu) {
     headerMenuList.addClass("show");
   } else {
     headerMenuList.removeClass("show");
+  }
+}
+
+function removeAdminNavItems() {
+  $userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  if($userRole == CONSTANTS.USER.ROLE.USER || $userRole == CONSTANTS.USER.ROLE.GUEST) {
+    $(".admin-nav").remove();
   }
 }
 

@@ -69,7 +69,7 @@ body {
   color: black;
 }
 
-.nav-item {
+.nav-item, .nav-title {
   padding: 5px;
   border-radius: 5px;
   font-weight: bold;
@@ -82,6 +82,28 @@ body {
 .nav-item:active {
   background-color: #cfcfcf;
 }
+
+/* Admin nav list */
+.admin-nav-title {
+  color: red;
+}
+
+.dropdown-user-management {
+  color: #BD2130;
+}
+
+.dropdown-menu-management {
+  color: #1E7E34;
+}
+
+.admin-mav-item {
+  margin-left: 30px;
+}
+
+.dropdown-data-management {
+  color: #0062CC;
+}
+
 
 #current_date,
 #current_time {
@@ -110,6 +132,18 @@ body {
   width: 100%;
   height: 1px;
   border-top: solid black 1px;
+}
+
+.dropdown-divider {
+  margin: 2px 0;
+}
+
+.large-divider {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 8px 0;
+  background-color: red;
 }
 
 .hide {

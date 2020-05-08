@@ -78,10 +78,11 @@ include('common/session.php');
     </button>
 
     <div class="collapse navbar-collapse" id="nav-bar-list">
-      <ul class="navbar-nav mr-auto">
-        <div class="dropdown-divider"></div>
-        <li class="nav-item active">
-          <a class="nav-link" href="user-main.php">
+      <div class="common-nav">
+        <ul class="navbar-nav mr-auto">
+          <div class="dropdown-divider"></div>
+          <li class="nav-item active">
+            <a class="nav-link" href="user-main.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024" version="1.1">
                   <path
@@ -89,11 +90,11 @@ include('common/session.php');
                       p-id="5400"/></svg>
                 <span class="dropdown-desc">&nbsp;返回主页</span>
               </span>
-          </a>
-        </li>
-        <div class="dropdown-divider"></div>
-        <li class="nav-item active">
-          <a class="nav-link" href="user-profile.php">
+            </a>
+          </li>
+          <div class="dropdown-divider"></div>
+          <li class="nav-item active">
+            <a class="nav-link" href="user-profile.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path
@@ -102,11 +103,11 @@ include('common/session.php');
                 </svg>
                 <span class="dropdown-desc">&nbsp;个人设置</span>
               </span>
-          </a>
-        </li>
-        <div class=" dropdown-divider"></div>
-        <li class="nav-item logout-btn active">
-          <a class="nav-link" href="./common/logout.php">
+            </a>
+          </li>
+          <div class=" dropdown-divider"></div>
+          <li class="nav-item logout-btn active">
+            <a class="nav-link" href="./common/logout.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path
@@ -115,9 +116,55 @@ include('common/session.php');
                 </svg>
                 <span class="dropdown-desc">&nbsp;退出登录</span>
               </span>
-          </a>
-        </li>
-      </ul>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="admin-nav">
+        <div class="large-divider"></div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-title active">
+              <span class="d-flex justify-content-left align-items-center">
+                <svg class="icon-sm" viewBox="0 0 1024 1024">
+                  <path d="M512 528.896c132.096 0 239.104-158.208 239.104-290.304C751.104 107.008 644.096 0 512 0S272.896 107.008 272.896 239.104c0 131.584 107.008 289.792 239.104 289.792zM834.048 667.648L727.552 614.4l-78.848 277.504s-4.096 28.672-36.352 28.672-46.08-28.672-46.08-28.672V665.6s0-51.2-52.224-51.2-54.272 51.2-54.272 51.2v226.304s0 24.064-40.448 24.064-42.496-24.064-42.496-24.064L296.448 614.4l-106.496 53.248c-57.856 28.672-104.448 104.448-104.448 168.96v70.656c0 64.512 52.224 116.736 116.736 116.736h619.52c64.512 0 116.736-52.224 116.736-116.736v-70.656c0-64.512-46.592-140.288-104.448-168.96z" p-id="1154" fill="#ff0000"></path>
+                </svg>
+                <span class="dropdown-desc admin-nav-title">&nbsp;管理员选项</span>
+              </span>
+            </a>
+          </li>
+          <div class=" dropdown-divider"></div>
+          <li class="nav-item admin-mav-item active">
+            <a class="nav-link" href="./admin-user-management.php">
+              <span class="d-flex justify-content-left align-items-center">
+                <svg class="icon-sm" viewBox="0 0 1024 1024">
+                  <path d="M416 512a224 224 0 1 1 0-448 224 224 0 0 1 0 448zM0 960c0-247.424 186.24-448 416-448s416 200.576 416 448H0z m886.784-128a448.768 448.768 0 0 0-298.752-334.72A255.808 255.808 0 0 0 704 282.88a255.36 255.36 0 0 0-85.504-190.912c7.04-0.64 14.272-1.024 21.504-1.024 121.216 0 219.456 99.328 219.456 221.824a222.336 222.336 0 0 1-90.56 179.584C917.568 543.936 1024 680.96 1024 832h-137.216z" p-id="2710" fill="#BD2130"></path>
+                </svg>
+                <span class="dropdown-desc dropdown-user-management">&nbsp;用户管理</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item admin-mav-item active">
+            <a class="nav-link" href="./admin-menu-operation.php">
+              <span class="d-flex justify-content-left align-items-center">
+                <svg class="icon-sm" viewBox="0 0 1024 1024">
+                  <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
+                </svg>
+                <span class="dropdown-desc dropdown-menu-management">&nbsp;点餐管理</span>
+              </span>
+            </a>
+          </li>
+          <li class="nav-item admin-mav-item active">
+            <a class="nav-link" href="./admin-data-management.php">
+              <span class="d-flex justify-content-left align-items-center">
+                <svg class="icon-sm" viewBox="0 0 1024 1024"><path d="M585.344 566.656L480 461.248l-189.376 189.376a32 32 0 0 1-45.248-45.248l211.968-212.032a31.872 31.872 0 0 1 45.312 0L608 498.752 850.752 256H800a32 32 0 1 1 0-64h128a32.128 32.128 0 0 1 12.032 2.368A32.192 32.192 0 0 1 960 224v128a32 32 0 1 1-64 0v-50.752L630.656 566.656a31.872 31.872 0 0 1-45.312 0zM128 832h800a32 32 0 1 1 0 64h-832a32 32 0 0 1-32-32v-640a32 32 0 0 1 64 0V832z" p-id="5748" fill="#0062CC"></path>
+                </svg>
+                <span class="dropdown-desc dropdown-data-management">&nbsp;数据统计</span>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>
