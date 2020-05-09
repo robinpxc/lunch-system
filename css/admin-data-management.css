@@ -4,11 +4,11 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 .card {
-  min-width: 18rem;
+  min-width: 330px;
   width: 30%;
   margin-right: 10px;
 }
@@ -37,7 +37,7 @@
 }
 
 .date-select {
-  -webkit-appearance: none;
+  -moz-appearance: none;
   margin-top: 5px;
   width: 100%;
   display: inline-flex;

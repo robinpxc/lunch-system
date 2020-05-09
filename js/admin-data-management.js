@@ -105,7 +105,7 @@ $(document).ready(function() {
       setCustomMonthSelect("monthly");
     });
 
-    $("#d-month-select").click(function() {
+    $("#d-month-select").change(function() {
       setCustomDaySelect();
     });
   }
