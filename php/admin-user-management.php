@@ -178,8 +178,9 @@ include('common/session.php');
           <a class="dropdown-item nav-dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
+      <button class="btn btn-success btn-print-all">全部打印</button>
     </div>
-
+    
     <div class="table-content mt-2 d-block">
       <!-- 巡察办人员名单 -->
       <div class="table-card card table-group-0">

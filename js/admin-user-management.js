@@ -41,6 +41,7 @@ $(document).ready(function () {
     initUI();
     initTableGroup(userRole, userGroup);
     setGroupTablePrint();
+    setAllTablePrint();
   }
 
   function initUI() {

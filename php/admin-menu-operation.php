@@ -199,184 +199,185 @@ include('common/session.php');
         </div>
       </div>
 
-      <div class="table-content mt-2 d-block">
-        <!-- 巡察办人员名单 -->
-        <div class="table-card card table-group-0">
-          <div class="card-header">
-            <span class="tb-title">市委巡察办</span>
-            <span>
+      <button class="btn btn-success btn-print-all">全部打印</button>
+    </div>
+    <div class="table-content mt-2 d-block">
+      <!-- 巡察办人员名单 -->
+      <div class="table-card card table-group-0">
+        <div class="card-header">
+          <span class="tb-title">市委巡察办</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group0">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group0">
 
-        <!-- 一组人员名单 -->
-        <div class="table-card card table-group-1">
-          <div class="card-header">
-            <span class="tb-title">市委第一巡察组</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 一组人员名单 -->
+      <div class="table-card card table-group-1">
+        <div class="card-header">
+          <span class="tb-title">市委第一巡察组</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-1 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group1">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group1">
 
-        <!-- 二组人员名单 -->
-        <div class="table-card card table-group-2">
-          <div class="card-header">
-            <span class="tb-title">市委第二巡察组</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 二组人员名单 -->
+      <div class="table-card card table-group-2">
+        <div class="card-header">
+          <span class="tb-title">市委第二巡察组</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-2 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group2">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group2">
 
-        <!-- 三组人员名单 -->
-        <div class="table-card card table-group-3">
-          <div class="card-header">
-            <span class="tb-title">市委第三巡察组</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 三组人员名单 -->
+      <div class="table-card card table-group-3">
+        <div class="card-header">
+          <span class="tb-title">市委第三巡察组</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-3 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group3">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group3">
 
-        <!-- 四组人员名单 -->
-        <div class="table-card card table-group-4">
-          <div class="card-header">
-            <span class="tb-title">市委第四巡察组</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 四组人员名单 -->
+      <div class="table-card card table-group-4">
+        <div class="card-header">
+          <span class="tb-title">市委第四巡察组</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-4 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group4">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group4">
 
-        <!-- 五组人员名单 -->
-        <div class="table-card card table-group-5">
-          <div class="card-header">
-            <span class="tb-title">市委第五巡察组</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 五组人员名单 -->
+      <div class="table-card card table-group-5">
+        <div class="card-header">
+          <span class="tb-title">市委第五巡察组</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-5 no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead  class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              </thead>
-              <tbody class="tb-group5">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead  class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            </thead>
+            <tbody class="tb-group5">
 
-        <!-- 物业人员名单 -->
-        <div class="table-card card table-group-6">
-          <div class="card-header">
-            <span class="tb-title">物业</span>
-            <span>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 物业人员名单 -->
+      <div class="table-card card table-group-6">
+        <div class="card-header">
+          <span class="tb-title">物业</span>
+          <span>
             <button class="btn btn-success btn-print tb-print-6  no-print" type="button">打印表格</button>
           </span>
-          </div>
-          <div class="card-body">
-            <table class="table">
-              <thead class="thead-light">
-              <tr table-content>
-                <th scope="col" class="th-username username-info">姓名</th>
-                <th scope="col" class="th-nickname nickname-info">昵称</th>
-                <th scope="col" class="th-status role-info hide-small-screen">状态</th>
-                <th scope="col" class="th-operation operation no-print">操作</th>
-              </tr>
-              </thead>
-              <tbody class="tb-group6">
-
-              </tbody>
-            </table>
-          </div>
         </div>
+        <div class="card-body">
+          <table class="table">
+            <thead class="thead-light">
+            <tr table-content>
+              <th scope="col" class="th-username username-info">姓名</th>
+              <th scope="col" class="th-nickname nickname-info">昵称</th>
+              <th scope="col" class="th-status role-info hide-small-screen">状态</th>
+              <th scope="col" class="th-operation operation no-print">操作</th>
+            </tr>
+            </thead>
+            <tbody class="tb-group6">
 
+            </tbody>
+          </table>
+        </div>
       </div>
+
     </div>
   </div>
   <footer class="footer pt-4 my-md-4 pt-md-4 border-top">

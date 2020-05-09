@@ -187,5 +187,9 @@ body {
   .main-content {
     padding: 5px !important;
   }
+
+  .btn-print, .btn-print-all {
+    display: none;
+  }
 }
 

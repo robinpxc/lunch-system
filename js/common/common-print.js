@@ -17,3 +17,9 @@ function initPrintFunction(element) {
     prepend : null
   });
 }
+
+function setAllTablePrint() {
+  $(".btn-print-all").click(function() {
+    initPrintFunction($(".table-content"));
+  });
+}

@@ -7,7 +7,7 @@ function setTable(userRole, userGroup) {
   if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
     addDropdownListEvent();
   } else {
-    $(".nav-drop-down").remove();
+    $(".form-nav").remove();
     keepCurrentGroupTable(userGroup);
   }
 }

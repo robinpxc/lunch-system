@@ -9,6 +9,7 @@ $(document).ready(function() {
   initUI();
   loadTables();
   setGroupTablePrint();
+  setAllTablePrint();
 
   function initUI() {
     addAdminHighlight($(".admin-item-menu"));

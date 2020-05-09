@@ -26,6 +26,7 @@ $(document).ready(function() {
       setData(dataArray);
       setNoOrderTable(noOrderArray);
       setGroupTablePrint();
+      setAllTablePrint();
       setNoOrderTablePrint();
 
       function configUI() {
