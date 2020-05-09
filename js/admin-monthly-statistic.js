@@ -64,11 +64,16 @@ $(document).ready(function(){
       separateGroupOrderCount[getGropNumber(workgroup)] = Number(separateGroupOrderCount[getGropNumber(workgroup)]) + Number(orderSum);
       separateGroupSumPrice[getGropNumber(workgroup)] = Number(separateGroupSumPrice[getGropNumber(workgroup)]) + Number(totalPrice);
       let trClass = "tb-" + workgroup + "-" + "person-" + i;
-      $(".tb-" + workgroup).append("<tr class='" + trClass +"'>");
+      $(".tb-" + workgroup).append("<tr class='" + trClass + " tr-user' id='tr-" + userId +"'>");
       $("." + trClass).append("<td>" + fullName);
       $("." + trClass).append("<td>" + userId);
       $("." + trClass).append("<td>" + orderSum);
       $("." + trClass).append("<td>" + totalPrice);
+      $("#tr-" + userId).click(function() {
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DETAIL_ID, userId);
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DETAIL_NAME, fullName);
+        window.location.href = "../php/user-monthly-detail.php";
+      });
     }
   }
 

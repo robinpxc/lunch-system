@@ -31,9 +31,9 @@
   color: black;
 }
 
-tbody tr:hover {
+.tr-user:hover {
   cursor: pointer;
-  background-color: lightgreen;
+  background-color: #cfcfcf;
 }
 
 .summary-data {

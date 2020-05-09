@@ -246,14 +246,15 @@ function orderCountOperation(userId, date, count) {
   return deferred.promise();
 }
 
-function getSummary(date, group) {
+function userMonthlyDetails(year, month, userId) {
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
-    url: "../php/functions/order-count-operation.php",
+    url: "../php/functions/fetch-user-monthly-data.php",
     data: {
-      "date": date,
-      "group": group
+      "year": year,
+      "month": month,
+      "user-id": userId
     },
     dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
     beforeSend: function() {
@@ -262,8 +263,9 @@ function getSummary(date, group) {
     success: function (response) {
       deferred.resolve(response);
     },
-    error: function () {
-      alert("餐数操作异常，请重试");
+    error: function (errMsg) {
+      $("body").html(errMsg.responseText);
+      alert("月详单获取异常，请重试");
     },
     complete: function() {
       removeSpinner();
@@ -271,5 +273,6 @@ function getSummary(date, group) {
   });
   return deferred.promise();
 }
+
 
 
