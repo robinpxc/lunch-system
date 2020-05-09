@@ -116,7 +116,7 @@ include('common/session.php');
             </a>
           </li>
           <div class=" dropdown-divider"></div>
-          <li class="nav-item admin-mav-item active">
+          <li class="nav-item admin-nav-item admin-item-user active">
             <a class="nav-link" href="./admin-user-management.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
@@ -126,7 +126,7 @@ include('common/session.php');
               </span>
             </a>
           </li>
-          <li class="nav-item admin-mav-item active">
+          <li class="nav-item admin-nav-item admin-item-menu active">
             <a class="nav-link" href="./admin-menu-operation.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
@@ -136,7 +136,7 @@ include('common/session.php');
               </span>
             </a>
           </li>
-          <li class="nav-item admin-mav-item active">
+          <li class="nav-item admin-nav-item data active">
             <a class="nav-link" href="./admin-data-management.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024"><path d="M585.344 566.656L480 461.248l-189.376 189.376a32 32 0 0 1-45.248-45.248l211.968-212.032a31.872 31.872 0 0 1 45.312 0L608 498.752 850.752 256H800a32 32 0 1 1 0-64h128a32.128 32.128 0 0 1 12.032 2.368A32.192 32.192 0 0 1 960 224v128a32 32 0 1 1-64 0v-50.752L630.656 566.656a31.872 31.872 0 0 1-45.312 0zM128 832h800a32 32 0 1 1 0 64h-832a32 32 0 0 1-32-32v-640a32 32 0 0 1 64 0V832z" p-id="5748" fill="#0062CC"></path>

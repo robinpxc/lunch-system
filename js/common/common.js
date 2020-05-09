@@ -38,6 +38,16 @@ function setSystemConfigBtn() {
   $(".btn-sys-config span").text("你好，" + $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME));
 }
 
+function clearAdminNavHighlight() {
+  $(".nav-link").css({
+    "background-color": ""
+  });
+}
+
+function addAdminHighlight(navElement) {
+  navElement.css("background-color", "#cfcfcf");
+}
+
 // Function to show current date and time.
 function showTime() {
   $("#current_date").html(getDateTodayCN(false));
@@ -69,6 +79,7 @@ function setNavBarWidth() {
   } else if (windowWidth < 768 && ($("body").hasClass("container"))) {
     $("body").removeClass("container");
   }
+  clearAdminNavHighlight();
 }
 
 // Function to show/hode pricing-header

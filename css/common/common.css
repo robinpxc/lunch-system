@@ -96,14 +96,13 @@ body {
   color: #1E7E34;
 }
 
-.admin-mav-item {
+.admin-nav-item {
   margin-left: 30px;
 }
 
 .dropdown-data-management {
   color: #0062CC;
 }
-
 
 #current_date,
 #current_time {

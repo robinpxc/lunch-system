@@ -11,6 +11,7 @@ $(document).ready(function() {
   setGroupTablePrint();
 
   function initUI() {
+    addAdminHighlight($(".admin-item-menu"));
     setDateTitle();
     initTableGroup(currentUserRole, currentUserGroup);
   }

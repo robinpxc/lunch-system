@@ -31,6 +31,7 @@ $(document).ready(function () {
   });
 
   function configUI() {
+    addAdminHighlight($(".admin-item-user"));
     // Dynamic resize UI elements
     showHideExtraCols();
     adjustCreationFormSize();

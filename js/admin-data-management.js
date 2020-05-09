@@ -7,6 +7,7 @@ $(document).ready(function() {
   });
 
   function initUI() {
+    addAdminHighlight($(".admin-item-data"));
     $("#date-today").text(getDateTodayCN(true));
     $("#date-tomorrow").text(getDateTomorrowCN(true));
     $("#last-month").text((getLastMonth() >= 10) ? toString(getLastMonth()) : ("0" + getLastMonth()));
