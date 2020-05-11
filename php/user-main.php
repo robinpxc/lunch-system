@@ -156,7 +156,7 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 id="order-info order-info-today"></h4>
+          <h4 class="order-info" id="order-info-today"></h4>
         </div>
       </div>
 
@@ -166,7 +166,7 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 id="order-info order-info-tomorrow"></h4>
+          <h4 class="order-info" id="order-info-tomorrow"></h4>
         </div>
       </div>
       

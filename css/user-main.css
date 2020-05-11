@@ -41,17 +41,13 @@
   margin-bottom: 30px;
 }
 
-.card-menu-list {
-  text-align: start;
+.order-info {
+  font-weight: bold;
+  color: gray;
 }
 
-.card-menu-list, .card-menu-list li {
-  width: 100%;
-  font-size: 18px;
-}
-
-.card-menu-list li {
-  color: black;
+.order-exist {
+  color: darkgreen;
 }
 
 #menu-tip-today, #menu-tip-tomorrow {

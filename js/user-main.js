@@ -98,6 +98,7 @@ $(document).ready(function () {
         orderNum = orderContent.menu_number;
         orderCount = orderContent.count;
         if(orderNum > 0 && orderNum <= 6) {
+          setOrderExistStyle(date);
           if(orderNum != CONSTANTS.ORDER.CONTENT.NO_ORDER) {
             let orderDetail = orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
             setOrderInfoText(date, orderDetail);
@@ -117,6 +118,14 @@ $(document).ready(function () {
       $("#order-info-today").text(text);
     } else {
       $("#order-info-tomorrow").text(text);
+    }
+  }
+
+  function setOrderExistStyle(date) {
+    if(date ==formattedDateToday) {
+      addNewClass($("#order-info-today"), "order-exit");
+    } else {
+      addNewClass($("#order-info-tomorrow"), "order-exist");
     }
   }
 
