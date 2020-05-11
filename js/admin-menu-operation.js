@@ -77,20 +77,24 @@ $(document).ready(function() {
   }
 
   function setTableData(groupUserList) {
-    let unOrderSum = 0;
+    let unOrderSumArray = new Array(groupIndexCount);
     for(let i = 0; i < groupIndexCount; i++) {
       let userLists = filterUsersByOrder(groupUserList[groupIndexCount == 7 ? i : currentGroupNum]);
       let unOrderedUsers = userLists[0];
       let orderedUsers = userLists[1];
-      unOrderSum += Number(unOrderedUsers.length);
+      if(groupIndexCount == CONSTANTS.WORKGROUP_COUNT) {
+        unOrderSumArray[i] = unOrderedUsers;
+      } else {
+        unOrderSumArray = unOrderedUsers;
+      }
 
       // Set table data for each group
       let currentGroup = "group" + (groupIndexCount == 7 ? i : currentGroupNum);
       setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER, CONSTANTS.ORDER.STATUS_USER.ORDERED);
       setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
-      setTableStatus(unOrderSum, currentGroup);
+      setTableStatus(groupIndexCount == CONSTANTS.WORKGROUP_COUNT ? unOrderSumArray[i] : unOrderSumArray, currentGroup);
     }
-    setGroupStatusBar(unOrderSum);
+    setGroupStatusBar(unOrderSumArray);
   }
 
   function setData(userList, currentGroup, orderStatus) {
@@ -329,15 +333,72 @@ $(document).ready(function() {
     });
   }
 
-  function setGroupStatusBar(unOrderSum) {
+  function setGroupStatusBar(unOrderSumArray) {
     let statusBar = $(".group-status-bar");
+    let inlineStatus = $(".inline-group-status");
+    let unOrderSum = 0;
+    if(groupIndexCount == CONSTANTS.WORKGROUP_COUNT) {
+      statusBar.append("<div class='divider mt-2 mb-2'>");
+      for(let i = 0; i < unOrderSumArray.length; i++) {
+        unOrderSum += unOrderSumArray[i].length;
+        if(unOrderSumArray[i].length != 0) {
+          statusBar.append("<span class='group-status group-status-" + i + "'>");
+          statusBar.append("<br>");
+          let groupStatus = $(".group-status-" + i);
+          let groupStatusText = "";
+          groupStatusText += "【";
+          switch (i) {
+            case 0:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_0;
+              break;
+            case 1:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_1;
+              break;
+            case 2:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_2;
+              break;
+            case 3:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_3;
+              break;
+            case 4:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_4;
+              break;
+            case 5:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_5;
+              break;
+            case 6:
+              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_6;
+              break;
+          }
+          groupStatusText += " - " + unOrderSumArray[i].length + "人】";
+          for(let dataIndex  = 0; dataIndex < unOrderSumArray[i].length; dataIndex++) {
+            groupStatusText += unOrderSumArray[i][dataIndex][0];
+            groupStatusText += dataIndex == unOrderSumArray[i].length - 1 ? "" : ", ";
+          }
+          groupStatus.text(groupStatusText);
+        }
+
+      }
+    } else {
+
+      unOrderSum = unOrderSumArray.length;
+    }
     let hasAllOrdered = unOrderSum == 0 ? true : false;
     removeOldClass(statusBar, hasAllOrdered ? "alert-danger" : "alert-success");
     addNewClass(statusBar, hasAllOrdered ? "alert-success" : "alert-danger");
-    statusBar.text(hasAllOrdered ? "所有组员已全部订餐" : "还有【" + unOrderSum + "】人未订餐");
+    if(hasAllOrdered) {
+      $(".divider").remove();
+      hideElement($(".group-error-icon"));
+      unhideElement($(".group-success-icon"));
+    } else {
+      hideElement($(".group-success-icon"));
+      unhideElement($(".group-error-icon"));
+    }
+    inlineStatus.text(hasAllOrdered ? "所有组员已全部订餐" : "还有【" + unOrderSum + "】人未订餐");
   }
 
-  function setTableStatus(unOrderSum, groupNum) {
+  function setTableStatus(unOrderArray, groupNum) {
+    let unOrderSum = unOrderArray.length;
     let groupNumber = groupNum[groupNum.length - 1];
     let currentGroupTable = $(".table-group-" + groupNumber);
     let tableHeader = $(".table-group-" + groupNumber + " .card-header");
@@ -354,6 +415,10 @@ $(document).ready(function() {
 
   function reloadTable() {
     fetchGroupUserInfo(currentUserRole, currentUserGroup).done(function(response) {
+      $(".group-status-bar br").remove();
+      $(".group-status-bar .divider").remove();
+      $(".group-status").remove();
+
       for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
         $(".tb-group" + i + " tr").remove();
       }
