@@ -77,16 +77,20 @@ $(document).ready(function() {
   }
 
   function setTableData(groupUserList) {
+    let unOrderSum = 0;
     for(let i = 0; i < groupIndexCount; i++) {
       let userLists = filterUsersByOrder(groupUserList[groupIndexCount == 7 ? i : currentGroupNum]);
       let unOrderedUsers = userLists[0];
       let orderedUsers = userLists[1];
+      unOrderSum += Number(unOrderedUsers.length);
 
       // Set table data for each group
       let currentGroup = "group" + (groupIndexCount == 7 ? i : currentGroupNum);
       setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER, CONSTANTS.ORDER.STATUS_USER.ORDERED);
       setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
+      setTableStatus(unOrderSum, currentGroup);
     }
+    setGroupStatusBar(unOrderSum);
   }
 
   function setData(userList, currentGroup, orderStatus) {
@@ -323,6 +327,29 @@ $(document).ready(function() {
         jqAlert("订餐失败", "请重试");
       }
     });
+  }
+
+  function setGroupStatusBar(unOrderSum) {
+    let statusBar = $(".group-status-bar");
+    let hasAllOrdered = unOrderSum == 0 ? true : false;
+    removeOldClass(statusBar, hasAllOrdered ? "alert-danger" : "alert-success");
+    addNewClass(statusBar, hasAllOrdered ? "alert-success" : "alert-danger");
+    statusBar.text(hasAllOrdered ? "所有组员已全部点餐" : "还有【" + unOrderSum + "】人未点餐");
+  }
+
+  function setTableStatus(unOrderSum, groupNum) {
+    let groupNumber = groupNum[groupNum.length - 1];
+    let currentGroupTable = $(".table-group-" + groupNumber);
+    let tableHeader = $(".table-group-" + groupNumber + " .card-header");
+    if(unOrderSum == 0) {
+      removeOldClass(currentGroupTable, "border-danger")
+      addNewClass(currentGroupTable, "border-success");
+      addNewClass(tableHeader, "header-full-order");
+    } else {
+      removeOldClass(currentGroupTable, "border-success");
+      addNewClass(currentGroupTable, "border-danger");
+      removeOldClass(tableHeader, "header-full-order");
+    }
   }
 
   function reloadTable() {

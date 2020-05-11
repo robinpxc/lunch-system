@@ -48,6 +48,10 @@
   color: red;
 }
 
+.header-full-order {
+  color: green !important;
+}
+
 .table-group .table-content .table td {
   vertical-align: middle;
   padding: 0.4rem 1.1rem;

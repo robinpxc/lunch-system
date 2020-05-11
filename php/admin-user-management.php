@@ -178,7 +178,7 @@ include('common/session.php');
           <a class="dropdown-item nav-dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
-      <button class="btn btn-success btn-print-all">全部打印</button>
+      <button class="btn btn-outline-primary btn-print-all">全部打印</button>
     </div>
     
     <div class="table-content mt-2 d-block">
@@ -187,7 +187,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委巡察办</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-0 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-0 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -213,7 +213,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委第一巡察组</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -239,7 +239,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委第二巡察组</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-2 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-2 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -265,7 +265,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委第三巡察组</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-3 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-3 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -291,7 +291,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委第四巡察组</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-4 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-4 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -317,7 +317,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">市委第五巡察组</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-5 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-5 no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
@@ -344,7 +344,7 @@ include('common/session.php');
         <div class="card-header">
           <span class="tb-title">物业</span>
           <span>
-            <button class="btn btn-success btn-print tb-print-6  no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-6  no-print" type="button">打印表格</button>
           </span>
         </div>
         <div class="card-body">
