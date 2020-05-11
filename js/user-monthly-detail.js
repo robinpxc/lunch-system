@@ -32,7 +32,7 @@ $(document).ready(function() {
         let orderCount = dailyData[2];
         let orderText = orderNum == 6 ? "不订餐" : orderNum + " 号";
         let countText = orderCount == 0 ? "不订餐" : orderCount + " 份";
-        orderSum += Number(orderNum);
+        orderSum += 1;
         countSum += Number(orderCount);
 
         // Set table
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
   function setPrintBtnEvent() {
     $(".detail-print-btn").click(function() {
-      initPrintFunction($(".monthly-detail-table"));
+      initPrintFunction($(".content-container"));
     });
   }
 });
