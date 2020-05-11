@@ -65,6 +65,7 @@ const CONSTANTS = {
     GROUP_4: "group4",
     GROUP_5: "group5",
     GROUP_6: "group6",
+    GROUP_ALL: "GROUP_ALL",
     CN :{
       GROUP_0: "市委巡察办",
       GROUP_1: "市委第一巡察组",

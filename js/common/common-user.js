@@ -1,6 +1,6 @@
 function fetchGroupUserInfo(role, group) {
   let deferred = $.Deferred();
-  let groupType = role == CONSTANTS.USER.ROLE.ADMIN_GROUP ? group : "all";
+  let groupType = role == CONSTANTS.USER.ROLE.ADMIN_GROUP ? group : CONSTANTS.WORKGROUP.GROUP_ALL;
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-group-user-info.php",
