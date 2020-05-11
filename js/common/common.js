@@ -372,9 +372,3 @@ function clearCookies() {
     $.removeCookie(cookie);
   }
 }
-
-function scrollToElement(element) {
-  $("html, body").animate({
-    scrollTop: element.offset().top
-  }, 0 );
-}
