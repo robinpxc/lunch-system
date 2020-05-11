@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     // Table related UI functions
     initUI();
-    initTableGroup(userRole, userGroup);
+    initTableGroup(userRole, userGroup, function() {});
     setGroupTablePrint();
     setAllTablePrint();
   }

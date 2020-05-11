@@ -1,11 +1,11 @@
 
-function initTableGroup(userRole, userGroup) {
-  setTable(userRole, userGroup);
+function initTableGroup(userRole, userGroup, customFunc) {
+  setTable(userRole, userGroup, customFunc);
 }
 
-function setTable(userRole, userGroup) {
+function setTable(userRole, userGroup, customFunc) {
   if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
-    addDropdownListEvent();
+    addDropdownListEvent(customFunc);
   } else {
     $(".form-nav").remove();
     keepCurrentGroupTable(userGroup);
@@ -21,13 +21,13 @@ function keepCurrentGroupTable(userGroup) {
   });
 }
 
-function addDropdownListEvent() {
+function addDropdownListEvent(customFunc) {
   $(".dropdown-item").each(function(){
     $(this).click(function() {
       setDropdownInactive();
       addNewClass($(this), "active");
       $(".dropdown-workgroup").text($(this).text());
-      setListMenuClickEventUI($(this));
+      setListMenuClickEventUI($(this), customFunc);
     });
   });
 }
@@ -38,8 +38,9 @@ function setDropdownInactive() {
   });
 }
 
-function setListMenuClickEventUI(listItem) {
-  switch (listItem.attr("id")) {
+function setListMenuClickEventUI(listItem, customFunc) {
+  let groupId = listItem.attr("id");
+  switch (groupId) {
     case "group-0":
       filterTables(0);
       break;
@@ -64,6 +65,8 @@ function setListMenuClickEventUI(listItem) {
     default:
       unhideAllGroup();
   }
+
+  customFunc(groupId);
 }
 
 function filterTables(currentItemNum) {

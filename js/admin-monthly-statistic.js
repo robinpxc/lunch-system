@@ -21,7 +21,7 @@ $(document).ready(function(){
         $(".price-area").remove();
       }
 
-      initTableGroup(currentUserRole, currentUserGroup);
+      initTableGroup(currentUserRole, currentUserGroup, function() {});
       setDataToTable();
       addSummaryForGroups();
       setGroupTablePrint();

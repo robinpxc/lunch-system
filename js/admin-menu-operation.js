@@ -14,7 +14,7 @@ $(document).ready(function() {
   function initUI() {
     addAdminHighlight($(".admin-item-menu"));
     setDateTitle();
-    initTableGroup(currentUserRole, currentUserGroup);
+    initTableGroup(currentUserRole, currentUserGroup, function() {});
   }
 
   function setDateTitle() {
