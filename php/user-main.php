@@ -124,7 +124,7 @@ include('common/session.php');
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
                 </svg>
-                <span class="dropdown-desc dropdown-menu-management">&nbsp;点餐管理</span>
+                <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理</span>
               </span>
               </a>
             </li>
@@ -156,7 +156,7 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 id="order-info-today"></h4>
+          <h4 id="order-info order-info-today"></h4>
         </div>
       </div>
 
@@ -166,7 +166,7 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 id="order-info-tomorrow"></h4>
+          <h4 id="order-info order-info-tomorrow"></h4>
         </div>
       </div>
       
@@ -184,7 +184,7 @@ include('common/session.php');
         <div class="card-bottom">
           <div class="btn-group" role="group" aria-label="Form submit button group">
             <button type="button" class="btn btn-lg btn-danger mr-2 active" id="user-manage-btn">用户管理</button>
-            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">点餐管理</button>
+            <button type="submit" class="btn btn-lg btn-success ml-2 mr-2 active" id="menu-manage-btn">订餐管理</button>
             <button type="submit" class="btn btn-lg btn-primary ml-2 active" id="data-manage-btn">数据统计</button>
           </div>
         </div>

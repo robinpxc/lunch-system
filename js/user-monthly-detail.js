@@ -44,7 +44,7 @@ $(document).ready(function() {
       }
       tbody.append("<tr class='user-monthly-sum'>");
       let trSum = $(".user-monthly-sum");
-      trSum.append("<td class='td-sum'>" + "合计点餐");
+      trSum.append("<td class='td-sum'>" + "合计订餐");
       trSum.append("<td class='td-sum order-sum'>" + orderSum + " 次");
       trSum.append("<td class='td-sum count-sum'>" + countSum + " 份");
     });

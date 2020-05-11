@@ -85,7 +85,7 @@ function fetchNoOrderUsers(date, group) {
       }
     },
     error: function (errorMsg) {
-      alert("获取未点餐人员失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+      alert("获取未订餐人员失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
     },
     complete: function() {
       removeSpinner();

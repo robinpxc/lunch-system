@@ -144,7 +144,7 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
       deferred.resolve(response);
     },
     error: function () {
-      alert("点餐异常，请重试");
+      alert("订餐异常，请重试");
       refresh();
     },
     complete: function() {

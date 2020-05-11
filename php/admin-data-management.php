@@ -130,7 +130,7 @@ include('common/session.php');
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
                 </svg>
-                <span class="dropdown-desc dropdown-menu-management">&nbsp;点餐管理</span>
+                <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理</span>
               </span>
             </a>
           </li>
@@ -155,7 +155,7 @@ include('common/session.php');
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">【当日】统计数据</h5>
-        <div class="card-text mt-3">当天的点餐统计<span class="expired-text"></span></div>
+        <div class="card-text mt-3">当天的订餐统计<span class="expired-text"></span></div>
         <div class="mt-1">
           <span>今天是 </span>
           <span class="special-text" id="date-today"></span>
@@ -169,8 +169,8 @@ include('common/session.php');
     <!-- Tomorrow statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">【次日】点餐统计</h5>
-        <div class="card-text mt-3"><span class="special-text">明天</span> 的点餐统计</div>
+        <h5 class="card-title">【次日】订餐统计</h5>
+        <div class="card-text mt-3"><span class="special-text">明天</span> 的订餐统计</div>
         <div class="mt-1">
           <span>明天是</span>
           <span class="special-text" id="date-tomorrow"></span>
@@ -185,7 +185,7 @@ include('common/session.php');
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">【上月】账单统计</h5>
-        <div class="card-text mt-3"><span class="special-text">上个月</span> 1日至月底的点餐账目统计</div>
+        <div class="card-text mt-3"><span class="special-text">上个月</span> 1日至月底的订餐账目统计</div>
         <div class="mt-1">
           <span>上月是 </span>
           <span class="special-text" id="last-month"></span>
@@ -200,8 +200,8 @@ include('common/session.php');
     <!-- Custom Daily statistics -->
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
-        <h5 class="card-title">【指定日期】点餐统计</h5>
-        <div class="card-text mt-3">自由选择日期的点餐统计</div>
+        <h5 class="card-title">【指定日期】订餐统计</h5>
+        <div class="card-text mt-3">自由选择日期的订餐统计</div>
         <div class="mt-1">
           <div class="date-select daily-date-select">
             <select class="form-control form-control-sm year-select" id="d-year-select">
@@ -225,7 +225,7 @@ include('common/session.php');
     <div class="mt-4 mb-4 card text-left">
       <div class="card-body">
         <h5 class="card-title">【指定月份】账单统计</h5>
-        <div class="card-text mt-3">自由选择年月的点餐账目统计</div>
+        <div class="card-text mt-3">自由选择年月的订餐账目统计</div>
         <div class="mt-1">
           <div class="date-select monthly-date-select">
             <select class="form-control form-control-sm year-select" id="m-year-select">

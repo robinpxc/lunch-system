@@ -129,7 +129,7 @@ $(document).ready(function() {
           checkOrderStatus(targetDate, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
             let orderNum = response.menu_number;
             orderCountOperation(userId, targetDate, null).done(function(orderCount) {
-              // Determine the order status text will be "不点餐" or "X号" or "X号【Y份】"
+              // Determine the order status text will be "不订餐" or "X号" or "X号【Y份】"
               let orderStatusText = orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : orderNum + " 号";
               orderStatusText += orderCount > 1 ? ("【" + orderCount + "份】") : "";
 
@@ -226,11 +226,11 @@ $(document).ready(function() {
                         setCountSelect($("#count-" + userId + "-" + orderCountNew), userId, orderCountNew);
                         orderCountOperation(userId, targetDate, orderCountNew).done(function(success) {
                           if(success) {
-                            jqInfo("设置成功", "已成功将点餐份数设置为【" + orderCountNew + "】份!", function() {
+                            jqInfo("设置成功", "已成功将订餐份数设置为【" + orderCountNew + "】份!", function() {
                               reloadTable();
                             });
                           } else {
-                            jqAlert("设置成功", "点餐份数设置失败，请重试!");
+                            jqAlert("设置成功", "订餐份数设置失败，请重试!");
                           }
                         });
                       }
@@ -334,7 +334,7 @@ $(document).ready(function() {
     let hasAllOrdered = unOrderSum == 0 ? true : false;
     removeOldClass(statusBar, hasAllOrdered ? "alert-danger" : "alert-success");
     addNewClass(statusBar, hasAllOrdered ? "alert-success" : "alert-danger");
-    statusBar.text(hasAllOrdered ? "所有组员已全部点餐" : "还有【" + unOrderSum + "】人未点餐");
+    statusBar.text(hasAllOrdered ? "所有组员已全部订餐" : "还有【" + unOrderSum + "】人未订餐");
   }
 
   function setTableStatus(unOrderSum, groupNum) {

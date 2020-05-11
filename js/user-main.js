@@ -103,12 +103,12 @@ $(document).ready(function () {
             setOrderInfoText(date, orderDetail);
           } else {
             setNoOrderStyle(date);
-            setOrderInfoText(date,  "不点餐");
+            setOrderInfoText(date,  "不订餐");
           }
         }
       });
     } else {
-      setOrderInfoText(date, "尚未点餐");
+      setOrderInfoText(date, "尚未订餐");
     }
   }
 
@@ -155,7 +155,7 @@ $(document).ready(function () {
   }
 
   function chooseOrderDate() {
-    jqDialog("请选择点餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
+    jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
       $.cookie(CONSTANTS.COOKIE.KEY_DATE, CONSTANTS.DATE.TODAY);
       jumpTo("admin-menu-operation.php");
     }, function() {

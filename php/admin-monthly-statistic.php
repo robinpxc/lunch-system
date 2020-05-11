@@ -151,7 +151,7 @@
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
                 </svg>
-                <span class="dropdown-desc dropdown-menu-management">&nbsp;点餐管理</span>
+                <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理</span>
               </span>
             </a>
           </li>
@@ -206,7 +206,7 @@
               <span> 月 </span>
             </h4>
             <h6 class="summary-title">各部门（巡察办 + 5个巡察组 + 物业）</h6>
-            <span>共点餐【</span>
+            <span>共订餐【</span>
             <span class="summary-data order-num-text"></span>
             <span>】次</span>
             <span>，总计原价【</span>
@@ -284,7 +284,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -309,7 +309,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -334,7 +334,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -359,7 +359,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -384,7 +384,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐总数（份）</th>
+              <th scope="col">本月订餐总数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -409,7 +409,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -434,7 +434,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月点餐数（份）</th>
+              <th scope="col">本月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>

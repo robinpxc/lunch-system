@@ -33,7 +33,7 @@ $(document).ready(function() {
         for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
           let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
           let originalText = $(cardHeaderClassName).text();
-          $(cardHeaderClassName).text(originalText + "（" +  getGroupOrderSum(dataArray, i) + "人点餐）");
+          $(cardHeaderClassName).text(originalText + "（" +  getGroupOrderSum(dataArray, i) + "人订餐）");
         }
       }
 
@@ -104,7 +104,7 @@ $(document).ready(function() {
       }
 
       function setNoOrderTable(data) {
-        $(".no-order-title").text("未点餐人员 （ " + data.length + " ） 人");
+        $(".no-order-title").text("未订餐人员 （ " + data.length + " ） 人");
         for(let i = 0; i < data.length; i++) {
           let trClass = "no-order-user" + i;
           $(".tb-no-order").append("<tr class=" + trClass + ">");
