@@ -109,7 +109,7 @@ $(document).ready(function() {
 
         // Add a <tr> in .tb-groupX
         let userClassName = currentGroup + "-" + "user-" + userId;
-        $(groupContainerClass).append("<tr class='" + userClassName + "'>");
+        $(groupContainerClass).append("<tr class='" + userClassName + "' id='user-" + userId +"'>");
 
         // Add <td> in groupX-user-XXXX
         $("." + userClassName).append("<td class='" + "td-fullname fullname-" + userId + "'>" + userName);
@@ -231,7 +231,7 @@ $(document).ready(function() {
                         orderCountOperation(userId, targetDate, orderCountNew).done(function(success) {
                           if(success) {
                             jqInfo("设置成功", "已成功将订餐份数设置为【" + orderCountNew + "】份!", function() {
-                              reloadTable();
+                              reloadTable(userId);
                             });
                           } else {
                             jqAlert("设置成功", "订餐份数设置失败，请重试!");
@@ -320,10 +320,10 @@ $(document).ready(function() {
     setDailyOrder(targetDate, userId, orderNum, orderStatus).done(function(isSuccess) {
       if(isSuccess) {
         if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
-          reloadTable();
+          reloadTable(userId);
         } else {
           jqInfo("修改成功", orderNum == 6 ? "已改为【不订餐】" : "成功修改为 【" + orderNum + " 号】", function() {
-            reloadTable();
+            reloadTable(userId);
           });
         }
 
@@ -413,7 +413,7 @@ $(document).ready(function() {
     }
   }
 
-  function reloadTable() {
+  function reloadTable(userId) {
     fetchGroupUserInfo(currentUserRole, currentUserGroup).done(function(response) {
       $(".group-status-bar br").remove();
       $(".group-status-bar .divider").remove();
@@ -424,6 +424,8 @@ $(document).ready(function() {
       }
       let groupUserList = filterUserByGroup(response);
       setTableData(groupUserList);
+
+      scrollToElement($("#user-" + userId));
     });
   }
 });
