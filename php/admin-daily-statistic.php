@@ -32,7 +32,9 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
@@ -40,6 +42,7 @@ include('common/session.php'); ?>
   <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../js/common/common-export-excel.js"></script>
   <script type="text/javascript" src="../js/common/summary-table.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-daily-statistic.js"></script>
@@ -161,8 +164,11 @@ include('common/session.php'); ?>
     <div class="summary-tb">
       <table>
         <thead>
+        <tr>
           <td class="left">餐号</td>
           <td>份数</td>
+        </tr>
+
         </thead>
         <tbody class="tbody-order-sum">
           <tr>
@@ -214,6 +220,7 @@ include('common/session.php'); ?>
         </div>
       </div>
       <button class="btn btn-outline-primary btn-print-all">全部打印</button>
+      <button class="btn btn-outline-primary btn-export-all">全部导出</button>
     </div>
     <div class="table-content d-block">
       <!-- 巡察办表格 -->
@@ -222,10 +229,11 @@ include('common/session.php'); ?>
           <span class="tb-title">市委巡察办</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-0 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-0 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-0">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -246,10 +254,11 @@ include('common/session.php'); ?>
           <span class="tb-title">市委第一巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-1 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-1">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -269,11 +278,12 @@ include('common/session.php'); ?>
         <div class="card-header">
           <span class="tb-title">市委第二巡察组</span>
           <span>
-            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-2 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-2 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-2">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -293,11 +303,12 @@ include('common/session.php'); ?>
         <div class="card-header">
           <span class="tb-title">市委第三巡察组</span>
           <span>
-            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-3 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-3 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-3">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -317,11 +328,12 @@ include('common/session.php'); ?>
         <div class="card-header">
           <span class="tb-title">市委第四巡察组</span>
           <span>
-            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-4 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-4 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-4">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -341,11 +353,12 @@ include('common/session.php'); ?>
         <div class="card-header">
           <span class="tb-title">市委第五巡察组</span>
           <span>
-            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-5 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-5 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-5">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -365,11 +378,12 @@ include('common/session.php'); ?>
         <div class="card-header">
           <span class="tb-title">物业</span>
           <span>
-            <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-print tb-print-6 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-6 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ds-tb-6">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -390,10 +404,11 @@ include('common/session.php'); ?>
           <span class="no-order-title">未订餐人员名单</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-no-order no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-no-order no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table table-no-order">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>

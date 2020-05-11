@@ -12,7 +12,8 @@
   border-spacing: 0;
 }
 
-.summary-tb table td {
+.summary-tb table td,
+.summary-tb table th {
   border-left: solid black 1px;;
   border-bottom: solid black 1px;
   color: black;

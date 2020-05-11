@@ -18,6 +18,10 @@ $(document).ready(function () {
         }
       }
     }
+    if(orderedArray.length == 0) {
+      setDisable($(".btn-print-all"));
+      setDisable($(".btn-export-all"));
+    }
     fetchNoOrderUsers(date, group).done(function (dataList) {
       unorderedArray = dataList;
       collectOrderSum(orderedArray);
@@ -35,6 +39,7 @@ $(document).ready(function () {
       setGroupTablePrint();
       setAllTablePrint();
       setNoOrderTablePrint();
+      exportGroupTable("ds", date, unorderedArray.length == 0);
     });
   });
 
@@ -94,6 +99,9 @@ $(document).ready(function () {
   }
 
   function setDataToGroupTable(data, group) {
+    if(data.length == 0) {
+      disableOutputButtons(group);
+    }
     for (let i = 0; i < data.length; i++) {
       let fullname = data[i][0];
       let nickName = data[i][1];
@@ -108,7 +116,7 @@ $(document).ready(function () {
 
       $("." + personClass).append("<td>" + fullname);
       $("." + personClass).append("<td>" + nickName);
-      $("." + personClass).append("<td>" + (orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : (orderNum + " 号【" + orderCount + "份】")));
+      $("." + personClass).append("<td>" + (orderNum == CONSTANTS.ORDER.CONTENT.NO_ORDER ? CONSTANTS.ORDER.INFO_TEXT.NO_ORDER : (orderNum + " 号" + (orderCount > 1 ? "【" + orderCount + "份】": ""))));
     }
   }
 
@@ -185,5 +193,10 @@ $(document).ready(function () {
     $(".tb-print-no-order").click(function () {
       initPrintFunction($(".table-not-ordered"));
     });
+  }
+
+  function disableOutputButtons(index) {
+    setDisable($(".tb-export-" + index));
+    setDisable($(".tb-print-" + index));
   }
 });

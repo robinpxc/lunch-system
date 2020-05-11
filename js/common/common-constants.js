@@ -73,7 +73,8 @@ const CONSTANTS = {
       GROUP_3: "市委第三巡察组",
       GROUP_4: "市委第四巡察组",
       GROUP_5: "市委第五巡察组",
-      GROUP_6: "物业"
+      GROUP_6: "物业",
+      GROUP_ALL: "所有部门"
     }
   },
 

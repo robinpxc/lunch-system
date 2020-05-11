@@ -320,6 +320,8 @@ function groupToText(groupNum) {
       return CONSTANTS.WORKGROUP.CN.GROUP_5;
     case CONSTANTS.WORKGROUP.GROUP_6:
       return CONSTANTS.WORKGROUP.CN.GROUP_6;
+    case CONSTANTS.WORKGROUP.GROUP_ALL:
+      return CONSTANTS.WORKGROUP.CN.GROUP_ALL;
     default:
       return "数据异常";
   }

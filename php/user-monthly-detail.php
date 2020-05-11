@@ -35,7 +35,9 @@
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
@@ -43,6 +45,7 @@
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../js/common/common-export-excel.js"></script>
   <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/user-monthly-detail.js"></script>
@@ -176,6 +179,7 @@
       <span class="detail-title"></span>
       <span>
         <button class="btn btn-outline-primary btn-print detail-print-btn no-print" type="button">打印表格</button>
+        <button class="btn btn-outline-primary btn-export detail-export-btn no-print" type="button">导出表格</button>
       </span>
     </div>
     <div class="card-body text-dark">

@@ -62,7 +62,8 @@
   padding: 0.15rem 0.5rem;
 }
 
-.btn-print {
+.btn-print, .btn-export {
+  margin-left: 5px;
   padding: 0.25rem 0.75rem;
 }
 

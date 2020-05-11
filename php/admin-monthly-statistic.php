@@ -43,6 +43,9 @@
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
   <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>
@@ -276,10 +279,11 @@
           <span>市委巡察办</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-0 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-0 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-0">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -301,10 +305,11 @@
           <span>市委第一巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-1 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-1">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -326,10 +331,11 @@
           <span>市委第二巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-2 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-2 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-2">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -351,10 +357,11 @@
           <span>市委第三巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-3 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-3 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-3">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -376,10 +383,11 @@
           <span>市委第四巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-4 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-4 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-4">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -401,10 +409,11 @@
           <span>市委第五巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-5 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-5 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-5">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
@@ -426,10 +435,11 @@
           <span>物业账单</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-6 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-6 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="ms-tb-6">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>

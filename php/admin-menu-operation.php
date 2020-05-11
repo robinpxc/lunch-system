@@ -45,6 +45,9 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
   <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-menu-operation.js"></script>
@@ -212,6 +215,7 @@ include('common/session.php');
       </div>
 
       <button class="btn btn-outline-primary btn-print-all">全部打印</button>
+      <button class="btn btn-outline-primary btn-export-all">全部导出</button>
     </div>
     
     <div class="table-content mt-2 d-block">
@@ -221,10 +225,11 @@ include('common/session.php');
           <span class="tb-title">市委巡察办</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-0 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-0 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-0">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -246,10 +251,11 @@ include('common/session.php');
           <span class="tb-title">市委第一巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-1 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-1 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-1">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -271,10 +277,11 @@ include('common/session.php');
           <span class="tb-title">市委第二巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-2 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-2 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-2">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -296,10 +303,11 @@ include('common/session.php');
           <span class="tb-title">市委第三巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-3 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-3 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-3">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -321,10 +329,11 @@ include('common/session.php');
           <span class="tb-title">市委第四巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-4 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-4 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-4">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -346,10 +355,11 @@ include('common/session.php');
           <span class="tb-title">市委第五巡察组</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-5 no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-5 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-5">
             <thead  class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
@@ -372,10 +382,11 @@ include('common/session.php');
           <span class="tb-title">物业</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-6  no-print" type="button">打印表格</button>
+            <button class="btn btn-outline-primary btn-export tb-export-6 no-print" type="button">导出表格</button>
           </span>
         </div>
         <div class="card-body">
-          <table class="table">
+          <table class="table" id="mo-tb-6">
             <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
