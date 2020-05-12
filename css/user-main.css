@@ -66,6 +66,11 @@
   height: 45px;
 }
 
+#menu-config-card:hover {
+  border-width: 4px;
+  cursor: pointer;
+}
+
 .card-bottom {
   padding-left: 10px;
   padding-right: 10px;

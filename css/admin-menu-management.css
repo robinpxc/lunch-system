@@ -1,4 +1,9 @@
 @import url("common/common.css");
+
+.main-content {
+  padding-top: 10px;
+}
+
 .calendar {
   margin-right: 10px;
 }

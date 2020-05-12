@@ -190,6 +190,16 @@ include('common/session.php');
         </div>
       </div>
 
+      <!-- Menu config card -->
+      <div class="card mb-2 mt-2 border-primary shadow-sm" id="menu-config-card">
+        <div class="card-header">
+          <h4 class="my-0 font-weight-normal">设置菜单</h4>
+        </div>
+        <div class="card-body">
+          <h4>点击进入菜单设置</h4>
+        </div>
+      </div>
+      
       <!-- Admin card: modify prices -->
       <div class="card card-admin mb-2 mt-2 border-danger" id="admin-price-card">
         <div class="card-header">
@@ -223,7 +233,6 @@ include('common/session.php');
       </div>
       
       <!-- Empty card to occupy the space area -->
-      <div class="card card-empty"></div>
       <div class="card card-empty"></div>
     </div>
 

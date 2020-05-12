@@ -17,7 +17,7 @@ $(document).ready(function () {
         if(document.getElementById("date-value")) {
           var clickedDate = formatDate(y, m, d);
           $.cookie('selected-date',clickedDate);
-          refresh();
+          window.location.reload();
         }
       }
     });
@@ -46,7 +46,7 @@ $(document).ready(function () {
   // Function to check menu status based on user selected date
   function checkMenuStatus() {
     $.ajax({
-      type: CONSTANTS.AJAX.TYPE.POST,
+      type: "post",
       url: "../php/functions/check-menu-status.php",
       data: {
         "selected-date": dateSelected
@@ -254,7 +254,7 @@ $(document).ready(function () {
   // Function to fetch menu from server
   function fetchMenu(date) {
     $.ajax({
-      type: CONSTANTS.AJAX.TYPE.POST,
+      type: "POST",
       url: "../php/functions/fetch-menu.php",
       data: {
         'date': date
@@ -280,7 +280,7 @@ $(document).ready(function () {
   // Function to create / update menu
   function updateMenu(menuList, date) {
     $.ajax({
-      type: CONSTANTS.AJAX.TYPE.POST,
+      type: "POST",
       url: "../php/functions/update-menu.php",
       data: {
         'date': date,
@@ -292,7 +292,7 @@ $(document).ready(function () {
         alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
       },
       complete: function() {
-        refresh();
+        window.location.reload();
       }
     });
   }
@@ -300,7 +300,7 @@ $(document).ready(function () {
   // Function to delete menu
   function deleteMenu(date) {
     $.ajax({
-      type: CONSTANTS.AJAX.TYPE.POST,
+      type: 'POST',
       url: '../php/functions/delete-menu.php',
       data: {
         'date': date
