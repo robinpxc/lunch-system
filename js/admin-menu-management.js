@@ -38,30 +38,14 @@ $(document).ready(function () {
       });
     });
   
-    checkMenuStatus();
-    setInputTextChangeListener();
-    setClearBtnOnClickListener();
-    setDiscardButtonClickListener();
+    checkMenuStatus(dateSelected).done(function(status) {
+      menuStatus = status;
+      configMenu(menuStatus);
+      setInputTextChangeListener();
+      setClearBtnOnClickListener();
+      setDiscardButtonClickListener();
+    })
 
-  // Function to check menu status based on user selected date
-  function checkMenuStatus() {
-    $.ajax({
-      type: "post",
-      url: "../php/functions/check-menu-status.php",
-      data: {
-        "selected-date": dateSelected
-      },
-      dataType: "json",
-      success: function (response) {
-        menuStatus = response;
-        configMenu(menuStatus);
-      },
-      error: function (errorMsg) {
-        alert("Ajax菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
-        $(".menu-title").html(errorMsg.responseText);
-      }
-    });
-  }
 
   // Judge if all required input has been filled
   function isRequiredFieldFinished() {
@@ -190,8 +174,14 @@ $(document).ready(function () {
           menuArray[i][j] = $(foodId).val();
         }
       }
-      updateMenu(menuArray, dateSelected);
-      menuArray = null;
+      updateMenu(menuArray, dateSelected).done(function(response) {
+        if(response) {
+          jqInfo("修改成功", "已成功修改菜单!", function() {
+            menuArray = null;
+            refresh();
+          });
+        }
+      });
     });
   }
 
@@ -272,26 +262,6 @@ $(document).ready(function () {
       error: function (errorMsg) {
         alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境，或联系开发者");
         $(".menu-title").html(errorMsg.responseText);
-      }
-    });
-  }
-
-  // Function to create / update menu
-  function updateMenu(menuList, date) {
-    $.ajax({
-      type: "POST",
-      url: "../php/functions/update-menu.php",
-      data: {
-        'date': date,
-        'menu-list': JSON.stringify(menuList)
-      },
-      dataType: "json",
-      async: false,
-      error: function (errorMsg) {
-        alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
-      },
-      complete: function() {
-        window.location.reload();
       }
     });
   }

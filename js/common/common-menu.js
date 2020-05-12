@@ -5,10 +5,9 @@
 *
 * Parameters:
 *   date:  [string] Will determine the date of order.
-*   async: [boolean] will determine the function will work on sync/async mode
 * */
-function checkMenuStatus(date, async) {
-  let menuStatus = "";
+function checkMenuStatus(date) {
+  let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/check-menu-status.php",
@@ -16,16 +15,47 @@ function checkMenuStatus(date, async) {
       "selected-date": date
     },
     dataType: "json",
-    async: async,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
-      menuStatus = response;
+      deferred.resolve(response);
     },
     error: function (errorMsg) {
-      alert("菜单状态查询失败，Ajax发生错误，请刷新或者切换网络，再或联系开发者");
-      $(".menu-title").html(errorMsg.responseText);
+      alert("菜单状态查询失败，请重试");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuStatus;
+  return deferred.promise();
+}
+
+// Function to create / update menu
+function updateMenu(menuList, date) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/update-menu.php",
+    data: {
+      'date': date,
+      'menu-list': JSON.stringify(menuList)
+    },
+    dataType: "json",
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function(response) {
+      deferred.resolve(response);
+    },
+    error: function (errorMsg) {
+      alert("Ajax菜单创建/更新错误，请刷新页面或者切换网络环境，或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
 }
 
 /*
