@@ -1,4 +1,4 @@
-function exportGroupTable(tablePrefix, date, unorderedArray, year, month) {
+function exportGroupTable(tablePrefix, date, unorderedArray, year, month, userName) {
   for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     let tbId = tablePrefix + "-tb-" + i;
     $(".tb-export-" + i).click(function () {
@@ -20,7 +20,11 @@ function exportGroupTable(tablePrefix, date, unorderedArray, year, month) {
           ExportToExcel(tbId, filename);
           break;
         }
-
+        case "md": {
+          let filename = userName + "-" + year + "年" + month + "月" + "详单";
+          ExportToExcel(tbId, filename);
+          break;
+        }
       }
     });
   }

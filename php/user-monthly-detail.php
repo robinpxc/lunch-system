@@ -179,11 +179,11 @@
       <span class="detail-title"></span>
       <span>
         <button class="btn btn-outline-primary btn-print detail-print-btn no-print" type="button">打印</button>
-        <button class="btn btn-outline-primary btn-export detail-export-btn no-print" type="button">导出</button>
+        <button class="btn btn-outline-primary btn-export tb-export-0 no-print" type="button">导出</button>
       </span>
     </div>
     <div class="card-body text-dark">
-      <table class="monthly-detail-table">
+      <table class="monthly-detail-table" id="md-tb-0">
         <thead>
           <tr class="tb-head">
             <th>日期</th>

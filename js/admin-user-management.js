@@ -278,7 +278,7 @@ $(document).ready(function () {
   }
 
   function exportEvents(tablePrefix) {
-    exportGroupTable(tablePrefix, null, null, null, null);
+    exportGroupTable(tablePrefix, null, null, null, null, null);
     $(".btn-export-all").click(function() {
       exportAllTables(tablePrefix, null, null, null, null);
     })

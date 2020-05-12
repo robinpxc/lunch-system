@@ -12,7 +12,8 @@
   display: block;
 }
 
-.btn-print {
+.btn-print,
+.btn-export {
   float: right;
 }
 

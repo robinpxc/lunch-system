@@ -50,11 +50,16 @@ $(document).ready(function() {
     });
 
     setPrintBtnEvent();
+    exportEvents("md", year, month);
   }
 
   function setPrintBtnEvent() {
     $(".detail-print-btn").click(function() {
       initPrintFunction($(".content-container"));
     });
+  }
+
+  function exportEvents(tablePrefix, year, month) {
+    exportGroupTable(tablePrefix, null, null, year, month, userName);
   }
 });

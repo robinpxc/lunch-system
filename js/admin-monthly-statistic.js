@@ -116,7 +116,7 @@ $(document).ready(function(){
   }
 
   function exportEvents(tablePrefix, year, month) {
-    exportGroupTable(tablePrefix, null, null, year, month);
+    exportGroupTable(tablePrefix, null, null, year, month, null);
     $(".btn-export-all").click(function() {
       exportAllTables(tablePrefix, null, null, year, month);
     });
