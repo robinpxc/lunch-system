@@ -74,8 +74,18 @@ const CONSTANTS = {
       GROUP_4: "市委第四巡察组",
       GROUP_5: "市委第五巡察组",
       GROUP_6: "物业",
-      GROUP_ALL: "所有部门"
-    }
+      GROUP_ALL: "所有部门",
+      SIMPLIFY: {
+        GROUP_0: "巡察办",
+        GROUP_1: "一组",
+        GROUP_2: "二组",
+        GROUP_3: "三组",
+        GROUP_4: "四组",
+        GROUP_5: "五组",
+        GROUP_6: "物业",
+        GROUP_ALL: "所有部门",
+      }
+    },
   },
 
   ORDER: {

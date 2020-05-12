@@ -72,13 +72,17 @@
     width: 100%;
   }
 
-  .table-group .nav-drop-down .dropdown-menu {
+  .table-group
+  .nav-drop-down
+  .dropdown-menu {
     margin-left: 10px;
     margin-right: 10px;
     width: 100%;
   }
 
-  .table-group .nav-drop-down .dropdown-menu a {
+  .table-group
+  .nav-drop-down
+  .dropdown-menu a {
     margin-top: 5px;
   }
 }

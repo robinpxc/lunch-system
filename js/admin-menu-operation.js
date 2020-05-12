@@ -349,25 +349,25 @@ $(document).ready(function() {
           groupStatusText += "【";
           switch (i) {
             case 0:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_0;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_0;
               break;
             case 1:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_1;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_1;
               break;
             case 2:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_2;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_2;
               break;
             case 3:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_3;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_3;
               break;
             case 4:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_4;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_4;
               break;
             case 5:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_5;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_5;
               break;
             case 6:
-              groupStatusText += CONSTANTS.WORKGROUP.CN.GROUP_6;
+              groupStatusText += CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_6;
               break;
           }
           groupStatusText += " - " + unOrderSumArray[i].length + "人】";
@@ -394,7 +394,7 @@ $(document).ready(function() {
       hideElement($(".group-success-icon"));
       unhideElement($(".group-error-icon"));
     }
-    inlineStatus.text(hasAllOrdered ? "所有组员已全部订餐" : "还有【" + unOrderSum + "】人未订餐");
+    inlineStatus.text(hasAllOrdered ? "所有组员已全部订餐" : "还有【 " + unOrderSum + " 】人未订餐");
   }
 
   function setTableStatus(unOrderArray, groupNum) {

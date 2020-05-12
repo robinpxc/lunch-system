@@ -188,7 +188,10 @@ body {
     padding: 5px !important;
   }
 
-  .btn-print, .btn-print-all {
+  .btn-print,
+  .btn-print-all,
+  .btn-export,
+  .btn-export-all {
     display: none;
   }
 }
