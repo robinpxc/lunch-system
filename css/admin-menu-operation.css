@@ -1,6 +1,14 @@
 @import url("common/common.css");
 @import url("common/common-info-table.css");
 
+/* Temporary hide print and export buttons*/
+.btn-print,
+.btn-print-all,
+.btn-export,
+.btn-export-all {
+  display: none;
+}
+
 .date-box {
   width: 100%;
   text-align: center;
