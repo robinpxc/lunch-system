@@ -178,8 +178,8 @@
     <div class="card-header">
       <span class="detail-title"></span>
       <span>
-        <button class="btn btn-outline-primary btn-print detail-print-btn no-print" type="button">打印表格</button>
-        <button class="btn btn-outline-primary btn-export detail-export-btn no-print" type="button">导出表格</button>
+        <button class="btn btn-outline-primary btn-print detail-print-btn no-print" type="button">打印</button>
+        <button class="btn btn-outline-primary btn-export detail-export-btn no-print" type="button">导出</button>
       </span>
     </div>
     <div class="card-body text-dark">

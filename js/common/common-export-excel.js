@@ -3,16 +3,24 @@ function exportGroupTable(tablePrefix, date, unorderedArray, year, month) {
     let tbId = tablePrefix + "-tb-" + i;
     $(".tb-export-" + i).click(function () {
       switch (tablePrefix) {
-        case "ds":
+        case "ds": {
           let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
           let weekday = new Date(date).getDay();
           let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i);
           ExportToExcel(tbId, fileName);
           break;
-        case "ms":
+        }
+        case "ms": {
           let filename = "[" + year + "年" + month + "月" + "账单" + "]" + "-" + groupName(i);
           ExportToExcel(tbId, filename);
           break;
+        }
+        case "um": {
+          let filename = groupName(i) + "用户名单";
+          ExportToExcel(tbId, filename);
+          break;
+        }
+
       }
     });
   }
@@ -37,6 +45,13 @@ function exportAllTables(tablePrefix, date, unorderedArray, year, month) {
         ExportToExcel(tbId, filename);
       }
       break;
+    case "um":
+      for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+        let tbId = tablePrefix + "-tb-" + i;
+        let filename = groupName(i) + "用户名单";
+        ExportToExcel(tbId, filename);
+      }
+      break;
 
   }
 
@@ -55,7 +70,8 @@ function ExportToExcel(tbId, filename) {
     "file_name": filename + ".xlsx",
     "src_id": tbId,
     "show_header": true,
-    "type": "normal"
+    "type": "normal",
+    "exclude_selector": ".no-export"
   });
   excel.generate();
 }

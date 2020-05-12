@@ -42,6 +42,7 @@ $(document).ready(function () {
     initTableGroup(userRole, userGroup, function() {});
     setGroupTablePrint();
     setAllTablePrint();
+    exportEvents("um");
   }
 
   function initUI() {
@@ -238,7 +239,7 @@ $(document).ready(function () {
       }
       $("." + personClass).append("<td class='hide-small-screen'>" + userRoleCN);
       $("." + personClass).append("<td class='hide-small-screen'>" + nickName);
-      $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
+      $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print no-export'" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
       $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
@@ -274,6 +275,13 @@ $(document).ready(function () {
     $("#hide-btn").click(function() {
       formControlBtnClick($("#hide-btn"));
     });
+  }
+
+  function exportEvents(tablePrefix) {
+    exportGroupTable(tablePrefix, null, null, null, null);
+    $(".btn-export-all").click(function() {
+      exportAllTables(tablePrefix, null, null, null, null);
+    })
   }
 });
 
