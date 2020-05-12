@@ -1,12 +1,12 @@
-function exportGroupTable(tablePrefix, date, isComplete) {
+function exportGroupTable(tablePrefix, date, unorderedArray) {
   for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+    let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
     $(".tb-export-" + i).click(function () {
       switch (tablePrefix) {
         case "ds":
           let weekday = new Date(date).getDay();
           let tbId = tablePrefix + "-tb-" + i;
-          let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i) + ".xlsx";
-          alert(fileName);
+          let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i);
           ExportToExcel(tbId, fileName);
           break;
       }
@@ -14,21 +14,34 @@ function exportGroupTable(tablePrefix, date, isComplete) {
   }
 }
 
-function exportAllTables(tbName, fileName) {
-  $(".btn-print-all").click(function () {
-    ExportToExcel($(".table"), tbName);
-  });
+function exportAllTables(tablePrefix, date, unorderedArray) {
+  let weekday = new Date(date).getDay();
+  switch (tablePrefix) {
+    case "ds":
+      for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+        let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
+
+        let tbId = tablePrefix + "-tb-" + i;
+        let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i);
+        ExportToExcel(tbId, fileName);
+      }
+      ExportToExcel("ds-tb-unordered",  "[" + date + " "+ getWeekDayCN(weekday) +"]" + "未点餐名单");
+      break;
+  }
+
 }
 
-function exportUnorderedTable(tbName) {
+function exportUnorderedTable(tablePrefix, date) {
   $(".tb-export-no-order").click(function() {
-    ExportToExcel($(".table-not-ordered"), tbName);
+    let weekday = new Date(date).getDay();
+    ExportToExcel("ds-tb-unordered",  "[" + date + " "+ getWeekDayCN(weekday) +"]" + "未点餐名单");
   });
 }
 
 function ExportToExcel(tbId, filename) {
   let excel = new ExcelGen({
-    "file_name": filename,
+    "format": "xlsx",
+    "file_name": filename + ".xlsx",
     "src_id": tbId,
     "show_header": true,
     "type": "table"
@@ -53,4 +66,13 @@ function groupName(index) {
     case 6:
       return "物业";
   }
+}
+
+function isGroupOrderComplete(unorderedArray) {
+  let unorderedUserCount = new Array(0, 0, 0, 0, 0, 0, 0);
+  for(let i = 0; i < unorderedArray.length; i++) {
+    let currentUserGroup = unorderedArray[i][2];
+    unorderedUserCount[Number(currentUserGroup[currentUserGroup.length - 1])] ++;
+  }
+  return unorderedUserCount;
 }

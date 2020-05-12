@@ -1,12 +1,12 @@
 $(document).ready(function () {
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
-  let group = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? CONSTANTS.WORKGROUP.GROUP_ALL : currentUserGroup;
+  let groupType = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? CONSTANTS.WORKGROUP.GROUP_ALL : currentUserGroup;
   let date = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE);
   let orderedArray = new Array();
   let unorderedArray = new Array();
 
-  fetchDailyOrderStatus(date, group).done(function (dataList) {
+  fetchDailyOrderStatus(date, groupType).done(function (dataList) {
     orderedArray = new Array();
     if (currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
       orderedArray = dataList;
@@ -18,11 +18,13 @@ $(document).ready(function () {
         }
       }
     }
+
     if(orderedArray.length == 0) {
       setDisable($(".btn-print-all"));
       setDisable($(".btn-export-all"));
     }
-    fetchNoOrderUsers(date, group).done(function (dataList) {
+
+    fetchNoOrderUsers(date, groupType).done(function (dataList) {
       unorderedArray = dataList;
       collectOrderSum(orderedArray);
       configUI();
@@ -39,7 +41,8 @@ $(document).ready(function () {
       setGroupTablePrint();
       setAllTablePrint();
       setNoOrderTablePrint();
-      exportGroupTable("ds", date, unorderedArray.length == 0);
+
+      exportEvents("ds", date, unorderedArray);
     });
   });
 
@@ -198,5 +201,13 @@ $(document).ready(function () {
   function disableOutputButtons(index) {
     setDisable($(".tb-export-" + index));
     setDisable($(".tb-print-" + index));
+  }
+
+  function exportEvents(tablePrefix, date, unorderedArray) {
+    exportGroupTable(tablePrefix, date, unorderedArray);
+    exportUnorderedTable(tablePrefix, date, unorderedArray);
+    $(".btn-export-all").click(function() {
+      exportAllTables(tablePrefix, date, unorderedArray);
+    });
   }
 });

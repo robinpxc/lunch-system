@@ -408,7 +408,7 @@ include('common/session.php'); ?>
           </span>
         </div>
         <div class="card-body">
-          <table class="table table-no-order">
+          <table class="table table-no-order" id="ds-tb-unordered">
             <thead class="thead-light">
             <tr>
               <th scope="col">姓名</th>
