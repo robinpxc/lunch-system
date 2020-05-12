@@ -88,9 +88,6 @@ $(document).ready(function () {
     } else if(userRole === CONSTANTS.USER.ROLE.ADMIN_GROUP) {
       $("#admin-price-card").remove();
       $("#menu-config-card").remove();
-    } else if(userRole === CONSTANTS.USER.ROLE.ADMIN_MENU) {
-      $("#admin-card").remove();
-      $(".card-deck").append("<div class='card card-empty'>");
     }
   }
 

@@ -56,8 +56,9 @@ const CONSTANTS = {
       CN: {
         ADMIN_SUPER: "高级管理员",
         ADMIN_GROUP: "组管理员",
+        ADMIN_MENU: "菜单管理员",
         USER: "用户",
-        GUEST: "客饭"
+        GUEST: "临时人员"
       }
     },
   },

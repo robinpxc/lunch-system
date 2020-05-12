@@ -8,13 +8,18 @@ $(document).ready(function() {
 
   initUI();
   loadTables();
-  setGroupTablePrint();
-  setAllTablePrint();
 
   function initUI() {
+    removeTableOperationPart();
     addAdminHighlight($(".admin-item-menu"));
     setDateTitle();
     initTableGroup(currentUserRole, currentUserGroup, function() {});
+  }
+
+  function removeTableOperationPart() {
+    if(currentUserRole != CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+      $(".th-operation").remove();
+    }
   }
 
   function setDateTitle() {
@@ -33,6 +38,8 @@ $(document).ready(function() {
 
       // Step 02: set unordered operational user table
       setTableData(groupUserList);
+      setGroupTablePrint();
+      setAllTablePrint();
     });
   }
 
@@ -125,9 +132,12 @@ $(document).ready(function() {
           });
 
           // Set operation
-          $("." + userClassName).append("<td class='td-operation operation-" + userId + " no-print'>");
-          addOrderDropDown($(".operation-" + userId), userId, orderStatus, null);
-          addCountOperation($(".operation-" + userId), userId, orderStatus);
+          if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+            $("." + userClassName).append("<td class='td-operation operation-" + userId + " no-print'>");
+            $(".operation-" + userId).append("<div class='operation-container'>");
+            addOrderDropDown($(".operation-" + userId + " .operation-container"), userId, orderStatus, null);
+            addCountOperation($(".operation-" + userId + " .operation-container"), userId, orderStatus);
+          }
         } else {
           // Set order status
           checkOrderStatus(targetDate, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function(response) {
@@ -147,9 +157,12 @@ $(document).ready(function() {
               }
 
               // Set operation <td> (last)
-              $("." + userClassName).append("<td class='" + "td-operation operation-group operation-" + userId + " no-print'>");
-              addOrderDropDown($(".operation-" + userId), userId, orderStatus, orderNum);
-              addCountOperation($(".operation-" + userId), userId, orderStatus);
+              if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+                $("." + userClassName).append("<td class='" + "td-operation operation-group operation-" + userId + " no-print'>");
+                $(".operation-" + userId).append("<div class='operation-container'>");
+                addOrderDropDown($(".operation-" + userId + " .operation-container"), userId, orderStatus, orderNum);
+                addCountOperation($(".operation-" + userId + " .operation-container"), userId, orderStatus);
+              }
             });
           });
         }
@@ -163,7 +176,7 @@ $(document).ready(function() {
     // Set Outer dropdown container to <td>
     container.append("<div class='btn-group btn-operation dropdown-order " + orderDropdownClassName + "'>");
     // Set dropdown toggle button to dropdown container
-    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-sm dropdown-toggle dropdown-order-btn' id='order-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
+    $("." + orderDropdownClassName).append("<button type='button' class='btn btn-sm btn-order-operation dropdown-toggle dropdown-order-btn' id='order-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>选餐");
     let orderToggleBtn = $("#order-toggle-" + userId);
     addNewClass(orderToggleBtn, orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER ? "btn-outline-secondary" : "btn-outline-success");
     // Set dropdown option list to dropdown container
@@ -195,7 +208,7 @@ $(document).ready(function() {
       let countContainerClassName = "count-operation-" + userId;
       let dropdownListClassName = "count-dropdown-menu-" + userId;
       container.append("<div class='btn-group btn-operation dropdown-count " + countContainerClassName + "'>");
-      $("." + countContainerClassName).append("<button type='button' class='btn btn-sm dropdown-toggle dropdown-order-btn' id='count-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>");
+      $("." + countContainerClassName).append("<button type='button' class='btn btn-sm btn-order-operation dropdown-toggle dropdown-order-btn' id='count-toggle-" + userId + "' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>");
       let countToggleBtn = $("#count-toggle-" + userId);
       if(orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
         countToggleBtn.text("1 份");
@@ -306,7 +319,7 @@ $(document).ready(function() {
   function setOrderNumber(listItem, userId, orderStatus) {
     let lastIndex = listItem.attr("id").length - 1;
     let orderNum = listItem.attr("id")[lastIndex];
-    setOrder(userId, orderNum, orderStatus);
+    updateOrder(userId, orderNum, orderStatus);
   }
 
   function setOrderDropdownInactive(element) {
@@ -316,7 +329,7 @@ $(document).ready(function() {
   }
 
   // Order operation related functions
-  function setOrder(userId, orderNum, orderStatus) {
+  function updateOrder(userId, orderNum, orderStatus) {
     setDailyOrder(targetDate, userId, orderNum, orderStatus).done(function(isSuccess) {
       if(isSuccess) {
         if (orderStatus ==  CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {

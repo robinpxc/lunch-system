@@ -3,11 +3,10 @@ $(document).ready(function () {
   let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
-  configUI();
-  addGlobalListeners();
-  addFormButtonClickEvents();
-
   fetchGroupUserInfo(userRole, userGroup).done(function(data) {
+    configUI();
+    addGlobalListeners();
+    addFormButtonClickEvents();
     setData(data);
     $(".del-btn").click(function() {
       showConfirmDeleteDialog(this);
@@ -47,7 +46,8 @@ $(document).ready(function () {
 
   function initUI() {
     let groupNum = userGroup[5];
-    if (userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
+    if (userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+      removeHighLevelRoles();
       $(".nav-drop-down").remove();
       $(".table-card").each(function() {
         if(!$(this).hasClass("table-group-" + groupNum)) {
@@ -60,6 +60,15 @@ $(document).ready(function () {
           $(this).remove();
         }
       });
+      setDisable($("#new-user-group"));
+    }
+  }
+
+  function removeHighLevelRoles() {
+    if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+      $("#user-role option[value='admin-super']").remove();
+      $("#user-role option[value='admin-group']").remove();
+      $("#user-role option[value='admin-menu']").remove();
     }
   }
 
@@ -234,6 +243,8 @@ $(document).ready(function () {
         userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_SUPER;
       } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
         userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_GROUP;
+      } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_MENU;
       } else {
         userRoleCN = CONSTANTS.USER.ROLE.CN.USER;
       }
@@ -245,7 +256,6 @@ $(document).ready(function () {
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
       let modifyButtonId = "modify-btn-" + userId;
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<button type='button' class='btn modify-btn btn-light active' id='" + modifyButtonId + "'>修改");
-      // let modifyButton = "." + btnGroupClass + " " + ".btn-group-" + i + " .operation-buttons";
 
       if($("#current-user-id").val() == userId) {
         $("#" + modifyButtonId).addClass("current-user");

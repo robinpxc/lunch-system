@@ -24,10 +24,8 @@ $(document).ready(function () {
   }
 
   function initEditArea(initDate) {
-    
     let dateSelected = initDate;
     let menuStatus;
-
     if (dateSelected == null || dateSelected == undefined || dateSelected == '') {
       dateSelected = getDateToday();
     }
@@ -95,11 +93,14 @@ $(document).ready(function () {
   // Function to init menu functions
   function initMenuFunction() {
     if (menuStatus == "menu-exist") {
-      fetchMenu(dateSelected);
-      setModifyButtonClickListener();
-      setDeleteBtnClickListener(dateSelected);
+      fetchMenu(dateSelected).done(function(menuArray) {
+        backupArray = menuArray;
+        setMenuData(menuArray);
+        setModifyButtonClickListener();
+        setDeleteBtnClickListener(dateSelected);
+        setMenuEditable(menuStatus === "no-menu" ? true : false);
+      });
     }
-    setMenuEditable(menuStatus === "no-menu" ? true : false);
   }
 
   // Function to clear menu
@@ -135,8 +136,6 @@ $(document).ready(function () {
       }
     });
   }
-
-  
 
   // Set modify button click function
   function setModifyButtonClickListener() {
@@ -238,32 +237,6 @@ $(document).ready(function () {
         $(foodId).val(decodeUnicode(menuArray[i][j]).split(','));
       }
     }
-  }
-
-  // Function to fetch menu from server
-  function fetchMenu(date) {
-    $.ajax({
-      type: "POST",
-      url: "../php/functions/fetch-menu.php",
-      data: {
-        'date': date
-      },
-      dataType: "json",
-      timeout: 30000,
-      success: function (response) {
-        if (response != null) {
-          let menuArray = response;
-          backupArray = menuArray;
-          setMenuData(menuArray);
-        } else {
-          alert("获取菜单失败，请重试！");
-        }
-      },
-      error: function (errorMsg) {
-        alert("Ajax获取菜单数据错误，请刷新页面或者切换网络环境，或联系开发者");
-        $(".menu-title").html(errorMsg.responseText);
-      }
-    });
   }
 
   // Function to delete menu

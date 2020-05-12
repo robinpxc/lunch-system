@@ -25,6 +25,10 @@ body {
   height: 20px;
 }
 
+.box-shadow{
+  box-shadow: 3px 3px 15px 3px #e3e3e3;
+}
+
 /* Header css */
 .header,
 .navbar,

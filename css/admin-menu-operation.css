@@ -46,8 +46,12 @@
 
 .td-operation {
   width: 100%;
-  display: inline-flex;
   flex-wrap: nowrap;
+}
+
+.td-operation .operation-container {
+  width: 100%;
+  display: inline-flex;
 }
 
 
@@ -71,11 +75,20 @@
 }
 
 @media screen and (max-width: 768px) {
+  .table {
+    table-layout: auto !important;
+  }
+
+  .table th,
+  .table td {
+    min-width: 90px;
+  }
+
   .th-nickname, .td-nickname {
     display: none;
   }
 
-  .th-status, .td-status {
-    display: none;
-  }
+  /*.th-status, .td-status {*/
+  /*  display: none;*/
+  /*}*/
 }

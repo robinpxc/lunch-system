@@ -65,8 +65,8 @@ function updateMenu(menuList, date) {
 *   date:  [string] Will determine the date of order.
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchMenu(date, async) {
-  let menuArray = new Array();
+function fetchMenu(date) {
+  let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-menu.php",
@@ -74,19 +74,23 @@ function fetchMenu(date, async) {
       "date": date
     },
     dataType: "JSON",
-    async: async,
+    timeout: 30000,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       if (response != null) {
-        menuArray = response;
-      } else {
-        alert("菜单为空！");
+        deferred.resolve(response);
       }
     },
     error: function (errorMsg) {
       alert("获取菜单失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuArray;
+  return deferred.promise();
 }
 
 /*
