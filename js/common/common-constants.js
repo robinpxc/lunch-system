@@ -1,6 +1,10 @@
 const CONSTANTS = {
   WORKGROUP_COUNT: 7,
   ORDER_COUNT: 6,
+  MENU: {
+    COUNT: 5,
+    SUB_COUNT: 3
+  },
   TIME_LIMIT: {
     HOUR: 9,
     MINUTE: 30

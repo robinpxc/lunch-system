@@ -48,7 +48,6 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
   <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
   <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-menu-operation.js"></script>
 

@@ -15,22 +15,40 @@
   <title>菜单管理</title>
 
   <!-- Style sheets-->
-  <!-- Bootstrap core CSS -->
+  <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-  <!-- Custom styles-->
   <link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">
+  <link rel="stylesheet" href="../third-party/jquery-confirm/jquery-confirm.min.css">
+  <link href="../third-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <!-- Common-->
+  <link href="../css/common/common.css" rel="stylesheet">
+  <link href="../css/common/common-table-group.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/common/calendar.css">
+  <!-- Custom -->
+  <link href="../css/admin-menu-operation.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/admin-menu-management.css">
 
-
   <!--Java Script-->
+  <!-- Third Party -->
   <script type="text/javascript" src="../third-party/popper.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
+  <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
+  <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
+  <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-constants.js"></script>
+  <script type="text/javascript" src="../js/common/common-user.js"></script>
+  <script type="text/javascript" src="../js/common/common-order.js"></script>
+  <script type="text/javascript" src="../js/common/common-menu.js"></script>
+  <script type="text/javascript" src="../js/common/common-print.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
+  <script type="text/javascript" src="../js/common/table-group-script.js"></script>
   <script type="text/javascript" src="../js/common/schedule.js"></script>
+  <!-- Custom -->
   <script type="text/javascript" src="../js/admin-menu-management.js"></script>
 
 </head>
@@ -137,7 +155,7 @@
           </div>
 
           <!-- Combo 02 -->
-          <div class="form-row combo-container">
+          <div class="form-row combo-container mt-2">
             <div class="col-md-2 mb-3">
               <input type="text" class="form-control menu-label" value="套餐【 2 】" disabled="disabled">
             </div>
@@ -158,7 +176,7 @@
           </div>
 
           <!-- Combo 03 -->
-          <div class="form-row combo-container">
+          <div class="form-row combo-container mt-2">
             <div class="col-md-2 mb-3">
               <input type="text" class="form-control menu-label" value="套餐【 3 】" disabled="disabled">
             </div>
@@ -179,7 +197,7 @@
           </div>
 
           <!-- Combo 04 -->
-          <div class="form-row combo-container">
+          <div class="form-row combo-container mt-2">
             <div class="col-md-2 mb-3">
               <input type="text" class="form-control menu-label" value="套餐【 4 】" disabled="disabled">
             </div>
@@ -200,7 +218,7 @@
           </div>
 
           <!-- Combo 05 -->
-          <div class="form-row combo-container">
+          <div class="form-row combo-container mt-2">
             <div class="col-md-2 mb-3">
               <input type="text" class="form-control menu-label" value="套餐【 5 】" disabled="disabled">
             </div>
@@ -219,41 +237,8 @@
               </div>
             </div>
           </div>
-
-          <!-- Combo 06 -->
-          <div class="form-row combo-container">
-            <div class="col-md-2 mb-3">
-              <input type="text" class="form-control menu-label" value="水饺【 6 】" disabled="disabled">
-            </div>
-
-            <div class="form-row col-md-10 combo-01">
-              <div class="col-md-12 mb-3">
-                <input type="text" class="form-control" id="food-dumplings" placeholder="干捞水饺🥟" disabled="disabled">
-              </div>
-            </div>
-          </div>
-
-          <!-- Combo 07 -->
-<!--          <div class="form-row combo-container">-->
-<!--            <div class="col-md-2 mb-3">-->
-<!--              <input type="text" class="form-control menu-label" value="辣餐【 7 】" disabled="disabled">-->
-<!--            </div>-->
-<!---->
-<!--            <div class="form-row col-md-10 combo-01">-->
-<!--              <div class="col-md-4 mb-3">-->
-<!--                <input type="text" class="form-control combo-content" id="food-07-01" placeholder="一号菜" required>-->
-<!--              </div>-->
-<!--              <div class="col-md-4 mb-3">-->
-<!--                <input type="text" class="form-control combo-content" id="food-07-02" placeholder="二号菜" required>-->
-<!--              </div>-->
-<!--              <div class="col-md-4 mb-3">-->
-<!--                <div class="input-group">-->
-<!--                  <input type="text" class="form-control combo-content" id="food-07-03" placeholder="三号菜" required>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-
+          
+          
           <div class="operation-btn-group menu-update-btn-group form-row col-md-12" role="group">
             <button type="button" class="btn btn-success col-md-6 mb-2" id="btn-update-menu" disabled="disabled">创建菜单</button>
             <button type="button" class="btn btn-danger col-md-6 mb-2" id="btn-clear-menu" disabled="disabled">清空菜单</button>

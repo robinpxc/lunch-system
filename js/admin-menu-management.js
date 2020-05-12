@@ -1,13 +1,13 @@
 $(document).ready(function () {
-  var backupArray = new Array();
+  let backupArray = new Array();
   loadCalendar();
-  var currentDateButton = $(".currentDate[title='" + $.cookie('selected-date') + "']");
+  let currentDateButton = $(".currentDate[title='" + $.cookie('selected-date') + "']");
   addNewClass(currentDateButton, "selected-style");
 
   // Function to load calendar
   function loadCalendar() {
-    var savedDate = $.cookie('selected-date');
-    var initDate = (savedDate == null || savedDate == undefined || savedDate == '') ? getDateToday() : savedDate;
+    let savedDate = $.cookie('selected-date');
+    let initDate = (savedDate == null || savedDate == undefined || savedDate == '') ? getDateToday() : savedDate;
     
     initEditArea(initDate);
 
@@ -15,7 +15,7 @@ $(document).ready(function () {
       el: '#schedule-box',
       clickCb: function (y,m,d) {
         if(document.getElementById("date-value")) {
-          var clickedDate = formatDate(y, m, d);
+          let clickedDate = formatDate(y, m, d);
           $.cookie('selected-date',clickedDate);
           window.location.reload();
         }
@@ -25,8 +25,8 @@ $(document).ready(function () {
 
   function initEditArea(initDate) {
     
-    var dateSelected = initDate;
-    var menuStatus;
+    let dateSelected = initDate;
+    let menuStatus;
 
     if (dateSelected == null || dateSelected == undefined || dateSelected == '') {
       dateSelected = getDateToday();
@@ -65,7 +65,7 @@ $(document).ready(function () {
 
   // Judge if all required input has been filled
   function isRequiredFieldFinished() {
-    var isInputFinished = true;
+    let isInputFinished = true;
     $(".combo-content").each(function () {
       if ($(this).val() === "") {
         isInputFinished = false;
@@ -76,7 +76,7 @@ $(document).ready(function () {
 
   // To judge if at least one field is not empty
   function isFiledEmpty() {
-    var isFiledEmpty = true;
+    let isFiledEmpty = true;
     $(".combo-content").each(function () {
       if ($(this).val() != "") {
         isFiledEmpty = false;
@@ -97,9 +97,9 @@ $(document).ready(function () {
   // Function to init menu UI
   function initMenuUI() {
     clearMenu();
-    var updateBtnGroup = $(".menu-update-btn-group");
-    var modifyBtnGroup = $(".menu-modify-btn-group");
-    var delBtn = $("#btn-delete-menu");
+    let updateBtnGroup = $(".menu-update-btn-group");
+    let modifyBtnGroup = $(".menu-modify-btn-group");
+    let delBtn = $("#btn-delete-menu");
 
     setMenuTitle();
     $("#btn-update-menu").text(menuStatus == "no-menu" ? "创建菜单" : "更新菜单");
@@ -127,7 +127,7 @@ $(document).ready(function () {
 
   // Function to set menu title span based on menu status
   function setMenuTitle() {
-    var menuTitle = $(".menu-title");
+    let menuTitle = $(".menu-title");
     menuTitle.text(menuStatus === "no-menu" ? "尚未创建菜单，添加内容并创建新菜单" : "已创建菜单，点击黄色按钮修改菜单");
     menuTitle.css("font-weight", "bold");
     menuTitle.css("color", menuStatus === "no-menu" ? "red" : "green");
@@ -181,18 +181,17 @@ $(document).ready(function () {
 
   // Set update button click listener
   function setUpdateBtnClickListener() {
-    var menuArray = new Array(5);
+    let menuArray = new Array(5);
     $("#btn-update-menu").click(function () {
-      for (var i = 0; i < 5; i++) {
-        menuArray[i] = new Array(3);
-        for (var j = 0; j < 3; j++) {
-          var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+      for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
+        menuArray[i] = new Array(CONSTANTS.MENU.SUB_COUNT);
+        for (let j = 0; j < CONSTANTS.MENU.SUB_COUNT; j++) {
+          let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
           menuArray[i][j] = $(foodId).val();
         }
       }
       updateMenu(menuArray, dateSelected);
       menuArray = null;
-      
     });
   }
 
@@ -229,6 +228,7 @@ $(document).ready(function () {
   // Set discard button click listener
   function setDiscardButtonClickListener() {
     $("#btn-discard-menu").click(function () {
+      initMenuUI();
       setMenuData(backupArray);
       hideAndDisableElement($(this));
       unhideAndEnableElement($("#btn-modify-menu"));
@@ -236,16 +236,15 @@ $(document).ready(function () {
       // Change delete button style and size
       removeOldClass($("#btn-delete-menu"), "col-md-12");
       addNewClass($("#btn-delete-menu"), "col-md-6");
-      initMenuUI();
     });
   }
 
   // -------------------------- Menu operation functions ------------------------
   // Function to set menu data
   function setMenuData(menuArray) {
-    for (var i = 0; i < 5; i++) {
-      for (var j = 0; j < 3; j++) {
-        var foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+    for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
+      for (let j = 0; j < CONSTANTS.MENU.SUB_COUNT; j++) {
+        let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
         $(foodId).val(decodeUnicode(menuArray[i][j]).split(','));
       }
     }
@@ -263,7 +262,7 @@ $(document).ready(function () {
       timeout: 30000,
       success: function (response) {
         if (response != null) {
-          var menuArray = response;
+          let menuArray = response;
           backupArray = menuArray;
           setMenuData(menuArray);
         } else {
