@@ -1,32 +1,43 @@
-function exportGroupTable(tablePrefix, date, unorderedArray) {
+function exportGroupTable(tablePrefix, date, unorderedArray, year, month) {
   for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
-    let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
+    let tbId = tablePrefix + "-tb-" + i;
     $(".tb-export-" + i).click(function () {
       switch (tablePrefix) {
         case "ds":
+          let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
           let weekday = new Date(date).getDay();
-          let tbId = tablePrefix + "-tb-" + i;
           let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i);
           ExportToExcel(tbId, fileName);
+          break;
+        case "ms":
+          let filename = "[" + year + "年" + month + "月" + "账单" + "]" + "-" + groupName(i);
+          ExportToExcel(tbId, filename);
           break;
       }
     });
   }
 }
 
-function exportAllTables(tablePrefix, date, unorderedArray) {
+function exportAllTables(tablePrefix, date, unorderedArray, year, month) {
   let weekday = new Date(date).getDay();
   switch (tablePrefix) {
     case "ds":
       for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
-        let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
-
         let tbId = tablePrefix + "-tb-" + i;
+        let isComplete = isGroupOrderComplete(unorderedArray)[i] === 0;
         let fileName = (isComplete ? "【完整】" : "【不完整】") + "[" + date + " "+ getWeekDayCN(weekday) +"]" + groupName(i);
         ExportToExcel(tbId, fileName);
       }
       ExportToExcel("ds-tb-unordered",  "[" + date + " "+ getWeekDayCN(weekday) +"]" + "未点餐名单");
       break;
+    case "ms":
+      for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+        let tbId = tablePrefix + "-tb-" + i;
+        let filename = "[" + year + "年" + month + "月" + "账单" + "]" + "-" + groupName(i);
+        ExportToExcel(tbId, filename);
+      }
+      break;
+
   }
 
 }
@@ -44,7 +55,7 @@ function ExportToExcel(tbId, filename) {
     "file_name": filename + ".xlsx",
     "src_id": tbId,
     "show_header": true,
-    "type": "table"
+    "type": "normal"
   });
   excel.generate();
 }

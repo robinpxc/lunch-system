@@ -35,7 +35,9 @@
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jQuery.print.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
-  <script type="text/javascript" src="../third-party/jquery.table2excel.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
+  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
@@ -43,9 +45,7 @@
   <script type="text/javascript" src="../js/common/common-order.js"></script>
   <script type="text/javascript" src="../js/common/common-print.js"></script>
   <script type="text/javascript" src="../js/common/table-group-script.js"></script>
-  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/excel-gen.js"></script>
-  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/jszip.min.js"></script>
-  <script type="text/javascript" src="../third-party/js-excel-generator/scripts/FileSaver.js"></script>
+  <script type="text/javascript" src="../js/common/common-export-excel.js"></script>
   <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-monthly-statistic.js"></script>
@@ -271,6 +271,8 @@
           <a class="dropdown-item nav-dropdown-item active" href="#" id="group-all">显示：全部显示</a>
         </div>
       </div>
+      <button class="btn btn-outline-primary btn-print-all">全部打印</button>
+      <button class="btn btn-outline-primary btn-export-all">全部导出</button>
     </div>
     <div class="table-content d-block">
       <!-- 巡察办表格 -->
@@ -288,7 +290,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -314,7 +316,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -340,7 +342,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -366,7 +368,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -392,7 +394,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐总数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -418,7 +420,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>
@@ -444,7 +446,7 @@
             <tr>
               <th scope="col">姓名</th>
               <th scope="col">ID</th>
-              <th scope="col">本月订餐数（份）</th>
+              <th scope="col">该月订餐数（份）</th>
               <th scope="col">价格总计（元）</th>
             </tr>
             </thead>

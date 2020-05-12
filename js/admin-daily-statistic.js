@@ -204,10 +204,10 @@ $(document).ready(function () {
   }
 
   function exportEvents(tablePrefix, date, unorderedArray) {
-    exportGroupTable(tablePrefix, date, unorderedArray);
-    exportUnorderedTable(tablePrefix, date, unorderedArray);
+    exportGroupTable(tablePrefix, date, unorderedArray, null, null);
+    exportUnorderedTable(tablePrefix, date, unorderedArray, null, null);
     $(".btn-export-all").click(function() {
-      exportAllTables(tablePrefix, date, unorderedArray);
+      exportAllTables(tablePrefix, date, unorderedArray, null, null);
     });
   }
 });

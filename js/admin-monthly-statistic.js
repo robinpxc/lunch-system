@@ -25,6 +25,8 @@ $(document).ready(function(){
       setDataToTable();
       addSummaryForGroups();
       setGroupTablePrint();
+      setAllTablePrint();
+      exportEvents("ms", year, month);
     });
   });
 
@@ -110,6 +112,13 @@ $(document).ready(function(){
           alert(2);
           break;
       }
+    });
+  }
+
+  function exportEvents(tablePrefix, year, month) {
+    exportGroupTable(tablePrefix, null, null, year, month);
+    $(".btn-export-all").click(function() {
+      exportAllTables(tablePrefix, null, null, year, month);
     });
   }
 
