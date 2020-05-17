@@ -152,22 +152,28 @@ include('common/session.php');
   <div class="container main-content">
     <div class="card-deck mb-5 text-center">
       <!-- Menu card today-->
-      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow" id="menu-card-today">
+      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow menu-card" id="menu-card-today">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
           <h4 class="order-info" id="order-info-today"></h4>
         </div>
+        <div class="card-footer">
+          <button class="btn btn-primary btn-order" id="btn-order-today">开始点餐</button>
+        </div>
       </div>
 
       <!-- Menu card tomorrow -->
-      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow" id="menu-card-tomorrow">
+      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow menu-card" id="menu-card-tomorrow">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
           <h4 class="order-info" id="order-info-tomorrow"></h4>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary btn-order" id="btn-order-tomorrow">开始点餐</button>
         </div>
       </div>
       

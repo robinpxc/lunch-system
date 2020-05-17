@@ -23,9 +23,9 @@ include('common/session.php');
   <!-- Common-->
   <link href="../css/common/common.css" rel="stylesheet">
   <link href="../css/common/common-table-group.css" rel="stylesheet">
-  <link href="../css/admin-user-management.css" rel="stylesheet">
-  <!-- Custom -->
   <link href="../third-party/fontawesome/css/all.min.css" rel="stylesheet">
+  <!-- Custom -->
+  <link href="../css/admin-user-management.css" rel="stylesheet">
 
   <!--Java Script-->
   <!-- Third Party -->

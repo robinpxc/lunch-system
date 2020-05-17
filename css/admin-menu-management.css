@@ -8,6 +8,14 @@
   margin-right: 10px;
 }
 
+.group-input {
+  width: 100%;
+}
+
+.form-row input {
+  display: inline-block;
+}
+
 .today {
   font-size: 16px;
   font-weight: bold;

@@ -66,6 +66,15 @@
   height: 45px;
 }
 
+.menu-card .card-footer {
+  margin: 0;
+  padding: 5px 5px;
+}
+
+.menu-card .card-footer button {
+  width: 100%;
+}
+
 #menu-config-card:hover {
   border-width: 4px;
   cursor: pointer;

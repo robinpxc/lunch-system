@@ -1,8 +1,8 @@
 const CONSTANTS = {
   WORKGROUP_COUNT: 7,
-  ORDER_COUNT: 6,
+  ORDER_COUNT: 7,
   MENU: {
-    COUNT: 5,
+    COUNT: 7,
     SUB_COUNT: 3,
     CONFIRMATION: {
       TYPE:  {
@@ -13,6 +13,10 @@ const CONSTANTS = {
         CONFIRMED: "confirmed",
         NOT_CONFIRMED: "not-confirmed"
       }
+    },
+    STATUS: {
+      EXIST: "menu-exist",
+      NO_MENU: "no-menu"
     }
   },
   TIME_LIMIT: {
@@ -42,9 +46,8 @@ const CONSTANTS = {
       KEY_ID_MODIFIED: "USER_ID_MODIFIED",
       KEY_NAME: "USERNAME_CURRENT",
       KEY_ROLE: "USER_ROLE_CURRENT",
-      KEY_GROUP: "USER_GROUP_CURRENT"
+      KEY_GROUP: "USER_GROUP_CURRENT",
     },
-
     STATISTICS: {
       KEY_DATE: "DATE_STATISTICS",
       KEY_YEAR: "KEY_YEAR",
@@ -52,7 +55,9 @@ const CONSTANTS = {
       KEY_DETAIL_ID: "KEY_DETAIL_ID",
       KEY_DETAIL_NAME: "KEY_DETAIL_NAME"
     },
-
+    ORDER: {
+      KEY_DATE: "KEY_ORDER_DATE"
+    },
     KEY_DATE: "DATE_TYPE"
   },
 
@@ -118,12 +123,7 @@ const CONSTANTS = {
       NOT_ORDER: "NOT_ORDER"
     },
     CONTENT: {
-      ORDER_1: 1,
-      ORDER_2: 2,
-      ORDER_3: 3,
-      ORDER_4: 4,
-      ORDER_5: 5,
-      NO_ORDER: 6
+      NO_ORDER: 8
     },
     INFO_TEXT: {
       NO_ORDER: "不订餐"

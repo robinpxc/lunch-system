@@ -31,6 +31,34 @@ function checkMenuStatus(date) {
   return deferred.promise();
 }
 
+// Function to fetch menu from server
+function fetchMenuList(date) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/fetch-menu.php",
+    data: {
+      'date': date
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      if (response != null) {
+        deferred.resolve(response);
+      }
+    },
+    error: function (errorMsg) {
+      alert("获取状态失败，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
 // Function to create / update menu
 function updateMenu(menuList, date) {
   let deferred = $.Deferred();

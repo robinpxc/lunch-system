@@ -1,6 +1,7 @@
 $(document).ready(function () {
   let backupArray = new Array();
   loadCalendar();
+  initTableForm();
   let currentDateButton = $(".currentDate[title='" + $.cookie('selected-date') + "']");
   addNewClass(currentDateButton, "selected-style");
 
@@ -21,6 +22,22 @@ $(document).ready(function () {
         }
       }
     });
+  }
+
+  function initTableForm() {
+    let form = $(".group-input");
+    for(let i = 1; i <= CONSTANTS.MENU.COUNT; i++) {
+      form.append("<div class='form-row combo-container combo-container-" + i + "'>");
+      let combo = $(".combo-container-" + i);
+      combo.append("<div class='col-md-2 mb-3 combo-head-" + i + "'>");
+      $(".combo-head-" + i).append("<input type='text' class='form-control menu-label' value='套餐【" + i + "】' disabled='disabled'>");
+      combo.append("<div class='form-row col-md-10 combo-" + i + "'>");
+
+      for(let j = 1; j <= CONSTANTS.MENU.SUB_COUNT; j++) {
+        $(".combo-" + i).append("<div class='col-md-4 mb-3 combo-item-" + j + "'>");
+        $(".combo-item-" + j).append("<input type='text' class='form-control combo-content' id='food-" + i + "-" + j +"' placeholder='" + "【" + j + "】" + "号菜' required>");
+      }
+    }
   }
 
   function initEditArea(initDate) {
@@ -169,7 +186,7 @@ $(document).ready(function () {
       for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
         menuArray[i] = new Array(CONSTANTS.MENU.SUB_COUNT);
         for (let j = 0; j < CONSTANTS.MENU.SUB_COUNT; j++) {
-          let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+          let foodId = "#" + "food" + "-" + (i + 1) + "-" + (j + 1);
           menuArray[i][j] = $(foodId).val();
         }
       }
@@ -233,7 +250,10 @@ $(document).ready(function () {
   function setMenuData(menuArray) {
     for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
       for (let j = 0; j < CONSTANTS.MENU.SUB_COUNT; j++) {
-        let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+        let foodId = "#" + "food" + "-" + (i + 1) + "-" + (j + 1);
+        if(menuArray[i][j] == null) {
+          menuArray[i][j] = "";
+        }
         $(foodId).val(decodeUnicode(menuArray[i][j]).split(','));
       }
     }

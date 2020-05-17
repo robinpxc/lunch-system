@@ -4,6 +4,8 @@ $(document).ready(function () {
   let formattedDateTomorrow = getDateTomorrow();
   let weekdayToday = new Date().getDay();
   let weekdayTomorrow = weekdayToday == 6 ? 0 : weekdayToday + 1;
+  let menuStatusToday = null;
+  let menuStatusTomorrow = null;
   let orderStatusToday = null;
   let orderStatusTomorrow = null;
   let confirmationToday = null;
@@ -15,14 +17,20 @@ $(document).ready(function () {
   setManageButtonEvents();
 
   // Function calls
-  checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
-    orderStatusToday = response;
-    checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
-      orderStatusTomorrow = response;
-      getOrderPrice().done(function(priceData) {
-        oriPrice = Number(priceData[0][1]).toFixed(2);
-        discountPrice = Number(priceData[1][1]).toFixed(2);
-        initUI();
+  checkMenuStatus(formattedDateToday).done(function(response) {
+    menuStatusToday = response;
+    checkMenuStatus(formattedDateTomorrow).done(function(response) {
+      menuStatusTomorrow = response;
+      checkOrderStatus(formattedDateToday, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
+        orderStatusToday = response;
+        checkOrderStatus(formattedDateTomorrow, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, "session", true).done(function(response) {
+          orderStatusTomorrow = response;
+          getOrderPrice().done(function(priceData) {
+            oriPrice = Number(priceData[0][1]).toFixed(2);
+            discountPrice = Number(priceData[1][1]).toFixed(2);
+            initUI();
+          });
+        });
       });
     });
   });
@@ -31,6 +39,7 @@ $(document).ready(function () {
   function initUI() {
     initCardToday();
     initCardTomorrow();
+    orderBtnClickEvents();
     setConfirmationStatus();
     initPriceModifyComponent(oriPrice, discountPrice);
   }
@@ -39,25 +48,35 @@ $(document).ready(function () {
     let cardToday = $("#menu-card-today");
     $(".card-title-today span").text(getWeekDayCN(weekdayToday));
     setWeekendTitleStyle(true, weekdayToday);
-    if (orderStatusToday == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
-      updateCardStatus(cardToday, true);
-      setCardPreview(true, formattedDateToday);
+    if(menuStatusToday == CONSTANTS.MENU.STATUS.NO_MENU) {
+      $("#order-info-today").text("没有菜单");
+      $("#menu-card-today .card-footer").remove();
     } else {
-      updateCardStatus(cardToday, false);
-      setCardPreview(false, formattedDateToday);
+      if (orderStatusToday == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
+        updateCardStatus(cardToday, true);
+        setCardPreview(true, formattedDateToday);
+      } else {
+        updateCardStatus(cardToday, false);
+        setCardPreview(false, formattedDateToday);
+      }
     }
   }
 
   function initCardTomorrow() {
     let cardTomorrow = $("#menu-card-tomorrow");
     $(".card-title-tomorrow span").text(getWeekDayCN(weekdayTomorrow));
-    setWeekendTitleStyle(false, weekdayTomorrow);
-    if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
-      updateCardStatus(cardTomorrow, true);
-      setCardPreview(true, formattedDateTomorrow);
+    if(menuStatusTomorrow == CONSTANTS.MENU.STATUS.NO_MENU) {
+      $("#order-info-tomorrow").text("没有菜单");
+      $("#menu-card-tomorrow .card-footer").remove();
     } else {
-      updateCardStatus(cardTomorrow, false);
-      setCardPreview(false, formattedDateTomorrow);
+      setWeekendTitleStyle(false, weekdayTomorrow);
+      if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
+        updateCardStatus(cardTomorrow, true);
+        setCardPreview(true, formattedDateTomorrow);
+      } else {
+        updateCardStatus(cardTomorrow, false);
+        setCardPreview(false, formattedDateTomorrow);
+      }
     }
   }
 
@@ -230,6 +249,24 @@ $(document).ready(function () {
     jqWarning("跳转提示", "今日订餐已<span class='emphasised-red'>无法修改</span>，将直接跳转到<span class='emphasised-red'>【明日】</span>订餐界面", function() {
       $(".btn-orange").attr("id", "single-warning");
       jumpTo("admin-menu-operation.php");
+    });
+  }
+
+  function orderBtnClickEvents() {
+    $(".btn-order").each(function() {
+      $(this).click(function() {
+        switch ($(this).attr("id")) {
+          case "btn-order-today":
+            $.cookie(CONSTANTS.COOKIE.ORDER.KEY_DATE, getDateToday());
+            jumpTo("order-menu.php");
+            break;
+          case "btn-order-tomorrow":
+            $.cookie(CONSTANTS.COOKIE.ORDER.KEY_DATE, getDateTomorrow());
+            jumpTo("order-menu.php");
+            break;
+        }
+      });
+
     });
   }
 

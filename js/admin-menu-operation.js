@@ -207,7 +207,7 @@ $(document).ready(function () {
     // Set dropdown option list to dropdown container
     $("." + orderDropdownClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
     // Set dropdown list content.
-    for (let i = 1; i <= CONSTANTS.ORDER_COUNT; i++) {
+    for (let i = 1; i <= CONSTANTS.MENU.COUNT; i++) {
       let orderNumText = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "不订餐" : i + " 号";
       let itemClassName = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "dropdown-item no-order-item" : "dropdown-item";
       $("." + dropdownListClassName).append("<a class='" + itemClassName + "' href='#' id='order-" + i + "'>" + orderNumText);
