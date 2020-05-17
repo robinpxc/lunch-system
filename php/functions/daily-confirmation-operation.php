@@ -6,11 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $group = $_POST['group'];
   $status = $_POST['status'];
   $sql = "";
+  $checkSql = "SELECT `menu_confirm`.`confirm_status` FROM `menu_confirm` WHERE `menu_confirm`.`date` = '$date' AND `menu_confirm`.`group` = '$group'";
 
   if($type == "CHECK") {
-    $sql = "SELECT `menu_confirm`.`confirm_status` FROM `menu_confirm` WHERE `menu_confirm`.`date` = '$date' AND `menu_confirm`.`group` = '$group'";
+    $sql = $checkSql;
   } else if($type == "UPDATE") {
-    $sql = "UPDATE `menu_confirm` SET `menu_confirm`.`confirm_status` = '$status' WHERE `menu_confirm`.`date` = '$date' AND `menu_confirm`.`group` = '$group'";
+    if(mysqli_query($mysqlConnection, $checkSql)->num_rows == 0) {
+      $sql = "INSERT INTO `menu_confirm`(`date`, `group`, `confirm_status`) VALUES('$date', '$group', '$status')";
+    } else {
+      $sql = "UPDATE `menu_confirm` SET `menu_confirm`.`confirm_status` = '$status' WHERE `menu_confirm`.`date` = '$date' AND `menu_confirm`.`group` = '$group'";
+    }
   }
 
   if($sql != "") {

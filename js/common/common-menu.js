@@ -142,7 +142,7 @@ function menuConfirmOperation(type, date, group, status) {
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
-    url: "../php/functions/check-daily-confirmation.php",
+    url: "../php/functions/daily-confirmation-operation.php",
     data: {
       "type": type,
       "date": date,
@@ -168,19 +168,15 @@ function menuConfirmOperation(type, date, group, status) {
   return deferred.promise();
 }
 
-function checkMenuConfirmation(date, group) {
-  let status = "";
+function checkMenuConfirmation(date, group, func) {
   menuConfirmOperation(CONSTANTS.MENU.CONFIRMATION.TYPE.CHECK, date, group, "").done(function(confirmStatus) {
-    status = confirmStatus;
+    func(confirmStatus);
   });
-  return status;
 }
 
-function updateMenuConfirmation(date, group, status) {
-  let result = "";
+function updateMenuConfirmation(date, group, status, func) {
   menuConfirmOperation(CONSTANTS.MENU.CONFIRMATION.TYPE.UPDATE, date, group, status).done(function(updateStatus) {
-    result =  updateStatus;
+    func(updateStatus);
   });
-  return result;
 }
 

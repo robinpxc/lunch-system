@@ -49,10 +49,6 @@
   color: red;
 }
 
-.header-full-order {
-  color: green !important;
-}
-
 .table-group .table-content .table td {
   border-top-color: lightgray;
   vertical-align: middle;

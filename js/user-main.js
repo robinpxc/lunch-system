@@ -6,8 +6,8 @@ $(document).ready(function () {
   let weekdayTomorrow = weekdayToday == 6 ? 0 : weekdayToday + 1;
   let orderStatusToday = null;
   let orderStatusTomorrow = null;
-  let confirmationToday = checkMenuConfirmation(getDateToday(), group);
-  let confirmationTomorrow = checkMenuConfirmation(getDateTomorrow(), group);
+  let confirmationToday = null;
+  let confirmationTomorrow = null;
   let oriPrice;
   let discountPrice;
 
@@ -62,37 +62,42 @@ $(document).ready(function () {
   }
 
   function setConfirmationStatus() {
-    if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
-      replaceClass($("#admin-card"), "border-secondary", "border-success");
-      $("#admin-card .card-info").text("点餐均已被上报");
-      setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
-    } else if((confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) || (confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED)) {
-      replaceClass($("#admin-card"), "border-secondary", "border-warning");
-      if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED ) {
-        $("#admin-card .card-info").text("【明日】点餐未上报！");
-        setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
-      } else if(confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
-        if(isOrderTodayTimeout()) {
+    checkMenuConfirmation(getDateToday(), group, function(todayStatus) {
+      confirmationToday = todayStatus;
+      checkMenuConfirmation(getDateTomorrow(), group, function(tomorrowStatus) {
+        confirmationTomorrow = tomorrowStatus;
+        if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
           replaceClass($("#admin-card"), "border-secondary", "border-success");
-          $("#admin-card .card-info").text("【点餐】均已上报");
+          $("#admin-card .card-info").text("点餐已完成");
           setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+        } else if((confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) || (confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED)) {
+          replaceClass($("#admin-card"), "border-secondary", "border-warning");
+          if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED ) {
+            $("#admin-card .card-info").text("【明日】点餐未上报！");
+            setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
+          } else if(confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+            if(isOrderTodayTimeout()) {
+              $("#admin-card .card-info").text("【点餐】已上报");
+              setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+              replaceClass($("#admin-card"), "border-warning", "border-success");
+            } else {
+              $("#admin-card .card-info").text("【今日】点餐未上报！");
+              setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+            }
+          }
         } else {
-          $("#admin-card .card-info").text("【今日】点餐未上报！");
-          setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+          if(isOrderTodayTimeout()) {
+            replaceClass($("#admin-card"), "border-secondary", "border-warning");
+            $("#admin-card .card-info").text("【明日】点餐未上报！");
+            setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
+          } else {
+            replaceClass($("#admin-card"), "border-secondary", "border-danger");
+            setAdminCardStyle(CONSTANTS.COLOR.RED_DANGER);
+            $("#admin-card .card-info").text("【两日】点餐未上报");
+          }
         }
-      }
-    } else {
-      if(isOrderTodayTimeout()) {
-        replaceClass($("#admin-card"), "border-secondary", "border-warning");
-        $("#admin-card .card-info").text("【明日】点餐未上报！");
-        setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
-      } else {
-        replaceClass($("#admin-card"), "border-secondary", "border-danger");
-        setAdminCardStyle(CONSTANTS.COLOR.RED_DANGER);
-        $("#admin-card .card-info").text("【两日】点餐未上报");
-      }
-    }
-    //$("#admin-card .card-info").css("font-weight", "bold");
+      });
+    });
   }
 
   function setWeekendTitleStyle(isToday, weekDay) {

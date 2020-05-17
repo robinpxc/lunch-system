@@ -76,7 +76,8 @@ include('common/session.php');
           </span>
         </div>
       </span>
-    <button class="btn btn-danger dropdown-toggle btn-sys-config" type="button" data-toggle="collapse" data-target="#nav-bar-list"
+    <button class="btn btn-danger dropdown-toggle btn-sys-config" type="button" data-toggle="collapse"
+            data-target="#nav-bar-list"
             aria-controls="nav-bar-list" aria-expanded="false" aria-label="Toggle navigation">
       <span>系统操作</span>
     </button>
@@ -124,14 +125,16 @@ include('common/session.php');
           </li>
         </ul>
       </div>
-      
+
       <div class="admin-nav">
         <div class="large-divider"></div>
         <ul class="navbar-nav mr-auto">
           <li class="nav-title active">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
-                  <path d="M512 528.896c132.096 0 239.104-158.208 239.104-290.304C751.104 107.008 644.096 0 512 0S272.896 107.008 272.896 239.104c0 131.584 107.008 289.792 239.104 289.792zM834.048 667.648L727.552 614.4l-78.848 277.504s-4.096 28.672-36.352 28.672-46.08-28.672-46.08-28.672V665.6s0-51.2-52.224-51.2-54.272 51.2-54.272 51.2v226.304s0 24.064-40.448 24.064-42.496-24.064-42.496-24.064L296.448 614.4l-106.496 53.248c-57.856 28.672-104.448 104.448-104.448 168.96v70.656c0 64.512 52.224 116.736 116.736 116.736h619.52c64.512 0 116.736-52.224 116.736-116.736v-70.656c0-64.512-46.592-140.288-104.448-168.96z" p-id="1154" fill="#ff0000"></path>
+                  <path
+                      d="M512 528.896c132.096 0 239.104-158.208 239.104-290.304C751.104 107.008 644.096 0 512 0S272.896 107.008 272.896 239.104c0 131.584 107.008 289.792 239.104 289.792zM834.048 667.648L727.552 614.4l-78.848 277.504s-4.096 28.672-36.352 28.672-46.08-28.672-46.08-28.672V665.6s0-51.2-52.224-51.2-54.272 51.2-54.272 51.2v226.304s0 24.064-40.448 24.064-42.496-24.064-42.496-24.064L296.448 614.4l-106.496 53.248c-57.856 28.672-104.448 104.448-104.448 168.96v70.656c0 64.512 52.224 116.736 116.736 116.736h619.52c64.512 0 116.736-52.224 116.736-116.736v-70.656c0-64.512-46.592-140.288-104.448-168.96z"
+                      p-id="1154" fill="#ff0000"></path>
                 </svg>
                 <span class="dropdown-desc admin-nav-title">&nbsp;管理员选项</span>
               </span>
@@ -142,7 +145,9 @@ include('common/session.php');
             <a class="nav-link" href="./admin-user-management.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
-                  <path d="M416 512a224 224 0 1 1 0-448 224 224 0 0 1 0 448zM0 960c0-247.424 186.24-448 416-448s416 200.576 416 448H0z m886.784-128a448.768 448.768 0 0 0-298.752-334.72A255.808 255.808 0 0 0 704 282.88a255.36 255.36 0 0 0-85.504-190.912c7.04-0.64 14.272-1.024 21.504-1.024 121.216 0 219.456 99.328 219.456 221.824a222.336 222.336 0 0 1-90.56 179.584C917.568 543.936 1024 680.96 1024 832h-137.216z" p-id="2710" fill="#BD2130"></path>
+                  <path
+                      d="M416 512a224 224 0 1 1 0-448 224 224 0 0 1 0 448zM0 960c0-247.424 186.24-448 416-448s416 200.576 416 448H0z m886.784-128a448.768 448.768 0 0 0-298.752-334.72A255.808 255.808 0 0 0 704 282.88a255.36 255.36 0 0 0-85.504-190.912c7.04-0.64 14.272-1.024 21.504-1.024 121.216 0 219.456 99.328 219.456 221.824a222.336 222.336 0 0 1-90.56 179.584C917.568 543.936 1024 680.96 1024 832h-137.216z"
+                      p-id="2710" fill="#BD2130"></path>
                 </svg>
                 <span class="dropdown-desc dropdown-user-management">&nbsp;用户管理</span>
               </span>
@@ -152,7 +157,9 @@ include('common/session.php');
             <a class="nav-link" href="./admin-menu-operation.php">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
-                  <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
+                  <path
+                      d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z"
+                      fill="#1E7E34" p-id="3845"></path>
                 </svg>
                 <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理</span>
               </span>
@@ -161,7 +168,9 @@ include('common/session.php');
           <li class="nav-item admin-nav-item admin-item-data active">
             <a class="nav-link" href="./admin-data-management.php">
               <span class="d-flex justify-content-left align-items-center">
-                <svg class="icon-sm" viewBox="0 0 1024 1024"><path d="M585.344 566.656L480 461.248l-189.376 189.376a32 32 0 0 1-45.248-45.248l211.968-212.032a31.872 31.872 0 0 1 45.312 0L608 498.752 850.752 256H800a32 32 0 1 1 0-64h128a32.128 32.128 0 0 1 12.032 2.368A32.192 32.192 0 0 1 960 224v128a32 32 0 1 1-64 0v-50.752L630.656 566.656a31.872 31.872 0 0 1-45.312 0zM128 832h800a32 32 0 1 1 0 64h-832a32 32 0 0 1-32-32v-640a32 32 0 0 1 64 0V832z" p-id="5748" fill="#0062CC"></path>
+                <svg class="icon-sm" viewBox="0 0 1024 1024"><path
+                      d="M585.344 566.656L480 461.248l-189.376 189.376a32 32 0 0 1-45.248-45.248l211.968-212.032a31.872 31.872 0 0 1 45.312 0L608 498.752 850.752 256H800a32 32 0 1 1 0-64h128a32.128 32.128 0 0 1 12.032 2.368A32.192 32.192 0 0 1 960 224v128a32 32 0 1 1-64 0v-50.752L630.656 566.656a31.872 31.872 0 0 1-45.312 0zM128 832h800a32 32 0 1 1 0 64h-832a32 32 0 0 1-32-32v-640a32 32 0 0 1 64 0V832z"
+                      p-id="5748" fill="#0062CC"></path>
                 </svg>
                 <span class="dropdown-desc dropdown-data-management">&nbsp;数据统计</span>
               </span>
@@ -181,23 +190,45 @@ include('common/session.php');
     </div>
   </div>
 
-  <div class="operation-container table-group">
-    <div class="alert alert-danger mt-3 group-status-bar" role="alert">
-      <span class="group-success-icon">
+  <div class="menu-confirm mt-3 alert alert-warning" role="alert">
+    <span>
+      <span class="confirm-alert-icon">
+        <svg class="icon-sm" viewBox="0 0 1024 1024" p-id="2402"><path
+              d="M128.085333 877.226667a128 128 0 0 1-42.496-175.957334L402.773333 182.186667a128 128 0 0 1 218.453334 0l317.184 519.04A128 128 0 0 1 829.184 896H194.816a128 128 0 0 1-66.730667-18.773333zM829.184 810.666667a42.666667 42.666667 0 0 0 36.394667-64.896L548.394667 226.730667a42.666667 42.666667 0 0 0-72.789334 0L158.421333 745.770667A42.666667 42.666667 0 0 0 194.816 810.666667h634.368zM469.333333 384h85.333334v256h-85.333334V384z m0 298.666667h85.333334v85.333333h-85.333334v-85.333333z"
+              p-id="2403" fill="#FFC107"></path>
+        </svg>
+      </span>
+      <span class="confirm-success-icon hide">
         <svg class="icon icon-sm" viewBox="0 0 1024 1024" ><path d="M512 64C264.6 64 64 264.6 64 512c0 247.4 200.6 448 448 448 247.4 0 448-200.6 448-448C960 264.6 759.4 64 512 64zM741.8 362.2 463.6 719.2c-2.2 2.2-5.8 7-10.2 7-4.6 0-7.6-3.2-10.2-5.8-2.6-2.6-157.8-151.8-157.8-151.8l-3-3c-1.2-1.8-2.2-4-2.2-6.4 0-2.4 1-4.6 2.2-6.4 0.8-0.8 1.4-1.4 2.2-2.4 15.4-16.2 46.6-49 48.6-51 2.6-2.6 4.8-6 9.6-6 5 0 8.2 4.2 10.6 6.6 2.4 2.4 90 86.6 90 86.6l222.6-286c2-1.6 4.4-2.8 7-2.8 2.6 0 5 1 7 2.6l61.2 48.2c1.6 2 2.6 4.4 2.6 7C744 358.2 743 360.4 741.8 362.2z" p-id="10225" fill="#008000"></path>
         </svg>
       </span>
+      <span class="confirm-text">尚未提交点餐数据</span>
+    </span>
+    <span><button class="btn btn-primary btn-confirm" disabled="disabled">提交点餐数据</button></span>
+  </div>
+
+  <div class="operation-container table-group">
+    <div class="alert alert-danger mt-3 group-status-bar" role="alert">
+      <span class="group-success-icon">
+        <svg class="icon icon-sm" viewBox="0 0 1024 1024"><path
+              d="M512 64C264.6 64 64 264.6 64 512c0 247.4 200.6 448 448 448 247.4 0 448-200.6 448-448C960 264.6 759.4 64 512 64zM741.8 362.2 463.6 719.2c-2.2 2.2-5.8 7-10.2 7-4.6 0-7.6-3.2-10.2-5.8-2.6-2.6-157.8-151.8-157.8-151.8l-3-3c-1.2-1.8-2.2-4-2.2-6.4 0-2.4 1-4.6 2.2-6.4 0.8-0.8 1.4-1.4 2.2-2.4 15.4-16.2 46.6-49 48.6-51 2.6-2.6 4.8-6 9.6-6 5 0 8.2 4.2 10.6 6.6 2.4 2.4 90 86.6 90 86.6l222.6-286c2-1.6 4.4-2.8 7-2.8 2.6 0 5 1 7 2.6l61.2 48.2c1.6 2 2.6 4.4 2.6 7C744 358.2 743 360.4 741.8 362.2z"
+              p-id="10225" fill="#008000"></path>
+        </svg>
+      </span>
       <span class="group-error-icon">
-        <svg class="icon icon-sm" viewBox="0 0 1024 1024"><path d="M512 66C264.6 66 64 266.6 64 514c0 247.4 200.6 448 448 448 247.4 0 448-200.6 448-448C960 266.6 759.4 66 512 66zM728.6 665c3 3 4.6 7 4.6 11.2 0 4.2-1.6 8.4-4.6 11.2l-43.2 43.4c-3.2 3.2-7.2 4.6-11.2 4.6-4 0-8.2-1.6-11.2-4.6L512 579.6l-150.8 151.4c-3 3.2-7.2 4.6-11.2 4.6-4 0-8.2-1.6-11.2-4.6l-43.2-43.4c-3-3-4.6-7-4.6-11.2 0-4.2 1.6-8.4 4.6-11.2l151.4-152-151.8-150c-6.2-6.2-6.2-16.4 0-22.6l43.2-43.4c3-3 7-4.6 11.2-4.6 4.2 0 8.2 1.6 11.2 4.6l151.4 149.4 151.4-149.4c3-3 7-4.6 11.2-4.6 4.2 0 8.2 1.6 11.2 4.6l43.2 43.4c6.2 6.2 6.2 16.4 0 22.6l-151.8 150L728.6 665z" p-id="10382" fill="#BD2130"></path>
+        <svg class="icon icon-sm" viewBox="0 0 1024 1024"><path
+              d="M512 66C264.6 66 64 266.6 64 514c0 247.4 200.6 448 448 448 247.4 0 448-200.6 448-448C960 266.6 759.4 66 512 66zM728.6 665c3 3 4.6 7 4.6 11.2 0 4.2-1.6 8.4-4.6 11.2l-43.2 43.4c-3.2 3.2-7.2 4.6-11.2 4.6-4 0-8.2-1.6-11.2-4.6L512 579.6l-150.8 151.4c-3 3.2-7.2 4.6-11.2 4.6-4 0-8.2-1.6-11.2-4.6l-43.2-43.4c-3-3-4.6-7-4.6-11.2 0-4.2 1.6-8.4 4.6-11.2l151.4-152-151.8-150c-6.2-6.2-6.2-16.4 0-22.6l43.2-43.4c3-3 7-4.6 11.2-4.6 4.2 0 8.2 1.6 11.2 4.6l151.4 149.4 151.4-149.4c3-3 7-4.6 11.2-4.6 4.2 0 8.2 1.6 11.2 4.6l43.2 43.4c6.2 6.2 6.2 16.4 0 22.6l-151.8 150L728.6 665z"
+              p-id="10382" fill="#BD2130"></path>
         </svg>
       </span>
       <span class="inline-group-status"></span>
     </div>
-    
+
     <div class="form-nav d-block">
       <!-- Dropdown list to select data source -->
       <div class="btn-group nav-drop-down">
-        <button class="btn btn-danger btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-danger btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
           显示：全部显示
         </button>
         <div class="dropdown-menu">
@@ -216,7 +247,7 @@ include('common/session.php');
       <button class="btn btn-outline-primary btn-print-all">全部打印</button>
       <button class="btn btn-outline-primary btn-export-all">全部导出</button>
     </div>
-    
+
     <div class="table-content mt-2 d-block">
       <!-- 巡察办人员名单 -->
       <div class="table-card card table-group-0">
@@ -229,7 +260,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-0">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
@@ -255,7 +286,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-1">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
@@ -281,7 +312,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-2">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
@@ -307,7 +338,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-3">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
@@ -333,7 +364,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-4">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
@@ -359,7 +390,7 @@ include('common/session.php');
         </div>
         <div class="card-body">
           <table class="table" id="mo-tb-5">
-            <thead  class="thead-light">
+            <thead class="thead-light">
             <tr table-content>
               <th scope="col" class="th-username username-info">姓名</th>
               <th scope="col" class="th-nickname nickname-info">昵称</th>
