@@ -1,10 +1,13 @@
 $(document).ready(function () {
+  let group = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let formattedDateToday = getDateToday();
   let formattedDateTomorrow = getDateTomorrow();
   let weekdayToday = new Date().getDay();
   let weekdayTomorrow = weekdayToday == 6 ? 0 : weekdayToday + 1;
   let orderStatusToday = null;
   let orderStatusTomorrow = null;
+  let confirmationToday = checkMenuConfirmation(getDateToday(), group);
+  let confirmationTomorrow = checkMenuConfirmation(getDateTomorrow(), group);
   let oriPrice;
   let discountPrice;
 
@@ -28,6 +31,7 @@ $(document).ready(function () {
   function initUI() {
     initCardToday();
     initCardTomorrow();
+    setConfirmationStatus();
     initPriceModifyComponent(oriPrice, discountPrice);
   }
 
@@ -55,6 +59,40 @@ $(document).ready(function () {
       updateCardStatus(cardTomorrow, false);
       setCardPreview(false, formattedDateTomorrow);
     }
+  }
+
+  function setConfirmationStatus() {
+    if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+      replaceClass($("#admin-card"), "border-secondary", "border-success");
+      $("#admin-card .card-info").text("点餐均已被上报");
+      setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+    } else if((confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) || (confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED)) {
+      replaceClass($("#admin-card"), "border-secondary", "border-warning");
+      if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED ) {
+        $("#admin-card .card-info").text("【明日】点餐未上报！");
+        setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
+      } else if(confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+        if(isOrderTodayTimeout()) {
+          replaceClass($("#admin-card"), "border-secondary", "border-success");
+          $("#admin-card .card-info").text("【点餐】均已上报");
+          setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+        } else {
+          $("#admin-card .card-info").text("【今日】点餐未上报！");
+          setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
+        }
+      }
+    } else {
+      if(isOrderTodayTimeout()) {
+        replaceClass($("#admin-card"), "border-secondary", "border-warning");
+        $("#admin-card .card-info").text("【明日】点餐未上报！");
+        setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
+      } else {
+        replaceClass($("#admin-card"), "border-secondary", "border-danger");
+        setAdminCardStyle(CONSTANTS.COLOR.RED_DANGER);
+        $("#admin-card .card-info").text("【两日】点餐未上报");
+      }
+    }
+    //$("#admin-card .card-info").css("font-weight", "bold");
   }
 
   function setWeekendTitleStyle(isToday, weekDay) {
@@ -140,21 +178,27 @@ $(document).ready(function () {
     }
   }
 
+  function setAdminCardStyle(color) {
+    $("#admin-card .card-info").css("color", color);
+    $("#admin-card .card-header").css({
+      "background": color,
+      "border": "solid" + " " + color + " 2px",
+      "border-top-left-radius": "2px",
+      "border-top-right-radius": "2px",
+      "color": "white"
+    });
+  }
+
   function setManageButtonEvents() {
     $("#user-manage-btn").click(function () {
       jumpTo("admin-user-management.php");
     });
 
     $("#menu-manage-btn").click(function () {
-      if(getCurrentHour() < CONSTANTS.TIME_LIMIT.HOUR) {chooseOrderDate();}
-      else if(getCurrentHour() == CONSTANTS.TIME_LIMIT.HOUR) {
-        if(getCurrentMinute() >= CONSTANTS.TIME_LIMIT.MINUTE) {
-          directToTomorrow();
-        } else {
-          chooseOrderDate();
-        }
-      } else {
+      if(isOrderTodayTimeout()) {
         directToTomorrow();
+      } else {
+        chooseOrderDate();
       }
     });
 

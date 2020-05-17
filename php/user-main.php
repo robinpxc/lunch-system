@@ -37,6 +37,7 @@ include('common/session.php');
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-order.js"></script>
+  <script type="text/javascript" src="../js/common/common-menu.js"></script>
   <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <script type="text/javascript" src="../js/common/common-price.js"></script>
   <!-- Custom -->
@@ -171,7 +172,7 @@ include('common/session.php');
       </div>
       
       <!-- Admin card: management -->
-      <div class="card card-admin mb-2 mt-2 border-danger box-shadow" id="admin-card">
+      <div class="card card-admin mb-2 mt-2 border-secondary box-shadow" id="admin-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">综合管理</h4>
         </div>
@@ -191,7 +192,7 @@ include('common/session.php');
       </div>
 
       <!-- Menu config card -->
-      <div class="card mb-2 mt-2 border-primary shadow-sm box-shadow" id="menu-config-card">
+      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow" id="menu-config-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">设置菜单</h4>
         </div>
@@ -201,7 +202,7 @@ include('common/session.php');
       </div>
       
       <!-- Admin card: modify prices -->
-      <div class="card card-admin mb-2 mt-2 border-danger box-shadow" id="admin-price-card">
+      <div class="card card-admin mb-2 mt-2 border-secondary box-shadow" id="admin-price-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">修改价格</h4>
         </div>

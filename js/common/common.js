@@ -298,6 +298,19 @@ function isLastDay(dateString) {
   return date.getDate() == endDayOfMonth;
 }
 
+function isOrderTodayTimeout() {
+  if(getCurrentHour() < CONSTANTS.TIME_LIMIT.HOUR) {return false;}
+  else if(getCurrentHour() == CONSTANTS.TIME_LIMIT.HOUR) {
+    if(getCurrentMinute() > CONSTANTS.TIME_LIMIT.MINUTE) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return true;
+  }
+}
+
 // Function to decode unicode (Chinese chars)
 function decodeUnicode(text) {
   return unescape(text.toString().replace(/\u/g, "%u"));

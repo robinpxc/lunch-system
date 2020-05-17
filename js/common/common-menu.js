@@ -128,3 +128,59 @@ function fetchNoOrderUsers(date, group) {
   return deferred.promise();
 }
 
+
+/*
+* Function to check and update group order confirmation for group admin
+* This function will return a boolean value for update confirmation, and return a string for check status.
+* Parameters:
+*   type: [string] determine the operation type, [check] or [update]
+*   date:  [string] determine the date of confirmation.
+*   group: [boolean] determine the current user group.
+*   status: confirmation status content, will be uploaded when do update operation.
+* */
+function menuConfirmOperation(type, date, group, status) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/check-daily-confirmation.php",
+    data: {
+      "type": type,
+      "date": date,
+      "group": group,
+      "status": status
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      if (response != null) {
+        deferred.resolve(response);
+      }
+    },
+    error: function (errorMsg) {
+      alert("检查签字状态失败，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
+function checkMenuConfirmation(date, group) {
+  let status = "";
+  menuConfirmOperation(CONSTANTS.MENU.CONFIRMATION.TYPE.CHECK, date, group, "").done(function(confirmStatus) {
+    status = confirmStatus;
+  });
+  return status;
+}
+
+function updateMenuConfirmation(date, group, status) {
+  let result = "";
+  menuConfirmOperation(CONSTANTS.MENU.CONFIRMATION.TYPE.UPDATE, date, group, status).done(function(updateStatus) {
+    result =  updateStatus;
+  });
+  return result;
+}
+

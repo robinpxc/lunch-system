@@ -3,7 +3,17 @@ const CONSTANTS = {
   ORDER_COUNT: 6,
   MENU: {
     COUNT: 5,
-    SUB_COUNT: 3
+    SUB_COUNT: 3,
+    CONFIRMATION: {
+      TYPE:  {
+        CHECK: "CHECK",
+        UPDATE: "UPDATE"
+      },
+      STATUS: {
+        CONFIRMED: "confirmed",
+        NOT_CONFIRMED: "not-confirmed"
+      }
+    }
   },
   TIME_LIMIT: {
     HOUR: 9,
@@ -144,5 +154,11 @@ const CONSTANTS = {
       TODAY: "今天",
       TOMORROW: "明天",
     }
+  },
+
+  COLOR: {
+    GREEN_SUCCESS: "#177828",
+    YELLOW_WARNING: "#FFC107",
+    RED_DANGER: "#BD2130"
   }
 };
