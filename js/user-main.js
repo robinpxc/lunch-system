@@ -147,6 +147,8 @@ $(document).ready(function () {
     let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
     if (userRole === CONSTANTS.USER.ROLE.USER || userRole === CONSTANTS.USER.ROLE.GUEST) {
       $(".card-admin").remove();
+      $("#admin-price-card").remove();
+      $("#menu-config-card").remove();
     } else if(userRole === CONSTANTS.USER.ROLE.ADMIN_GROUP) {
       $("#admin-price-card").remove();
       $("#menu-config-card").remove();
@@ -171,12 +173,20 @@ $(document).ready(function () {
           }
         }
 
-        fetchMenuList(date).done(function(menuArray) {
-          let liPrefix = date == getDateToday() ? "#td-li-" : "#tm-li-";
-          for(let i = 0; i < CONSTANTS.MENU.SUB_COUNT; i++) {
-            $(liPrefix + (i + 1)).text(decodeUnicode(menuArray[Number(orderNum) - 1][i]));
+        if(orderNum == CONSTANTS.MENU.COUNT + 1) {
+          if(date == getDateToday()) {
+            $("#order-info-today").text("【不订餐】");
+          } else {
+            $("#order-info-tomorrow").text("【不订餐】");
           }
-        });
+        } else {
+          fetchMenuList(date).done(function(menuArray) {
+            let liPrefix = date == getDateToday() ? "#td-li-" : "#tm-li-";
+            for(let i = 0; i < CONSTANTS.MENU.SUB_COUNT; i++) {
+              $(liPrefix + (i + 1)).text(decodeUnicode(menuArray[Number(orderNum) - 1][i]));
+            }
+          });
+        }
       });
 
       replaceClass(date == getDateToday() ? $("#btn-order-today") : $("#btn-order-tomorrow"), "btn-primary", "btn-success");
