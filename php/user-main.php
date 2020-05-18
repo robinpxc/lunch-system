@@ -157,7 +157,12 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 class="order-info" id="order-info-today"></h4>
+          <span class="order-info" id="order-info-today"></span>
+          <ul>
+            <li id="td-li-1"></li>
+            <li id="td-li-2"></li>
+            <li id="td-li-3"></li>
+          </ul>
         </div>
         <div class="card-footer">
           <button class="btn btn-primary btn-order" id="btn-order-today">开始点餐</button>
@@ -170,7 +175,12 @@ include('common/session.php');
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
         <div class="card-body">
-          <h4 class="order-info" id="order-info-tomorrow"></h4>
+          <span class="order-info" id="order-info-tomorrow"></span>
+          <ul>
+            <li id="tm-li-1"></li>
+            <li id="tm-li-2"></li>
+            <li id="tm-li-3"></li>
+          </ul>
         </div>
         <div class="card-footer">
           <button class="btn btn-primary btn-order" id="btn-order-tomorrow">开始点餐</button>

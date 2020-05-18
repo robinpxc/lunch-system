@@ -130,9 +130,28 @@ $(document).ready(function () {
     // Function to set menu title span based on menu status
     function setMenuTitle() {
       let menuTitle = $(".menu-title");
-      menuTitle.text(menuStatus === "no-menu" ? "尚未创建菜单，添加内容并创建新菜单" : "已创建菜单，点击黄色按钮修改菜单");
+      menuTitle.text(menuStatus === CONSTANTS.MENU.STATUS.NO_MENU ? "尚未创建菜单，添加内容并创建新菜单" : "已创建菜单，点击黄色按钮修改菜单");
       menuTitle.css("font-weight", "bold");
-      menuTitle.css("color", menuStatus === "no-menu" ? "red" : "green");
+      menuTitle.css("color", menuStatus === "no-menu" ? "#BD2130" : "green");
+      setStatusBar();
+    }
+
+    function setStatusBar() {
+      if(menuStatus == CONSTANTS.MENU.STATUS.EXIST) {
+        removeOldClass($(".menu-status-bar"), "alert-danger");
+        removeOldClass($(".menu-status-bar"), "alert-warning");
+        addNewClass($(".menu-status-bar"), "alert-success");
+        unhideElement($(".menu-exist-icon"));
+        hideElement($(".no-menu-icon"));
+        hideElement($(".menu-modify-icon"));
+      } else {
+        removeOldClass($(".menu-status-bar"), "alert-warning");
+        removeOldClass($(".menu-status-bar"), "alert-success");
+        addNewClass($(".menu-status-bar"), "alert-danger");
+        unhideElement($(".no-menu-icon"));
+        hideElement($(".menu-modify-icon"));
+        hideElement($(".menu-exist-icon"));
+      }
     }
 
     // Function to set menu editable based on menu status.
@@ -176,6 +195,12 @@ $(document).ready(function () {
         // Change label text and color
         $(".menu-title").text("修改中...请注意保存");
         $(".menu-title").css("color", "#FFC107");
+        removeOldClass($(".menu-status-bar"), "alert-success");
+        removeOldClass($(".menu-status-bar"), "alert-dnager");
+        addNewClass($(".menu-status-bar"), "alert-warning");
+        unhideElement($(".menu-modify-icon"));
+        hideElement($(".menu-exist-icon"));
+        hideElement($(".no-menu-icon"));
       });
     }
 
@@ -254,6 +279,7 @@ $(document).ready(function () {
         // Change delete button style and size
         removeOldClass($("#btn-delete-menu"), "col-md-12");
         addNewClass($("#btn-delete-menu"), "col-md-6");
+        setStatusBar();
       });
     }
 

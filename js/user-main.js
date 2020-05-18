@@ -160,7 +160,7 @@ $(document).ready(function () {
         let orderCount = null
         orderNum = orderContent.menu_number;
         orderCount = orderContent.count;
-        if(orderNum > 0 && orderNum <= 6) {
+        if(orderNum > 0 && orderNum <= CONSTANTS.MENU.COUNT) {
           setOrderExistStyle(date);
           if(orderNum != CONSTANTS.ORDER.CONTENT.NO_ORDER) {
             let orderDetail = orderNum + " 号" + (orderCount == 1 ? "" : (" 【" + orderCount +"份】"));
@@ -170,7 +170,21 @@ $(document).ready(function () {
             setOrderInfoText(date,  "不订餐");
           }
         }
+
+        fetchMenuList(date).done(function(menuArray) {
+          let liPrefix = date == getDateToday() ? "#td-li-" : "#tm-li-";
+          for(let i = 0; i < CONSTANTS.MENU.SUB_COUNT; i++) {
+            $(liPrefix + (i + 1)).text(decodeUnicode(menuArray[Number(orderNum) - 1][i]));
+          }
+        });
       });
+
+      replaceClass(date == getDateToday() ? $("#btn-order-today") : $("#btn-order-tomorrow"), "btn-primary", "btn-success");
+      if(date == getDateToday()) {
+        $("#btn-order-today").text("修改订单");
+      } else {
+        $("#btn-order-tomorrow").text("修改订单");
+      }
     } else {
       setOrderInfoText(date, "尚未订餐");
     }
@@ -186,7 +200,7 @@ $(document).ready(function () {
 
   function setOrderExistStyle(date) {
     if(date ==formattedDateToday) {
-      addNewClass($("#order-info-today"), "order-exit");
+      addNewClass($("#order-info-today"), "order-exist");
     } else {
       addNewClass($("#order-info-tomorrow"), "order-exist");
     }

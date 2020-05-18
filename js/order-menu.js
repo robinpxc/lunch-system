@@ -118,7 +118,7 @@ $(document).ready(function () {
     let container = $(".counter-container");
     container.append("<div class='card border-success counter-card'>");
     let card = $(".counter-card");
-    card.append("<h5 class='card-header'>确认份数(默认1份)</h5>");
+    card.append("<h5 class='card-header'>" + ((orderNum == (CONSTANTS.MENU.COUNT + 1)) ? "不订餐" : "确认份数(默认1份)") + "</h5>");
     card.append("<div class='card-body text-success counter'>");
     $(".counter").append("<div class='input-group'>");
     let inputGroup = $(".counter .input-group");
@@ -135,7 +135,7 @@ $(document).ready(function () {
     if(orderNum == CONSTANTS.ORDER_COUNT + 1) {
       $(".counter .input-group").empty();
       $(".counter .input-group").append("<h4>选择不订餐");
-      $("#btn-order").text("确认提交");
+      $("#btn-order").text("提交");
     }
 
     let count = $("#counter-input").val();

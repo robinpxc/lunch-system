@@ -32,9 +32,32 @@
   justify-content: center;
   align-items: center;
   color: black;
-  font-weight: bold;
-  font-size: 2rem;
   padding-top: 0;
+}
+
+.menu-card .card-body {
+  padding: 5px;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.menu-card .order-info {
+  font-size: 1.2rem;
+}
+
+.menu-card .card-body ul {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin: 0;
+  padding: 0 10px 0 10px;
+  font-size: 12px;
+}
+
+.menu-card .card-body li {
+  font-size: 14px;
+  list-style-type: none;
 }
 
 .no-menu .card-body {
@@ -149,6 +172,10 @@
   height: 1px;
   border: none;
   background-color: transparent;
+}
+
+.order-exit {
+  color: darkgreen;
 }
 
 .divider {
