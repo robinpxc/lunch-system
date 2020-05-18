@@ -156,7 +156,7 @@ include('common/session.php');
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-today">本人今日（<span class="card-title-weekday"></span>）</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body common-body">
           <span class="order-info" id="order-info-today"></span>
           <ul>
             <li id="td-li-1"></li>
@@ -174,7 +174,7 @@ include('common/session.php');
         <div class="card-header">
           <h4 class="my-0 font-weight-normal card-title-tomorrow">本人明日（<span class="card-title-weekday"></span>）</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body common-body">
           <span class="order-info" id="order-info-tomorrow"></span>
           <ul>
             <li id="tm-li-1"></li>
@@ -192,7 +192,7 @@ include('common/session.php');
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">综合管理</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body common-body">
           <div>
             <h4 class="card-info">联络员使用此组件</h4>
           </div>
@@ -212,7 +212,7 @@ include('common/session.php');
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">设置菜单</h4>
         </div>
-        <div class="card-body">
+        <div class="card-body common-body">
           <h4>点击进入菜单设置</h4>
         </div>
       </div>
@@ -222,7 +222,7 @@ include('common/session.php');
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">修改价格</h4>
         </div>
-        <div class="card-body card-body-price">
+        <div class="card-body common-body card-body-price">
           <div class="price-container ori-price">
             <div class="input-group input-group-ori">
               <div class="input-group-prepend">

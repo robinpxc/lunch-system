@@ -45,13 +45,15 @@ $(document).ready(function () {
   }
 
   function initCardToday() {
-    let cardToday = $("#menu-card-today");
+    let cardToday = $("#menu-card-today .card-body");
     $(".card-title-today span").text(getWeekDayCN(weekdayToday));
     setWeekendTitleStyle(true, weekdayToday);
     if(menuStatusToday == CONSTANTS.MENU.STATUS.NO_MENU) {
+      replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
       $("#order-info-today").text("没有菜单");
       $("#menu-card-today .card-footer").remove();
     } else {
+      replaceClass($("#menu-card-today .card-body"), "common-body", "detail-body");
       if (orderStatusToday == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
         updateCardStatus(cardToday, true);
         setCardPreview(true, formattedDateToday);
@@ -66,9 +68,11 @@ $(document).ready(function () {
     let cardTomorrow = $("#menu-card-tomorrow");
     $(".card-title-tomorrow span").text(getWeekDayCN(weekdayTomorrow));
     if(menuStatusTomorrow == CONSTANTS.MENU.STATUS.NO_MENU) {
+      replaceClass($("#menu-card-tomorrow .card-body"), "detail-body", "common-body");
       $("#order-info-tomorrow").text("没有菜单");
       $("#menu-card-tomorrow .card-footer").remove();
     } else {
+      replaceClass($("#menu-card-tomorrow .card-body"), "common-body", "detail-body");
       setWeekendTitleStyle(false, weekdayTomorrow);
       if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
         updateCardStatus(cardTomorrow, true);
@@ -175,11 +179,16 @@ $(document).ready(function () {
 
         if(orderNum == CONSTANTS.MENU.COUNT + 1) {
           if(date == getDateToday()) {
+            replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
             $("#order-info-today").text("【不订餐】");
+            $("#menu-card-today .card-body ul").remove();
           } else {
+            replaceClass($("#menu-card-tomorrow .card-body"), "detail-body", "common-body");
             $("#order-info-tomorrow").text("【不订餐】");
+            $("#menu-card-tomorrow .card-body ul").remove();
           }
         } else {
+          replaceClass($("#order-info-tomorrow .card-body"), "common-body", "detail-body");
           fetchMenuList(date).done(function(menuArray) {
             let liPrefix = date == getDateToday() ? "#td-li-" : "#tm-li-";
             for(let i = 0; i < CONSTANTS.MENU.SUB_COUNT; i++) {
@@ -196,6 +205,7 @@ $(document).ready(function () {
         $("#btn-order-tomorrow").text("修改订单");
       }
     } else {
+      replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
       setOrderInfoText(date, "尚未订餐");
     }
   }

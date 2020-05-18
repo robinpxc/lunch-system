@@ -167,8 +167,8 @@ $(document).ready(function () {
       let orderCount = orderNum == (CONSTANTS.ORDER_COUNT + 1) ? 0 :$("#counter-input").val();
       setDailyOrder(date, userId, orderNum, orderCount, orderStatus).done(function() {
         $(".counter-container").remove();
-        jqInfo("订餐成功", (orderNum == (CONSTANTS.ORDER_COUNT + 1)) ? "已确认【不订餐】" : "已订 【" + orderNum + "号，" + orderCount + "份】", function() {
-          refresh();
+        jqInfo("订餐成功", (orderNum == (CONSTANTS.ORDER_COUNT + 1)) ? "已确认【不订餐】" : "已订 【" + orderNum + "号，" + orderCount + "份】，将自动返回主页", function() {
+          window.location.href = "user-main.php";
         });
       });
     });
