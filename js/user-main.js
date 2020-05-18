@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let group = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let formattedDateToday = getDateToday();
   let formattedDateTomorrow = getDateTomorrow();
   let weekdayToday = new Date().getDay();
@@ -40,7 +41,9 @@ $(document).ready(function () {
     initCardToday();
     initCardTomorrow();
     orderBtnClickEvents();
-    setConfirmationStatus();
+    if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+      setConfirmationStatus();
+    }
     initPriceModifyComponent(oriPrice, discountPrice);
   }
 
