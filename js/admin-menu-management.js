@@ -47,12 +47,6 @@ $(document).ready(function () {
       dateSelected = getDateToday();
     }
 
-    $(".combo-content").each(function () {
-      $(this).focus(function () {
-        dataBeforeEdit = $(this).val();
-      });
-    });
-
     checkMenuStatus(dateSelected).done(function (status) {
       menuStatus = status;
       configMenu(menuStatus);
@@ -60,7 +54,6 @@ $(document).ready(function () {
       setClearBtnOnClickListener();
       setDiscardButtonClickListener();
     })
-
 
     // Judge if all required input has been filled
     function isRequiredFieldFinished() {
@@ -206,7 +199,7 @@ $(document).ready(function () {
 
     // Set update button click listener
     function setUpdateBtnClickListener() {
-      let menuArray = new Array(5);
+      let menuArray = new Array(CONSTANTS.MENU.COUNT);
       $("#btn-update-menu").click(function () {
         for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
           menuArray[i] = new Array(CONSTANTS.MENU.SUB_COUNT);
@@ -217,7 +210,7 @@ $(document).ready(function () {
         }
         updateMenu(menuArray, dateSelected).done(function (response) {
           if (response) {
-            jqInfo("修改成功", "已成功修改菜单!", function () {
+            jqueryInfo("修改成功", "已成功修改菜单!", false, false, function () {
               menuArray = null;
               refresh();
             });

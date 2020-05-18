@@ -27,6 +27,10 @@ function jqAlert(title, content) {
 }
 
 function jqInfo(title, content, func) {
+  jqueryInfo(title, content, true, 'confirm|3000', func);
+}
+
+function jqueryInfo(title, content, backgroundDismiss, autoClose, func) {
   let actionBtn = {
     confirm: {
       text: '确认',
@@ -36,7 +40,7 @@ function jqInfo(title, content, func) {
       }
     }
   };
-  confirm(title, content, 'fa fa-info-circle','blue', false, true, true, 'confirm|3000', actionBtn);
+  confirm(title, content, 'fa fa-info-circle','blue', false, true, backgroundDismiss, autoClose, actionBtn);
 }
 
 function jqWarning(title, content, func) {

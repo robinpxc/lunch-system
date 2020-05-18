@@ -61,6 +61,7 @@ function fetchMenuList(date) {
 
 // Function to create / update menu
 function updateMenu(menuList, date) {
+  alert(menuList);
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
