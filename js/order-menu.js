@@ -24,7 +24,6 @@ $(document).ready(function () {
   function initUI() {
     setOrderCard();
     setOrderInfo();
-    setSelectBorder($(".card").eq(orderNumber - 1));
     fetchMenuList(date).done(function(menuList) {
       setMenuData(menuList);
     });
