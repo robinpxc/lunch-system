@@ -58,7 +58,10 @@ const CONSTANTS = {
     ORDER: {
       KEY_DATE: "KEY_ORDER_DATE"
     },
-    KEY_DATE: "DATE_TYPE"
+    MENU: {
+      KEY_SELECTED_DATE: "KEY_SELECTED_DATE"
+    },
+    KEY_DATE_TYPE: "DATE_TYPE"
   },
 
   USER: {

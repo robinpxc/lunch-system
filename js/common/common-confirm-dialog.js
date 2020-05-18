@@ -71,7 +71,7 @@ function jqConfirm(title, content, confirmFunction) {
     }
   }
 
-  confirm(title, content, 'fa fa-warning', 'red', false,false, true,  actionBtns);
+  confirm(title, content, 'fa fa-warning', 'red', false,false, true, false, actionBtns);
 }
 
 function jqDialog(title, content, btnText1, btnText2, func1, func2) {

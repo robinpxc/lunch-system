@@ -156,6 +156,32 @@ function fetchNoOrderUsers(date, group) {
   return deferred.promise();
 }
 
+// Function to delete menu
+function deleteMenu(date) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: '../php/functions/delete-menu.php',
+    data: {
+      'date': date
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function () {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function (errorMsg) {
+      alert("Ajax菜单删除错误，请刷新页面或者切换网络环境，或联系开发者");
+    },
+    complete: function () {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
 
 /*
 * Function to check and update group order confirmation for group admin

@@ -3,7 +3,7 @@ $(document).ready(function () {
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
   let currentGroupNum = currentUserGroup[5];
   let groupIndexCount = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? CONSTANTS.WORKGROUP_COUNT : 1;
-  let dateType = $.cookie(CONSTANTS.COOKIE.KEY_DATE);
+  let dateType = $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE);
   let targetDate = dateType == CONSTANTS.DATE.TODAY ? getDateToday() : getDateTomorrow();
 
   initUI();
