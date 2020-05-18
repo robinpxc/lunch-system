@@ -5,15 +5,17 @@ include('../common/session.php');
     $user_id = $_POST['user-id'];
     $order_number = $_POST['order-number'];
     $order_status = $_POST['order-status'];
-    $order_count = 1;
+    $order_count = $_POST['order-count'];
+    $order_sql = "";
 
-    if($order_status == "ORDERED") {
-      $order_sql = "UPDATE `menu_collection` SET `menu_collection`.`menu_number` = '$order_number' WHERE `date` = '$date' AND `user_id` = $user_id";
-    } else if($order_status == "NOT_ORDER") {
-      if($order_number == 6) {
+    if($order_status == "ORDER_EXIST") {
+      $order_sql = "UPDATE `menu_collection` SET `menu_collection`.`menu_number` = '$order_number', `menu_collection`.`count` = '$order_count' WHERE `date` = '$date' AND `user_id` = $user_id";
+    } else if($order_status == "NO_ORDER") {
+      if($order_number == 8) {
         $order_count = 0;
       }
-      $order_sql = "INSERT INTO `menu_collection`(`date`,`user_id`,`menu_number`, `count`) VALUES ('$date', '$user_id', '$order_number', '$order_count')";
+      $order_sql = "INSERT INTO `menu_collection`(`menu_collection`.`date`, `menu_collection`.`user_id`, `menu_collection`.`menu_number`, `menu_collection`.`count`) VALUES ('$date', '$user_id', '$order_number', '$order_count')";
     }
-    echo(json_encode(mysqli_query($mysqlConnection, $order_sql)));
+    $result = mysqli_query($mysqlConnection, $order_sql);
+    print_r(json_encode($result));
   }

@@ -124,7 +124,7 @@ function fetchMonthCountByOrderNum(year, month) {
 *   user-id: userId
 *   order-num: order number, value between 1-6, 6 is not order tomorrow
 * */
-function setDailyOrder(date, userId, orderNum, orderStatus) {
+function setDailyOrder(date, userId, orderNum, orderCount, orderStatus) {
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
@@ -133,6 +133,7 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
       "date": date,
       "user-id": userId,
       "order-number": orderNum,
+      "order-count": orderCount,
       "order-status": orderStatus
     },
     async: true,
@@ -143,9 +144,9 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
     success: function (response) {
       deferred.resolve(response);
     },
-    error: function () {
+    error: function (errMsg) {
+      $("body").html(errMsg.responseText);
       alert("订餐异常，请重试");
-      refresh();
     },
     complete: function() {
       removeSpinner();

@@ -1,45 +1,147 @@
+.menu-data {
+  width: 100%;
+}
+
+.order-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: .5rem 1rem;
+}
+
+.order-info #order-info-text {
+  margin: 0 10px;
+}
+
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .card-container .card {
-    min-width: 30%;
-    height: 135px;
-    margin: 5px;
+  min-width: 30%;
+  height: 135px;
+  margin: 5px;
 }
 
 .card:hover {
-    cursor:pointer;
+  cursor: pointer;
 }
 
 .card-header {
-    padding: 0.5rem 1.25rem;
+  padding: 0.5rem 1.25rem;
 }
 
 .card-body {
-    padding: 0.5rem 1.25rem;
-    height: 90px;
+  padding: 0.5rem 1.25rem;
+  height: 90px;
+}
+
+.menu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  list-style-type: none;
 }
 
 #order-info-text {
-    margin: 10px;
-    color: red;
-    font-size: 1.4rem;
-    font-weight: bold;
+  margin: 10px;
+  color: red;
+  font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .no-menu .card-body {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: darkred;
+  font-size: 1.2rem;
+}
+
+.counter-container {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+}
+
+.counter-card {
+  width: 340px;
+  height: 200px;
+  margin: 0 15px 200px 15px;
+}
+
+.counter-card:hover {
+  cursor: auto;
+}
+
+.counter-card .card-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.counter-card .card-body button {
+  min-width: 50px;
+  width: 20%;
+  font-weight: bold;
+}
+
+.counter-card .card-body input {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+}
+
+.counter-container .card-footer {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter-container .card-footer button {
+  flex-grow: 1;
+}
+
+#btn-order {
+  margin-right: 5px;
+}
+
+#btn-cancel-order {
+  margin-left: 5px;
 }
 
 @media screen and (max-width: 768px) {
-    .card {
-        width: 100%;
-    }
+  .card {
+    width: 100%;
+  }
+
+  .counter-card {
+    min-width: 340px;
+    min-height: 200px;
+    margin: 15px;
+  }
+
 }
