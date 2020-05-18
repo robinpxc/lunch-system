@@ -53,6 +53,7 @@ $(document).ready(function () {
       setInputTextChangeListener();
       setClearBtnOnClickListener();
       setDiscardButtonClickListener();
+      setUpdateBtnClickListener();
     })
 
     // Judge if all required input has been filled
@@ -246,7 +247,6 @@ $(document).ready(function () {
           if (isRequiredFieldFinished()) {
             setEnable($("#btn-update-menu"));
             setEnable($("#btn-discard-menu"));
-            setUpdateBtnClickListener();
           } else {
             setDisable($("#btn-update-menu"));
           }
