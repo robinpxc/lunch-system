@@ -226,6 +226,10 @@ function formatTime(h, m, s, symbol) {
 
 
 // Date & time related function
+function isToday(date) {
+  return date == getDateToday();
+}
+
 function getDateToday() {
   let currentDate = new Date();
   let currentYear = currentDate.getFullYear();

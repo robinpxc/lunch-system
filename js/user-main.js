@@ -181,7 +181,7 @@ $(document).ready(function () {
         }
 
         if(orderNum == CONSTANTS.MENU.COUNT + 1) {
-          if(date == getDateToday()) {
+          if(isToday(date)) {
             replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
             $("#order-info-today").text("【不订餐】");
             $("#menu-card-today .card-body ul").remove();
@@ -193,7 +193,7 @@ $(document).ready(function () {
         } else {
           replaceClass($("#order-info-tomorrow .card-body"), "common-body", "detail-body");
           fetchMenuList(date).done(function(menuArray) {
-            let liPrefix = date == getDateToday() ? "#td-li-" : "#tm-li-";
+            let liPrefix = isToday(date) ? "#td-li-" : "#tm-li-";
             for(let i = 0; i < CONSTANTS.MENU.SUB_COUNT; i++) {
               $(liPrefix + (i + 1)).text(decodeUnicode(menuArray[Number(orderNum) - 1][i]));
             }
@@ -201,20 +201,25 @@ $(document).ready(function () {
         }
       });
 
-      replaceClass(date == getDateToday() ? $("#btn-order-today") : $("#btn-order-tomorrow"), "btn-primary", "btn-success");
-      if(date == getDateToday()) {
+      replaceClass(isToday(date) ? $("#btn-order-today") : $("#btn-order-tomorrow"), "btn-primary", "btn-success");
+      if(isToday(date)) {
         $("#btn-order-today").text("修改订单");
       } else {
         $("#btn-order-tomorrow").text("修改订单");
       }
     } else {
-      replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
+      if(isToday(date)) {
+        replaceClass($("#menu-card-today .card-body"), "detail-body", "common-body");
+      } else {
+        replaceClass($("#menu-card-tomorrow .card-body"), "detail-body", "common-body");
+      }
+
       setOrderInfoText(date, "尚未订餐");
     }
   }
 
   function setOrderInfoText(date, text) {
-    if(date ==formattedDateToday) {
+    if(isToday(date)) {
       $("#order-info-today").text(text);
     } else {
       $("#order-info-tomorrow").text(text);
@@ -222,7 +227,7 @@ $(document).ready(function () {
   }
 
   function setOrderExistStyle(date) {
-    if(date ==formattedDateToday) {
+    if(isToday(date)) {
       addNewClass($("#order-info-today"), "order-exist");
     } else {
       addNewClass($("#order-info-tomorrow"), "order-exist");
@@ -230,12 +235,10 @@ $(document).ready(function () {
   }
 
   function setNoOrderStyle(date) {
-    if(date == formattedDateToday) {
+    if(isToday(date)) {
       replaceClass($("#menu-card-today"), "border-secondary", "border-warning");
-    } else if(date == formattedDateTomorrow) {
-      replaceClass($("#menu-card-tomorrow"), "border-secondary", "border-warning");
     } else {
-      alert("日期传递发生错误, 请刷新重试");
+      replaceClass($("#menu-card-tomorrow"), "border-secondary", "border-warning");
     }
   }
 
