@@ -348,6 +348,29 @@ function groupToText(groupNum) {
   }
 }
 
+function groupToTextSimplify(groupNum) {
+  switch (groupNum) {
+    case CONSTANTS.WORKGROUP.GROUP_0:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_0;
+    case CONSTANTS.WORKGROUP.GROUP_1:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_1;
+    case CONSTANTS.WORKGROUP.GROUP_2:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_2;
+    case CONSTANTS.WORKGROUP.GROUP_3:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_3;
+    case CONSTANTS.WORKGROUP.GROUP_4:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_4;
+    case CONSTANTS.WORKGROUP.GROUP_5:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_5;
+    case CONSTANTS.WORKGROUP.GROUP_6:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_6;
+    case CONSTANTS.WORKGROUP.GROUP_ALL:
+      return CONSTANTS.WORKGROUP.CN.SIMPLIFY.GROUP_ALL;
+    default:
+      return "数据异常";
+  }
+}
+
 function roleToText(userRole) {
   switch(userRole) {
     case CONSTANTS.USER.ROLE.USER:

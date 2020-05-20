@@ -131,30 +131,7 @@ $(document).ready(function () {
       setUnorderedData(unorderedArray);
     } else {
       let groupUnorderedArray = filterUnorderedArrayByGroup(group, unorderedArray);
-      let groupCN = "";
-      switch (group) {
-        case CONSTANTS.WORKGROUP.GROUP_0:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_0;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_1:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_1;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_2:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_2;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_3:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_3;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_4:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_4;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_5:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_5;
-          break;
-        case CONSTANTS.WORKGROUP.GROUP_6:
-          groupCN = CONSTANTS.WORKGROUP.CN.GROUP_6;
-          break;
-      }
+      let groupCN = groupToTextSimplify(group);
       $(".no-order-title").text(groupCN + "组未订餐 （ " + groupUnorderedArray.length + " ） 人");
       setUnorderedData(groupUnorderedArray);
     }
@@ -176,7 +153,7 @@ $(document).ready(function () {
       $(".tb-no-order").append("<tr class=" + trClass + ">");
       let fullname = dataArray[i][1];
       let userId = dataArray[i][0];
-      let workgroup = groupToText(dataArray[i][2]);
+      let workgroup = groupToTextSimplify(dataArray[i][2]);
       $("." + trClass).append("<td>" + fullname);
       $("." + trClass).append("<td>" + userId);
       $("." + trClass).append("<td>" + workgroup);

@@ -21,7 +21,7 @@ function exportGroupTable(tablePrefix, date, unorderedArray, year, month, userNa
           break;
         }
         case "md": {
-          let filename = userName + "-" + year + "年" + month + "月" + "详单";
+          let filename = userName + "-" + year + "年" + month + "月" + "订餐详单";
           ExportToExcel(tbId, filename);
           break;
         }
