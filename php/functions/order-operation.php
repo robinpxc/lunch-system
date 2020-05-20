@@ -10,7 +10,7 @@ include('../common/session.php');
 
     if($order_status == "ORDER_EXIST") {
       $order_sql = "UPDATE `menu_collection` SET `menu_collection`.`menu_number` = '$order_number', `menu_collection`.`count` = '$order_count' WHERE `date` = '$date' AND `user_id` = $user_id";
-    } else if($order_status == "NO_ORDER") {
+    } else if($order_status == "NOT_ORDER") {
       if($order_number == 8) {
         $order_count = 0;
       }

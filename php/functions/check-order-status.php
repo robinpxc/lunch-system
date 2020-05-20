@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
   } else {
     if($type == "TYPE_ORDER_STATUS") {
-      echo(json_encode(mysqli_num_rows($result) == 0 ? "NO_ORDER" : "ORDER_EXIST"));
+      echo(json_encode(mysqli_num_rows($result) == 0 ? "NOT_ORDER" : "ORDER_EXIST"));
     } else if($type == "TYPE_ORDER_CONTENT") {
       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
       echo(json_encode($row));
