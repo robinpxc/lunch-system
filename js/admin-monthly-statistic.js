@@ -6,6 +6,7 @@ $(document).ready(function(){
   let summaryDataArray = new Array();
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
+  let dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
   let oriPrice;
   let discountPrice;
   fetchMonthlySummary(year, month).done(function(response) {
@@ -13,7 +14,7 @@ $(document).ready(function(){
     getOrderPrice().done(function(priceArray) {
       oriPrice = priceArray[0][1];
       discountPrice = priceArray[1][1];
-      if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+      if(hasHighPermission(currentUserRole)) {
         initPriceModifyComponent(oriPrice, discountPrice);
         setModifyBtnClickEvent();
         setSummaryData(summaryDataArray);

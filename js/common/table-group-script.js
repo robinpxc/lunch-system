@@ -1,10 +1,13 @@
-
 function initTableGroup(userRole, userGroup, customFunc) {
   setTable(userRole, userGroup, customFunc);
 }
 
 function setTable(userRole, userGroup, customFunc) {
-  if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+  let dataRange = CONSTANTS.STATISTICS.RANGE_GROUP;
+  if(hasHighPermission(userRole)) {
+    dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
+  }
+  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
     addDropdownListEvent(customFunc);
   } else {
     $(".form-nav").remove();

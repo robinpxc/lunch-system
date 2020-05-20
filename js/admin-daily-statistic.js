@@ -1,14 +1,15 @@
 $(document).ready(function () {
   let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let currentUserGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
-  let groupType = currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER ? CONSTANTS.WORKGROUP.GROUP_ALL : currentUserGroup;
+  let dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
+  let groupType = dataRange == CONSTANTS.STATISTICS.RANGE_ALL ? CONSTANTS.WORKGROUP.GROUP_ALL : currentUserGroup;
   let date = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE);
   let orderedArray = new Array();
   let unorderedArray = new Array();
 
   fetchDailyOrderStatus(date, groupType).done(function (dataList) {
     orderedArray = new Array();
-    if (currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+    if (dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
       orderedArray = dataList;
     } else {
       for (let i = 0; i < dataList.length; i++) {
