@@ -37,7 +37,9 @@ $(document).ready(function () {
         collectOrderSum(orderedArray);
         configUI();
         initAlertBox(date);
-        initConfirmBox(statusArray);
+        if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
+          initConfirmBox(statusArray);
+        }
         initTableGroup(currentUserRole, currentUserGroup, function(groupId){
           if(groupId == "group-all") {
             refreshUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
@@ -110,12 +112,18 @@ $(document).ready(function () {
     });
 
     if(unReportSum == CONSTANTS.MENU.COUNT) {
+      replaceClass($(".order-collection"), "alert-primary", "alert-danger");
+      replaceClass($(".order-collection"), "alert-success", "alert-danger");
+      replaceClass($(".order-collection"), "alert-warning", "alert-danger");
+      $(".show-date-text").text($(".show-date-text").text() + "【未收到上报】");
+    } else if(unReportSum == 0) {
+      replaceClass($(".order-collection"), "alert-danger", "alert-success");
+      replaceClass($(".order-collection"), "alert-warning", "alert-success");
       replaceClass($(".order-collection"), "alert-primary", "alert-success");
       $(".show-date-text").text($(".show-date-text").text() + "【已全部上报】");
-    } else if(unReportSum == 0) {
-      $(".show-date-text").text($(".show-date-text").text() + "【未收到上报】");
-      replaceClass($(".order-collection"), "alert-primary", "alert-danger");
     } else {
+      replaceClass($(".order-collection"), "alert-success", "alert-warning");
+      replaceClass($(".order-collection"), "alert-alert", "alert-warning");
       replaceClass($(".order-collection"), "alert-primary", "alert-warning");
       $(".show-date-text").text($(".show-date-text").text() + "【部分未上报】");
     }
