@@ -7,7 +7,7 @@ function setTable(userRole, userGroup, customFunc) {
   if(hasHighPermission(userRole)) {
     dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
   }
-  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
+  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && $.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE) != CONSTANTS.PAGE_TYPE.MENU_OPERATION) {
     addDropdownListEvent(customFunc);
   } else {
     $(".form-nav").remove();

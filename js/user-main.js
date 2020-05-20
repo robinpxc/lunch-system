@@ -278,9 +278,11 @@ $(document).ready(function () {
   function chooseOrderDate() {
     jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
       $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TODAY);
+      $.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
       jumpTo("admin-menu-operation.php");
     }, function() {
       $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TOMORROW);
+      $.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
       jumpTo("admin-menu-operation.php");
     });
   }

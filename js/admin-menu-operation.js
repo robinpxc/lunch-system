@@ -443,11 +443,9 @@ $(document).ready(function () {
       setEnable($(".btn-confirm"));
       $(".btn-confirm").click(function () {
         confirmOrderData();
-        setDisable($(".btn-confirm"));
-        setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
       });
       removeOldClass(currentGroupTable, "border-danger")
-      if (currentUserRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+      if (hasHighPermission(currentUserRole)) {
         addNewClass(currentGroupTable, "border-success");
         tableHeader.css("color", CONSTANTS.COLOR.GREEN_SUCCESS);
       } else {
@@ -477,7 +475,11 @@ $(document).ready(function () {
 
   function confirmOrderData() {
     updateMenuConfirmation(targetDate, currentUserGroup, CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED, function (updateStatus) {
-      alert(updateStatus);
+      let groupNum = currentUserGroup[currentUserGroup.length - 1];
+      if(updateStatus == true) {
+        setDisable($(".btn-confirm"));
+        setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
+      }
     })
 
   }
