@@ -215,6 +215,11 @@
     border-width: 2px;
   }
 
+  .card ul {
+    display: inline-flex;
+    flex-wrap: wrap;
+  }
+
   .ori-price {
     margin-bottom: 5px !important;
   }

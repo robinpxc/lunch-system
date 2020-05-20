@@ -11,6 +11,11 @@ $(document).ready(function () {
     orderedArray = new Array();
     if (dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
       orderedArray = dataList;
+      if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+        $(".table-group").remove();
+        $(".table-content").remove();
+      }
+      initConfirmTable($(".tb-container"));
     } else {
       for (let i = 0; i < dataList.length; i++) {
         let userGroup = dataList[i][4];
@@ -27,23 +32,27 @@ $(document).ready(function () {
 
     fetchNoOrderUsers(date, groupType).done(function (dataList) {
       unorderedArray = dataList;
-      collectOrderSum(orderedArray);
-      configUI();
-      initAlertBox(date);
-      initTableGroup(currentUserRole, currentUserGroup, function(groupId){
-        if(groupId == "group-all") {
-          refreshUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
-        } else {
-          refreshUnorderedTable(groupId[groupId.length - 1]);
-        }
-      });
-      setData(orderedArray);
-      setUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
-      setGroupTablePrint();
-      setAllTablePrint();
-      setNoOrderTablePrint();
 
-      exportEvents("ds", date, unorderedArray);
+      getAllConfirmationStatus(date).done(function(statusArray) {
+        collectOrderSum(orderedArray);
+        configUI();
+        initAlertBox(date);
+        initConfirmBox(statusArray);
+        initTableGroup(currentUserRole, currentUserGroup, function(groupId){
+          if(groupId == "group-all") {
+            refreshUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
+          } else {
+            refreshUnorderedTable(groupId[groupId.length - 1]);
+          }
+        });
+        setData(orderedArray);
+        setUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
+        setGroupTablePrint();
+        setAllTablePrint();
+        setNoOrderTablePrint();
+
+        exportEvents("ds", date, unorderedArray);
+      });
     });
   });
 
@@ -70,6 +79,46 @@ $(document).ready(function () {
       orderSum += Number(orderCollection[i]);
     }
     $("#order-sum").text(orderSum);
+  }
+
+  function initConfirmBox(statusArray) {
+    let confirmList = new Array(CONSTANTS.WORKGROUP_COUNT);
+
+    for(let i = 0; i < statusArray.length; i++) {
+      let group = statusArray[i][1];
+      let groupNum = group[group.length - 1];
+      let confirmationStatus = statusArray[i][2];
+      confirmList[groupNum] = confirmationStatus == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED ? true : false;
+    }
+
+    let unReportSum = 0;
+    for(let i = 0; i < confirmList.length; i++) {
+      let status = confirmList[i];
+      if(!status) {
+        unReportSum ++;
+      }
+      $("#confirm-group-" + i).text(status == true ? "已上报" : "未上报");
+      $("#confirm-group-" + i).css({
+        "color": status ? "#177828" : "#BD2130",
+        "font-weight": status ? "normal" : "bold"
+      });
+    }
+    $("#no-report-sum").text(unReportSum);
+    $("#no-report-sum").css({
+      "color": "#BD2130",
+      "font-weight": "bold"
+    });
+
+    if(unReportSum == CONSTANTS.MENU.COUNT) {
+      replaceClass($(".order-collection"), "alert-primary", "alert-success");
+      $(".show-date-text").text($(".show-date-text").text() + "【已全部上报】");
+    } else if(unReportSum == 0) {
+      $(".show-date-text").text($(".show-date-text").text() + "【未收到上报】");
+      replaceClass($(".order-collection"), "alert-primary", "alert-danger");
+    } else {
+      replaceClass($(".order-collection"), "alert-primary", "alert-warning");
+      $(".show-date-text").text($(".show-date-text").text() + "【部分未上报】");
+    }
   }
 
   function setData(dataArray) {

@@ -234,3 +234,30 @@ function updateMenuConfirmation(date, group, status, func) {
   });
 }
 
+function getAllConfirmationStatus(date) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/fetch-all-confirmation.php",
+    data: {
+      "date": date
+    },
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      if (response != null) {
+        deferred.resolve(response);
+      }
+    },
+    error: function (errorMsg) {
+      alert("检查全部签字状态失败，请重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+

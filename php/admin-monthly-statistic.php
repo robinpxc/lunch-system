@@ -217,7 +217,7 @@
             <span class="summary-data order-price"></span>
             <spam>】元</spam>
           </span>
-          <div class="summary-tb mt-2">
+          <div class="summary-tb mt-2 tb-sub-container">
             <table>
               <thead>
               <td class="left">餐号</td>
