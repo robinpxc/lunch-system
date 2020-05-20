@@ -74,6 +74,7 @@ body {
 }
 
 .nav-item, .nav-title {
+  margin: 1px;
   padding: 5px;
   border-radius: 5px;
   font-weight: bold;

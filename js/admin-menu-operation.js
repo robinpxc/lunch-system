@@ -480,6 +480,8 @@ $(document).ready(function () {
       if(updateStatus == true) {
         jqInfo("操作成功", "订餐数据上报完成!", function() {
           setDisable($(".btn-confirm"));
+          alert(".\".table-group-\" + currentUserGroup[currentUserGroup.length - 1]");
+          $(".table-group-" + currentUserGroup[currentUserGroup.length - 1]).css("color", "#177828");
           setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
           window.location.href = "../php/user-main.php";
         });
