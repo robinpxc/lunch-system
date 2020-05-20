@@ -64,9 +64,19 @@ $(document).ready(function () {
           setDisable($("#btn-order-today"));
           $("#btn-order-today").text("已无法修改");
         }
+        checkMenuConfirmation(getDateToday(), group, function(status) {
+          if(status == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+            setDisable($("#btn-order-today"));
+            $("#btn-order-today").text("今日订餐已上报");
+          }
+        });
       } else {
         updateCardStatus(cardToday, false);
         setCardPreview(false, formattedDateToday);
+        if(isOrderTodayTimeout()) {
+          setDisable($("#btn-order-today"));
+          $("#btn-order-today").text("已无法订餐");
+        }
       }
     }
   }
@@ -84,6 +94,12 @@ $(document).ready(function () {
       if (orderStatusTomorrow == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
         updateCardStatus(cardTomorrow, true);
         setCardPreview(true, formattedDateTomorrow);
+        checkMenuConfirmation(getDateTomorrow(), group, function(status) {
+          if(status == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+            setDisable($("#btn-order-tomorrow"));
+            $("#btn-order-tomorrow").text("明日订餐已上报");
+          }
+        });
       } else {
         updateCardStatus(cardTomorrow, false);
         setCardPreview(false, formattedDateTomorrow);
@@ -98,32 +114,32 @@ $(document).ready(function () {
         confirmationTomorrow = tomorrowStatus;
         if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
           replaceClass($("#admin-card"), "border-secondary", "border-success");
-          $("#admin-card .card-info").text("点餐已完成");
+          $("#admin-card .card-info").text("订餐已完成");
           setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
         } else if((confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) || (confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED)) {
           replaceClass($("#admin-card"), "border-secondary", "border-warning");
           if(confirmationToday == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED ) {
-            $("#admin-card .card-info").text("【明日】点餐未上报！");
+            $("#admin-card .card-info").text("【明日】订餐未上报！");
             setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
           } else if(confirmationToday != CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED && confirmationTomorrow == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
             if(isOrderTodayTimeout()) {
-              $("#admin-card .card-info").text("【点餐】已上报");
+              $("#admin-card .card-info").text("【订餐】已上报");
               setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
               replaceClass($("#admin-card"), "border-warning", "border-success");
             } else {
-              $("#admin-card .card-info").text("【今日】点餐未上报！");
+              $("#admin-card .card-info").text("【今日】订餐未上报！");
               setAdminCardStyle(CONSTANTS.COLOR.GREEN_SUCCESS);
             }
           }
         } else {
           if(isOrderTodayTimeout()) {
             replaceClass($("#admin-card"), "border-secondary", "border-warning");
-            $("#admin-card .card-info").text("【明日】点餐未上报！");
+            $("#admin-card .card-info").text("【明日】订餐未上报！");
             setAdminCardStyle(CONSTANTS.COLOR.YELLOW_WARNING);
           } else {
             replaceClass($("#admin-card"), "border-secondary", "border-danger");
             setAdminCardStyle(CONSTANTS.COLOR.RED_DANGER);
-            $("#admin-card .card-info").text("【两日】点餐未上报");
+            $("#admin-card .card-info").text("【两日】订餐未上报");
           }
         }
       });

@@ -442,7 +442,9 @@ $(document).ready(function () {
     if (unOrderSum == 0) {
       setEnable($(".btn-confirm"));
       $(".btn-confirm").click(function () {
-        confirmOrderData();
+        jqConfirm("上报确认", "订餐数据【一经上报无法修改】，确认上报？？", function() {
+          confirmOrderData();
+        });
       });
       removeOldClass(currentGroupTable, "border-danger")
       if (hasHighPermission(currentUserRole)) {
@@ -475,10 +477,12 @@ $(document).ready(function () {
 
   function confirmOrderData() {
     updateMenuConfirmation(targetDate, currentUserGroup, CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED, function (updateStatus) {
-      let groupNum = currentUserGroup[currentUserGroup.length - 1];
       if(updateStatus == true) {
-        setDisable($(".btn-confirm"));
-        setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
+        jqInfo("操作成功", "订餐数据上报完成!", function() {
+          setDisable($(".btn-confirm"));
+          setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
+          window.location.href = "../php/user-main.php";
+        });
       }
     })
 

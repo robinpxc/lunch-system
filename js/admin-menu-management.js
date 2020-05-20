@@ -211,7 +211,7 @@ $(document).ready(function () {
         }
         updateMenu(menuArray, dateSelected).done(function (response) {
           if (response) {
-            jqueryInfo("修改成功", "已成功修改菜单!", false, false, function () {
+            jqueryInfo("修改成功", (menuStatus == CONSTANTS.MENU.STATUS.EXIST ? "成功修改菜单!" : "成功创建菜单!"), false, false, function () {
               menuArray = null;
               refresh();
             });
