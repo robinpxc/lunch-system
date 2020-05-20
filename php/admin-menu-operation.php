@@ -202,9 +202,9 @@ include('common/session.php');
         <svg class="icon icon-sm" viewBox="0 0 1024 1024" ><path d="M512 64C264.6 64 64 264.6 64 512c0 247.4 200.6 448 448 448 247.4 0 448-200.6 448-448C960 264.6 759.4 64 512 64zM741.8 362.2 463.6 719.2c-2.2 2.2-5.8 7-10.2 7-4.6 0-7.6-3.2-10.2-5.8-2.6-2.6-157.8-151.8-157.8-151.8l-3-3c-1.2-1.8-2.2-4-2.2-6.4 0-2.4 1-4.6 2.2-6.4 0.8-0.8 1.4-1.4 2.2-2.4 15.4-16.2 46.6-49 48.6-51 2.6-2.6 4.8-6 9.6-6 5 0 8.2 4.2 10.6 6.6 2.4 2.4 90 86.6 90 86.6l222.6-286c2-1.6 4.4-2.8 7-2.8 2.6 0 5 1 7 2.6l61.2 48.2c1.6 2 2.6 4.4 2.6 7C744 358.2 743 360.4 741.8 362.2z" p-id="10225" fill="#008000"></path>
         </svg>
       </span>
-      <span class="confirm-text">尚未提交点餐数据</span>
+      <span class="confirm-text">尚未上报点餐数据</span>
     </span>
-    <span><button class="btn btn-primary btn-confirm" disabled="disabled">提交点餐数据</button></span>
+    <span><button class="btn btn-primary btn-confirm" disabled="disabled">上报点餐数据</button></span>
   </div>
 
   <div class="operation-container table-group">

@@ -399,9 +399,9 @@ include('common/session.php'); ?>
       </div>
 
       <!-- 未订餐名单 -->
-      <div class="table-card card table-not-ordered">
+      <div class="table-card card border-primary table-not-ordered">
         <div class="card-header">
-          <span class="no-order-title">未订餐人员名单</span>
+          <span class="no-order-title">未订餐名单</span>
           <span>
             <button class="btn btn-outline-primary btn-print tb-print-no-order no-print" type="button">打印</button>
             <button class="btn btn-outline-primary btn-export tb-export-no-order no-print" type="button">导出</button>

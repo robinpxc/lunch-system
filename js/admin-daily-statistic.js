@@ -125,7 +125,7 @@ $(document).ready(function () {
 
   function setUnorderedTable(group) {
     if (group == CONSTANTS.WORKGROUP.GROUP_ALL) {
-      $(".no-order-title").text("未订餐人员 （ " + unorderedArray.length + " ） 人");
+      $(".no-order-title").text("未订餐 （ " + unorderedArray.length + " ） 人");
       setUnorderedData(unorderedArray);
     } else {
       let groupUnorderedArray = filterUnorderedArrayByGroup(group, unorderedArray);
@@ -153,7 +153,7 @@ $(document).ready(function () {
           groupCN = CONSTANTS.WORKGROUP.CN.GROUP_6;
           break;
       }
-      $(".no-order-title").text(groupCN + "组未订餐人员 （ " + groupUnorderedArray.length + " ） 人");
+      $(".no-order-title").text(groupCN + "组未订餐 （ " + groupUnorderedArray.length + " ） 人");
       setUnorderedData(groupUnorderedArray);
     }
   }
