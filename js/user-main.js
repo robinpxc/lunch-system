@@ -60,6 +60,10 @@ $(document).ready(function () {
       if (orderStatusToday == CONSTANTS.ORDER.STATUS.ORDER_EXIST) {
         updateCardStatus(cardToday, true);
         setCardPreview(true, formattedDateToday);
+        if(isOrderTodayTimeout()) {
+          setDisable($("#btn-order-today"));
+          $("#btn-order-today").text("已无法修改");
+        }
       } else {
         updateCardStatus(cardToday, false);
         setCardPreview(false, formattedDateToday);
