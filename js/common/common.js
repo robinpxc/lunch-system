@@ -292,6 +292,10 @@ function getCurrentMonth() {
   return (new Date().getMonth()) + 1;
 }
 
+function getLastMonth() {
+  return new Date().getMonth();
+}
+
 function isLastDay(dateString) {
   let date = new Date(dateString);
   let endDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -374,6 +378,10 @@ function removeSpinner() {
 function setFooterText() {
   $(".footer-text-copyright").html(CONSTANTS.STRING.FOOTER.COPY_RIGHT);
   $(".footer-text-contact").html(CONSTANTS.STRING.FOOTER.CONTACT_ME);
+}
+
+function hasHighPermission(role) {
+  return (role == CONSTANTS.USER.ROLE.ADMIN_SUPER || role == CONSTANTS.USER.ROLE.ADMIN_MENU);
 }
 
 // Sign out related functions

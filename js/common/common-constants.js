@@ -53,7 +53,8 @@ const CONSTANTS = {
       KEY_YEAR: "KEY_YEAR",
       KEY_MONTH: "KEY_MONTH",
       KEY_DETAIL_ID: "KEY_DETAIL_ID",
-      KEY_DETAIL_NAME: "KEY_DETAIL_NAME"
+      KEY_DETAIL_NAME: "KEY_DETAIL_NAME",
+      KEY_DATA_RANGE: "KEY_DATA_RANGE"
     },
     ORDER: {
       KEY_DATE: "KEY_ORDER_DATE"
@@ -157,6 +158,11 @@ const CONSTANTS = {
       TODAY: "今天",
       TOMORROW: "明天",
     }
+  },
+
+  STATISTICS: {
+    RANGE_GROUP: "RANGE_GROUP",
+    RANGE_ALL: "RANGE_ALL",
   },
 
   COLOR: {

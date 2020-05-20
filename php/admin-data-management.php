@@ -19,6 +19,7 @@ include('common/session.php');
   <!-- Style sheets-->
   <!-- Third Party -->
   <link rel="stylesheet" href="../third-party/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../third-party/fontawesome/css/all.min.css">
   <!-- Common-->
   <link href="../css/common/common.css" rel="stylesheet">
   <!-- Custom -->
@@ -31,10 +32,12 @@ include('common/session.php');
   <script type="text/javascript" src="../third-party/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery-confirm/jquery-confirm.min.js"></script>
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../third-party/fontawesome/js/all.min.js"></script>
   <!-- Common-->
   <script type="text/javascript" src="../js/common/common.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
   <script type="text/javascript" src="../js/common/common-date.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/admin-data-management.js"></script>
 

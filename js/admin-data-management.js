@@ -1,4 +1,7 @@
 $(document).ready(function() {
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
+
   initUI();
   fetchExistYear().done(function(yearArray) {
     setCustomYearSelect(yearArray);
@@ -15,13 +18,27 @@ $(document).ready(function() {
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, getDateToday());
-      window.location.href = "admin-daily-statistic.php";
+      selectDataRange(function(){
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+        jumpToDailyStatistic(getDateToday());
+      }, function() {
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+        jumpToDailyStatistic(getDateToday());
+      });
     });
 
     $("#tomorrow-statistics").click(function() {
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, getDateTomorrow());
-      window.location.href = "admin-daily-statistic.php";
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(getDateTomorrow());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(getDateTomorrow());
+        });
+      } else {
+        jumpToDailyStatistic(getDateTomorrow());
+      }
     });
 
     $("#custom-daily-statistics").click(function(){
@@ -31,21 +48,58 @@ $(document).ready(function() {
       selectMonth = selectMonth.length == 1 ? "0" + selectMonth : selectMonth;
       selectDay = selectDay.length == 1 ? "0" + selectDay : selectDay;
       let selectedDate = selectedYear + "-" + selectMonth + "-" + selectDay;
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, selectedDate);
-      window.location.href = "admin-daily-statistic.php";
+
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(selectedDate);
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(selectedDate);
+        });
+      } else {
+        jumpToDailyStatistic(selectedDate);
+      }
     });
 
     $("#monthly-statistics").click(function() {
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, getCurrentYear());
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, getLastMonth());
-      window.location.href = "admin-monthly-statistic.php";
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+        });
+      } else {
+        jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+      }
     });
 
-    $("#custom-monthly-statistics").click(function(){
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, $("#m-year-select option:selected").val());
-      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, $("#m-month-select option:selected").val());
-      window.location.href = "admin-monthly-statistic.php";
+    $("#custom-monthly-statistics").click(function() {
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+        });
+      } else {
+        jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+      }
     });
+  }
+
+  function jumpToDailyStatistic(date) {
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, date);
+    window.location.href = "admin-daily-statistic.php";
+  }
+
+  function jumpToMonthlyStatistic(year, month) {
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, year);
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, month);
+    window.location.href = "admin-monthly-statistic.php";
   }
 
   function setCustomYearSelect(yearArray) {
@@ -111,7 +165,13 @@ $(document).ready(function() {
     });
   }
 
-  function getLastMonth() {
-    return new Date().getMonth();
+  function selectDataRange(func1, func2) {
+    if(hasHighPermission(userRole)) {
+      jqDialog("数据选择", "请选择要查看的数据", "本部门数据统计", "所有部门数据统计", function() {
+        func1();
+      }, function() {
+        func2();
+      });
+    }
   }
 });
