@@ -132,7 +132,7 @@ $(document).ready(function () {
     footer.append("<button class='btn btn-success btn-md' id='btn-order'>订餐");
     footer.append("<button class='btn btn-danger btn-md' id='btn-cancel-order'>取消");
 
-    if(orderNum == CONSTANTS.ORDER_COUNT + 1) {
+    if(orderNum == CONSTANTS.MENU.COUNT + 1) {
       $(".counter .input-group").empty();
       $(".counter .input-group").append("<h4>选择不订餐");
       $("#btn-order").text("提交");
@@ -164,10 +164,10 @@ $(document).ready(function () {
     });
 
     $("#btn-order").click(function() {
-      let orderCount = orderNum == (CONSTANTS.ORDER_COUNT + 1) ? 0 :$("#counter-input").val();
+      let orderCount = orderNum == (CONSTANTS.MENU.COUNT + 1) ? 0 :$("#counter-input").val();
       setDailyOrder(date, userId, orderNum, orderCount, orderStatus).done(function() {
         $(".counter-container").remove();
-        jqInfo("订餐成功", (orderNum == (CONSTANTS.ORDER_COUNT + 1)) ? "已确认【不订餐】" : "已订 【" + orderNum + "号，" + orderCount + "份】，将自动返回主页", function() {
+        jqInfo("订餐成功", (orderNum == (CONSTANTS.MENU.COUNT + 1)) ? "已确认【不订餐】" : "已订 【" + orderNum + "号，" + orderCount + "份】，将自动返回主页", function() {
           window.location.href = "user-main.php";
         });
       });

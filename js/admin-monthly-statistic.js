@@ -22,6 +22,7 @@ $(document).ready(function(){
         $(".price-area").remove();
       }
 
+      initSumTable($(".tbody-order-sum"));
       initTableGroup(currentUserRole, currentUserGroup, function() {});
       setDataToTable();
       addSummaryForGroups();

@@ -1,6 +1,5 @@
 const CONSTANTS = {
   WORKGROUP_COUNT: 7,
-  ORDER_COUNT: 7,
   MENU: {
     COUNT: 7,
     SUB_COUNT: 3,

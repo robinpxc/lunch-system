@@ -48,6 +48,7 @@ $(document).ready(function () {
   });
 
   function configUI() {
+    initSumTable($(".tbody-order-sum"));
     for (let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
@@ -64,9 +65,9 @@ $(document).ready(function () {
       $(".show-date-text").text("选择的日期是 " + date);
     }
     let orderSum = 0;
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= CONSTANTS.MENU.COUNT; i++) {
       $("#order-sum-" + i).text(orderCollection[i]);
-      orderSum += orderCollection[i];
+      orderSum += Number(orderCollection[i]);
     }
     $("#order-sum").text(orderSum);
   }

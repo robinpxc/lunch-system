@@ -171,30 +171,6 @@ include('common/session.php'); ?>
 
         </thead>
         <tbody class="tbody-order-sum">
-          <tr>
-            <td class="left">1  号</td>
-            <td class="right" id="order-sum-1"></td>
-          </tr>
-          <tr>
-            <td class="left">2  号</td>
-            <td class="right" id="order-sum-2"></td>
-          </tr>
-          <tr>
-            <td class="left">3  号</td>
-            <td class="right" id="order-sum-3"></td>
-          </tr>
-          <tr>
-            <td class="left">4  号</td>
-            <td class="right" id="order-sum-4"></td>
-          </tr>
-          <tr>
-            <td class="left">5  号</td>
-            <td class="right" id="order-sum-5"></td>
-          </tr>
-          <tr>
-            <td class="left bottom">总计</td>
-            <td class="right bottom" id="order-sum"></td>
-          </tr>
         </tbody>
       </table>
     </div>
