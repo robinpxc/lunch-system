@@ -126,14 +126,18 @@ $(document).ready(function () {
   }
 
   function setUnorderedTable(group) {
-    if (group == CONSTANTS.WORKGROUP.GROUP_ALL) {
-      $(".no-order-title").text("未订餐 （ " + unorderedArray.length + " ） 人");
-      setUnorderedData(unorderedArray);
+    if(unorderedArray.length == 0) {
+      $(".table-not-ordered").remove();
     } else {
-      let groupUnorderedArray = filterUnorderedArrayByGroup(group, unorderedArray);
-      let groupCN = groupToTextSimplify(group);
-      $(".no-order-title").text(groupCN + "组未订餐 （ " + groupUnorderedArray.length + " ） 人");
-      setUnorderedData(groupUnorderedArray);
+      if (group == CONSTANTS.WORKGROUP.GROUP_ALL) {
+        $(".no-order-title").text("未订餐 （ " + unorderedArray.length + " ） 人");
+        setUnorderedData(unorderedArray);
+      } else {
+        let groupUnorderedArray = filterUnorderedArrayByGroup(group, unorderedArray);
+        let groupCN = groupToTextSimplify(group);
+        $(".no-order-title").text(groupCN + "组未订餐 （ " + groupUnorderedArray.length + " ） 人");
+        setUnorderedData(groupUnorderedArray);
+      }
     }
   }
 

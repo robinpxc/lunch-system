@@ -18,13 +18,18 @@ $(document).ready(function() {
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
-      selectDataRange(function(){
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(getDateToday());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(getDateToday());
+        });
+      } else {
         $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
         jumpToDailyStatistic(getDateToday());
-      }, function() {
-        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
-        jumpToDailyStatistic(getDateToday());
-      });
+      }
     });
 
     $("#tomorrow-statistics").click(function() {
