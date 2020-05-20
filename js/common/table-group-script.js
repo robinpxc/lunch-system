@@ -6,8 +6,12 @@ function setTable(userRole, userGroup, customFunc) {
   let dataRange = CONSTANTS.STATISTICS.RANGE_GROUP;
   if(hasHighPermission(userRole)) {
     dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
+    if(dataRange == "") {
+      dataRange = CONSTANTS.STATISTICS.RANGE_ALL;
+    }
   }
-  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL ) {
+
+  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && userRole != CONSTANTS.USER.ROLE.ADMIN_MENU ) {
     addDropdownListEvent(customFunc);
   } else {
     $(".form-nav").remove();

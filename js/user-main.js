@@ -301,11 +301,9 @@ $(document).ready(function () {
   function chooseOrderDate() {
     jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
       $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TODAY);
-      $.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
       jumpTo("admin-menu-operation.php");
     }, function() {
       $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TOMORROW);
-      $.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
       jumpTo("admin-menu-operation.php");
     });
   }
@@ -313,6 +311,7 @@ $(document).ready(function () {
   function directToTomorrow() {
     jqWarning("跳转提示", "今日订餐已<span class='emphasised-red'>无法修改</span>，将直接跳转到<span class='emphasised-red'>【明日】</span>订餐界面", function() {
       $(".btn-orange").attr("id", "single-warning");
+      //$.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
       jumpTo("admin-menu-operation.php");
     });
   }

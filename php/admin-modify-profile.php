@@ -185,6 +185,7 @@ include('common/session.php');
       <select class="form-control" id="user-role" disabled="disabled">
         <option value="user">用户</option>
         <option value="admin-group">组管理员</option>
+        <option value="admin-menu">菜单管理员</option>
         <option value="admin-super">高级管理员</option>
         <option value="guest">临时人员</option>
       </select>

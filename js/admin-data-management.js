@@ -42,6 +42,7 @@ $(document).ready(function() {
           jumpToDailyStatistic(getDateTomorrow());
         });
       } else {
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
         jumpToDailyStatistic(getDateTomorrow());
       }
     });

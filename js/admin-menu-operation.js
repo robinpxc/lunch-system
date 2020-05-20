@@ -111,7 +111,7 @@ $(document).ready(function () {
   function setTableData(groupUserList) {
     let unOrderSumArray = new Array(groupIndexCount);
     for (let i = 0; i < groupIndexCount; i++) {
-      let userLists = filterUsersByOrder(groupUserList[groupIndexCount == 7 ? i : currentGroupNum]);
+      let userLists = filterUsersByOrder(groupUserList[groupIndexCount == CONSTANTS.WORKGROUP_COUNT ? i : currentGroupNum]);
       let unOrderedUsers = userLists[0];
       let orderedUsers = userLists[1];
       if (groupIndexCount == CONSTANTS.WORKGROUP_COUNT) {
@@ -121,7 +121,7 @@ $(document).ready(function () {
       }
 
       // Set table data for each group
-      let currentGroup = "group" + (groupIndexCount == 7 ? i : currentGroupNum);
+      let currentGroup = "group" + (groupIndexCount == CONSTANTS.WORKGROUP_COUNT ? i : currentGroupNum);
       setData(unOrderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER, CONSTANTS.ORDER.STATUS_USER.ORDERED);
       setData(orderedUsers, currentGroup, CONSTANTS.ORDER.STATUS_USER.ORDERED, CONSTANTS.ORDER.STATUS_USER.NOT_ORDER);
       setTableStatus(groupIndexCount == CONSTANTS.WORKGROUP_COUNT ? unOrderSumArray[i] : unOrderSumArray, currentGroup);
@@ -192,6 +192,8 @@ $(document).ready(function () {
           });
         }
       }
+    } else {
+      $(".table-group-" + currentGroup[currentGroup.length - 1] + " .card-header").css("color", "#177828");
     }
   }
 
@@ -447,16 +449,19 @@ $(document).ready(function () {
         });
       });
       removeOldClass(currentGroupTable, "border-danger")
-      if (hasHighPermission(currentUserRole)) {
-        addNewClass(currentGroupTable, "border-success");
-        tableHeader.css("color", CONSTANTS.COLOR.GREEN_SUCCESS);
-      } else {
-        addNewClass(currentGroupTable, "border-warning");
-        tableHeader.css("color", CONSTANTS.COLOR.YELLOW_WARNING);
-      }
+
+      checkMenuConfirmation(targetDate, groupNum, function (status) {
+        if(status == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+          addNewClass(currentGroupTable, "border-success");
+          tableHeader.css("color", CONSTANTS.COLOR.GREEN_SUCCESS);
+        } else {
+          addNewClass(currentGroupTable, "border-warning");
+          tableHeader.css("color", CONSTANTS.COLOR.YELLOW_WARNING);
+        }
+      });
+
     } else {
-      removeOldClass(currentGroupTable, "border-success");
-      addNewClass(currentGroupTable, "border-danger");
+      replaceClass(currentGroupTable, "border-success", "border-danger");
       tableHeader.css("color", "black");
     }
   }
@@ -480,7 +485,6 @@ $(document).ready(function () {
       if(updateStatus == true) {
         jqInfo("操作成功", "订餐数据上报完成!", function() {
           setDisable($(".btn-confirm"));
-          alert(".\".table-group-\" + currentUserGroup[currentUserGroup.length - 1]");
           $(".table-group-" + currentUserGroup[currentUserGroup.length - 1]).css("color", "#177828");
           setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
           window.location.href = "../php/user-main.php";
