@@ -275,10 +275,12 @@ $(document).ready(function () {
 
   function setManageButtonEvents() {
     $("#user-manage-btn").click(function () {
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
       jumpTo("admin-user-management.php");
     });
 
     $("#menu-manage-btn").click(function () {
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
       if(isOrderTodayTimeout()) {
         directToTomorrow();
       } else {
@@ -287,6 +289,7 @@ $(document).ready(function () {
     });
 
     $("#data-manage-btn").click(function () {
+      $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
       window.location.href = "admin-data-management.php";
     });
 

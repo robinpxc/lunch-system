@@ -65,8 +65,8 @@ function showNavMenu(willShowMenu) {
 }
 
 function removeAdminNavItems() {
-  $userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
-  if($userRole == CONSTANTS.USER.ROLE.USER || $userRole == CONSTANTS.USER.ROLE.GUEST) {
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  if(userRole == CONSTANTS.USER.ROLE.USER || userRole == CONSTANTS.USER.ROLE.GUEST) {
     $(".admin-nav").remove();
   }
 }
