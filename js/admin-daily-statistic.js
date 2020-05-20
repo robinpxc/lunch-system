@@ -11,9 +11,8 @@ $(document).ready(function () {
     orderedArray = new Array();
     if (dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
       orderedArray = dataList;
-      if(currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+      if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
         $(".table-group").remove();
-        $(".table-content").remove();
       }
       initConfirmTable($(".tb-container"));
     } else {

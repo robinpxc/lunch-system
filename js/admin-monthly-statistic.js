@@ -22,6 +22,10 @@ $(document).ready(function(){
         $(".price-area").remove();
       }
 
+      if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+        $(".table-group").remove();
+      }
+
       initSumTable($(".tbody-order-sum"));
       initTableGroup(currentUserRole, currentUserGroup, function() {});
       setDataToTable();

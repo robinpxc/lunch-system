@@ -175,33 +175,33 @@
 </header>
 
 <div class="main-content boxshaw">
-  <div class="table-group">
-    <div class="form-nav d-block">
-      <div class="price-area">
-        <div class="price-container ori-price mt-2">
-          <div class="input-group input-group-ori">
-            <div class="input-group-prepend">
-              <span class="input-group-text">原始价(￥)</span>
-            </div>
-            <input type="number" class="form-control" id="input-ori-price" disabled="disabled">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary btn-price" id="btn-price-ori" type="button">修改</button>
-            </div>
-          </div>
+  <div class="price-area">
+    <div class="price-container ori-price mt-2">
+      <div class="input-group input-group-ori">
+        <div class="input-group-prepend">
+          <span class="input-group-text">原始价(￥)</span>
         </div>
-        <div class="price-container discount-price mt-2 mb-2">
-          <div class="input-group input-group-discount">
-            <div class="input-group-prepend">
-              <span class="input-group-text">折扣价(￥)</span>
-            </div>
-            <input type="number" class="form-control" id="input-discount-price" disabled="disabled">
-            <div class="input-group-append" id="button-addon4">
-              <button class="btn btn-outline-secondary btn-price" id="btn-price-discount" type="button">修改</button>
-            </div>
-          </div>
+        <input type="number" class="form-control" id="input-ori-price" disabled="disabled">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary btn-price" id="btn-price-ori" type="button">修改</button>
         </div>
+      </div>
+    </div>
+    <div class="price-container discount-price mt-2 mb-2">
+      <div class="input-group input-group-discount">
+        <div class="input-group-prepend">
+          <span class="input-group-text">折扣价(￥)</span>
+        </div>
+        <input type="number" class="form-control" id="input-discount-price" disabled="disabled">
+        <div class="input-group-append" id="button-addon4">
+          <button class="btn btn-outline-secondary btn-price" id="btn-price-discount" type="button">修改</button>
+        </div>
+      </div>
+    </div>
 
-        <div class="alert alert-primary" role="alert">
+
+  </div>
+  <div class="alert alert-primary" role="alert">
           <span class="summary-title">
             <h4 class="last-month-title md-2">
               <span class="show-year"></span>
@@ -217,19 +217,19 @@
             <span class="summary-data order-price"></span>
             <spam>】元</spam>
           </span>
-          <div class="summary-tb mt-2 tb-sub-container">
-            <table>
-              <thead>
-              <td class="left">餐号</td>
-              <td>份数</td>
-              </thead>
-              <tbody class="tbody-order-sum">
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      
+    <div class="summary-tb mt-2 tb-sub-container">
+      <table>
+        <thead>
+        <td class="left">餐号</td>
+        <td>份数</td>
+        </thead>
+        <tbody class="tbody-order-sum">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="table-group">
+    <div class="form-nav d-block">
       <!-- Dropdown list to select data source -->
       <div class="btn-group nav-drop-down">
         <button class="btn btn-success btn-lg dropdown-toggle dropdown-workgroup" type="button" data-toggle="dropdown"
