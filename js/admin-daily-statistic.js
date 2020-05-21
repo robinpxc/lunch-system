@@ -9,50 +9,62 @@ $(document).ready(function () {
 
   fetchDailyOrderStatus(date, groupType).done(function (dataList) {
     orderedArray = new Array();
-    if (dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
-      orderedArray = dataList;
-      if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
-        $(".table-group").remove();
-      }
-      initConfirmTable($(".tb-container"));
-    } else {
-      for (let i = 0; i < dataList.length; i++) {
-        let userGroup = dataList[i][4];
-        if (userGroup == currentUserGroup) {
-          orderedArray.push(dataList[i]);
-        }
-      }
-    }
-
-    if(orderedArray.length == 0) {
-      setDisable($(".btn-print-all"));
-      setDisable($(".btn-export-all"));
-    }
-
-    fetchNoOrderUsers(date, groupType).done(function (dataList) {
-      unorderedArray = dataList;
-
-      getAllConfirmationStatus(date).done(function(statusArray) {
-        collectOrderSum(orderedArray);
-        configUI();
-        initAlertBox(date);
-        if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
-          initConfirmBox(statusArray);
-        }
-        initTableGroup(currentUserRole, currentUserGroup, function(groupId){
-          if(groupId == "group-all") {
-            refreshUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
-          } else {
-            refreshUnorderedTable(groupId[groupId.length - 1]);
+    getAllConfirmationStatus(date).done(function(confirmationList) {
+      if (dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
+        for(let i = 0; i < confirmationList.length; i++) {
+          let group = confirmationList[i][1];
+          let groupNum = Number(group[group.length - 1]);
+          let confirmStatus = confirmationList[i][2];
+          if(confirmStatus == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+            for(let i = 0; i < filterOrderedArrayByGroup(dataList)[groupNum].length; i++) {
+              orderedArray.push(filterOrderedArrayByGroup(dataList)[groupNum][i]);
+            }
           }
-        });
-        setData(orderedArray);
-        setUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
-        setGroupTablePrint();
-        setAllTablePrint();
-        setNoOrderTablePrint();
+        }
 
-        exportEvents("ds", date, unorderedArray);
+        if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+          $(".table-group").remove();
+        }
+        initConfirmTable($(".tb-container"));
+      } else {
+        for (let i = 0; i < dataList.length; i++) {
+          let userGroup = dataList[i][4];
+          if (userGroup == currentUserGroup) {
+            orderedArray.push(dataList[i]);
+          }
+        }
+      }
+
+      if(orderedArray.length == 0) {
+        setDisable($(".btn-print-all"));
+        setDisable($(".btn-export-all"));
+      }
+
+      fetchNoOrderUsers(date, groupType).done(function (dataList) {
+        unorderedArray = dataList;
+
+        getAllConfirmationStatus(date).done(function(statusArray) {
+          collectOrderSum(orderedArray);
+          configUI();
+          initAlertBox(date);
+          if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL) {
+            initConfirmBox(statusArray);
+          }
+          initTableGroup(currentUserRole, currentUserGroup, function(groupId){
+            if(groupId == "group-all") {
+              refreshUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
+            } else {
+              refreshUnorderedTable(groupId[groupId.length - 1]);
+            }
+          });
+          setData(orderedArray);
+          setUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
+          setGroupTablePrint();
+          setAllTablePrint();
+          setNoOrderTablePrint();
+
+          exportEvents("ds", date, unorderedArray);
+        });
       });
     });
   });
@@ -195,6 +207,21 @@ $(document).ready(function () {
         setUnorderedData(groupUnorderedArray);
       }
     }
+  }
+
+  function filterOrderedArrayByGroup(dataList) {
+    let sortedArray = new Array(CONSTANTS.WORKGROUP_COUNT);
+    for(let i = 0; i < sortedArray.length; i++) {
+      sortedArray[i] = new Array();
+      for(let j = 0; j < dataList.length; j++) {
+        let group = dataList[j][4];
+        let groupNum = Number(group[group.length - 1]);
+        if(i == groupNum) {
+          sortedArray[i].push(dataList[j]);
+        }
+      }
+    }
+    return sortedArray;
   }
 
   function filterUnorderedArrayByGroup(group, dataArray) {
