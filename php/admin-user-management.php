@@ -418,11 +418,6 @@ include('common/session.php');
 
           <div class="d-inline-flex form-table">
             <select class="form-control" id="user-role">
-              <option value="user">普通用户</option>
-              <option value="admin-super">高级管理员</option>
-              <option value="admin-group">组管理员</option>
-              <option value="admin-menu">菜单管理员</option>
-              <option value="guest">临时人员</option>
             </select>
           </div>
 
@@ -439,7 +434,7 @@ include('common/session.php');
           </div>
 
           <div class="d-inline-flex form-table">
-            <button type="subnmit" id="create-new-user-btn" class=" form-control btn btn-primary" disabled="disabled">添加新用户</button>
+            <button type="button" id="create-new-user-btn" class=" form-control btn btn-primary" disabled="disabled">添加新用户</button>
           </div>
         </div>
 

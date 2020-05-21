@@ -312,7 +312,6 @@ $(document).ready(function () {
             break;
         }
       });
-
     });
   }
 });

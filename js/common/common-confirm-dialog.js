@@ -16,14 +16,16 @@ function confirm(title, content, icon, type, draggable, closeIcon, backgroundDis
 }
 
 function jqAlert(title, content) {
-  let confirmBtn =  {
-    text: '确认',
-    btnClass: 'btn-red',
-    action: function() {
-      refresh();
+  let confirmBtn = {
+    confirm: {
+      text: '确认',
+      btnClass: 'btn-red',
+      action: function() {
+        refresh();
+      }
     }
-  }
-  confirm(title, content, 'fa fa-warning', false, 'red', false, false, false,confirmBtn);
+  };
+  confirm(title, content, 'fa fa-exclamation-triangle', false, false, false, false, false, confirmBtn);
 }
 
 function jqInfo(title, content, func) {

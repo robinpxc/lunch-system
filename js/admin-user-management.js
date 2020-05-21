@@ -91,18 +91,34 @@ $(document).ready(function () {
     }
     let role = $("#user-role option:selected").val();
     let workgroup = $("#new-user-group option:selected").val();
+
+    if($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE) == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+      getGroupUserCount(workgroup).done(function(userCount) {
+
+        if(userCount == 0 && (role != CONSTANTS.USER.ROLE.ADMIN_GROUP && role != CONSTANTS.USER.ROLE.ADMIN_MENU)) {
+          jqAlert("操作失败","各部门第一个成员必须是【组/菜单管理员】!");
+        } else {
+          uploadUserData(username, nickName, password, role, workgroup);
+        }
+      });
+    } else {
+      uploadUserData(username, nickName, password, role, workgroup);
+    }
+  }
+
+  function uploadUserData(username, nickName, password, role, workgroup) {
     addUser(username, nickName, password, role, workgroup).done(function(response) {
       switch(response) {
         case "success":
           jqInfo("操作成功", "成功的添加了用户【" + username + "】", function() {
-            refresh();
+            refresh()
           });
           break;
         case "nickname-exist":
-          jqAlert("操作失败", "昵称已经被使用, 请更换昵称!");
+          jqAlert("操作失败","昵称已经被使用, 请更换昵称!");
           break;
         default:
-          jqAlert("错误", "操作失败, 发生异常，请重试!");
+          jqAlert("操作失败", "发生异常，请重试!");
       }
     });
   }

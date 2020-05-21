@@ -57,14 +57,15 @@ function addUser(username, nickName, password, role, workgroup) {
       "role": role,
       "workgroup": workgroup
     },
-    dataType: "json",
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
     beforeSend: function() {
       addSpinner();
     },
     success: function (response) {
       deferred.resolve(response);
     },
-    error: function() {
+    error: function(error) {
+      $("body").html(error.responseText);
       alert("网络异常，请重试");
     },
     complete: function() {
@@ -96,7 +97,7 @@ function updateUserInfo(userInfoObject) {
       deferred.resolve(response);
     },
     error: function(response) {
-      jqAlert("失败", "用户信息修改失败,请重试!");
+      jqAlert("修改失败", "用户信息修改失败,请重试!");
     },
     complete: function() {
       removeSpinner();
@@ -122,6 +123,31 @@ function deleteUser(userId) {
     },
     error: function (errorMsg) {
       alert("用户删除失败，请刷新页面或者切换网络环境，或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
+function getGroupUserCount(group) {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/functions/fetch-group-user-count.php",
+    data: {
+      "group": group
+    },
+    dataType: "json",
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function (errorMsg) {
+      alert("人数获取失败，请重试");
     },
     complete: function() {
       removeSpinner();
