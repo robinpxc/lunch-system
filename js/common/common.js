@@ -413,6 +413,23 @@ function hasHighPermission(role) {
   return (role == CONSTANTS.USER.ROLE.ADMIN_SUPER || role == CONSTANTS.USER.ROLE.ADMIN_MENU);
 }
 
+function setRoleOptions(selectContainer) {
+  selectContainer.append("<option value='" + CONSTANTS.USER.ROLE.USER +"'>" + CONSTANTS.USER.ROLE.CN.USER);
+  selectContainer.append("<option value='" + CONSTANTS.USER.ROLE.GUEST +"'>" + CONSTANTS.USER.ROLE.CN.GUEST);
+  selectContainer.append("<option value='" + CONSTANTS.USER.ROLE.ADMIN_GROUP +"'>" + CONSTANTS.USER.ROLE.CN.ADMIN_GROUP);
+  selectContainer.append("<option value='" + CONSTANTS.USER.ROLE.ADMIN_MENU +"'>" + CONSTANTS.USER.ROLE.CN.ADMIN_MENU);
+  selectContainer.append("<option value='" + CONSTANTS.USER.ROLE.ADMIN_SUPER +"'>" + CONSTANTS.USER.ROLE.CN.ADMIN_SUPER);
+}
+
+function removeHighLevelRoles(userRole) {
+  if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
+    $("#user-role option[value='admin-super']").remove();
+    $("#user-role option[value='admin-menu']").remove();
+  } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+    $("#user-role option[value='admin-super']").remove();
+  }
+}
+
 // Sign out related functions
 function logout() {
   clearCookies();

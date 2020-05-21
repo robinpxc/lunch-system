@@ -209,11 +209,11 @@ $(document).ready(function () {
     // Set dropdown option list to dropdown container
     $("." + orderDropdownClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
     // Set dropdown list content.
-    for (let i = 1; i <= CONSTANTS.MENU.COUNT; i++) {
+    for (let i = 1; i <= CONSTANTS.MENU.COUNT + 1; i++) {
       let orderNumText = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "不订餐" : i + " 号";
       let itemClassName = i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "dropdown-item no-order-item" : "dropdown-item";
       $("." + dropdownListClassName).append("<a class='" + itemClassName + "' href='#' id='order-" + i + "'>" + orderNumText);
-      if (i == 5) {
+      if (i == CONSTANTS.MENU.COUNT) {
         $("." + dropdownListClassName).append("<div class='dropdown-divider'>");
       }
     }
@@ -245,7 +245,7 @@ $(document).ready(function () {
         addNewClass(countToggleBtn, orderCount > 1 ? "btn-outline-warning" : "btn-outline-success");
         $("." + countContainerClassName).append("<div class='dropdown-menu " + dropdownListClassName + "'>");
         // If order num = 6 than set count to be "不订餐" and disable it
-        if ($(".dropdown-menu-" + userId + " #order-6").hasClass("active")) {
+        if ($(".dropdown-menu-" + userId + " #order-" + (Number(CONSTANTS.MENU.COUNT) + 1)).hasClass("active")) {
           $("#count-toggle-" + userId).text("不订餐");
           setDisable($("#count-toggle-" + userId));
         } else {
@@ -302,7 +302,7 @@ $(document).ready(function () {
       removeOldClass($(this), "active");
     });
 
-    if (orderNum != 6) {
+    if (orderNum != (CONSTANTS.MENU.COUNT + 1)) {
       element.val(orderNum);
       $("#order-toggle-" + userId).text(orderNum + " 号");
     } else {
@@ -357,16 +357,15 @@ $(document).ready(function () {
 
   // Order operation related functions
   function updateOrder(userId, orderNum, orderStatus) {
-    setDailyOrder(targetDate, userId, orderNum, 1, orderStatus).done(function (isSuccess) {
+    setDailyOrder(targetDate, userId, orderNum, orderStatus).done(function (isSuccess) {
       if (isSuccess) {
         if (orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
           reloadTable();
         } else {
-          jqInfo("修改成功", orderNum == 6 ? "已改为【不订餐】" : "成功修改为 【" + orderNum + " 号】", function () {
+          jqInfo("修改成功", orderNum == CONSTANTS.MENU.COUNT ? "已改为【不订餐】" : "成功修改为 【" + orderNum + " 号】", function () {
             reloadTable();
           });
         }
-
       } else {
         jqAlert("订餐失败", "请重试");
       }

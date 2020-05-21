@@ -47,7 +47,7 @@ $(document).ready(function () {
   function initUI() {
     let groupNum = userGroup[5];
     if (userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
-      removeHighLevelRoles();
+      removeHighLevelRoles(userRole);
       $(".nav-drop-down").remove();
       $(".table-card").each(function() {
         if(!$(this).hasClass("table-group-" + groupNum)) {
@@ -61,14 +61,6 @@ $(document).ready(function () {
         }
       });
       setDisable($("#new-user-group"));
-    }
-  }
-
-  function removeHighLevelRoles() {
-    if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
-      $("#user-role option[value='admin-super']").remove();
-      $("#user-role option[value='admin-group']").remove();
-      $("#user-role option[value='admin-menu']").remove();
     }
   }
 

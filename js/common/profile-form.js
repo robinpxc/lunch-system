@@ -40,7 +40,9 @@ $(document).ready(function () {
   function setUserData(userInfo) {
     $("#user-id-input").val(userInfo.id);
     $("#user-fullname-input").val(userInfo.fullname);
+    setRoleOptions($("#user-role"));
     $("#user-role").val(($("#user-role").hasClass("text-only")) ? roleToText(userInfo.role) : userInfo.role);
+    removeHighLevelRoles(userInfo.role);
     $("#user-workgroup").val($("#user-workgroup").hasClass("text-only")? groupToText(userInfo.workgroup) : userInfo.workgroup);
     $("#nickname-input").val(userInfo.nickname);
   }

@@ -183,11 +183,6 @@ include('common/session.php');
       </div>
       <input type="hidden" id="user-role-value" readonly="readonly"/>
       <select class="form-control" id="user-role" disabled="disabled">
-        <option value="user">用户</option>
-        <option value="admin-group">组管理员</option>
-        <option value="admin-menu">菜单管理员</option>
-        <option value="admin-super">高级管理员</option>
-        <option value="guest">临时人员</option>
       </select>
       <div class="input-group-append permission-text">
         <button class="btn btn-outline-danger action-btn modify-btn" type="button" id="role-edit-btn">修改</button>
