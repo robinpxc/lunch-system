@@ -188,6 +188,12 @@ body {
   font-size: 1.1rem;
 }
 
+select:disabled {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+
 @media screen and (max-width: 768px) {
   .main-content {
     padding: 5px !important;

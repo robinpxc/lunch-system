@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let currentUserId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED);
+  let currentUserRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
   let currentUserInfo = {};
   let modifyButtonGroup = $(".modify-btn");
   let discardBtn = $("#discard-btn");
@@ -41,11 +42,16 @@ $(document).ready(function () {
     $("#user-id-input").val(userInfo.id);
     $("#user-fullname-input").val(userInfo.fullname);
     setRoleOptions($("#user-role"));
+    if(currentUserId == userInfo.id && (currentUserRole == CONSTANTS.USER.ROLE.ADMIN_MENU || currentUserRole == CONSTANTS.USER.ROLE.ADMIN_GROUP)) {
+      $("#role-edit-btn").remove();
+      $("#user-role").addClass("all-radius");
+    }
     $("#user-role").val(($("#user-role").hasClass("text-only")) ? roleToText(userInfo.role) : userInfo.role);
-    removeHighLevelRoles(userInfo.role);
+    removeHighLevelRoles($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE));
     $("#user-workgroup").val($("#user-workgroup").hasClass("text-only")? groupToText(userInfo.workgroup) : userInfo.workgroup);
     $("#nickname-input").val(userInfo.nickname);
   }
+
 
 // Function to handle all modify button click events
   function modifyButtonClickEvent(btnGroup) {
