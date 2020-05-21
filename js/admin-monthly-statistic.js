@@ -100,22 +100,13 @@ $(document).ready(function(){
     return groupNum[5];
   }
 
-  function getOrderCountByOrderNum(dataArray) {
-    alert(dataArray);
-    for(let data in dataArray) {
-
-    }
-  }
-
   function setModifyBtnClickEvent() {
     $(".price-modify-btn").click(function() {
       let self = $(this);
       switch (self.attr("id")) {
         case "btn-price-ori":
-          alert(1);
           break;
         case "btn-price-discount":
-          alert(2);
           break;
       }
     });

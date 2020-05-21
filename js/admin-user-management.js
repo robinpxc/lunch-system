@@ -15,7 +15,7 @@ $(document).ready(function () {
     $(".modify-btn").click(function() {
       let id = $(this).parent().find("input").val();
       if(id == "") {
-        alert("用户信息异常，请刷新重试");
+        jqAlert("错误", "用户信息异常，请刷新重试");
       } else {
         $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED, id);
         window.location.href = "admin-modify-profile.php";
@@ -94,17 +94,15 @@ $(document).ready(function () {
     addUser(username, nickName, password, role, workgroup).done(function(response) {
       switch(response) {
         case "success":
-          alert(response);
           jqInfo("操作成功", "成功的添加了用户【" + username + "】", function() {
             refresh();
           });
           break;
         case "nickname-exist":
-          alert(response);
           jqAlert("操作失败", "昵称已经被使用, 请更换昵称!");
           break;
         default:
-          alert("操作失败, 发生异常，请重试!");
+          jqAlert("错误", "操作失败, 发生异常，请重试!");
       }
     });
   }
