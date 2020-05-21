@@ -6,6 +6,7 @@ $(document).ready(function () {
   willShowPricingHeader();
   setFooterText();
   removeAdminNavItems();
+  setNavItemClickEvents();
 
   // Hide nav list when click on blank.
   $(document).click(function (event) {
@@ -41,6 +42,32 @@ function setSystemConfigBtn() {
 function clearAdminNavHighlight() {
   $(".nav-link").css({
     "background-color": ""
+  });
+}
+
+function setNavItemClickEvents() {
+  $(".admin-item-user").click(function() {
+    window.location.href = "../php/admin-user-management.php";
+  });
+
+  $(".admin-item-menu").click(function() {
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+    if(isOrderTodayTimeout()) {
+      directToTomorrow();
+    } else {
+      chooseOrderDate();
+    }
+  });
+
+  $(".admin-item-data").click(function() {
+    window.location.href = "../php/admin-data-management.php";
+  });
+}
+
+function directToTomorrow() {
+  jqWarning("跳转提示", "今日订餐已<span class='emphasised-red'>无法修改</span>，将直接跳转到<span class='emphasised-red'>【明日】</span>订餐界面", function() {
+    $(".btn-orange").attr("id", "single-warning");
+    window.location.href = "admin-menu-operation.php";
   });
 }
 
@@ -428,6 +455,17 @@ function removeHighLevelRoles(userRole) {
   } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
     $("#user-role option[value='admin-super']").remove();
   }
+}
+
+// Choose order date when jump to order operation page
+function chooseOrderDate() {
+  jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
+    $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TODAY);
+    jumpTo("admin-menu-operation.php");
+  }, function() {
+    $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TOMORROW);
+    jumpTo("admin-menu-operation.php");
+  });
 }
 
 // Sign out related functions

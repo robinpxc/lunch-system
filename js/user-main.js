@@ -276,7 +276,7 @@ $(document).ready(function () {
   function setManageButtonEvents() {
     $("#user-manage-btn").click(function () {
       $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
-      jumpTo("admin-user-management.php");
+      window.location.href = "admin-user-management.php";
     });
 
     $("#menu-manage-btn").click(function () {
@@ -298,58 +298,22 @@ $(document).ready(function () {
     });
   }
 
-  function chooseOrderDate() {
-    jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
-      $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TODAY);
-      jumpTo("admin-menu-operation.php");
-    }, function() {
-      $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TOMORROW);
-      jumpTo("admin-menu-operation.php");
-    });
-  }
-
-  function directToTomorrow() {
-    jqWarning("跳转提示", "今日订餐已<span class='emphasised-red'>无法修改</span>，将直接跳转到<span class='emphasised-red'>【明日】</span>订餐界面", function() {
-      $(".btn-orange").attr("id", "single-warning");
-      //$.cookie(CONSTANTS.COOKIE.KEY_PAGE_TYPE, CONSTANTS.PAGE_TYPE.MENU_OPERATION);
-      jumpTo("admin-menu-operation.php");
-    });
-  }
-
   function orderBtnClickEvents() {
     $(".btn-order").each(function() {
       $(this).click(function() {
         switch ($(this).attr("id")) {
           case "btn-order-today":
             $.cookie(CONSTANTS.COOKIE.ORDER.KEY_DATE, getDateToday());
-            jumpTo("order-menu.php");
+            window.location.href ="order-menu.php";
             break;
           case "btn-order-tomorrow":
             $.cookie(CONSTANTS.COOKIE.ORDER.KEY_DATE, getDateTomorrow());
-            jumpTo("order-menu.php");
+            window.location.href ="order-menu.php";
             break;
         }
       });
 
     });
-  }
-
-  function jumpTo(urlStr) {
-    if(checkError()) {
-      window.location.href = urlStr;
-    } else {
-      jqAlert("跳转错误", "必要数据加载失败，请尝试刷新或重新登录！");
-    }
-  }
-
-  function checkError() {
-    if(orderStatusToday != null && orderStatusToday != "") {
-      if(orderStatusTomorrow != null && orderStatusTomorrow != "") {
-        return true;
-      }
-      return false;
-    }
-    return false;
   }
 });
 

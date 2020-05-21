@@ -118,7 +118,7 @@ include('common/session.php');
           </li>
           <div class=" dropdown-divider"></div>
           <li class="nav-item admin-nav-item admin-item-user active">
-            <a class="nav-link" href="./admin-user-management.php">
+            <a class="nav-link">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path d="M416 512a224 224 0 1 1 0-448 224 224 0 0 1 0 448zM0 960c0-247.424 186.24-448 416-448s416 200.576 416 448H0z m886.784-128a448.768 448.768 0 0 0-298.752-334.72A255.808 255.808 0 0 0 704 282.88a255.36 255.36 0 0 0-85.504-190.912c7.04-0.64 14.272-1.024 21.504-1.024 121.216 0 219.456 99.328 219.456 221.824a222.336 222.336 0 0 1-90.56 179.584C917.568 543.936 1024 680.96 1024 832h-137.216z" p-id="2710" fill="#BD2130"></path>
@@ -128,17 +128,17 @@ include('common/session.php');
             </a>
           </li>
           <li class="nav-item admin-nav-item admin-item-menu active">
-            <a class="nav-link" href="./admin-menu-operation.php">
+            <a class="nav-link">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path d="M0 938.67h1024V1024H0zM979.31 810.67C962.98 630.44 844.38 479.4 682.13 416.05 676.6 326.9 602.52 256 512 256s-164.6 70.9-170.13 160.05C179.62 479.4 61.02 630.44 44.69 810.67H0V896H1024v-85.33h-44.69zM512 341.33c34.05 0 63.27 20.18 76.95 49.08C563.9 386.26 538.21 384 512 384s-51.9 2.26-76.95 6.42c13.68-28.91 42.9-49.09 76.95-49.09zM130.35 810.67C151.65 618.94 314.69 469.33 512 469.33s360.35 149.6 381.65 341.33h-763.3z" fill="#1E7E34" p-id="3845"></path>
                 </svg>
-                <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理（明日）</span>
+                <span class="dropdown-desc dropdown-menu-management">&nbsp;订餐管理</span>
               </span>
             </a>
           </li>
           <li class="nav-item admin-nav-item admin-item-data active">
-            <a class="nav-link" href="./admin-data-management.php">
+            <a class="nav-link">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024"><path d="M585.344 566.656L480 461.248l-189.376 189.376a32 32 0 0 1-45.248-45.248l211.968-212.032a31.872 31.872 0 0 1 45.312 0L608 498.752 850.752 256H800a32 32 0 1 1 0-64h128a32.128 32.128 0 0 1 12.032 2.368A32.192 32.192 0 0 1 960 224v128a32 32 0 1 1-64 0v-50.752L630.656 566.656a31.872 31.872 0 0 1-45.312 0zM128 832h800a32 32 0 1 1 0 64h-832a32 32 0 0 1-32-32v-640a32 32 0 0 1 64 0V832z" p-id="5748" fill="#0062CC"></path>
                 </svg>
