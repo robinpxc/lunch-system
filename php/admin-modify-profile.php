@@ -102,7 +102,6 @@ include('common/session.php');
           </li>
         </ul>
       </div>
-      
       <div class="admin-nav">
         <div class="large-divider"></div>
         <ul class="navbar-nav mr-auto">
