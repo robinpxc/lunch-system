@@ -26,7 +26,10 @@ $(document).ready(function () {
           $(".table-group").remove();
         }
         initConfirmTable($(".tb-container"));
+        initSumTableAll();
+        setAllDailySummary(dataList);
       } else {
+        $(".order-collection-all").remove();
         for (let i = 0; i < dataList.length; i++) {
           let userGroup = dataList[i][4];
           if (userGroup == currentUserGroup) {
@@ -92,6 +95,29 @@ $(document).ready(function () {
       orderSum += Number(orderCollection[i]);
     }
     $("#order-sum").text(orderSum);
+  }
+
+  function setAllDailySummary(dataList) {
+    let sumArray = new Array(CONSTANTS.WORKGROUP_COUNT);
+    for(let group = 0; group < CONSTANTS.WORKGROUP_COUNT; group++) {
+      sumArray[group] = new Array(CONSTANTS.MENU.COUNT);
+      for(let order = 1; order <= CONSTANTS.MENU.COUNT; order++) {
+        sumArray[group][order] = 0;
+      }
+    }
+
+    for(let i = 0; i < dataList.length; i++) {
+      let orderNum = Number(dataList[i][3]);
+      let group = dataList[i][4];
+      let groupNum = Number(group[group.length - 1]);
+      sumArray[groupNum][orderNum] ++;
+    }
+
+    for(let group = 0; group < CONSTANTS.WORKGROUP_COUNT; group++) {
+      for(let order = 1; order <= CONSTANTS.MENU.COUNT; order++) {
+        $(".td-group" + group + "-order" + order).text(sumArray[group][order]);
+      }
+    }
   }
 
   function initConfirmBox(statusArray) {

@@ -197,6 +197,23 @@ include('common/session.php'); ?>
       </div>
     </div>
   </div>
+  
+  <div class="alert alert-light mt-4 order-collection-all" role="alert">
+    <div>
+      <div class="summary-tb tb-sub-container">
+        <table>
+          <thead>
+          <tr class="sum-th">
+            <td class="left">组别/餐号</td>
+          </tr>
+
+          </thead>
+          <tbody class="tbody-order-sum-all">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   <div class="table-group">
     <div class="form-nav d-block">

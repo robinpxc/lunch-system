@@ -13,6 +13,40 @@ function initSumTable(tbody) {
   $(".sum-tr").append("<td class='right bottom' id='order-sum'>" + 0);
 }
 
+function initSumTableAll() {
+  for(let i = 1; i <= CONSTANTS.MENU.COUNT; i++) {
+    $(".sum-th").append("<td>" + i + " 号");
+  }
+
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+    $(".tbody-order-sum-all").append("<tr class='tr-group-" + i +"'>");
+    for(let j = 0; j <= CONSTANTS.MENU.COUNT; j++) {
+      if(j == 0) {
+        $(".tr-group-" + i).append("<td class='td-group-" + i + " left'>" + groupToTextSimplify("group" + i));
+        if(i == CONSTANTS.WORKGROUP_COUNT - 1) {
+          addNewClass($(".td-group-" + i), "summary-bottom");
+          $(".td-group-" + i).css("border-bottom-left-radius", "3px");
+        }
+      } else {
+        if(i == CONSTANTS.WORKGROUP_COUNT - 1) {
+          $(".tr-group-" + i).append("<td class='td-group" + i + "-order" + j + " summary-bottom'>");
+          if(j == CONSTANTS.MENU.COUNT) {
+            $(".td-group" + i + "-order" + j).css("border-bottom-right-radius", "3px");
+          }
+        } else {
+          $(".tr-group-" + i).append("<td class='td-group" + i + "-order" + j + "'>");
+        }
+      }
+
+      if(i % 2 == 0) {
+        addNewClass($(".tr-group-" + i), "highlight");
+      }
+
+    }
+  }
+
+}
+
 function initConfirmTable(outerContainer) {
   outerContainer.append("<div class='tb-sub-container confirm-container'>");
   $(".confirm-container").append("<table class='confirm-table'>");
