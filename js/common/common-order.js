@@ -125,7 +125,6 @@ function fetchMonthCountByOrderNum(year, month) {
 *   order-num: order number, value between 1-6, 6 is not order tomorrow
 * */
 function setDailyOrder(date, userId, orderNum, orderStatus) {
-  alert(orderStatus);
   let deferred = $.Deferred();
   $.ajax({
     type: CONSTANTS.AJAX.TYPE.POST,
