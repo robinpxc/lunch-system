@@ -357,7 +357,7 @@ $(document).ready(function () {
 
   // Order operation related functions
   function updateOrder(userId, orderNum, orderStatus) {
-    setDailyOrder(targetDate, userId, orderNum, orderStatus).done(function (isSuccess) {
+    setDailyOrder(targetDate, userId, orderNum, 1, orderStatus).done(function (isSuccess) {
       if (isSuccess) {
         if (orderStatus == CONSTANTS.ORDER.STATUS_USER.NOT_ORDER) {
           reloadTable();

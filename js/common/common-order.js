@@ -133,6 +133,7 @@ function setDailyOrder(date, userId, orderNum, orderStatus) {
       "date": date,
       "user-id": userId,
       "order-number": orderNum,
+      "order-count": orderCount,
       "order-status": orderStatus
     },
     async: true,

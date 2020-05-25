@@ -100,7 +100,7 @@ $(document).ready(function () {
             let userFullname = response[1];
             let userRole = response[2];
             let userGroup = response[3];
-            if(response != "" || response != null) {
+            if(response != "" && response != null) {
               $.cookie(CONSTANTS.COOKIE.USER.KEY_ID, userId);
               $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME, userFullname);
               $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE, userRole);
