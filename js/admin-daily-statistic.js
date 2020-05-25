@@ -64,6 +64,7 @@ $(document).ready(function () {
           setUnorderedTable(CONSTANTS.WORKGROUP.GROUP_ALL);
           setGroupTablePrint();
           setAllTablePrint();
+          setSummaryTablePrint();
           setNoOrderTablePrint();
 
           exportEvents("ds", date, unorderedArray);
@@ -288,6 +289,16 @@ $(document).ready(function () {
     $(".tb-print-no-order").click(function () {
       initPrintFunction($(".table-not-ordered"));
     });
+  }
+
+  function setSummaryTablePrint() {
+    $("#btn-print-daily-sum").click(function() {
+      initPrintFunction($(".order-collection"));
+    })
+
+    $("#btn-print-daily-separate").click(function() {
+      initPrintFunction($(".order-collection-all"));
+    })
   }
 
   function disableOutputButtons(index) {

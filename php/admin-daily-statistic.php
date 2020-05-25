@@ -180,7 +180,10 @@ include('common/session.php'); ?>
 
 <div class="main-content boxshaw">
   <div class="alert alert-primary mt-4 order-collection" role="alert">
-    <div class="show-date-text"></div>
+    <div class="alert-top-bar d-inline-flex">
+      <div class="show-date-text tb-title"></div>
+      <button class="btn btn-primary no-print" id="btn-print-daily-sum">打印</button>
+    </div>
     <div class="tb-container">
       <div class="summary-tb tb-sub-container">
         <table>
@@ -200,6 +203,10 @@ include('common/session.php'); ?>
   
   <div class="alert alert-light mt-4 order-collection-all" role="alert">
     <div>
+      <div class="alert-top-bar d-inline-flex">
+        <span class="tb-title">各部门分计表</span>
+        <button class="btn btn-primary no-print" id="btn-print-daily-separate">打印</button>
+      </div>
       <div class="summary-tb tb-sub-container">
         <table>
           <thead>

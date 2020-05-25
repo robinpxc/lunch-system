@@ -2,12 +2,6 @@
   color: blue;
 }
 
-.show-date-text {
-  font-weight: bold;
-  color: black;
-  font-size: 1.2rem;
-}
-
 .card-header {
   display: flex;
   align-items: center;
