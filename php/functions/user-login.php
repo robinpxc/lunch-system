@@ -5,7 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // username and password sent from form
   $myLoginInfo = mysqli_real_escape_string($mysqlConnection, $_POST['login-info']);
   $myLoginPwd = mysqli_real_escape_string($mysqlConnection, $_POST['login-pwd']);
-  $sql = "SELECT * FROM `user_info` WHERE (`id` = '$myLoginInfo' OR `nick_name` = '$myLoginInfo')";
+  if(!is_numeric($myLoginInfo)) {
+    $sql = "SELECT * FROM `user_info` WHERE (`nick_name` = '$myLoginInfo')";
+  }
   $result = mysqli_query($mysqlConnection, $sql);
   if (isset($result)) {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);

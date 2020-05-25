@@ -96,6 +96,7 @@ $(document).ready(function () {
             resetLogin(true);
             break;
           default:
+
             let userId = response[0];
             let userFullname = response[1];
             let userRole = response[2];
@@ -111,7 +112,7 @@ $(document).ready(function () {
             }
         }
       },
-      error: function () {
+      error: function (errorMsg) {
         alert("登录失败：网络错误，请稍后重试");
       }
     });
