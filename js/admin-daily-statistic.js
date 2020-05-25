@@ -112,7 +112,9 @@ $(document).ready(function () {
       let count = Number(dataList[i][3]);
       let group = dataList[i][4];
       let groupNum = Number(group[group.length - 1]);
-      sumArray[groupNum][orderNum] += count;
+      if(orderNum <= CONSTANTS.MENU.COUNT) {
+        sumArray[groupNum][orderNum] += count;
+      }
     }
 
     for(let group = 0; group < CONSTANTS.WORKGROUP_COUNT; group++) {
