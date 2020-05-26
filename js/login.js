@@ -11,10 +11,11 @@ $(document).ready(function () {
 
   // Function definitions
   loginBtn.click(function () {
+    login();
     setDisable($(this));
     unhideElement($(".spinner-border"));
     $("#login-btn-text").text("正在登录");
-    login();
+
   });
 
   function checkLoginStatus() {
