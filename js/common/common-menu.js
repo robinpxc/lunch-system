@@ -210,10 +210,12 @@ function menuConfirmOperation(type, date, group, status) {
     success: function (response) {
       if (response != null) {
         deferred.resolve(response);
+      } else {
+        jqAlert("网络异常", "");
       }
     },
     error: function (errorMsg) {
-      alert("检查签字状态失败，请刷新重试");
+      alert("检查上报状态失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();

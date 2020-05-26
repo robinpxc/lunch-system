@@ -47,7 +47,6 @@ $(document).ready(function () {
     let userId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID);
     if(userId != "" && userId != null) {
       checkSession().done(function(session) {
-        alert(session);
         if(session == null || session == "") {
         } else {
           if(session == userId) {
@@ -76,7 +75,7 @@ $(document).ready(function () {
     $("input[name='password']").on("keydown", function (e) {
       loginPassword = $("input[name='password']").val();
       if (e.key == "Enter" && loginInfo != "" && loginPassword != "") {
-        $("#login-btn").trigger("click");
+        loginBtn.trigger("click");
       }
     })
   }
@@ -115,7 +114,7 @@ $(document).ready(function () {
         "login-info": loginInfo,
         "login-pwd": loginPassword
       },
-      dataType: "JSON",
+      dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
       beforeSend: function() {
         unhideElement($(".spinner-border"));
         $("#login-btn-text").text("正在登录");
@@ -125,13 +124,10 @@ $(document).ready(function () {
         deferred.resolve(response);
       },
       error: function (errorMsg) {
-        alert("登录失败：网络错误，请稍后重试");
+        $("body").html(errorMsg.responseText);
         hideElement($(".spinner-border"));
-        $("#login-btn-text").text("登录");
+        $("#login-btn-text").text("进入系统");
         setEnable(loginBtn);
-      },
-      complete: function () {
-
       }
     });
     return deferred.promise();
