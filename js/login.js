@@ -11,17 +11,50 @@ $(document).ready(function () {
 
   // Function definitions
   loginBtn.click(function () {
-    login();
-    setDisable($(this));
-    unhideElement($(".spinner-border"));
-    $("#login-btn-text").text("正在登录");
-
+    login().done(function(response) {
+      switch (response) {
+        case "status-failed":
+          jqAlert("登录失败", "密码错误");
+          resetLogin(false);
+          break;
+        case "status-deleted":
+          jqAlert("登录失败", "账户已删除，请联系管理员");
+          resetLogin(true);
+          break;
+        case "status-not-exist":
+          jqAlert("登录失败", "账户不存在，请联系管理员");
+          resetLogin(true);
+          break;
+        default:
+          let userId = response[0];
+          let userFullname = response[1];
+          let userRole = response[2];
+          let userGroup = response[3];
+          if(response != "" && response != null) {
+            $.cookie(CONSTANTS.COOKIE.USER.KEY_ID, userId);
+            $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME, userFullname);
+            $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE, userRole);
+            $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP, userGroup);
+            window.location.href = "../php/user-main.php";
+          } else {
+            jqAlert("登录失败", "网络异常");
+          }
+      }
+    });
   });
 
   function checkLoginStatus() {
     let userId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID);
     if(userId != "" && userId != null) {
-      window.location.href = "../php/user-main.php";
+      checkSession().done(function(session) {
+        alert(session);
+        if(session == null || session == "") {
+        } else {
+          if(session == userId) {
+            window.location.href = "../php/user-main.php";
+          }
+        }
+      })
     }
   }
 
@@ -74,6 +107,7 @@ $(document).ready(function () {
 
   // Login request
   function login() {
+    let deferred = $.Deferred();
     $.ajax({
       type: CONSTANTS.AJAX.TYPE.POST,
       url: "../php/functions/user-login.php",
@@ -82,41 +116,24 @@ $(document).ready(function () {
         "login-pwd": loginPassword
       },
       dataType: "JSON",
+      beforeSend: function() {
+        unhideElement($(".spinner-border"));
+        $("#login-btn-text").text("正在登录");
+        setDisable(loginBtn);
+      },
       success: function (response) {
-        switch (response) {
-          case "status-failed":
-            alert("密码错误！");
-            resetLogin(false);
-            break;
-          case "status-deleted":
-            alert("账户已删除，请联系804小潘(85252796/15268571882)");
-            resetLogin(true);
-            break;
-          case "status-not-exist":
-            alert("账户不存在，请联系804小潘(85252796/15268571882)");
-            resetLogin(true);
-            break;
-          default:
-
-            let userId = response[0];
-            let userFullname = response[1];
-            let userRole = response[2];
-            let userGroup = response[3];
-            if(response != "" && response != null) {
-              $.cookie(CONSTANTS.COOKIE.USER.KEY_ID, userId);
-              $.cookie(CONSTANTS.COOKIE.USER.KEY_NAME, userFullname);
-              $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE, userRole);
-              $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP, userGroup);
-              window.location.href = "../php/user-main.php";
-            } else {
-              alert("登录发生错误，请重试！");
-            }
-        }
+        deferred.resolve(response);
       },
       error: function (errorMsg) {
         alert("登录失败：网络错误，请稍后重试");
+      },
+      complete: function () {
+        hideElement($(".spinner-border"));
+        $("#login-btn-text").text("登录");
+        setEnable(loginBtn);
       }
     });
+    return deferred.promise();
   }
 });
 

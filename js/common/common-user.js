@@ -36,7 +36,7 @@ function fetchUserInfo(userId) {
       deferred.resolve(response);
     },
     error: function (errorMsg) {
-      alert("当前用户信息获取失败，请重试！");
+      alert("当前用户信息获取失败，请刷新重试！");
     },
     complete: function() {
       removeSpinner();
@@ -66,7 +66,7 @@ function addUser(username, nickName, password, role, workgroup) {
     },
     error: function(error) {
       $("body").html(error.responseText);
-      alert("网络异常，请重试");
+      alert("网络异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -97,7 +97,7 @@ function updateUserInfo(userInfoObject) {
       deferred.resolve(response);
     },
     error: function(response) {
-      jqAlert("修改失败", "用户信息修改失败,请重试!");
+      jqAlert("修改失败", "用户信息修改失败,请刷新重试!");
     },
     complete: function() {
       removeSpinner();
@@ -122,6 +122,7 @@ function deleteUser(userId) {
       deferred.resolve(response);
     },
     error: function (errorMsg) {
+      $("body").html(errorMsg.responseText);
       alert("用户删除失败，请刷新页面或者切换网络环境，或联系开发者");
     },
     complete: function() {
@@ -147,7 +148,31 @@ function getGroupUserCount(group) {
       deferred.resolve(response);
     },
     error: function (errorMsg) {
-      alert("人数获取失败，请重试");
+      alert("人数获取失败，请刷新重试");
+    },
+    complete: function() {
+      removeSpinner();
+    }
+  });
+  return deferred.promise();
+}
+
+function checkSession() {
+  let deferred = $.Deferred();
+  $.ajax({
+    type: CONSTANTS.AJAX.TYPE.POST,
+    url: "../php/common/check-session.php",
+    data: {
+    },
+    dataType: "json",
+    beforeSend: function() {
+      addSpinner();
+    },
+    success: function (response) {
+      deferred.resolve(response);
+    },
+    error: function (errorMsg) {
+      alert("Session检查失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();

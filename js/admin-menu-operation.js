@@ -274,7 +274,7 @@ $(document).ready(function () {
                               reloadTable();
                             });
                           } else {
-                            jqAlert("设置成功", "订餐份数设置失败，请重试!");
+                            jqAlert("设置成功", "订餐份数设置失败，请刷新重试!");
                           }
                         });
                       }
@@ -367,7 +367,7 @@ $(document).ready(function () {
           });
         }
       } else {
-        jqAlert("订餐失败", "请重试");
+        jqAlert("订餐失败", "请刷新重试");
       }
     });
   }

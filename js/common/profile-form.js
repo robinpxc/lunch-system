@@ -159,7 +159,7 @@ $(document).ready(function () {
             refresh();
           } );
         } else {
-          jqAlert("修改失败", "用户信息修改失败,请重试!");
+          jqAlert("修改失败", "用户信息修改失败,请刷新重试!");
         }
       });
     } else {

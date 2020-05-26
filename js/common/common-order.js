@@ -110,7 +110,7 @@ function fetchMonthCountByOrderNum(year, month) {
       deferred.resolve(response);
     },
     error: function () {
-      alert("获取月统计数据失败，请重试");
+      alert("获取月统计数据失败，请刷新重试");
     },
     complete: function() {}
   });
@@ -146,7 +146,7 @@ function setDailyOrder(date, userId, orderNum, orderCount, orderStatus) {
     },
     error: function (errMsg) {
       $("body").html(errMsg.responseText);
-      alert("订餐异常，请重试");
+      alert("订餐异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -173,7 +173,7 @@ function getOrderPrice() {
       deferred.resolve(response);
     },
     error: function () {
-      alert("价格信息异常，请重试");
+      alert("价格信息异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -205,7 +205,7 @@ function updateOrderPrice(price, type) {
       deferred.resolve(response);
     },
     error: function () {
-      alert("价格更新异常，请重试");
+      alert("价格更新异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -238,7 +238,7 @@ function orderCountOperation(userId, date, count) {
       deferred.resolve(response);
     },
     error: function () {
-      alert("餐数操作异常，请重试");
+      alert("餐数操作异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -266,7 +266,7 @@ function userMonthlyDetails(year, month, userId) {
     },
     error: function (errMsg) {
       $("body").html(errMsg.responseText);
-      alert("月详单获取异常，请重试");
+      alert("月详单获取异常，请刷新重试");
     },
     complete: function() {
       removeSpinner();

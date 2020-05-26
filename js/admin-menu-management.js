@@ -232,7 +232,7 @@ $(document).ready(function () {
                 refresh();
               });
             } else {
-              jqAlert("删除失败", "未成功删除菜单，请重试!");
+              jqAlert("删除失败", "未成功删除菜单，请刷新重试!");
             }
           });
         });

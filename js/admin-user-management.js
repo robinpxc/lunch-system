@@ -118,7 +118,7 @@ $(document).ready(function () {
           jqAlert("操作失败","昵称已经被使用, 请更换昵称!");
           break;
         default:
-          jqAlert("操作失败", "发生异常，请重试!");
+          jqAlert("操作失败", "发生异常，请刷新重试!");
       }
     });
   }
@@ -134,7 +134,7 @@ $(document).ready(function () {
 
   function delUser(userId, userName) {
     deleteUser(userId).done(function(response) {
-      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请重试", function() {
+      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请刷新重试", function() {
         refresh();
       });
     });

@@ -27,7 +27,9 @@
   <script type="text/javascript" src="../third-party/jquery.cookie.js"></script>
   <!-- Common -->
   <script type="text/javascript" src="../js/common/common.js"></script>
+  <script type="text/javascript" src="../js/common/common-user.js"></script>
   <script type="text/javascript" src="../js/common/common-constants.js"></script>
+  <script type="text/javascript" src="../js/common/common-confirm-dialog.js"></script>
   <!-- Custom -->
   <script type="text/javascript" src="../js/login.js"></script>
 </head>

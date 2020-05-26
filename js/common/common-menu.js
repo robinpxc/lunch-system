@@ -22,7 +22,7 @@ function checkMenuStatus(date) {
       deferred.resolve(response);
     },
     error: function (errorMsg) {
-      alert("菜单状态查询失败，请重试");
+      alert("菜单状态查询失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -50,7 +50,7 @@ function fetchMenuList(date) {
       }
     },
     error: function (errorMsg) {
-      alert("获取状态失败，请重试");
+      alert("获取状态失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -213,7 +213,7 @@ function menuConfirmOperation(type, date, group, status) {
       }
     },
     error: function (errorMsg) {
-      alert("检查签字状态失败，请重试");
+      alert("检查签字状态失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();
@@ -252,7 +252,7 @@ function getAllConfirmationStatus(date) {
       }
     },
     error: function (errorMsg) {
-      alert("检查全部签字状态失败，请重试");
+      alert("检查全部签字状态失败，请刷新重试");
     },
     complete: function() {
       removeSpinner();

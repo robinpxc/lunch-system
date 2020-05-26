@@ -36,7 +36,7 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
                     refresh();
                   });
                 } else {
-                  jqAlert("修改失败", "原始单价修改失败，请重试");
+                  jqAlert("修改失败", "原始单价修改失败，请刷新重试");
                 }
               });
             });
@@ -56,14 +56,14 @@ function setPriceBtnClickEvent(oriPrice, discountPrice) {
                     refresh();
                   });
                 } else {
-                  jqAlert("修改失败", "折扣价修改失败，请重试");
+                  jqAlert("修改失败", "折扣价修改失败，请刷新重试");
                 }
               });
             });
           }
           break;
         default:
-          jqAlert("更新失败", "单价更新异常，请重试!");
+          jqAlert("更新失败", "单价更新异常，请刷新重试!");
       }
     }
   });
