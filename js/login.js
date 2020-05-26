@@ -126,11 +126,12 @@ $(document).ready(function () {
       },
       error: function (errorMsg) {
         alert("登录失败：网络错误，请稍后重试");
-      },
-      complete: function () {
         hideElement($(".spinner-border"));
         $("#login-btn-text").text("登录");
         setEnable(loginBtn);
+      },
+      complete: function () {
+
       }
     });
     return deferred.promise();
