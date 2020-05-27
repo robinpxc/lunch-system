@@ -443,7 +443,7 @@ $(document).ready(function () {
     if (unOrderSum == 0) {
       setEnable($(".btn-confirm"));
       $(".btn-confirm").click(function () {
-        jqConfirm("上报确认", "订餐数据【一经上报无法修改】，确认上报？？", function() {
+        jqConfirm("上报确认", "订餐数据一经上报【无法修改】，确认上报？？", function() {
           confirmOrderData();
         });
       });
@@ -482,7 +482,7 @@ $(document).ready(function () {
   function confirmOrderData() {
     updateMenuConfirmation(targetDate, currentUserGroup, CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED, function (updateStatus) {
       if(updateStatus == true) {
-        jqInfo("操作成功", "订餐数据上报完成!", function() {
+        jqueryInfo("操作成功", "订餐数据上报完成!", false, false, function() {
           setDisable($(".btn-confirm"));
           $(".table-group-" + currentUserGroup[currentUserGroup.length - 1]).css("color", "#177828");
           setConfirmBox(CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED);
@@ -490,6 +490,5 @@ $(document).ready(function () {
         });
       }
     })
-
   }
 });
