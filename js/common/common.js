@@ -461,10 +461,10 @@ function removeHighLevelRoles(userRole) {
 function chooseOrderDate() {
   jqDialog("请选择订餐【日期】", "点 x 取消操作", CONSTANTS.DATE.CN.TODAY, CONSTANTS.DATE.CN.TOMORROW, function() {
     $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TODAY);
-    jumpTo("admin-menu-operation.php");
+    window.location.href = "admin-menu-operation.php";
   }, function() {
     $.cookie(CONSTANTS.COOKIE.KEY_DATE_TYPE, CONSTANTS.DATE.TOMORROW);
-    jumpTo("admin-menu-operation.php");
+    window.location.href = "admin-menu-operation.php";
   });
 }
 
