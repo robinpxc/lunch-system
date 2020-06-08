@@ -208,7 +208,7 @@ include('common/session.php');
       </div>
 
       <!-- Menu config card -->
-      <div class="card mb-2 mt-2 border-secondary shadow-sm box-shadow" id="menu-config-card">
+      <div class="card mb-2 mt-2 border-primary shadow-sm box-shadow" id="menu-config-card">
         <div class="card-header">
           <h4 class="my-0 font-weight-normal">设置菜单</h4>
         </div>
