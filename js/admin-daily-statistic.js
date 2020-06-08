@@ -27,7 +27,7 @@ $(document).ready(function () {
         }
         initConfirmTable($(".tb-container"));
         initSumTableAll();
-        setAllDailySummary(dataList);
+        setAllDailySummary(dataList, confirmationList);
       } else {
         $(".order-collection-all").remove();
         for (let i = 0; i < dataList.length; i++) {
@@ -98,8 +98,9 @@ $(document).ready(function () {
     $("#order-sum").text(orderSum);
   }
 
-  function setAllDailySummary(dataList) {
+  function setAllDailySummary(dataList, confirmationList) {
     let sumArray = new Array(CONSTANTS.WORKGROUP_COUNT);
+    // init summary array
     for(let group = 0; group < CONSTANTS.WORKGROUP_COUNT; group++) {
       sumArray[group] = new Array(CONSTANTS.MENU.COUNT);
       for(let order = 1; order <= CONSTANTS.MENU.COUNT; order++) {
@@ -107,13 +108,21 @@ $(document).ready(function () {
       }
     }
 
+    // set summary card
     for(let i = 0; i < dataList.length; i++) {
       let orderNum = Number(dataList[i][2]);
       let count = Number(dataList[i][3]);
       let group = dataList[i][4];
-      let groupNum = Number(group[group.length - 1]);
-      if(orderNum <= CONSTANTS.MENU.COUNT) {
-        sumArray[groupNum][orderNum] += count;
+      // check if confirmed
+      for(let i = 0; i < confirmationList.length; i++) {
+        let groupConfirm = confirmationList[i][1];
+        let confirmStatus = confirmationList[i][2];
+        if(hasConfirmed(group, confirmationList)) {
+          let groupNum = Number(group[group.length - 1]);
+          if(orderNum <= CONSTANTS.MENU.COUNT) {
+            sumArray[groupNum][orderNum] += count;
+          }
+        }
       }
     }
 
@@ -168,6 +177,15 @@ $(document).ready(function () {
       replaceClass($(".order-collection"), "alert-primary", "alert-warning");
       $(".show-date-text").text($(".show-date-text").text() + "【部分未上报】");
     }
+  }
+
+  function hasConfirmed(group, confirmationList) {
+    for(let i = 0; i < confirmationList.length; i++) {
+      let groupConfirm = confirmationList[i][1];
+      let confirmStatus = confirmationList[i][2];
+      return group == groupConfirm && confirmStatus == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED;
+    }
+    return false;
   }
 
   function setData(dataArray) {
