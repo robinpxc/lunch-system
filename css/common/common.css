@@ -81,6 +81,7 @@ body {
 }
 
 .nav-item:hover {
+  cursor: pointer;
   background-color: #cfcfcf;
 }
 

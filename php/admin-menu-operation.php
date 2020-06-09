@@ -98,8 +98,8 @@ include('common/session.php');
             </a>
           </li>
           <div class="dropdown-divider"></div>
-          <li class="nav-item active">
-            <a class="nav-link" href="user-profile.php">
+          <li class="nav-item personal-setting active">
+            <a class="nav-link">
               <span class="d-flex justify-content-left align-items-center">
                 <svg class="icon-sm" viewBox="0 0 1024 1024">
                   <path

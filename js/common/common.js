@@ -46,6 +46,11 @@ function clearAdminNavHighlight() {
 }
 
 function setNavItemClickEvents() {
+  $(".personal-setting").click(function() {
+    $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED, $.cookie(CONSTANTS.COOKIE.USER.KEY_ID));
+    window.location.href = "../php/user-profile.php";
+  });
+
   $(".admin-item-user").click(function() {
     window.location.href = "../php/admin-user-management.php";
   });
