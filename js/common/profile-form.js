@@ -169,7 +169,7 @@ $(document).ready(function () {
         jqInfo("无改动", "您没有修改任何信息", function() {});
       }
     } else {
-      jqAlertWithFunc("错误","用户名必须包含字母和数字，用于避免和ID混淆", function() {
+      jqAlertWithFunc("错误","用户名必须包含字母，用于避免和ID混淆", function() {
         $("#nickname-input").val("");
         setAlertFocus($("#nickname-input"));
       });
