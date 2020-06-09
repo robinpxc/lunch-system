@@ -96,7 +96,7 @@ function updateUserInfo(userInfoObject) {
     success: function (response) {
       deferred.resolve(response);
     },
-    error: function(response) {
+    error: function() {
       jqAlert("修改失败", "用户信息修改失败,请刷新重试!");
     },
     complete: function() {

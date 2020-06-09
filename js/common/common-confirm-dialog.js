@@ -28,6 +28,19 @@ function jqAlert(title, content) {
   confirm(title, content, 'fa fa-exclamation-triangle', false, false, false, false, false, confirmBtn);
 }
 
+function jqAlertWithFunc(title, content, func) {
+  let confirmBtn = {
+    confirm: {
+      text: '确认',
+      btnClass: 'btn-red',
+      action: function() {
+        func();
+      }
+    }
+  };
+  confirm(title, content, 'fa fa-exclamation-triangle', false, false, false, false, false, confirmBtn);
+}
+
 function jqInfo(title, content, func) {
   jqueryInfo(title, content, true, 'confirm|3000', func);
 }

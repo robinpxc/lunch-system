@@ -90,6 +90,7 @@ $(document).ready(function () {
 
 // Function to discard all input field
   function discardChanges(modifyBtnGroup, defaultUserInfoObj) {
+    removeAlertFocus($("#nickname-input"));
     let idField = $("input[name='user-id']");
     let userNameField = $("input[name='user-fullname']");
     let roleField = $("#user-role");
@@ -152,18 +153,26 @@ $(document).ready(function () {
       }
     });
 
-    if(modificationCount > 0) {
-      updateUserInfo(userInfoUpdate).done(function(response) {
-        if(response == "success") {
-          jqInfo("修改成功", "修改了【" + modificationCount + "】处信息!", function() {
-            refresh();
-          } );
-        } else {
-          jqAlert("修改失败", "用户信息修改失败,请刷新重试!");
-        }
-      });
+    if(verifyNickName(userInfoUpdate.nickname)) {
+      removeAlertFocus($("#nickname-input"));
+      if(modificationCount > 0) {
+        updateUserInfo(userInfoUpdate).done(function(response) {
+          if(response == "success") {
+            jqInfo("修改成功", "修改了【" + modificationCount + "】处信息!", function() {
+              refresh();
+            } );
+          } else {
+            jqAlert("修改失败", "用户信息修改失败，可能的原因：【昵称】已经被使用了");
+          }
+        });
+      } else {
+        jqInfo("无改动", "您没有修改任何信息", function() {});
+      }
     } else {
-      jqInfo("无改动", "您没有修改任何信息", function() {});
+      jqAlertWithFunc("错误","用户名必须包含字母和数字，用于避免和ID混淆", function() {
+        $("#nickname-input").val("");
+        setAlertFocus($("#nickname-input"));
+      });
     }
   }
 
@@ -199,7 +208,7 @@ $(document).ready(function () {
   function resetEyeBtn() {
     setDisable($("#show-hide-pwd-btn"));
     addNewClass($("#eye-icon"), "hide");
-    removeOldClass($("eye-icon-disabled"), "hide");
+    removeOldClass($("#eye-icon-disabled"), "hide");
   }
 });
 

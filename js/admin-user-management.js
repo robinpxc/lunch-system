@@ -91,18 +91,25 @@ $(document).ready(function () {
     }
     let role = $("#user-role option:selected").val();
     let workgroup = $("#new-user-group option:selected").val();
+    if(verifyNickName(nickName)) {
+      removeAlertFocus($("#new-nickname"));
+      if($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE) == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+        getGroupUserCount(workgroup).done(function(userCount) {
 
-    if($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE) == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
-      getGroupUserCount(workgroup).done(function(userCount) {
-
-        if(userCount == 0 && (role != CONSTANTS.USER.ROLE.ADMIN_GROUP && role != CONSTANTS.USER.ROLE.ADMIN_MENU)) {
-          jqAlert("操作失败","各部门第一个成员必须是【组/菜单管理员】!");
-        } else {
-          uploadUserData(username, nickName, password, role, workgroup);
-        }
-      });
+          if(userCount == 0 && (role != CONSTANTS.USER.ROLE.ADMIN_GROUP && role != CONSTANTS.USER.ROLE.ADMIN_MENU)) {
+            jqAlert("操作失败","各部门第一个成员必须是【组/菜单管理员】!");
+          } else {
+            uploadUserData(username, nickName, password, role, workgroup);
+          }
+        });
+      } else {
+        uploadUserData(username, nickName, password, role, workgroup);
+      }
     } else {
-      uploadUserData(username, nickName, password, role, workgroup);
+      jqAlertWithFunc("错误","用户名必须包含字母和数字，用于避免和ID混淆", function() {
+        $("#new-nickname").val("");
+        setAlertFocus($("#new-nickname"));
+      });
     }
   }
 

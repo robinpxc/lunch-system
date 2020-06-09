@@ -468,6 +468,22 @@ function chooseOrderDate() {
   });
 }
 
+// Input verification functions
+function verifyNickName(username) {
+  let charRole = /[0-9]/;
+  let numRole =  /[a-z]/i;
+  return charRole.test(username) && numRole.test(username);
+}
+
+function setAlertFocus(element) {
+  addNewClass(element, "alert-focus");
+  element.focus();
+}
+
+function removeAlertFocus(element) {
+  removeOldClass(element, "alert-focus");
+}
+
 // Sign out related functions
 function logout() {
   clearCookies();

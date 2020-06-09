@@ -194,6 +194,10 @@ select:disabled {
   appearance:none;
 }
 
+.alert-focus {
+  border: solid #BD2130 4px;
+}
+
 @media screen and (max-width: 768px) {
   .main-content {
     padding: 5px !important;
