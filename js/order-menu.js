@@ -1,155 +1,195 @@
 $(document).ready(function () {
-  let date = $.cookie("order-date");
-  let orderStatus = checkOrderStatus(date, false, "order-status");
-  let orderNumber;
-  if(isOrderExist()) {
-    orderNumber = checkOrderStatus(date, false, "order-number");
-  }
+  let date = $.cookie(CONSTANTS.COOKIE.ORDER.KEY_DATE);
+  let userId = $.cookie(CONSTANTS.COOKIE.USER.KEY_ID)
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
+  let orderStatus = null;
+  let orderNumber = null;
+  let orderCount = null;
 
   initUI();
-  fetchMenuList(date);
 
-  $(window).resize(function(){
-    initUI();
+  checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_STATUS, userId, true).done(function (response) {
+    orderStatus = response;
+    if (isOrderExist()) {
+      checkOrderStatus(date, CONSTANTS.ORDER.CHECK_TYPE.ORDER_CONTENT, userId, true).done(function (orderContent) {
+        orderNumber = orderContent.menu_number;
+        orderCount = orderContent.count;
+        setOrderInfo();
+        setSelectBorder($("#order-card-" + orderNumber));
+        checkMenuConfirmation(date, userGroup, function (confirmStatus) {
+          if (confirmStatus == CONSTANTS.MENU.CONFIRMATION.STATUS.CONFIRMED) {
+            $(".card").unbind();
+            $(".card").hover(function () {
+              $(this).css("cursor", "auto");
+            });
+            jqInfo("跳转提示", "订单已上报，无法修改，将自动跳转到主页", function() {
+              window.location.href = "../php/user-main.php";
+            });
+          }
+        });
+      });
+    }
+    setOrderStatusBar(orderStatus == CONSTANTS.ORDER.STATUS.ORDER_EXIST);
+    setMenuCardClickEvents();
   });
 
   function initUI() {
+    setOrderCard();
     setOrderInfo();
-    fitWindow();
-    setSelectBorder($(".card").eq(orderNumber - 1));
+    fetchMenuList(date).done(function (menuList) {
+      setMenuData(menuList);
+    });
   }
 
-  function fitWindow() {
-    if(getWindowWidth() <= 768) {
-      $("form").css({
-        "display": "block",
-        "flex-wrap": ""
-      });
-      $(".card").css("min-width", "100%");
-
+  function setOrderStatusBar(orderExist) {
+    if (orderExist) {
+      addNewClass($(".order-info"), "alert-success");
+      hideElement($(".no-order-icon"));
+      unhideElement($(".order-exist-icon"));
     } else {
-      $("form").css({
-        "display": "flex",
-        "flex-wrap": "wrap"
-      });
-      $(".card").css("min-width", "32%");
+      addNewClass($(".order-info"), "alert-danger");
+      hideElement($(".order-exist-icon"));
+      unhideElement($(".no-order-icon"));
+    }
+  }
+
+  function setOrderCard() {
+    let cardContainer = $(".card-container");
+    cardContainer.empty();
+    for (let i = 1; i <= CONSTANTS.MENU.COUNT + 1; i++) {
+      cardContainer.append("<div class='card' id='order-card-" + i + "'>")
+      let card = $("#order-card-" + i);
+      card.append("<div class='card-header'>" + (i == CONSTANTS.ORDER.CONTENT.NO_ORDER ? "【不订餐】" : "套餐【" + i + "】"));
+      card.append("<div class='card-body menu menu-" + i + "'>");
+      let menuContainer = $(".menu-" + i);
+      menuContainer.append("<ul>");
+      if (i <= CONSTANTS.MENU.COUNT) {
+        let ul = $(".menu-" + i + " ul");
+        for (let j = 1; j <= CONSTANTS.MENU.SUB_COUNT; j++) {
+          ul.append("<li id='food-" + i + "-" + j + "'>");
+        }
+      } else {
+        menuContainer.text(date == getDateToday() ? "今天不订餐" : "明天不订餐");
+        addNewClass(menuContainer, "center-content");
+      }
     }
   }
 
   function setOrderInfo() {
-    if(isOrderExist()) {
-      if(date == getDateToday()) {
-        if(orderNumber == 7) {
-          $("#order-info-text").text("今日已选择不订餐！");
-          $("#order-info-text").css("color", "red");
+    if (isOrderExist()) {
+      if (date == getDateToday()) {
+        if (orderNumber == CONSTANTS.MENU.COUNT) {
+          $("#order-info-text").text("今日已选择【不订餐】！");
         } else {
-          $("#order-info-text").text("今日已选择 " + orderNumber + " 号午餐");
-          $("#order-info-text").css("color", "green");
+          $("#order-info-text").text("今日已订 【" + orderNumber + "号" + (orderCount > 1 ? "， " + orderCount + "份】" : "】"));
         }
+        $("#order-info-text").css("color", CONSTANTS.COLOR.GREEN_SUCCESS);
       } else {
-        if(orderNumber == 7) {
-          $("#order-info-text").text("明日已选择不订餐！");
-          $("#order-info-text").css("color", "red");
+        if (orderNumber == CONSTANTS.MENU.COUNT) {
+          $("#order-info-text").text("明日已选择【不订餐】！");
         } else {
-          $("#order-info-text").text("明日已选择 " + orderNumber + " 号午餐");
-          $("#order-info-text").css("color", "green");
+          $("#order-info-text").text("明日已订 【" + orderNumber + "号" + (orderCount > 1 ? "， " + orderCount + "份】" : "】"));
         }
+        $("#order-info-text").css("color", CONSTANTS.COLOR.GREEN_SUCCESS);
       }
-    } else if(!isOrderExist()) {
-      if(date == getDateToday()) {
+    } else if (!isOrderExist()) {
+      if (date == getDateToday()) {
         $("#order-info-text").text("今日尚未点餐");
       } else {
         $("#order-info-text").text("明日未选午餐");
       }
-      $("#order-info-text").css("color", "orange");
+      $("#order-info-text").css("color", CONSTANTS.COLOR.RED_DANGER);
     } else {
       alert("订单状态错误");
     }
   }
 
-// Function to fetch menu from server
-  function fetchMenuList(date) {
-    $.ajax({
-      type: "POST",
-      url: "../php/functions/fetch-menu.php",
-      data: {
-        'date': date
-      },
-      dataType: "json",
-      success: function (response) {
-        if (response != null) {
-          var menuArray = response;
-          setMenuData(menuArray);
-        } else {
-          alert("获取状态失败，请重试！");
-        }
-      },
-      error: function (errorMsg) {
-        alert("获取状态失败，Ajax获取菜单数据错误，请刷新页面或者切换网络环境，或联系开发者");
-      }
-    });
-  }
-
   function setMenuData(menuArray) {
-    for (let i = 0; i < 5; i++) {
-      for (let j = 0; j < 3; j++) {
-        let foodId = "#" + "food" + "-" + "0" + (i + 1) + "-" + "0" + (j + 1);
+    for (let i = 0; i < CONSTANTS.MENU.COUNT; i++) {
+      for (let j = 0; j < CONSTANTS.MENU.SUB_COUNT; j++) {
+        let foodId = "#food" + "-" + (i + 1) + "-" + (j + 1);
         $(foodId).text(decodeUnicode(menuArray[i][j]).split(','));
       }
     }
   }
 
   // Card click event
-  $(".card").each(function () {
-    $(this).click(function() {
-      var menuNum = $(this).index() + 1;
-      setSelectBorder($(this), menuNum);
-      $.ajax({
-        type: "POST",
-        url: "../php/functions/order-operation.php",
-        data: {
-          "order-number": menuNum,
-          "order-date": date,
-          "order-status":orderStatus
-        },
-        dataType: "json",
-        success: function (response) {
-
-        },
-        error: function (e, ts, et) {
-          alert("菜单状态检查错误，请刷新页面或者切换网络环境，或联系开发者");
-        },
-        complete: function() {
-          if(menuNum == 7) {
-            if(date == getDateToday()) {
-              alert("今日 - 已选择【 不订餐 】！");
-            } else {
-              alert("明日 - 已选择【 不订餐 】！");
-            }
-          } else if(menuNum == 6) {
-            if(date == getDateToday()) {
-              alert("今日 - 成功预定【干捞水饺】");
-            } else {
-              alert("明日 - 成功预定【干捞水饺】");
-            }
-          } else {
-            if(date == getDateToday()) {
-              alert("今日 - 成功预定 " + "【 " + menuNum + " 】号餐");
-            } else {
-              alert("明日 - 成功预定 " + "【 " + menuNum + " 】号餐");
-            }
-          }
-          window.location.href = "../php/user-main.php";
-        }
+  function setMenuCardClickEvents() {
+    $(".card").each(function () {
+      $(this).click(function () {
+        let cardId = $(this).attr("id");
+        let orderNumber = cardId[Number(cardId.length - 1)];
+        addCounterDialog(orderNumber);
+        setSelectBorder($(this), orderNumber);
       });
-
     });
-  });
+  }
+
+  function addCounterDialog(orderNum) {
+    $("body").append("<div class='counter-container'>");
+    let container = $(".counter-container");
+    container.append("<div class='card border-success counter-card'>");
+    let card = $(".counter-card");
+    card.append("<h5 class='card-header'>" + ((orderNum == (CONSTANTS.MENU.COUNT + 1)) ? "不订餐" : "确认份数(默认1份)") + "</h5>");
+    card.append("<div class='card-body text-success counter'>");
+    $(".counter").append("<div class='input-group'>");
+    let inputGroup = $(".counter .input-group");
+    inputGroup.append("<div class='input-group-prepend'>");
+    $(".counter .input-group .input-group-prepend").append("<button class='btn btn-outline-secondary' type='button' id='btn-remove'>-</button>");
+    inputGroup.append("<input type='number' class='form-control' id='counter-input' value='1' >");
+    inputGroup.append("<div class='input-group-append'>");
+    $(".counter .input-group .input-group-append").append("<button class='btn btn-outline-secondary' type='button' id='btn-add'>+</button>");
+    card.append("<div class='card-footer text-success counter'>");
+    let footer = $(".counter-container .card-footer");
+    footer.append("<button class='btn btn-success btn-md' id='btn-order'>订餐");
+    footer.append("<button class='btn btn-danger btn-md' id='btn-cancel-order'>取消");
+
+    if (orderNum == CONSTANTS.MENU.COUNT + 1) {
+      $(".counter .input-group").empty();
+      $(".counter .input-group").append("<h4>选择不订餐");
+      $("#btn-order").text("提交");
+    }
+
+    let count = $("#counter-input").val();
+    if (count <= 1) {
+      setDisable($("#btn-remove"));
+    }
+
+    $("#btn-remove").click(function () {
+      if ($("#counter-input").val() > 1) {
+        $("#counter-input").val(Number($("#counter-input").val()) - 1);
+      }
+      if ($("#counter-input").val() <= 1) {
+        setDisable($("#btn-remove"));
+      }
+    });
+
+    $("#btn-add").click(function () {
+      $("#counter-input").val(Number($("#counter-input").val()) + 1);
+      if ($("#counter-input").val() > 1) {
+        setEnable($("#btn-remove"));
+      }
+    });
+
+    $("#btn-cancel-order").click(function () {
+      $(".counter-container").remove();
+    });
+
+    $("#btn-order").click(function () {
+      let orderCount = orderNum == (CONSTANTS.MENU.COUNT + 1) ? 0 : $("#counter-input").val();
+      setDailyOrder(date, userId, orderNum, orderCount, orderStatus).done(function () {
+        $(".counter-container").remove();
+        jqInfo("订餐成功", (orderNum == (CONSTANTS.MENU.COUNT + 1)) ? "已确认【不订餐】" : "已订 【" + orderNum + "号，" + orderCount + "份】，将自动返回主页", function () {
+          window.location.href = "user-main.php";
+        });
+      });
+    });
+  }
 
   // Function to clear all card border
   function clearCardBorder() {
-    $(".card").each(function(){
-      $(this).css("border","");
+    $(".card").each(function () {
+      $(this).css("border", "");
     });
   }
 
@@ -159,7 +199,7 @@ $(document).ready(function () {
   }
 
   function isOrderExist() {
-    return (orderStatus == "order-exist") ? true : false;
+    return (orderStatus == CONSTANTS.ORDER.STATUS.ORDER_EXIST) ? true : false;
   }
 });
 

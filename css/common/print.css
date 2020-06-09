@@ -1,4 +1,24 @@
 * {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: black;
+}
+
+.card {
+  background-color: transparent;
+  border: none;
+}
+
+.card-header .detail-title {
+  font-size: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  vertical-align: middle;
+}
+
+table th,
+table td {
+  border: solid black 1px !important;
 }

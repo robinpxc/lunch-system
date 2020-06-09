@@ -1,3 +1,11 @@
+function setGroupTablePrint() {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
+    $(".tb-print-" + i).click(function() {
+      initPrintFunction($(".table-group-" + i));
+    });
+  }
+}
+
 function initPrintFunction(element) {
   element.print({
     addGlobalStyles : true,
@@ -10,10 +18,8 @@ function initPrintFunction(element) {
   });
 }
 
-function setGroupTablePrint() {
-  for(let i = 0; i < 7; i++) {
-    $(".tb-print-" + i).click(function() {
-      initPrintFunction($(".table-group-" + i));
-    });
-  }
+function setAllTablePrint() {
+  $(".btn-print-all").click(function() {
+    initPrintFunction($(".table-content"));
+  });
 }

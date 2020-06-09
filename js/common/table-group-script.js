@@ -1,27 +1,53 @@
-
-function initTableGroup() {
-  addDropdownListEvent();
+function initTableGroup(userRole, userGroup, customFunc) {
+  setTable(userRole, userGroup, customFunc);
 }
 
-function addDropdownListEvent() {
+function setTable(userRole, userGroup, customFunc) {
+  let dataRange = CONSTANTS.STATISTICS.RANGE_GROUP;
+  if(hasHighPermission(userRole)) {
+    dataRange = $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE);
+    if(dataRange == "") {
+      dataRange = CONSTANTS.STATISTICS.RANGE_ALL;
+    }
+  }
+
+  if(dataRange == CONSTANTS.STATISTICS.RANGE_ALL && userRole != CONSTANTS.USER.ROLE.ADMIN_MENU ) {
+    addDropdownListEvent(customFunc);
+  } else {
+    $(".form-nav").remove();
+    keepCurrentGroupTable(userGroup);
+  }
+}
+
+function keepCurrentGroupTable(userGroup) {
+  let groupNum = userGroup[5];
+  $(".table-card").each(function() {
+    if(!$(this).hasClass("table-group-" + groupNum) && !$(this).hasClass("table-not-ordered")) {
+      $(this).remove();
+    }
+  });
+}
+
+function addDropdownListEvent(customFunc) {
   $(".dropdown-item").each(function(){
     $(this).click(function() {
       setDropdownInactive();
       addNewClass($(this), "active");
       $(".dropdown-workgroup").text($(this).text());
-      setListMenuClickEventUI($(this));
+      setListMenuClickEventUI($(this), customFunc);
     });
   });
 }
 
 function setDropdownInactive() {
-  $(".dropdown-item").each(function() {
+  $(".nav-dropdown-item").each(function() {
     removeOldClass($(this), "active");
   });
 }
 
-function setListMenuClickEventUI(listItem) {
-  switch (listItem.attr("id")) {
+function setListMenuClickEventUI(listItem, customFunc) {
+  let groupId = listItem.attr("id");
+  switch (groupId) {
     case "group-0":
       filterTables(0);
       break;
@@ -46,11 +72,13 @@ function setListMenuClickEventUI(listItem) {
     default:
       unhideAllGroup();
   }
+
+  customFunc(groupId);
 }
 
 function filterTables(currentItemNum) {
   let itemPrefix = ".table-group-";
-  for(let i = 0; i < 7; i++) {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     hideElement($(itemPrefix + i));
   }
   unhideElement($(itemPrefix + currentItemNum));
@@ -58,7 +86,7 @@ function filterTables(currentItemNum) {
 
 function unhideAllGroup() {
   let itemPrefix = ".table-group-";
-  for(let i = 0; i < 7; i++) {
+  for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
     unhideElement($(itemPrefix + i));
   }
 }

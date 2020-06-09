@@ -4,24 +4,29 @@
 * Parameters:
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchExistYear(async) {
-  let menuArray = new Array();
+function fetchExistYear() {
+  let deferred = $.Deferred();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-years.php",
     data: {},
-    dataType: "JSON",
-    async: async,
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       if (response != null) {
-        menuArray = response;
+        deferred.resolve(response);
       }
     },
     error: function (errorMsg) {
       alert("获取可选年份失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuArray;
+  return deferred.promise();
 }
 
 /*
@@ -31,26 +36,31 @@ function fetchExistYear(async) {
 *   year: [string] will determine the year.
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchExistMonth(year, async) {
-  let menuArray = new Array();
+function fetchExistMonth(year) {
+  let deferred = $.Deferred();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-months.php",
     data: {
       "year": year
     },
-    dataType: "JSON",
-    async: async,
+    dataType: CONSTANTS.AJAX.DATA_TYPE.JSON,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       if (response != null) {
-        menuArray = response;
+        deferred.resolve(response);
       }
     },
     error: function (errorMsg) {
       alert("获取可选月份失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuArray;
+  return deferred.promise();
 }
 
 /*
@@ -61,25 +71,30 @@ function fetchExistMonth(year, async) {
 *   month: [String] will determine the month.
 *   async: [boolean] will determine the function will work on sync/async mode.
 * */
-function fetchExistDays(year, month, async) {
-  let menuArray = new Array();
+function fetchExistDays(year, month) {
+  let deferred = $.Deferred();
   $.ajax({
-    type: "POST",
+    type: CONSTANTS.AJAX.TYPE.POST,
     url: "../php/functions/fetch-exist-days.php",
     data: {
       "year": year,
       "month": month
     },
     dataType: "JSON",
-    async: async,
+    beforeSend: function() {
+      addSpinner();
+    },
     success: function (response) {
       if (response != null) {
-        menuArray = response;
+        deferred.resolve(response);
       }
     },
     error: function (errorMsg) {
       alert("获取可选日期失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
+    },
+    complete: function() {
+      removeSpinner();
     }
   });
-  return menuArray;
+  return deferred.promise();
 }

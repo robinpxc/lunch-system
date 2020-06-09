@@ -1,12 +1,16 @@
 $(document).ready(function() {
-  let yearArray = fetchExistYear(false);
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
 
   initUI();
-  setCustomYearSelect();
-  setSelectChangeEvent();
-  setCardClickEvent();
+  fetchExistYear().done(function(yearArray) {
+    setCustomYearSelect(yearArray);
+    setSelectChangeEvent();
+    setCardClickEvent();
+  });
 
   function initUI() {
+    addAdminHighlight($(".admin-item-data"));
     $("#date-today").text(getDateTodayCN(true));
     $("#date-tomorrow").text(getDateTomorrowCN(true));
     $("#last-month").text((getLastMonth() >= 10) ? toString(getLastMonth()) : ("0" + getLastMonth()));
@@ -14,13 +18,33 @@ $(document).ready(function() {
 
   function setCardClickEvent() {
     $("#daily-statistics").click(function() {
-      $.cookie("daily-statistics-date", getDateToday());
-      window.location.href = "admin-daily-statistic.php";
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(getDateToday());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(getDateToday());
+        });
+      } else {
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+        jumpToDailyStatistic(getDateToday());
+      }
     });
 
     $("#tomorrow-statistics").click(function() {
-      $.cookie("daily-statistics-date", getDateTomorrow());
-      window.location.href = "admin-daily-statistic.php";
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(getDateTomorrow());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(getDateTomorrow());
+        });
+      } else {
+        $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+        jumpToDailyStatistic(getDateTomorrow());
+      }
     });
 
     $("#custom-daily-statistics").click(function(){
@@ -30,24 +54,61 @@ $(document).ready(function() {
       selectMonth = selectMonth.length == 1 ? "0" + selectMonth : selectMonth;
       selectDay = selectDay.length == 1 ? "0" + selectDay : selectDay;
       let selectedDate = selectedYear + "-" + selectMonth + "-" + selectDay;
-      $.cookie("daily-statistics-date", selectedDate);
-      window.location.href = "admin-daily-statistic.php";
+
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToDailyStatistic(selectedDate);
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToDailyStatistic(selectedDate);
+        });
+      } else {
+        jumpToDailyStatistic(selectedDate);
+      }
     });
 
     $("#monthly-statistics").click(function() {
-      $.cookie("monthly-statistics-year", getCurrentYear());
-      $.cookie("monthly-statistics-month", getLastMonth());
-      window.location.href = "admin-monthly-statistic.php";
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+        });
+      } else {
+        jumpToMonthlyStatistic(getCurrentYear(), getLastMonth());
+      }
     });
 
-    $("#custom-monthly-statistics").click(function(){
-      $.cookie("monthly-statistics-year", $("#m-year-select option:selected").val());
-      $.cookie("monthly-statistics-month", $("#m-month-select option:selected").val());
-      window.location.href = "admin-monthly-statistic.php";
+    $("#custom-monthly-statistics").click(function() {
+      if(hasHighPermission(userRole)) {
+        selectDataRange(function(){
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_GROUP);
+          jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+        }, function() {
+          $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATA_RANGE, CONSTANTS.STATISTICS.RANGE_ALL);
+          jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+        });
+      } else {
+        jumpToMonthlyStatistic($("#m-year-select option:selected").val(), $("#m-month-select option:selected").val());
+      }
     });
   }
 
-  function setCustomYearSelect() {
+  function jumpToDailyStatistic(date) {
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_DATE, date);
+    window.location.href = "admin-daily-statistic.php";
+  }
+
+  function jumpToMonthlyStatistic(year, month) {
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_YEAR, year);
+    $.cookie(CONSTANTS.COOKIE.STATISTICS.KEY_MONTH, month);
+    window.location.href = "admin-monthly-statistic.php";
+  }
+
+  function setCustomYearSelect(yearArray) {
     if(yearArray.length != 0) {
       for(let i = 0; i < yearArray.length; i++) {
         $(".year-select").append("<option class='year-option-" + i + "'>");
@@ -60,32 +121,40 @@ $(document).ready(function() {
 
   function setCustomMonthSelect(type) {
     let monthArray = new Array();
-    let selectedElement = "";
+    let selectedElement;
     if(type == "daily") {
-      monthArray = fetchExistMonth($("#d-year-select option:selected").val(), false);
-      selectedElement = "#d-month-select";
+      fetchExistMonth($("#d-year-select option:selected").val()).done(function(existMonths) {
+        setMonthList($("#d-month-select"), existMonths);
+        setCustomDaySelect();
+      });
+
     } else if(type == "monthly") {
-      monthArray = fetchExistMonth($("#m-year-select option:selected").val(), false);
-      selectedElement = "#m-month-select";
+      fetchExistMonth($("#d-year-select option:selected").val()).done(function(existMonths) {
+        monthArray = existMonths;
+        setMonthList($("#m-month-select"), monthArray);
+      });
     }
-    $(selectedElement).empty();
-    for(let i = 0; i < monthArray.length; i++) {
-     $(selectedElement).append("<option class='month-option-" + i + "'>");
-     $(selectedElement + " .month-option-" + i).text(monthArray[i]);
-    }
-    if(type == "daily") {
-      setCustomDaySelect();
+  }
+
+  function setMonthList(element, existMonths) {
+    element.empty();
+    for(let i = 0; i < existMonths.length; i++) {
+      element.append("<option class='month-option-" + i + "'>");
+      $("#" + element.attr("id") + " .month-option-" + i).text(existMonths[i]);
     }
   }
 
   function setCustomDaySelect() {
-    let selectedElement = "#d-day-select";
-    $(selectedElement).empty();
-    let dayArray = fetchExistDays($("#d-year-select option:selected").val(), $("#d-month-select option:selected").val(), false);
-    for(let i = 0; i < dayArray.length; i++) {
-      $(selectedElement).append("<option class='day-option-" + i + "'>");
-      $(".day-option-" + i).text(dayArray[i]);
-    }
+    let selectedElement = $("#d-day-select");
+    let selectYear = $("#d-year-select option:selected").val();
+    let selectMonth = $("#d-month-select option:selected").val();
+    selectedElement.empty();
+    fetchExistDays(selectYear, selectMonth).done(function(existDays) {
+      for(let i = 0; i < existDays.length; i++) {
+        selectedElement.append("<option class='day-option-" + i + "'>");
+        $(".day-option-" + i).text(existDays[i]);
+      }
+    });
   }
 
   function setSelectChangeEvent() {
@@ -96,9 +165,19 @@ $(document).ready(function() {
     $("#m-year-select").change(function() {
       setCustomMonthSelect("monthly");
     });
+
+    $("#d-month-select").change(function() {
+      setCustomDaySelect();
+    });
   }
 
-  function getLastMonth() {
-    return new Date().getMonth();
+  function selectDataRange(func1, func2) {
+    if(hasHighPermission(userRole)) {
+      jqDialog("数据选择", "请选择要查看的数据", "本部门数据统计", "所有部门数据统计", function() {
+        func1();
+      }, function() {
+        func2();
+      });
+    }
   }
 });

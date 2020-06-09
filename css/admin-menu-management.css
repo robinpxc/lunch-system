@@ -8,6 +8,22 @@
   margin-right: 10px;
 }
 
+.menu-status-bar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+}
+
+.group-input {
+  width: 100%;
+}
+
+.form-row input {
+  display: inline-block;
+}
+
 .today {
   font-size: 16px;
   font-weight: bold;

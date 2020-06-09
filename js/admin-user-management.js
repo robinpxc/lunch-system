@@ -1,33 +1,27 @@
 $(document).ready(function () {
-  let dataArray = fetchUserInfo();
-  showHideExtraCols();
-  initTableGroup();
-  configTableHeader();
-  setData(dataArray);
-  setGroupTablePrint();
+  let userRole = $.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE);
+  let userGroup = $.cookie(CONSTANTS.COOKIE.USER.KEY_GROUP);
+  let groupCount = userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP ? 1 : CONSTANTS.WORKGROUP_COUNT;
 
-  $('.del-btn').on('click', function () {
-    showConfirmDeleteDialog(this);
+  fetchGroupUserInfo(userRole, userGroup).done(function(data) {
+    configUI();
+    addGlobalListeners();
+    addFormButtonClickEvents();
+    setData(data);
+    $(".del-btn").click(function() {
+      showConfirmDeleteDialog(this);
+    });
+
+    $(".modify-btn").click(function() {
+      let id = $(this).parent().find("input").val();
+      if(id == "") {
+        jqAlert("错误", "用户信息异常，请刷新重试");
+      } else {
+        $.cookie(CONSTANTS.COOKIE.USER.KEY_ID_MODIFIED, id);
+        window.location.href = "admin-modify-profile.php";
+      }
+    });
   });
-
-  $("#create-new-user-btn").click(function () {
-    addUser();
-  });
-
-  $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
-    enableCreateUserBtn();
-  });
-
-  $("#extend-btn").on("click", function() {
-    formControlBtnClick($("#extend-btn"));
-  });
-
-  $("#hide-btn").on("click", function() {
-    formControlBtnClick($("#hide-btn"));
-  });
-
-  adjustCreationFormSize();
-  setDynamicCreateUserSize();
 
   $(window).resize(function () {
     showHideExtraCols();
@@ -35,32 +29,46 @@ $(document).ready(function () {
     setDynamicCreateUserSize();
   });
 
-  // Function to fetch user info
-  function fetchUserInfo() {
-    let dataArray = new Array();
-    $.ajax({
-      type: "POST",
-      url: "../php/functions/fetch-user-info.php",
-      data: {
-      },
-      async: false,
-      dataType: "JSON",
-      success: function (response) {
-        dataArray = response;
-      },
-      error: function () {
-        alert("获取用户信息失败，Ajax数据错误，请刷新或切换网络环境，再或联系开发者");
-      },
-      complete: function() {}
-    });
-    return dataArray;
+  function configUI() {
+    addAdminHighlight($(".admin-item-user"));
+    // Dynamic resize UI elements
+    showHideExtraCols();
+    adjustCreationFormSize();
+    setDynamicCreateUserSize();
+
+    // Table related UI functions
+    initUI();
+    initTableGroup(userRole, userGroup, function() {});
+    setGroupTablePrint();
+    setAllTablePrint();
+    exportEvents("um");
+  }
+
+  function initUI() {
+    let groupNum = userGroup[5];
+    if (userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP || userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+      removeHighLevelRoles(userRole);
+      $(".nav-drop-down").remove();
+      $(".table-card").each(function() {
+        if(!$(this).hasClass("table-group-" + groupNum)) {
+          $(this).remove();
+        }
+      });
+      $("#super-user").remove();
+      $("#new-user-group option").each(function() {
+        if($(this).val() != userGroup) {
+          $(this).remove();
+        }
+      });
+      setDisable($("#new-user-group"));
+    }
   }
 
 // Function to show/hide extra table contents
   function showHideExtraCols() {
-    var roleInfo = $(".role-info");
-    var workgroupInfo = $(".workgroup-info");
-    var nickNameInfo = $(".nickname-info");
+    let roleInfo = $(".role-info");
+    let workgroupInfo = $(".workgroup-info");
+    let nickNameInfo = $(".nickname-info");
 
     if (getWindowWidth() >= 768 && roleInfo.hasClass("hide")) {
       roleInfo.removeClass("hide");
@@ -74,91 +82,89 @@ $(document).ready(function () {
   }
 
 // Function to add a new user
-  function addUser() {
-    var username = $("#new-fullname").val();
-    var userNickName = $("#new-nickname").val();
-    var password = $("#new-user-password-edit").val();
-    var role = $("#new-user-role option:selected").val();
-    var workgroup = $("#new-user-group option:selected").val();
-    $.ajax({
-      type: "post",
-      url: "../php/functions/add-user.php",
-      data: {
-        "username": username,
-        "nickname": userNickName,
-        "password": password,
-        "role": role,
-        "workgroup": workgroup
-      },
-      dataType: "json",
-      async: false,
-      success: function (response) {
-        switch (response) {
-          case 1:
-            alert("添加用户" + username + "成功！");
-            break;
-          case 2:
-            alert("设置的昵称已经被使用了");
-            break;
-        }
+  function addOneUser() {
+    let username = $("#new-fullname").val();
+    let nickName = $("#new-nickname").val();
+    let password = $("#new-user-password-edit").val();
+    if(password == null || password == "") {
+      password = "123";
+    }
+    let role = $("#user-role option:selected").val();
+    let workgroup = $("#new-user-group option:selected").val();
+    if(verifyNickName(nickName)) {
+      removeAlertFocus($("#new-nickname"));
+      if($.cookie(CONSTANTS.COOKIE.USER.KEY_ROLE) == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+        getGroupUserCount(workgroup).done(function(userCount) {
+
+          if(userCount == 0 && (role != CONSTANTS.USER.ROLE.ADMIN_GROUP && role != CONSTANTS.USER.ROLE.ADMIN_MENU)) {
+            jqAlert("操作失败","各部门第一个成员必须是【组/菜单管理员】!");
+          } else {
+            uploadUserData(username, nickName, password, role, workgroup);
+          }
+        });
+      } else {
+        uploadUserData(username, nickName, password, role, workgroup);
+      }
+    } else {
+      jqAlertWithFunc("错误","用户名必须包含字母和数字，用于避免和ID混淆", function() {
+        $("#new-nickname").val("");
+        setAlertFocus($("#new-nickname"));
+      });
+    }
+  }
+
+  function uploadUserData(username, nickName, password, role, workgroup) {
+    addUser(username, nickName, password, role, workgroup).done(function(response) {
+      switch(response) {
+        case "success":
+          jqInfo("操作成功", "成功的添加了用户【" + username + "】", function() {
+            refresh()
+          });
+          break;
+        case "nickname-exist":
+          jqAlert("操作失败","昵称已经被使用, 请更换昵称!");
+          break;
+        default:
+          jqAlert("操作失败", "发生异常，请刷新重试!");
       }
     });
   }
 
 // Function to show confirm dialog when deleting a user.
   function showConfirmDeleteDialog(btn) {
-    var userId = $(btn).parent().parent().find("input").val();
-    $.confirm({
-      title: "用户删除确认",
-      content: '确认从数据库中删除该用户吗？',
-      buttons: {
-        confirm: {
-          btnClass: "btn-danger",
-          text: "确认删除",
-          keys: ["enter"],
-          action: function () {
-            var delUrl = "../php/functions/delete-user.php?user_id=" + userId;
-            window.location.href = delUrl;
-          }
-        },
-        cancel: {
-          btnClass: "btn-primary",
-          text: "取消",
-          keys: ["esc"],
-        }
-      }
+    let userId = $(btn).parent().find("input").val();
+    let userName = $("#fullname-" + userId).text();
+    jqConfirm("用户删除确认", "确认从数据库中删除【" + userName + "】吗？", function() {
+      delUser(userId, userName)
     });
   }
 
-// Function to show general alert
-  function showAlert() {
-    $.alert({
-      title: 'Alert!',
-      content: 'Simple alert!',
-      confirm: function(){
-      }
+  function delUser(userId, userName) {
+    deleteUser(userId).done(function(response) {
+      jqInfo(response == "success" ? "删除成功" : "删除失败", response == "success" ? "成功的删除用户 【" + userName + "】" : "删除失败，请刷新重试", function() {
+        refresh();
+      });
     });
   }
 
 // Function to enable submit button when all require filed has done.
   function enableCreateUserBtn() {
-    $fullname = $("#new-fullname").val();
-    $nickname = $("#new-nickname").val();
-    $password = $("#new-user-password-edit").val();
-    $createUserBtn = $("#create-new-user-btn");
+    let fullname = $("#new-fullname").val();
+    let nickname = $("#new-nickname").val();
+    let createUserBtn = $("#create-new-user-btn");
 
-    if ($fullname != "" && $nickname != "" && $password != "") {
-      setEnable($createUserBtn);
+    if (fullname != "" && nickname != "") {
+      setEnable(createUserBtn);
     } else {
-      setDisable($createUserBtn);
+      setDisable(createUserBtn);
     }
   }
 
 // Function to show/hide create user when screen width <= 768
   function adjustCreationFormSize() {
-    var formContent = $(".form-content");
-    var extendContentBtn = $(".extend-content");
-    var hideContentBtn = $(".hide-content");
+    let formContent = $(".form-content");
+    let extendContentBtn = $(".extend-content");
+    let hideContentBtn = $(".hide-content");
     if (getWindowWidth() > 768) {
       removeOldClass(formContent, "hide");
       addNewClass(extendContentBtn, "hide");
@@ -171,9 +177,9 @@ $(document).ready(function () {
 
 // Function to control the add user menu in mobile mode.
   function formControlBtnClick(button) {
-    var formContent = $(".form-content");
-    var extendBtn = $(".extend-content");
-    var hideBtn = $(".hide-content");
+    let formContent = $(".form-content");
+    let extendBtn = $(".extend-content");
+    let hideBtn = $(".hide-content");
     switch(button.attr("id")) {
       case "extend-btn":
         addNewClass(extendBtn, "hide");
@@ -190,76 +196,115 @@ $(document).ready(function () {
 
 // Function to adjust create user block and blank block width
   function setDynamicCreateUserSize() {
-    var createUserWidth = $(".main-content").width();
-    var blankHeight = $(".create-form").height();
+    let createUserWidth = $(".main-content").width();
+    let blankHeight = $(".create-form").height();
     $(".create-form").width(createUserWidth);
     $("body").css("padding-bottom", blankHeight);
   }
 
-  function configTableHeader() {
-    for(let i = 0; i < 7; i++) {
+  function configTableHeader(dataArray) {
+    for(let i = 0; i < CONSTANTS.WORKGROUP_COUNT; i++) {
       let cardHeaderClassName = ".table-group-" + i + " .card-header .tb-title";
       let originalText = $(cardHeaderClassName).text();
-      $(cardHeaderClassName).text(originalText + "（ 共 " +  getGroupOrderNumber(dataArray, i) + " 人 ）");
+      $(cardHeaderClassName).text(originalText + "(" +  getGroupMemberCount(dataArray, i) + "人)");
     }
   }
 
   function setData(dataArray) {
-    for(let i = 0; i < 7; i++) {
-      setDataToGroupTable(getGroupData(dataArray, i), i);
+    configTableHeader(dataArray);
+    for(let i = 0; i < groupCount; i++) {
+      setDataToGroupTable(getGroupData(dataArray, groupCount == 1 ? userGroup : i), groupCount == 1 ? userGroup : i);
     }
   }
 
-  function getGroupOrderNumber(dataArray, groupNumber) {
-    let groupOrder = 0;
-    let group = "group" + groupNumber;
+  function getGroupMemberCount(dataArray, groupNum) {
+    let groupMembers = 0;
+    let group = "group" + groupNum;
     for(let i = 0; i < dataArray.length; i++) {
-      if(dataArray[i][5] == group) {
-        groupOrder ++;
+      if(dataArray[i][4] === group) {
+        groupMembers ++;
       }
     }
-    return groupOrder;
+    return groupMembers;
   }
 
   function getGroupData(dataArray, groupNumber) {
-    let group = "group" + groupNumber;
-    let groupOrderData = new Array();
+    let group = groupCount == 1 ? groupNumber : "group" + groupNumber;
+    let groupMemberData = new Array();
     for(let i = 0; i < dataArray.length; i++) {
-      if(dataArray[i][5] == group) {
-        groupOrderData.push(dataArray[i]);
+      if(dataArray[i][4] == group) {
+        groupMemberData.push(dataArray[i]);
       }
     }
-    return groupOrderData;
+    return groupMemberData;
   }
 
-  function setDataToGroupTable(data, group) {
-    for(let i = 0; i < data.length; i++) {
-      let fullname = data[i][2];
-      let userId = data[i][0];
-      let userRole = data[i][4];
-      let nickname = data[i][1];
-      let personClass = "group" + "-" + group + "-" + "person" + "-" + i;
-
-      $(".tb-group" + group).append("<tr class=" + personClass + ">");
-      $("." + personClass).append("<td>" + fullname);
+  function setDataToGroupTable(groupMemberData, userGroup) {
+    for(let i = 0; i < groupMemberData.length; i++) {
+      let fullName = groupMemberData[i][0];
+      let userId = groupMemberData[i][1];
+      let userRole = groupMemberData[i][2];
+      let nickName = groupMemberData[i][3];
+      let groupNum = groupCount == 1 ? userGroup[5] : userGroup;
+      let personClass = "group" + "-" + groupNum + "-" + "person" + "-" + i;
+      $(".tb-group" + groupNum).append("<tr class=" + personClass + ">");
+      $("." + personClass).append("<td id='" + "fullname-" + userId + "'>" + fullName);
       $("." + personClass).append("<td>" + userId);
 
-      $("." + personClass).append("<td class='hide-small-screen'>" + (userRole == "user" ? "用户" : "管理员"));
-      $("." + personClass).append("<td class='hide-small-screen'>" + nickname);
-      $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print '" + ">");
+      let userRoleCN = "";
+      if(userRole == CONSTANTS.USER.ROLE.ADMIN_SUPER) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_SUPER;
+      } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_GROUP) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_GROUP;
+      } else if(userRole == CONSTANTS.USER.ROLE.ADMIN_MENU) {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.ADMIN_MENU;
+      } else {
+        userRoleCN = CONSTANTS.USER.ROLE.CN.USER;
+      }
+      $("." + personClass).append("<td class='hide-small-screen'>" + userRoleCN);
+      $("." + personClass).append("<td class='hide-small-screen'>" + nickName);
+      $("." + personClass).append("<td class='operation-btn-group-" + i + " no-print no-export'" + ">");
       let btnGroupClass = personClass + " " + ".operation-btn-group-" + i;
-      $("." + btnGroupClass).append("<div class='btn-group btn-group" + "-" + i + "'" + ">");
+      $("." + btnGroupClass).append("<div class='operation-btn-group btn-group" + "-" + i + "'" + ">");
       $("." + btnGroupClass + " " + ".btn-group-" + i).append("<input type='hidden' value='" + userId + "'>");
-      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='modify-link'" + " href='admin-modify-profile.php?uid=" + userId + "'" + ">");
-      let modifyButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #modify-link";
-      $(modifyButtonId).append("<button type='button' class='btn btn-light active' id='modify-btn'>修改");
+      let modifyButtonId = "modify-btn-" + userId;
+      $("." + btnGroupClass + " " + ".btn-group-" + i).append("<button type='button' class='btn modify-btn btn-light active' id='" + modifyButtonId + "'>修改");
+
+      if($("#current-user-id").val() == userId) {
+        $("#" + modifyButtonId).addClass("current-user");
+      }
 
       if($("#current-user-id").val() != userId) {
-        $("." + btnGroupClass + " " + ".btn-group-" + i).append("<a id='del-link'>");
-        let delButtonId = "." + btnGroupClass + " " + ".btn-group-" + i + " #del-link";
-        $(delButtonId).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
+        $("." + btnGroupClass + " " + ".btn-group-" + i).append("<button type='button' class='btn btn-danger active del-btn' id='del-btn-" + userId + "'>" + "删除");
       }
     }
+  }
+
+  function addGlobalListeners() {
+    $("#new-fullname, #new-nickname, #new-user-password-edit").bind('input propertychange', function () {
+      enableCreateUserBtn();
+    });
+  }
+
+  function addFormButtonClickEvents() {
+    $("#create-new-user-btn").click(function () {
+      addOneUser();
+    });
+
+    $("#extend-btn").click(function() {
+      formControlBtnClick($("#extend-btn"));
+    });
+
+    $("#hide-btn").click(function() {
+      formControlBtnClick($("#hide-btn"));
+    });
+  }
+
+  function exportEvents(tablePrefix) {
+    exportGroupTable(tablePrefix, null, null, null, null, null);
+    $(".btn-export-all").click(function() {
+      exportAllTables(tablePrefix, null, null, null, null);
+    })
   }
 });
 

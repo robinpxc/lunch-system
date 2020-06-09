@@ -1,4 +1,5 @@
 @import url("../../third-party/jquery-confirm/jquery-confirm.min.css");
+@import url("../common/summary-table.css");
 
 * {
   font-family: "Microsoft YaHei", "微软雅黑", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -7,7 +8,7 @@
 /* Body css */
 body {
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: whitesmoke;
   min-width: 320px;
   margin: 0;
   padding: 0;
@@ -22,6 +23,10 @@ body {
 .icon-eye {
   width: 20px;
   height: 20px;
+}
+
+.box-shadow{
+  box-shadow: 3px 3px 15px 3px #e3e3e3;
 }
 
 /* Header css */
@@ -68,13 +73,15 @@ body {
   color: black;
 }
 
-.nav-item {
+.nav-item, .nav-title {
+  margin: 1px;
   padding: 5px;
   border-radius: 5px;
   font-weight: bold;
 }
 
 .nav-item:hover {
+  cursor: pointer;
   background-color: #cfcfcf;
 }
 
@@ -82,17 +89,31 @@ body {
   background-color: #cfcfcf;
 }
 
-#current_date,
-#current_time {
-  font-size: 16px;
-  font-family: 'Courier New', Courier, monospace;
-  font-weight: bold;
+/* Admin nav list */
+.admin-nav-title {
+  color: red;
 }
 
-.card-admin h1,
-.card-admin h4,
-.card-admin li {
-  color: white;
+.dropdown-user-management {
+  color: #BD2130;
+}
+
+.dropdown-menu-management {
+  color: #1E7E34;
+}
+
+.admin-nav-item {
+  margin-left: 30px;
+}
+
+.dropdown-data-management {
+  color: #0062CC;
+}
+
+#current_date,
+#current_time {
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .right-radius {
@@ -112,6 +133,82 @@ body {
   border-bottom-right-radius: 3px !important;
 }
 
+.divider {
+  width: 100%;
+  height: 1px;
+  border-top: solid black 1px;
+}
+
+.dropdown-divider {
+  margin: 2px 0;
+}
+
+.large-divider {
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 8px 0;
+  background-color: red;
+}
+
 .hide {
   display: none !important;
 }
+
+/* Spinner related css */
+.spinner-container {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255,255,255,0.70);
+  overflow: hidden;
+}
+
+.spinner-container .circle-spinner {
+  width: 3rem;
+  height: 3rem;
+}
+
+.fa-exclamation-triangle {
+  color: red;
+}
+
+.fa-info-circle {
+  color: #0077F6;
+}
+
+.emphasised-red {
+  font-weight: bold;
+  color: red;
+  font-size: 1.1rem;
+}
+
+select:disabled {
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance:none;
+}
+
+.alert-focus {
+  border: solid #BD2130 4px;
+}
+
+@media screen and (max-width: 768px) {
+  .main-content {
+    padding: 5px !important;
+  }
+
+  .btn-print,
+  .btn-print-all,
+  .btn-export,
+  .btn-export-all {
+    display: none;
+  }
+}
+

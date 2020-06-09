@@ -3,10 +3,12 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
-  min-width: 18rem;
+  min-width: 330px;
   width: 30%;
   margin-right: 10px;
 }
@@ -28,7 +30,14 @@
   width: 100%;
 }
 
+.empty-card {
+  height: 1px;
+  border: none;
+  background-color: transparent;
+}
+
 .date-select {
+  -moz-appearance: none;
   margin-top: 5px;
   width: 100%;
   display: inline-flex;
@@ -48,5 +57,9 @@
   .card {
     width: 100%;
     margin: 5px;
+  }
+
+  .empty-card {
+    display: none;
   }
 }
