@@ -476,8 +476,7 @@ function chooseOrderDate() {
 // Input verification functions
 function verifyNickName(username) {
   let charRole = /[0-9]/;
-  let numRole =  /[a-z]/i;
-  return charRole.test(username) && numRole.test(username);
+  return charRole.test(username);
 }
 
 function setAlertFocus(element) {
